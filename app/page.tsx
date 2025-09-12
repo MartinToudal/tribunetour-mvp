@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import LoginButton from './(site)/_components/LoginButton';
 
 type Stadium = {
   id: string;
@@ -11,57 +12,11 @@ type Stadium = {
   lon?: number;
 };
 
-type ReviewScores = {
-  view: number;
-  atmosphere: number;
-  amenities: number;
-  valueForMoney: number;
-  accessibility: number;
-  authenticity: number;
-  pitchQuality: number;
-};
-
 const initialStadiums: Stadium[] = [
   { id: 'bif', name: 'Brøndby Stadion', team: 'Brøndby IF', league: 'Superliga', city: 'Brøndby' },
   { id: 'fck', name: 'Parken', team: 'F.C. København', league: 'Superliga', city: 'København' },
   { id: 'fcm', name: 'MCH Arena', team: 'FC Midtjylland', league: 'Superliga', city: 'Herning' },
 ];
-
-const weights = {
-  view: 0.15,
-  atmosphere: 0.25,
-  amenities: 0.15,
-  valueForMoney: 0.10,
-  accessibility: 0.10,
-  authenticity: 0.15,
-  pitchQuality: 0.10,
-};
-
-const labelMap: Record<string, string> = {
-  view: 'Udsyn',
-  atmosphere: 'Stemning',
-  amenities: 'Faciliteter',
-  valueForMoney: 'Værdi for pengene',
-  accessibility: 'Tilgængelighed',
-  authenticity: 'Autenticitet',
-  pitchQuality: 'Bane',
-};
-
-function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="rounded-2xl border border-neutral-800 p-4 bg-neutral-900">
-      <div className="text-sm text-neutral-400">{label}</div>
-      <div className="text-2xl font-semibold">{value}</div>
-      {sub && <div className="text-xs text-neutral-500 mt-1">{sub}</div>}
-    </div>
-  );
-}
-
-function FilterPill({ label, active }: { label: string; active?: boolean }) {
-  return (
-    <button className={`rounded-full px-3 py-1 text-xs border ${active ? 'bg-white text-neutral-900' : 'border-neutral-700'}`}>{label}</button>
-  );
-}
 
 export default function Page() {
   const [stadiums] = useState<Stadium[]>(initialStadiums);
@@ -78,14 +33,14 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center gap-3">
           <div className="h-9 w-9 rounded-2xl bg-neutral-800 grid place-items-center text-sm font-bold">TT</div>
           <h1 className="text-xl font-semibold">TribuneTour</h1>
-          <div className="ml-auto flex gap-2">
+          <div className="ml-auto flex gap-2 items-center">
             <input
               className="w-64 rounded-xl bg-neutral-900 px-3 py-2 outline-none ring-1 ring-neutral-800"
               placeholder="Søg stadion, klub, by…"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
-            <button className="rounded-xl bg-white/10 px-3 py-2 hover:bg-white/20">Log ind</button>
+            <LoginButton />
           </div>
         </div>
       </header>
@@ -103,21 +58,26 @@ export default function Page() {
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <StatCard label="Stadions i mål" value={`${stadiums.length}/48`} sub="registreret i systemet" />
-          <StatCard label="Besøgte (mine)" value={`${Object.values(myVisited).filter(Boolean).length}`} sub="kræver login" />
-          <StatCard label="Næste gode mulighed" value="Find i kampprogram" sub="filtrér efter ubesøgte" />
+          <div className="rounded-2xl border border-neutral-800 p-4 bg-neutral-900">
+            <div className="text-sm text-neutral-400">Stadions i mål</div>
+            <div className="text-2xl font-semibold">{stadiums.length}/48</div>
+            <div className="text-xs text-neutral-500 mt-1">registreret i systemet</div>
+          </div>
+          <div className="rounded-2xl border border-neutral-800 p-4 bg-neutral-900">
+            <div className="text-sm text-neutral-400">Besøgte (mine)</div>
+            <div className="text-2xl font-semibold">{Object.values(myVisited).filter(Boolean).length}</div>
+            <div className="text-xs text-neutral-500 mt-1">kræver login</div>
+          </div>
+          <div className="rounded-2xl border border-neutral-800 p-4 bg-neutral-900">
+            <div className="text-sm text-neutral-400">Næste gode mulighed</div>
+            <div className="text-2xl font-semibold">Find i kampprogram</div>
+            <div className="text-xs text-neutral-500 mt-1">filtrér efter ubesøgte</div>
+          </div>
         </section>
 
         <section className="rounded-2xl border border-neutral-800">
           <div className="flex items-center justify-between border-b border-neutral-800 p-4">
             <h3 className="text-lg font-semibold">Stadions</h3>
-            <div className="flex gap-2 text-sm">
-              <FilterPill label="Alle" active />
-              <FilterPill label="Superliga" />
-              <FilterPill label="1. division" />
-              <FilterPill label="2. division" />
-              <FilterPill label="3. division" />
-            </div>
           </div>
           <ul className="divide-y divide-neutral-800">
             {filtered.map((s) => (
@@ -138,19 +98,6 @@ export default function Page() {
               </li>
             ))}
           </ul>
-        </section>
-
-        <section className="rounded-2xl border border-neutral-800 p-4">
-          <h3 className="text-lg font-semibold">Anmeldelsesmodel (uddrag)</h3>
-          <p className="text-sm text-neutral-400 mb-2">Skaler 1–5 pr. kriterium. Vægte ses herunder. Samlet score beregnes automatisk.</p>
-          <div className="grid md:grid-cols-2 gap-3 text-sm">
-            {Object.entries(weights).map(([k, v]) => (
-              <div key={k} className="flex items-center justify-between rounded-xl bg-neutral-900 px-3 py-2">
-                <span className="capitalize">{labelMap[k as keyof typeof weights] || k}</span>
-                <span className="text-neutral-300">{Math.round(v * 100)}%</span>
-              </div>
-            ))}
-          </div>
         </section>
       </main>
 

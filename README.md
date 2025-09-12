@@ -1,24 +1,20 @@
-# TribuneTour MVP
+# TribuneTour MVP + Supabase Login
 
-En lille Next.js + Tailwind side klar til upload på Vercel.
+Indeholder Next.js + Tailwind, Supabase klient, login med e-mail (Magic Link), callback-side.
 
-## Hurtig start (Vercel Upload)
-1) Gå til vercel.com → New Project → Import → Upload.
-2) Upload denne zip-fil.
-3) Build command: (tom, Vercel finder selv `next build`).
-4) Når den er deployet, får du en URL som `https://xxxx.vercel.app`.
+## Deploy
+1. Commit/push til GitHub (hele mappen).
+2. Vercel bygger automatisk.
 
-## Domæne (tribunetour.dk)
-- I Vercel: Project → Settings → Domains → add `tribunetour.dk` og `www.tribunetour.dk`.
-- Følg DNS-instruktioner hos one.com (A-record + CNAME).
+## Env vars i Vercel (Settings → Environment Variables)
+- NEXT_PUBLIC_SUPABASE_URL = (Supabase → Settings → General → Project URL)
+- NEXT_PUBLIC_SUPABASE_ANON_KEY = (Supabase → Settings → API Keys → anon public)
 
-## Lokal udvikling (valgfrit)
-1) `npm install`
-2) `npm run dev`
-3) Åbn http://localhost:3000
-
-## Næste trin
-- Tilføj Supabase (Auth + DB).
-- Kort (Leaflet + Mapbox).
-- Anmeldelsesformular (med JSON-schema validering).
-- Kampprogram via fixtures-API.
+## Supabase auth redirect
+Supabase → Authentication → URL Configuration:
+- Site URL: https://tribunetour.dk
+- Redirect URLs:
+  - https://tribunetour.dk/auth/callback
+  - https://www.tribunetour.dk/auth/callback
+  - https://YOURPROJECT.vercel.app/auth/callback
+  - http://localhost:3000/auth/callback
