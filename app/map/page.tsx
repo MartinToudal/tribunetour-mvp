@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic'; // undgå prerender/SSR på /map
 import React from 'react';
 import MapView from '../(site)/_components/MapView';
 import LoginButton from '../(site)/_components/LoginButton';
@@ -11,8 +12,8 @@ export default function MapPage() {
           <div className="h-9 w-9 rounded-2xl bg-neutral-800 grid place-items-center text-sm font-bold">TT</div>
           <h1 className="text-xl font-semibold">TribuneTour · Kort</h1>
           <div className="ml-auto flex gap-2 items-center">
-            <a href="/" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">Forside</a>
-            <a href="/my" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">Min side</a>
+            <a href="/" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg:white/10">Forside</a>
+            <a href="/my" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg:white/10">Min side</a>
             <LoginButton />
           </div>
         </div>

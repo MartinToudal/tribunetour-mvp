@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import L from 'leaflet';
 import { supabase } from '../_lib/supabaseClient';
 
 // Dynamisk import så Leaflet kun loader i browseren
@@ -15,22 +14,29 @@ type Stadium = {
   lat?: number | null; lon?: number | null;
 };
 
-// Default Leaflet-ikon (bundlers mister ofte standard-paths, så vi sætter dem manuelt)
-const defaultIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
-
 export default function MapView() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [visited, setVisited] = useState<Record<string, boolean>>({});
   const [userId, setUserId] = useState<string|null>(null);
   const [onlyUnvisited, setOnlyUnvisited] = useState(false);
+  const [icon, setIcon] = useState<any>(null);
+
+  // Lazy-load Leaflet på klienten for at undgå "window is not defined"
+  useEffect(() => {
+    (async () => {
+      const L = await import('leaflet');
+      const defaultIcon = new L.Icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      setIcon(defaultIcon as any);
+    })();
+  }, []);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
@@ -48,20 +54,14 @@ export default function MapView() {
 
   const points = useMemo(() => stadiums.filter(s => s.lat && s.lon).filter(s => onlyUnvisited ? !visited[s.id] : true), [stadiums, visited, onlyUnvisited]);
 
-  const center = useMemo<[number, number]>(() => {
-    // Midt i DK ish
-    return [56.0, 10.0];
-  }, []);
+  const center = useMemo<[number, number]>(() => [56.0, 10.0], []);
 
-  // Mapbox tile URL hvis token er sat; ellers OSM
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
   const tileUrl = mapboxToken
     ? `https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`
     : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-  const tileAttribution = mapboxToken
-    ? '© Mapbox © OpenStreetMap'
-    : '© OpenStreetMap contributors';
+  const tileAttribution = mapboxToken ? '© Mapbox © OpenStreetMap' : '© OpenStreetMap contributors';
 
   return (
     <div className="grid gap-3">
@@ -77,7 +77,7 @@ export default function MapView() {
         <MapContainer center={center} zoom={7} style={{ height: '100%', width: '100%' }}>
           <TileLayer url={tileUrl} attribution={tileAttribution} />
           {points.map((s) => (
-            <Marker key={s.id} position={[s.lat as number, s.lon as number]} icon={defaultIcon}>
+            <Marker key={s.id} position={[s.lat as number, s.lon as number]} icon={icon || undefined}>
               <Popup>
                 <div className="text-sm">
                   <div className="font-medium">{s.name}</div>
