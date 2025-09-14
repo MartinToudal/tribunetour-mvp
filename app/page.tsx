@@ -11,12 +11,8 @@ export default function Page() {
           <div className="h-9 w-9 rounded-2xl bg-neutral-800 grid place-items-center text-sm font-bold">TT</div>
           <h1 className="text-xl font-semibold">TribuneTour</h1>
           <div className="ml-auto flex gap-2 items-center">
-            <a
-              href="/my"
-              className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10"
-            >
-              Min side
-            </a>
+            <a href="/my" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">Min side</a>
+            <a href="/map" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">Se kort</a>
             <LoginButton />
           </div>
         </div>
@@ -35,7 +31,7 @@ export default function Page() {
             >
               Kom i gang
             </a>
-            <button className="rounded-2xl border border-neutral-700 px-4 py-2">Se kort</button>
+            <a href="/map" className="rounded-2xl border border-neutral-700 px-4 py-2">Se kort</a>
           </div>
         </section>
 
