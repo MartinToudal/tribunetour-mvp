@@ -49,38 +49,50 @@ export default function StadiumList() {
   }
 
   return (
-    <section className="rounded-2xl border border-neutral-800">
-      <div className="flex items-center justify-between border-b border-neutral-800 p-4 gap-3">
-        <h3 className="text-lg font-semibold">Stadions</h3>
+    <section id="stadiums" className="site-card overflow-hidden">
+      <div className="flex flex-col gap-3 border-b border-white/5 p-5 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div className="label-eyebrow">Stadions</div>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight">Byg din egen stadionliste</h3>
+          <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
+            Samme logik som i appen: søg, filtrér og marker besøg. Web er stadig tidligt, men strukturen er klar til at dele sprog med iOS.
+          </p>
+        </div>
         <input
-          className="w-64 rounded-xl bg-neutral-900 px-3 py-2 outline-none ring-1 ring-neutral-800"
+          className="field-input md:max-w-sm"
           placeholder="Søg stadion, klub, by…"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>
       {!supabase && (
-        <div className="border-b border-neutral-800 px-4 py-3 text-sm text-neutral-500">
-          Viser statiske stadiondata. Login og synkronisering aktiveres, når Supabase-miljøvariabler er sat.
+        <div className="border-b border-white/5 px-5 py-4 text-sm text-[var(--muted)]">
+          Viser lokale stadiondata. Login og synkronisering bliver aktiveret, når web-auth er slået fuldt til.
         </div>
       )}
-      <ul className="divide-y divide-neutral-800">
+      <ul className="divide-y divide-white/5">
         {filtered.map((s) => (
-          <li key={s.id} className="p-4 flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-neutral-800 grid place-items-center text-neutral-300">
-              {s.name.substring(0, 2)}
+          <li key={s.id} className="flex flex-col gap-4 p-5 md:flex-row md:items-center">
+            <div className="flex items-center gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border border-white/10 bg-white/5 text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+                {s.name.substring(0, 2)}
+              </div>
+              <div>
+                <div className="font-medium text-white">{s.name}</div>
+                <div className="mt-1 text-sm text-[var(--muted)]">{s.team} · {s.league} · {s.city}</div>
+              </div>
             </div>
-            <div className="flex-1">
-              <div className="font-medium">{s.name}</div>
-              <div className="text-sm text-neutral-400">{s.team} · {s.league} · {s.city}</div>
+            <div className="md:ml-auto">
+              <button
+                onClick={() => toggleVisit(s.id)}
+                disabled={!supabase}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${visited[s.id]
+                  ? 'border border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-white'
+                  : 'border border-white/10 bg-white/5 text-[var(--muted)] hover:text-white'}`}
+              >
+                {!supabase ? 'Login klargøres' : visited[s.id] ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+              </button>
             </div>
-            <button
-              onClick={() => toggleVisit(s.id)}
-              disabled={!supabase}
-              className={`rounded-xl px-3 py-2 text-sm border ${visited[s.id] ? 'bg-green-500/20 border-green-500/40' : 'border-neutral-700'}`}
-            >
-              {!supabase ? 'Login kommer senere' : visited[s.id] ? 'Marker som ubesøgt' : 'Marker som besøgt'}
-            </button>
           </li>
         ))}
       </ul>

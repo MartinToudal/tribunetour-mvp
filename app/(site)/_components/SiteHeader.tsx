@@ -3,35 +3,56 @@
 import LoginButton from './LoginButton';
 
 type SiteHeaderProps = {
-    title?: string;
+  title?: string;
 };
 
+const links = [
+  { href: '/', label: 'Forside' },
+  { href: '/map', label: 'Kort' },
+  { href: '/my', label: 'Min tur' },
+  { href: '/support', label: 'Support' },
+];
+
 export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
-    return (
-        <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
-            <div className="mx-auto max-w-6xl px-4 py-4">
-                <div className="flex items-center gap-3">
-                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-neutral-800 text-sm font-bold">
-                        TT
-                    </div>
-                    <h1 className="min-w-0 truncate text-lg font-semibold sm:text-xl">{title}</h1>
-                </div>
-                <nav className="-mx-4 mt-3 flex items-center gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mt-4 sm:flex-wrap sm:overflow-visible sm:px-0">
-                    <a href="/" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">
-                        Forside
-                    </a>
-                    <a href="/map" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">
-                        Kort
-                    </a>
-                    <a href="/my" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">
-                        Min side
-                    </a>
-                    <a href="/support" className="rounded-xl border border-neutral-700 px-3 py-2 text-sm hover:bg-white/10">
-                        Support
-                    </a>
-                    <LoginButton />
-                </nav>
+  const isFrontPage = title === 'Tribunetour';
+
+  return (
+    <header className="sticky top-0 z-30 border-b border-white/5 bg-[rgba(10,15,13,0.82)] backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 md:py-5">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <a href="/" className="flex min-w-0 items-center gap-3">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border border-white/10 bg-white/5 text-sm font-black tracking-[0.22em] text-[var(--accent)]">
+              TT
             </div>
-        </header>
-    );
+            <div className="min-w-0">
+              <div className="truncate text-xl font-semibold tracking-tight md:text-2xl">{title}</div>
+              <div className="truncate text-sm text-[var(--muted)]">
+                {isFrontPage ? 'Kampe, stadions og din egen tur samlet ét sted' : 'Samme produktspor som appen, gjort klar til web'}
+              </div>
+            </div>
+          </a>
+
+          <div className="flex items-center gap-3 self-start md:self-auto">
+            <div className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-[var(--muted)] md:block">
+              Beta på web · iOS-first design
+            </div>
+            <LoginButton />
+          </div>
+        </div>
+
+        <nav className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="pill-nav whitespace-nowrap"
+              data-active={title.includes(link.label) || (link.href === '/' && isFrontPage) ? 'true' : 'false'}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
 }
