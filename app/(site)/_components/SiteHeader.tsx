@@ -7,14 +7,19 @@ type SiteHeaderProps = {
 };
 
 const links = [
-  { href: '/', label: 'Forside' },
+  { href: '/', label: 'Stadions' },
   { href: '/map', label: 'Kort' },
   { href: '/my', label: 'Min tur' },
   { href: '/support', label: 'Support' },
 ];
 
 export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
-  const isFrontPage = title === 'Tribunetour';
+  const pageKey = title.toLowerCase();
+
+  function isActive(href: string, label: string) {
+    if (href === '/') return pageKey === 'tribunetour';
+    return pageKey.includes(label.toLowerCase());
+  }
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/5 bg-[rgba(10,15,13,0.82)] backdrop-blur-xl">
@@ -26,15 +31,13 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
             </div>
             <div className="min-w-0">
               <div className="truncate text-xl font-semibold tracking-tight md:text-2xl">{title}</div>
-              <div className="truncate text-sm text-[var(--muted)]">
-                {isFrontPage ? 'Kampe, stadions og din egen tur samlet ét sted' : 'Samme produktspor som appen, gjort klar til web'}
-              </div>
+              <div className="truncate text-sm text-[var(--muted)]">Stadions, kampe og din tur i ét fælles produktspor</div>
             </div>
           </a>
 
           <div className="flex items-center gap-3 self-start md:self-auto">
             <div className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-[var(--muted)] md:block">
-              Beta på web · iOS-first design
+              Web beta · app-inspireret struktur
             </div>
             <LoginButton />
           </div>
@@ -42,12 +45,7 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
 
         <nav className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:px-0">
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="pill-nav whitespace-nowrap"
-              data-active={title.includes(link.label) || (link.href === '/' && isFrontPage) ? 'true' : 'false'}
-            >
+            <a key={link.href} href={link.href} className="pill-nav whitespace-nowrap" data-active={isActive(link.href, link.label) ? 'true' : 'false'}>
               {link.label}
             </a>
           ))}
