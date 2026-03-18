@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import stadiumSeed from '../../../data/stadiums.json';
 import { supabase } from '../_lib/supabaseClient';
 
 // Dynamisk import så Leaflet kun loader i browseren
@@ -39,12 +40,17 @@ export default function MapView() {
   }, []);
 
   useEffect(() => {
+    if (!supabase) {
+      setStadiums(stadiumSeed as Stadium[]);
+      return;
+    }
+
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
     supabase.from('stadiums').select('*').then(({ data }) => setStadiums(data ?? []));
   }, []);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!supabase || !userId) return;
     supabase.from('visits').select('stadium_id').then(({ data }) => {
       const m: Record<string, boolean> = {};
       data?.forEach((r:any)=> m[r.stadium_id] = true);
@@ -72,6 +78,11 @@ export default function MapView() {
           Vis kun ubesøgte
         </label>
       </div>
+      {!supabase && (
+        <div className="text-sm text-neutral-500">
+          Kortet viser statiske stadiondata. Login og besøgssync kræver Supabase-konfiguration.
+        </div>
+      )}
 
       <div className="h-[70vh] w-full overflow-hidden rounded-2xl border border-neutral-800">
         <MapContainer center={center} zoom={7} style={{ height: '100%', width: '100%' }}>

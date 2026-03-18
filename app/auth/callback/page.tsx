@@ -7,6 +7,10 @@ export default function AuthCallbackPage() {
   const router = useRouter();
   useEffect(() => {
     const run = async () => {
+      if (!supabase) {
+        router.replace('/');
+        return;
+      }
       try { await supabase.auth.exchangeCodeForSession(window.location.href); } catch {}
       router.replace('/');
     };

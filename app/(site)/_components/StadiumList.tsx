@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import stadiumSeed from '../../../data/stadiums.json';
 import { supabase } from '../_lib/supabaseClient';
 
 type Stadium = { id:string; name:string; team:string; league:string; city:string; lat?:number; lon?:number };
@@ -11,12 +12,17 @@ export default function StadiumList() {
   const [visited, setVisited] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
+    if (!supabase) {
+      setStadiums(stadiumSeed as Stadium[]);
+      return;
+    }
+
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
     supabase.from('stadiums').select('*').order('league',{ascending:true}).order('name',{ascending:true}).then(({ data }) => setStadiums(data ?? []));
   }, []);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!supabase || !userId) return;
     supabase.from('visits').select('stadium_id').then(({ data }) => {
       const m: Record<string, boolean> = {};
       data?.forEach((r:any)=> m[r.stadium_id] = true);
@@ -30,6 +36,7 @@ export default function StadiumList() {
   }, [stadiums, filter]);
 
   async function toggleVisit(id:string) {
+    if (!supabase) { return; }
     if (!userId) { alert('Log ind for at markere besøgt.'); return; }
     if (visited[id]) {
       await supabase.from('visits').delete().eq('stadium_id', id).eq('user_id', userId);
@@ -52,6 +59,11 @@ export default function StadiumList() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>
+      {!supabase && (
+        <div className="border-b border-neutral-800 px-4 py-3 text-sm text-neutral-500">
+          Viser statiske stadiondata. Login og synkronisering aktiveres, når Supabase-miljøvariabler er sat.
+        </div>
+      )}
       <ul className="divide-y divide-neutral-800">
         {filtered.map((s) => (
           <li key={s.id} className="p-4 flex items-center gap-4">
@@ -64,9 +76,10 @@ export default function StadiumList() {
             </div>
             <button
               onClick={() => toggleVisit(s.id)}
+              disabled={!supabase}
               className={`rounded-xl px-3 py-2 text-sm border ${visited[s.id] ? 'bg-green-500/20 border-green-500/40' : 'border-neutral-700'}`}
             >
-              {visited[s.id] ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+              {!supabase ? 'Login kommer senere' : visited[s.id] ? 'Marker som ubesøgt' : 'Marker som besøgt'}
             </button>
           </li>
         ))}

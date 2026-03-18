@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../_lib/supabaseClient';
+import { hasSupabaseEnv, supabase } from '../_lib/supabaseClient';
 
 export default function LoginButton() {
   const [loading, setLoading] = useState(false);
@@ -8,6 +8,7 @@ export default function LoginButton() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!supabase) return;
     supabase.auth.getUser().then(({ data }) => setUserEmail(data.user?.email ?? null));
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
       setUserEmail(session?.user?.email ?? null);
@@ -16,6 +17,7 @@ export default function LoginButton() {
   }, []);
 
   async function handleLogin() {
+    if (!supabase) return;
     const email = window.prompt('Indtast din e-mail for login (magic link):');
     if (!email) return;
     setLoading(true);
@@ -28,7 +30,18 @@ export default function LoginButton() {
     else setEmailSent(email);
   }
 
-  async function handleLogout() { await supabase.auth.signOut(); }
+  async function handleLogout() {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+  }
+
+  if (!hasSupabaseEnv) {
+    return (
+      <span className="rounded-xl border border-neutral-800 px-3 py-2 text-sm text-neutral-500">
+        Login ikke aktivt endnu
+      </span>
+    );
+  }
 
   if (userEmail) {
     return (
