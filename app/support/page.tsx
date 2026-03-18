@@ -85,11 +85,11 @@ export default function SupportPage() {
                             Brug mailen herunder, hvis du vil rapportere en fejl, foreslå en forbedring eller har spørgsmål til appen.
                         </p>
                         <a
-                            href="mailto:support@tribunetour.dk"
+                            href="mailto:martin@toudal.dk"
                             className="mt-5 block rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4 transition hover:border-neutral-700 hover:bg-neutral-900"
                         >
                             <span className="block text-xs uppercase tracking-[0.14em] text-neutral-500">Supportmail</span>
-                            <span className="mt-2 block text-lg font-medium">support@tribunetour.dk</span>
+                            <span className="mt-2 block text-lg font-medium">martin@toudal.dk</span>
                         </a>
                         <div className="mt-4 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm text-amber-100">
                             Forventet svartid er normalt 2-5 hverdage. Ved fejlrapporter hjælper det at inkludere device-model, iOS-version og screenshot.
