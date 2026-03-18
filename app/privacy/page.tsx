@@ -40,8 +40,8 @@ export default function PrivacyPage() {
                         <h3 className="text-xl font-semibold">Kontakt</h3>
                         <p className="mt-3 text-neutral-400">
                             Hvis du har spørgsmål om privatliv eller datahåndtering, kan du kontakte{' '}
-                            <a className="text-white underline decoration-neutral-600 underline-offset-4" href="mailto:martin@toudal.dk">
-                                martin@toudal.dk
+                            <a className="text-white underline decoration-neutral-600 underline-offset-4" href="mailto:tribunetour@toudal.dk">
+                                tribunetour@toudal.dk
                             </a>.
                         </p>
                     </section>
