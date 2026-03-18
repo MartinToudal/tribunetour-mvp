@@ -37,8 +37,8 @@ export default function LoginButton() {
 
   if (!hasSupabaseEnv) {
     return (
-      <span className="rounded-xl border border-neutral-800 px-3 py-2 text-sm text-neutral-500">
-        Login ikke aktivt endnu
+      <span className="whitespace-nowrap rounded-xl border border-neutral-800 px-3 py-2 text-sm text-neutral-500">
+        Login senere
       </span>
     );
   }
@@ -53,10 +53,10 @@ export default function LoginButton() {
   }
   return (
     <>
-      <button onClick={handleLogin} className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/20" disabled={loading}>
+      <button onClick={handleLogin} className="whitespace-nowrap rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/20" disabled={loading}>
         {loading ? 'Sender link…' : 'Log ind'}
       </button>
-      {emailSent && <div className="text-xs text-neutral-400 ml-2">Jeg har sendt et link til <b>{emailSent}</b>. Tjek din inbox/spam.</div>}
+      {emailSent && <div className="ml-2 hidden text-xs text-neutral-400 lg:block">Jeg har sendt et link til <b>{emailSent}</b>. Tjek din inbox/spam.</div>}
     </>
   );
 }
