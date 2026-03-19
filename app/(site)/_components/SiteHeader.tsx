@@ -31,14 +31,11 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
             </div>
             <div className="min-w-0">
               <div className="truncate text-xl font-semibold tracking-tight md:text-2xl">{title}</div>
-              <div className="truncate text-sm text-[var(--muted)]">Stadions, kampe og din tur i ét fælles produktspor</div>
+              <div className="truncate text-sm text-[var(--muted)]">Find kampe, udforsk stadions og hold styr på dine besøg</div>
             </div>
           </a>
 
           <div className="flex items-center gap-3 self-start md:self-auto">
-            <div className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-[var(--muted)] md:block">
-              Web beta · app-inspireret struktur
-            </div>
             <LoginButton />
           </div>
         </div>

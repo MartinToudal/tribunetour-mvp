@@ -9,29 +9,28 @@ export default function Page() {
       <section className="site-card p-5 md:p-6">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
-            <div className="label-eyebrow">Retning</div>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Weben skal være en arbejdsflade, ikke en plakat.</h1>
+            <div className="label-eyebrow">Tribunetour</div>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Planlæg stadionture og hold styr på dine besøg.</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)] md:text-base">
-              Derfor er forsiden trimmet ned. Fokus er nu på stadium-overblik, filtrering og besøgsstatus i stedet for store statements.
-              Det ligger tættere på appens måde at arbejde på og giver et bedre grundlag for fælles design senere.
+              Find stadioner, få overblik over dine besøg og brug kortet til at udforske nye destinationer.
             </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
             <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Nu</div>
-              <div className="mt-2 text-xl font-semibold">Stadions først</div>
-              <p className="mt-2 text-sm text-[var(--muted)]">Vi bygger den del af weben, hvor data og handling allerede findes.</p>
+              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Overblik</div>
+              <div className="mt-2 text-xl font-semibold">Stadions og status</div>
+              <p className="mt-2 text-sm text-[var(--muted)]">Se hvilke stadions du allerede har besøgt, og hvad der mangler.</p>
             </div>
             <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste lag</div>
-              <div className="mt-2 text-xl font-semibold">Kampe og Min tur</div>
-              <p className="mt-2 text-sm text-[var(--muted)]">Næste skridt er at oversætte flere af appens rigtige flows til web.</p>
+              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kort</div>
+              <div className="mt-2 text-xl font-semibold">Udforsk Danmark</div>
+              <p className="mt-2 text-sm text-[var(--muted)]">Brug kortet til at finde næste stadion på din tur.</p>
             </div>
             <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Login</div>
-              <div className="mt-2 text-xl font-semibold">Klar til forbedring</div>
-              <p className="mt-2 text-sm text-[var(--muted)]">Login er nu et egentligt flow og kan udbygges uden at rode i layoutet igen.</p>
+              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Min tur</div>
+              <div className="mt-2 text-xl font-semibold">Følg din fremdrift</div>
+              <p className="mt-2 text-sm text-[var(--muted)]">Få et hurtigt overblik over besøgte og resterende stadions.</p>
             </div>
           </div>
         </div>

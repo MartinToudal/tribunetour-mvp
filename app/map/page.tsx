@@ -11,7 +11,7 @@ export default function MapPage() {
         <div className="mb-4">
           <div className="label-eyebrow">Kort</div>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight">Stadions på kort</h2>
-          <p className="mt-2 text-sm leading-6 text-[var(--muted)]">Kortvisningen er stadig enkel, men ligger nu i samme shell og samme produktlogik som resten af weben.</p>
+          <p className="mt-2 text-sm leading-6 text-[var(--muted)]">Få et visuelt overblik over stadioner og udforsk nye destinationer.</p>
         </div>
         <div className="overflow-hidden rounded-[24px] border border-white/10">
           <MapView />

@@ -84,9 +84,9 @@ export default function StadiumList() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="label-eyebrow">Stadions</div>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Arbejdsfladen skal være produktet</h2>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Mindre fyld, flere rigtige handlinger. Derfor starter weben med en reel stadionoversigt med søgning, liga-filtre og besøgsstatus.
+              Søg blandt stadioner, filtrér efter liga og hold styr på hvilke steder du allerede har besøgt.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
@@ -139,7 +139,7 @@ export default function StadiumList() {
 
       {!supabase && (
         <div className="border-b border-white/5 px-5 py-4 text-sm text-[var(--muted)]">
-          Weben kører lige nu på lokale stadiondata. Login og synkronisering bliver næste lag, ikke hele produktet endnu.
+          Login og synkronisering bliver tilgængeligt her, når web-login er aktiveret fuldt ud.
         </div>
       )}
 
@@ -168,7 +168,7 @@ export default function StadiumList() {
                   disabled={!supabase}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition ${isVisited ? 'border border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-white' : 'border border-white/10 bg-white/5 text-[var(--muted)] hover:text-white'}`}
                 >
-                  {!supabase ? 'Login klargøres' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+                  {!supabase ? 'Login kommer snart' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                 </button>
               </div>
             </li>

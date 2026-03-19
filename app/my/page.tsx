@@ -83,9 +83,9 @@ export default function MyPage() {
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="label-eyebrow">Min tur</div>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Overblik over fremdrift og besøg</h2>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Overblik over dine stadionbesøg</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Denne side er stadig enklere end appens statistikfane, men den arbejder nu med samme grundidé: status, progression og handlinger samlet ét sted.
+              Følg hvor mange stadions du har besøgt, hvor mange der mangler, og filtrér listen efter din aktuelle status.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[28rem]">
@@ -107,7 +107,7 @@ export default function MyPage() {
 
       {!supabase && (
         <div className="site-card-soft p-4 text-sm text-[var(--muted)]">
-          Min tur kører i read-only webtilstand, indtil auth og synkronisering er slået helt til på web.
+          Login og synkronisering bliver tilgængeligt her, når web-login er aktiveret fuldt ud.
         </div>
       )}
 
@@ -149,7 +149,7 @@ export default function MyPage() {
                     disabled={!supabase}
                     className={`rounded-full px-4 py-2 text-sm font-medium transition ${isVisited ? 'border border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-white' : 'border border-white/10 bg-white/5 text-[var(--muted)] hover:text-white'}`}
                   >
-                    {!supabase ? 'Login klargøres' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+                    {!supabase ? 'Login kommer snart' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                   </button>
                 </div>
               </li>
