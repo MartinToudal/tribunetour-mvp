@@ -29,8 +29,8 @@ export default function Page() {
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Min tur</div>
-              <div className="mt-2 text-xl font-semibold">Følg din fremdrift</div>
-              <p className="mt-2 text-sm text-[var(--muted)]">Få et hurtigt overblik over besøgte og resterende stadions.</p>
+              <div className="mt-2 text-xl font-semibold">Kommende kampe</div>
+              <p className="mt-2 text-sm text-[var(--muted)]">Se kommende kampe og fokusér på stadioner, du mangler at besøge.</p>
             </div>
           </div>
         </div>

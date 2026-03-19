@@ -8,6 +8,7 @@ type SiteHeaderProps = {
 
 const links = [
   { href: '/', label: 'Stadions' },
+  { href: '/matches', label: 'Kampe' },
   { href: '/map', label: 'Kort' },
   { href: '/my', label: 'Min tur' },
   { href: '/support', label: 'Support' },
