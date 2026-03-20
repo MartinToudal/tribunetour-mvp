@@ -21,7 +21,7 @@ export default function StadiumList() {
   const [filter, setFilter] = useState('');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
-  const { hasSupabaseEnv, isLoggedIn, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
     if (!hasSupabaseEnv) {
@@ -63,6 +63,8 @@ export default function StadiumList() {
     });
   }, [stadiums, filter, leagueFilter, visitFilter, visited]);
 
+  const hasActiveFilters = filter.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all';
+
   return (
     <section id="stadiums" className="site-card overflow-hidden">
       <div className="border-b border-white/5 p-5 md:p-6">
@@ -71,7 +73,7 @@ export default function StadiumList() {
             <div className="label-eyebrow">Stadions</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Søg blandt stadioner, filtrér efter liga, og brug din personlige `visited`-status som filter på tværs af Tribunetour.
+              Søg blandt stadioner, filtrér efter liga, og brug din egen besøgsstatus til at fokusere på steder du mangler eller allerede har været.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
@@ -122,6 +124,52 @@ export default function StadiumList() {
         </div>
       </div>
 
+      {!hasSupabaseEnv && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="text-sm leading-6 text-[var(--muted)]">
+            Du kan allerede udforske stadioner her. Personlig besøgsstatus kommer senere på web.
+          </div>
+        </div>
+      )}
+
+      {hasSupabaseEnv && !isLoggedIn && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="text-sm font-medium text-white">Log ind for at gøre stadionlisten personlig</div>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                Når du logger ind, kan du markere stadioner som besøgt og filtrere efter din egen status.
+              </p>
+            </div>
+            <a href="/my" className="cta-secondary">
+              Gå til Min tur
+            </a>
+          </div>
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          Henter din besøgsstatus…
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && visitedCount === 0 && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="text-sm font-medium text-white">Din konto er klar til stadionbesøg</div>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                {userEmail ?? 'Din konto'} har endnu ingen besøg. Start med at markere de stadioner du allerede har været på.
+              </p>
+            </div>
+            <a href="/my" className="cta-secondary">
+              Se Min tur
+            </a>
+          </div>
+        </div>
+      )}
+
       <ul className="divide-y divide-white/5">
         {filtered.map((stadium) => {
           const isVisited = Boolean(visited[stadium.id]);
@@ -157,10 +205,16 @@ export default function StadiumList() {
                   {!hasSupabaseEnv ? 'Visited kommer senere' : !isLoggedIn ? 'Log ind for at gemme' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                 </button>
               </div>
-            </li>
-          );
-        })}
-        {filtered.length === 0 && <li className="p-6 text-[var(--muted)]">Ingen stadions matcher dine filtre lige nu.</li>}
+              </li>
+            );
+          })}
+        {filtered.length === 0 && (
+          <li className="p-6 text-[var(--muted)]">
+            {hasActiveFilters
+              ? 'Ingen stadions matcher dine nuværende filtre.'
+              : 'Ingen stadions matcher visningen lige nu.'}
+          </li>
+        )}
       </ul>
     </section>
   );
