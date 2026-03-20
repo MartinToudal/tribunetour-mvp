@@ -2,7 +2,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../data/stadiums.json';
 import SiteShell from '../(site)/_components/SiteShell';
-import { supabase } from '../(site)/_lib/supabaseClient';
+import VisitedModelNotice from '../(site)/_components/VisitedModelNotice';
+import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 
 type Stadium = {
   id: string;
@@ -13,41 +14,17 @@ type Stadium = {
 };
 
 export default function MyPage() {
-  const [userId, setUserId] = useState<string | null>(null);
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
-  const [visited, setVisited] = useState<Record<string, boolean>>({});
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
+  const { hasSupabaseEnv, isLoggedIn, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
-    if (!supabase) {
+    if (!hasSupabaseEnv) {
       setStadiums(stadiumSeed as Stadium[]);
       return;
     }
-
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-    supabase.from('stadiums').select('*').order('league', { ascending: true }).order('name', { ascending: true }).then(({ data, error }) => {
-      if (error) console.error(error);
-      setStadiums(data ?? []);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!supabase || !userId) return;
-    supabase.from('visits').select('stadium_id').then(({ data, error }) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      const map: Record<string, boolean> = {};
-      data?.forEach((r: any) => {
-        map[r.stadium_id] = true;
-      });
-      setVisited(map);
-    });
-  }, [userId]);
-
-  const visitedCount = useMemo(() => Object.values(visited).filter(Boolean).length, [visited]);
+  }, [hasSupabaseEnv]);
   const totalCount = stadiums.length;
   const remainingCount = Math.max(totalCount - visitedCount, 0);
   const completion = totalCount > 0 ? Math.round((visitedCount / totalCount) * 100) : 0;
@@ -58,25 +35,6 @@ export default function MyPage() {
     return filtered.filter((stadium) => (showVisited ? visited[stadium.id] : !visited[stadium.id]));
   }, [stadiums, visited, showVisited, filter]);
 
-  async function toggleVisit(id: string) {
-    if (!supabase) return;
-    if (!userId) {
-      alert('Log ind for at ændre dine besøg.');
-      return;
-    }
-    if (visited[id]) {
-      await supabase.from('visits').delete().eq('stadium_id', id).eq('user_id', userId);
-      setVisited((v) => ({ ...v, [id]: false }));
-    } else {
-      const { error } = await supabase.from('visits').insert({ user_id: userId, stadium_id: id });
-      if (error) {
-        alert('Kunne ikke gemme – tjek RLS/policies.');
-        return;
-      }
-      setVisited((v) => ({ ...v, [id]: true }));
-    }
-  }
-
   return (
     <SiteShell title="Tribunetour · Min tur">
       <section className="site-card p-5 md:p-6">
@@ -85,7 +43,7 @@ export default function MyPage() {
             <div className="label-eyebrow">Min tur</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Overblik over dine stadionbesøg</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Følg hvor mange stadions du har besøgt, hvor mange der mangler, og filtrér listen efter din aktuelle status.
+              Følg din personlige besøgsstatus, se hvor mange stadions du mangler, og brug samme `visited`-model som grundlag for resten af Tribunetour på web.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[28rem]">
@@ -105,11 +63,7 @@ export default function MyPage() {
         </div>
       </section>
 
-      {!supabase && (
-        <div className="site-card-soft p-4 text-sm text-[var(--muted)]">
-          Login og synkronisering bliver tilgængeligt her, når web-login er aktiveret fuldt ud.
-        </div>
-      )}
+      <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} />
 
       <section className="site-card overflow-hidden">
         <div className="border-b border-white/5 p-5 md:p-6">
@@ -145,11 +99,18 @@ export default function MyPage() {
                     {isVisited ? 'Besøgt' : 'Ikke besøgt'}
                   </span>
                   <button
-                    onClick={() => toggleVisit(stadium.id)}
-                    disabled={!supabase}
+                    onClick={async () => {
+                      const result = await toggleVisited(stadium.id);
+                      if (!result.ok && result.error === 'auth_required') {
+                        alert('Log ind for at ændre din besøgsstatus.');
+                      } else if (!result.ok) {
+                        alert('Kunne ikke gemme din besøgsstatus lige nu.');
+                      }
+                    }}
+                    disabled={!hasSupabaseEnv}
                     className={`rounded-full px-4 py-2 text-sm font-medium transition ${isVisited ? 'border border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-white' : 'border border-white/10 bg-white/5 text-[var(--muted)] hover:text-white'}`}
                   >
-                    {!supabase ? 'Login kommer snart' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+                    {!hasSupabaseEnv ? 'Visited kommer senere' : !isLoggedIn ? 'Log ind for at gemme' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                   </button>
                 </div>
               </li>

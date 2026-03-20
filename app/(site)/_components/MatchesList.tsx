@@ -2,7 +2,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
-import { supabase } from '../_lib/supabaseClient';
+import VisitedModelNotice from './VisitedModelNotice';
+import { useVisitedModel } from '../_hooks/useVisitedModel';
 
 type Fixture = {
   id: string;
@@ -36,33 +37,16 @@ const windowOptions: { value: WindowFilter; label: string }[] = [
 export default function MatchesList() {
   const [fixtures] = useState<Fixture[]>(fixturesSeed as Fixture[]);
   const [stadiums] = useState<Stadium[]>(stadiumSeed as Stadium[]);
-  const [userId, setUserId] = useState<string | null>(null);
-  const [visited, setVisited] = useState<Record<string, boolean>>({});
   const [search, setSearch] = useState('');
   const [windowFilter, setWindowFilter] = useState<WindowFilter>('30');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const [leagueFilter, setLeagueFilter] = useState('Alle');
+  const { hasSupabaseEnv, isLoggedIn, userEmail, visited } = useVisitedModel();
 
   const stadiumMap = useMemo(
     () => Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium])) as Record<string, Stadium>,
     [stadiums]
   );
-
-  useEffect(() => {
-    if (!supabase) return;
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-  }, []);
-
-  useEffect(() => {
-    if (!supabase || !userId) return;
-    supabase.from('visits').select('stadium_id').then(({ data }) => {
-      const map: Record<string, boolean> = {};
-      data?.forEach((row: any) => {
-        map[row.stadium_id] = true;
-      });
-      setVisited(map);
-    });
-  }, [userId]);
 
   const leagues = useMemo(() => {
     const values = Array.from(
@@ -115,7 +99,7 @@ export default function MatchesList() {
             <div className="label-eyebrow">Kampe</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Kommende kampe</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Få overblik over kommende kampe, filtrér på tidsvindue og fokuser på stadioner, du endnu ikke har besøgt.
+              Få overblik over kommende kampe, filtrér på tidsvindue, og brug din personlige `visited`-status til at prioritere venues, du mangler.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
@@ -155,6 +139,10 @@ export default function MatchesList() {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="border-b border-white/5 p-4 md:p-5">
+        <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} compact />
       </div>
 
       <ul className="divide-y divide-white/5">

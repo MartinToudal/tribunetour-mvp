@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../../data/stadiums.json';
-import { supabase } from '../_lib/supabaseClient';
+import VisitedModelNotice from './VisitedModelNotice';
+import { useVisitedModel } from '../_hooks/useVisitedModel';
 
 type Stadium = {
   id: string;
@@ -18,31 +19,16 @@ type VisitFilter = 'all' | 'visited' | 'not-visited';
 export default function StadiumList() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [filter, setFilter] = useState('');
-  const [userId, setUserId] = useState<string | null>(null);
-  const [visited, setVisited] = useState<Record<string, boolean>>({});
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
+  const { hasSupabaseEnv, isLoggedIn, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
-    if (!supabase) {
+    if (!hasSupabaseEnv) {
       setStadiums(stadiumSeed as Stadium[]);
       return;
     }
-
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id ?? null));
-    supabase.from('stadiums').select('*').order('league', { ascending: true }).order('name', { ascending: true }).then(({ data }) => setStadiums(data ?? []));
-  }, []);
-
-  useEffect(() => {
-    if (!supabase || !userId) return;
-    supabase.from('visits').select('stadium_id').then(({ data }) => {
-      const map: Record<string, boolean> = {};
-      data?.forEach((r: any) => {
-        map[r.stadium_id] = true;
-      });
-      setVisited(map);
-    });
-  }, [userId]);
+  }, [hasSupabaseEnv]);
 
   const leagues = useMemo(() => ['Alle', ...Array.from(new Set(stadiums.map((s) => s.league))).sort()], [stadiums]);
 
@@ -57,27 +43,6 @@ export default function StadiumList() {
     });
   }, [stadiums, filter, leagueFilter, visitFilter, visited]);
 
-  const visitedCount = useMemo(() => Object.values(visited).filter(Boolean).length, [visited]);
-
-  async function toggleVisit(id: string) {
-    if (!supabase) return;
-    if (!userId) {
-      alert('Log ind for at markere besøgt.');
-      return;
-    }
-    if (visited[id]) {
-      await supabase.from('visits').delete().eq('stadium_id', id).eq('user_id', userId);
-      setVisited((v) => ({ ...v, [id]: false }));
-    } else {
-      const { error } = await supabase.from('visits').insert({ user_id: userId, stadium_id: id });
-      if (error) {
-        alert('Kunne ikke gemme – tjek RLS/policies.');
-        return;
-      }
-      setVisited((v) => ({ ...v, [id]: true }));
-    }
-  }
-
   return (
     <section id="stadiums" className="site-card overflow-hidden">
       <div className="border-b border-white/5 p-5 md:p-6">
@@ -86,7 +51,7 @@ export default function StadiumList() {
             <div className="label-eyebrow">Stadions</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Søg blandt stadioner, filtrér efter liga og hold styr på hvilke steder du allerede har besøgt.
+              Søg blandt stadioner, filtrér efter liga, og brug din personlige `visited`-status som filter på tværs af Tribunetour.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
@@ -137,11 +102,9 @@ export default function StadiumList() {
         </div>
       </div>
 
-      {!supabase && (
-        <div className="border-b border-white/5 px-5 py-4 text-sm text-[var(--muted)]">
-          Login og synkronisering bliver tilgængeligt her, når web-login er aktiveret fuldt ud.
-        </div>
-      )}
+      <div className="border-b border-white/5 p-4 md:p-5">
+        <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} compact />
+      </div>
 
       <ul className="divide-y divide-white/5">
         {filtered.map((stadium) => {
@@ -164,11 +127,18 @@ export default function StadiumList() {
                   {isVisited ? 'Besøgt' : 'Ikke besøgt'}
                 </span>
                 <button
-                  onClick={() => toggleVisit(stadium.id)}
-                  disabled={!supabase}
+                  onClick={async () => {
+                    const result = await toggleVisited(stadium.id);
+                    if (!result.ok && result.error === 'auth_required') {
+                      alert('Log ind for at ændre din besøgsstatus.');
+                    } else if (!result.ok) {
+                      alert('Kunne ikke gemme din besøgsstatus lige nu.');
+                    }
+                  }}
+                  disabled={!hasSupabaseEnv}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition ${isVisited ? 'border border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-white' : 'border border-white/10 bg-white/5 text-[var(--muted)] hover:text-white'}`}
                 >
-                  {!supabase ? 'Login kommer snart' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
+                  {!hasSupabaseEnv ? 'Visited kommer senere' : !isLoggedIn ? 'Log ind for at gemme' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                 </button>
               </div>
             </li>

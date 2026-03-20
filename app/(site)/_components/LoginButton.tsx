@@ -33,7 +33,7 @@ export default function LoginButton() {
 
   const helperText = useMemo(() => {
     if (emailSent) return `Magic link sendt til ${emailSent}. Tjek inbox og spam.`;
-    return 'Log ind med e-mail og fortsæt på tværs af web og app senere.';
+    return 'Log ind med e-mail for at gemme din personlige visited-status og fortsætte på tværs af Tribunetour senere.';
   }, [emailSent]);
 
   async function handleLogin(e: React.FormEvent) {
@@ -107,7 +107,7 @@ export default function LoginButton() {
         <div className="absolute right-0 top-[calc(100%+12px)] w-[min(92vw,22rem)] rounded-[28px] border border-white/10 bg-[var(--surface-strong)] p-5 shadow-2xl">
           <div className="mb-4">
             <div className="text-lg font-semibold">Få din egen Tribunetour</div>
-            <p className="mt-1 text-sm text-[var(--muted)]">Gem besøg, synkronisér data og fortsæt senere i appen.</p>
+            <p className="mt-1 text-sm text-[var(--muted)]">Gem din personlige visited-status, hold styr på dine stadionbesøg og byg videre på samme Tribunetour senere.</p>
           </div>
 
           <form className="grid gap-3" onSubmit={handleLogin}>
