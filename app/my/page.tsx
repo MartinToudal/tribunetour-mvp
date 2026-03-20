@@ -17,7 +17,7 @@ export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
-  const { hasSupabaseEnv, isLoggedIn, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
     if (!hasSupabaseEnv) {
@@ -63,7 +63,7 @@ export default function MyPage() {
             <div className="label-eyebrow">Min tur</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Overblik over dine stadionbesøg</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Følg din personlige besøgsstatus, se hvor mange stadions du mangler, og brug samme `visited`-model som grundlag for resten af Tribunetour på web.
+              Se hvor mange stadions du har besøgt, hvor mange der mangler, og brug din egen status som grundlag for resten af Tribunetour.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[28rem]">
@@ -82,6 +82,58 @@ export default function MyPage() {
           </div>
         </div>
       </section>
+
+      {!hasSupabaseEnv && (
+        <section className="site-card-soft p-5 md:p-6">
+          <div className="label-eyebrow">Min tur</div>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Besøgsstatus kommer senere på web</h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Du kan allerede udforske stadions og kampe her, men personlig besøgsstatus er ikke slået fuldt til på web endnu.
+          </p>
+        </section>
+      )}
+
+      {hasSupabaseEnv && !isLoggedIn && (
+        <section className="site-card-soft p-5 md:p-6">
+          <div className="label-eyebrow">Log ind</div>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Gør Min tur personlig</h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Log ind øverst på siden for at gemme dine stadionbesøg og få din egen status på tværs af Tribunetour.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a href="/" className="cta-primary">
+              Gå til stadions
+            </a>
+            <a href="/matches" className="cta-secondary">
+              Se kommende kampe
+            </a>
+          </div>
+        </section>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
+        <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
+          Henter din besøgsstatus…
+        </section>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && visitedCount === 0 && (
+        <section className="site-card-soft p-5 md:p-6">
+          <div className="label-eyebrow">Klar til start</div>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Du har ikke markeret nogen stadioner endnu</h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Kontoen {userEmail ?? ''} er klar. Start med at markere de stadions du allerede har besøgt, eller brug kampsiden til at planlægge de næste.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a href="/" className="cta-primary">
+              Markér stadions
+            </a>
+            <a href="/matches" className="cta-secondary">
+              Se kampe
+            </a>
+          </div>
+        </section>
+      )}
 
       <section className="site-card overflow-hidden">
         <div className="border-b border-white/5 p-5 md:p-6">
@@ -134,7 +186,11 @@ export default function MyPage() {
               </li>
             );
           })}
-          {list.length === 0 && <li className="p-6 text-[var(--muted)]">Ingen stadions matcher den valgte visning lige nu.</li>}
+          {list.length === 0 && (
+            <li className="p-6 text-[var(--muted)]">
+              {showVisited ? 'Du har ingen besøgte stadions, der matcher søgningen lige nu.' : 'Ingen ubesøgte stadions matcher den valgte visning lige nu.'}
+            </li>
+          )}
         </ul>
       </section>
     </SiteShell>
