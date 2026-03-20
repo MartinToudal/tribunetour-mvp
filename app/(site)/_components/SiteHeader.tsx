@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import LoginButton from './LoginButton';
 
 type SiteHeaderProps = {
@@ -15,11 +16,12 @@ const links = [
 ];
 
 export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
-  const pageKey = title.toLowerCase();
+  const pathname = usePathname();
+  const pageTitle = title === 'Tribunetour' ? 'Tribunetour' : title.replace(/^Tribunetour\s*·\s*/i, '');
 
   function isActive(href: string, label: string) {
-    if (href === '/') return pageKey === 'tribunetour';
-    return pageKey.includes(label.toLowerCase());
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
   }
 
   return (
@@ -31,8 +33,10 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
               TT
             </div>
             <div className="min-w-0">
-              <div className="truncate text-xl font-semibold tracking-tight md:text-2xl">{title}</div>
-              <div className="truncate text-sm text-[var(--muted)]">Find kampe, udforsk stadions og hold styr på dine besøg</div>
+              <div className="truncate text-xl font-semibold tracking-tight md:text-2xl">Tribunetour</div>
+              <div className="truncate text-sm text-[var(--muted)]">
+                {pageTitle === 'Tribunetour' ? 'Find kampe, udforsk stadions og hold styr på dine besøg' : pageTitle}
+              </div>
             </div>
           </a>
 

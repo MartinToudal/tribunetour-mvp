@@ -94,7 +94,7 @@ export default function StadiumList() {
 
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
           <input className="field-input" placeholder="Søg stadion, klub, by…" value={filter} onChange={(e) => setFilter(e.target.value)} />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 md:justify-end">
             {(['all', 'not-visited', 'visited'] as VisitFilter[]).map((mode) => (
               <button
                 key={mode}
@@ -109,18 +109,21 @@ export default function StadiumList() {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {leagues.map((league) => (
-            <button
-              key={league}
-              type="button"
-              onClick={() => setLeagueFilter(league)}
-              className="pill-nav"
-              data-active={leagueFilter === league ? 'true' : 'false'}
-            >
-              {league}
-            </button>
-          ))}
+        <div className="mt-4">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
+          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+            {leagues.map((league) => (
+              <button
+                key={league}
+                type="button"
+                onClick={() => setLeagueFilter(league)}
+                className="pill-nav shrink-0"
+                data-active={leagueFilter === league ? 'true' : 'false'}
+              >
+                {league}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

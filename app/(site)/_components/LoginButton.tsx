@@ -80,7 +80,7 @@ export default function LoginButton() {
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="rounded-full border border-[rgba(184,255,106,0.28)] bg-[rgba(184,255,106,0.1)] px-4 py-2 text-sm font-medium text-white"
+          className="max-w-[13rem] truncate rounded-full border border-[rgba(184,255,106,0.28)] bg-[rgba(184,255,106,0.1)] px-4 py-2 text-sm font-medium text-white sm:max-w-none"
         >
           {userEmail}
         </button>
