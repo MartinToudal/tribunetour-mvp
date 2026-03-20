@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
-import VisitedModelNotice from './VisitedModelNotice';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 
 type Fixture = {
@@ -41,7 +40,7 @@ export default function MatchesList() {
   const [windowFilter, setWindowFilter] = useState<WindowFilter>('30');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const [leagueFilter, setLeagueFilter] = useState('Alle');
-  const { hasSupabaseEnv, isLoggedIn, userEmail, visited } = useVisitedModel();
+  const { visited } = useVisitedModel();
 
   const stadiumMap = useMemo(
     () => Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium])) as Record<string, Stadium>,
@@ -139,10 +138,6 @@ export default function MatchesList() {
             </button>
           ))}
         </div>
-      </div>
-
-      <div className="border-b border-white/5 p-4 md:p-5">
-        <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} compact />
       </div>
 
       <ul className="divide-y divide-white/5">

@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../../data/stadiums.json';
-import VisitedModelNotice from './VisitedModelNotice';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { supabase } from '../_lib/supabaseClient';
 
 type Stadium = {
   id: string;
@@ -21,13 +21,33 @@ export default function StadiumList() {
   const [filter, setFilter] = useState('');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
-  const { hasSupabaseEnv, isLoggedIn, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { hasSupabaseEnv, isLoggedIn, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
     if (!hasSupabaseEnv) {
       setStadiums(stadiumSeed as Stadium[]);
       return;
     }
+
+    supabase
+      ?.from('stadiums')
+      .select('*')
+      .order('league', { ascending: true })
+      .order('name', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          console.error(error);
+          setStadiums(stadiumSeed as Stadium[]);
+          return;
+        }
+
+        if (!data || data.length === 0) {
+          setStadiums(stadiumSeed as Stadium[]);
+          return;
+        }
+
+        setStadiums(data as Stadium[]);
+      });
   }, [hasSupabaseEnv]);
 
   const leagues = useMemo(() => ['Alle', ...Array.from(new Set(stadiums.map((s) => s.league))).sort()], [stadiums]);
@@ -100,10 +120,6 @@ export default function StadiumList() {
             </button>
           ))}
         </div>
-      </div>
-
-      <div className="border-b border-white/5 p-4 md:p-5">
-        <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} compact />
       </div>
 
       <ul className="divide-y divide-white/5">

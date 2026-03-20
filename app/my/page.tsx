@@ -2,8 +2,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../data/stadiums.json';
 import SiteShell from '../(site)/_components/SiteShell';
-import VisitedModelNotice from '../(site)/_components/VisitedModelNotice';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
+import { supabase } from '../(site)/_lib/supabaseClient';
 
 type Stadium = {
   id: string;
@@ -17,13 +17,33 @@ export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
-  const { hasSupabaseEnv, isLoggedIn, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { hasSupabaseEnv, isLoggedIn, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
     if (!hasSupabaseEnv) {
       setStadiums(stadiumSeed as Stadium[]);
       return;
     }
+
+    supabase
+      ?.from('stadiums')
+      .select('*')
+      .order('league', { ascending: true })
+      .order('name', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          console.error(error);
+          setStadiums(stadiumSeed as Stadium[]);
+          return;
+        }
+
+        if (!data || data.length === 0) {
+          setStadiums(stadiumSeed as Stadium[]);
+          return;
+        }
+
+        setStadiums(data as Stadium[]);
+      });
   }, [hasSupabaseEnv]);
   const totalCount = stadiums.length;
   const remainingCount = Math.max(totalCount - visitedCount, 0);
@@ -62,8 +82,6 @@ export default function MyPage() {
           </div>
         </div>
       </section>
-
-      <VisitedModelNotice hasSupabaseEnv={hasSupabaseEnv} isLoggedIn={isLoggedIn} userEmail={userEmail} />
 
       <section className="site-card overflow-hidden">
         <div className="border-b border-white/5 p-5 md:p-6">
