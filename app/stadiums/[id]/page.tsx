@@ -1,6 +1,7 @@
 import stadiumSeed from '../../../data/stadiums.json';
 import fixturesSeed from '../../../data/fixtures.json';
 import SiteShell from '../../(site)/_components/SiteShell';
+import StadiumDetailClient from './StadiumDetailClient';
 
 type Stadium = {
     id: string;
@@ -13,10 +14,10 @@ type Stadium = {
 };
 
 type Fixture = {
-    id: string;
-    kickoff: string;
-    round: string;
-    homeTeamId: string;
+  id: string;
+  kickoff: string;
+  round: string;
+  homeTeamId: string;
     awayTeamId: string;
     venueClubId: string;
     status: string;
@@ -30,6 +31,7 @@ type StadiumDetailPageProps = {
 
 const stadiums = stadiumSeed as Stadium[];
 const fixtures = fixturesSeed as Fixture[];
+const stadiumMap = Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium])) as Record<string, Stadium>;
 
 export function generateStaticParams() {
     return stadiums.map((stadium) => ({ id: stadium.id }));
@@ -154,8 +156,8 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                         <li key={fixture.id} className="flex flex-col gap-3 p-5 md:flex-row md:items-center">
                             <div className="min-w-0 flex-1">
                                 <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
-                                <div className="mt-2 text-lg font-semibold text-white">
-                                    {fixture.homeTeamId} – {fixture.awayTeamId}
+                        <div className="mt-2 text-lg font-semibold text-white">
+                                    {stadiumMap[fixture.homeTeamId]?.team ?? fixture.homeTeamId} – {stadiumMap[fixture.awayTeamId]?.team ?? fixture.awayTeamId}
                                 </div>
                             </div>
                             <div className="rounded-full bg-white/5 px-3 py-2 text-sm text-white">
@@ -168,6 +170,8 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                     )}
                 </ul>
             </section>
+
+            <StadiumDetailClient stadium={stadium} />
         </SiteShell>
     );
 }

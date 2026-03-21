@@ -197,11 +197,18 @@ export default function MatchesList() {
           const isVisited = Boolean(visited[fixture.venueClubId]);
           return (
             <li key={fixture.id} className="flex flex-col gap-4 p-5 md:flex-row md:items-center">
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
-                <div className="mt-2 text-lg font-semibold text-white">{venue?.team ?? fixture.homeTeamId}</div>
-                <div className="mt-1 text-sm text-[var(--muted)]">{venue?.name ?? fixture.venueClubId}{venue?.city ? ` · ${venue.city}` : ''}</div>
-              </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
+                  <a href={`/stadiums/${fixture.venueClubId}`} className="mt-2 block text-lg font-semibold text-white hover:underline">
+                    {venue?.team ?? fixture.homeTeamId}
+                  </a>
+                  <div className="mt-1 text-sm text-[var(--muted)]">
+                    <a href={`/stadiums/${fixture.venueClubId}`} className="hover:text-white hover:underline">
+                      {venue?.name ?? fixture.venueClubId}
+                    </a>
+                    {venue?.city ? ` · ${venue.city}` : ''}
+                  </div>
+                </div>
               <div className="flex items-center gap-3 md:ml-auto">
                 <div className="rounded-full bg-white/5 px-3 py-2 text-sm text-white">{formatKickoff(fixture.kickoff)}</div>
                 <span className={`rounded-full px-3 py-1 text-xs font-medium ${isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'}`}>
