@@ -179,11 +179,13 @@ export default function StadiumList() {
           return (
             <li key={stadium.id} className="flex flex-col gap-4 p-5 md:flex-row md:items-center">
               <div className="flex items-center gap-4">
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border border-white/10 bg-white/5 text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+                <a href={`/stadiums/${stadium.id}`} className="grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border border-white/10 bg-white/5 text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
                   {stadium.name.substring(0, 2)}
-                </div>
+                </a>
                 <div>
-                  <div className="font-medium text-white">{stadium.name}</div>
+                  <a href={`/stadiums/${stadium.id}`} className="font-medium text-white hover:underline">
+                    {stadium.name}
+                  </a>
                   <div className="mt-1 text-sm text-[var(--muted)]">
                     {stadium.team} · {stadium.league}{stadium.city ? ` · ${stadium.city}` : ''}
                   </div>
