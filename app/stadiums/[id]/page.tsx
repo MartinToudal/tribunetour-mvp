@@ -47,6 +47,14 @@ function formatKickoff(value: string) {
     }).format(new Date(value));
 }
 
+function mapsHref(stadium: Stadium) {
+    if (stadium.lat == null || stadium.lon == null) {
+        return null;
+    }
+
+    return `https://www.google.com/maps/search/?api=1&query=${stadium.lat},${stadium.lon}`;
+}
+
 export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
     const stadium = stadiums.find((item) => item.id === params.id);
 
@@ -74,6 +82,8 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
         .filter((fixture) => new Date(fixture.kickoff).getTime() >= Date.now())
         .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime())
         .slice(0, 5);
+    const nextFixture = upcomingFixtures[0] ?? null;
+    const directionsHref = mapsHref(stadium);
 
     return (
         <SiteShell title={`Tribunetour · ${stadium.name}`}>
@@ -97,6 +107,11 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                             <a href="/my" className="cta-secondary">
                                 Gå til Min tur
                             </a>
+                            {directionsHref && (
+                                <a href={directionsHref} target="_blank" rel="noreferrer" className="cta-secondary">
+                                    Åbn i kort
+                                </a>
+                            )}
                         </div>
                     </div>
 
@@ -113,9 +128,47 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kommende kampe</div>
                             <div className="mt-2 text-xl font-semibold">{upcomingFixtures.length}</div>
                         </div>
+                        <div className="stat-chip">
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste kamp</div>
+                            <div className="mt-2 text-sm font-semibold text-white">
+                                {nextFixture ? formatKickoff(nextFixture.kickoff) : 'Ingen planlagt endnu'}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            {nextFixture && (
+                <section className="site-card overflow-hidden">
+                    <div className="border-b border-white/5 p-5 md:p-6">
+                        <div className="label-eyebrow">Næste kamp</div>
+                        <h2 className="mt-2 text-2xl font-semibold tracking-tight">Næste kamp på {stadium.name}</h2>
+                    </div>
+
+                    <div className="grid gap-4 p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6">
+                        <div>
+                            <div className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
+                                {nextFixture.round}
+                            </div>
+                            <div className="mt-2 text-2xl font-semibold text-white">
+                                {stadiumMap[nextFixture.homeTeamId]?.team ?? nextFixture.homeTeamId} – {stadiumMap[nextFixture.awayTeamId]?.team ?? nextFixture.awayTeamId}
+                            </div>
+                            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                                Brug kampen som næste ankerpunkt i din tur, eller gå videre til kamplisten for at sammenligne med andre stadioner.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col gap-3">
+                            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white">
+                                {formatKickoff(nextFixture.kickoff)}
+                            </div>
+                            <a href="/matches" className="cta-secondary">
+                                Se alle kampe
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <section className="site-card overflow-hidden">
                 <div className="border-b border-white/5 p-5 md:p-6">
