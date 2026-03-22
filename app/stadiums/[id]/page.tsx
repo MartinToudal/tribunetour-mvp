@@ -216,6 +216,9 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                             <div className="rounded-full bg-white/5 px-3 py-2 text-sm text-white">
                                 {formatKickoff(fixture.kickoff)}
                             </div>
+                            <a href={`/matches/${fixture.id}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2 md:ml-2">
+                                Se kamp
+                            </a>
                         </li>
                     ))}
                     {upcomingFixtures.length === 0 && (

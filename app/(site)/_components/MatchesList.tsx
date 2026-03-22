@@ -218,6 +218,9 @@ export default function MatchesList() {
                   {venue?.city ? ` · ${venue.city}` : ''}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-3">
+                  <a href={`/matches/${fixture.id}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2">
+                    Se kamp
+                  </a>
                   <a href={`/stadiums/${fixture.venueClubId}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2">
                     Se stadion
                   </a>
