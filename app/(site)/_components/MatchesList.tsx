@@ -83,8 +83,13 @@ export default function MatchesList() {
 
   const hasActiveFilters = search.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all' || windowFilter !== '30';
 
+  function teamName(teamId: string) {
+    return stadiumMap[teamId]?.team ?? teamId;
+  }
+
   function formatKickoff(value: string) {
     return new Intl.DateTimeFormat('da-DK', {
+      weekday: 'short',
       day: '2-digit',
       month: 'short',
       hour: '2-digit',
@@ -195,20 +200,29 @@ export default function MatchesList() {
         {filteredFixtures.map((fixture) => {
           const venue = stadiumMap[fixture.venueClubId];
           const isVisited = Boolean(visited[fixture.venueClubId]);
+          const homeTeam = teamName(fixture.homeTeamId);
+          const awayTeam = teamName(fixture.awayTeamId);
+
           return (
             <li key={fixture.id} className="flex flex-col gap-4 p-5 md:flex-row md:items-center">
-                <div className="min-w-0 flex-1">
-                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
-                  <a href={`/stadiums/${fixture.venueClubId}`} className="mt-2 block text-lg font-semibold text-white hover:underline">
-                    {venue?.team ?? fixture.homeTeamId}
-                  </a>
-                  <div className="mt-1 text-sm text-[var(--muted)]">
-                    <a href={`/stadiums/${fixture.venueClubId}`} className="hover:text-white hover:underline">
-                      {venue?.name ?? fixture.venueClubId}
-                    </a>
-                    {venue?.city ? ` · ${venue.city}` : ''}
-                  </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
+                <div className="mt-2 text-lg font-semibold text-white">
+                  {homeTeam} – {awayTeam}
                 </div>
+                <div className="mt-1 text-sm text-[var(--muted)]">
+                  På{' '}
+                  <a href={`/stadiums/${fixture.venueClubId}`} className="hover:text-white hover:underline">
+                    {venue?.name ?? fixture.venueClubId}
+                  </a>
+                  {venue?.city ? ` · ${venue.city}` : ''}
+                </div>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <a href={`/stadiums/${fixture.venueClubId}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2">
+                    Se stadion
+                  </a>
+                </div>
+              </div>
               <div className="flex items-center gap-3 md:ml-auto">
                 <div className="rounded-full bg-white/5 px-3 py-2 text-sm text-white">{formatKickoff(fixture.kickoff)}</div>
                 <span className={`rounded-full px-3 py-1 text-xs font-medium ${isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'}`}>
