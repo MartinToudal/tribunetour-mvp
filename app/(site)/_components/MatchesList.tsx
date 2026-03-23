@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { sortLeagues } from '../_lib/leagueOrder';
 
 type Fixture = {
   id: string;
@@ -55,7 +56,7 @@ export default function MatchesList() {
           .filter(Boolean)
       )
     ) as string[];
-    return ['Alle', ...values.sort()];
+    return ['Alle', ...sortLeagues(values)];
   }, [fixtures, stadiumMap]);
 
   const filteredFixtures = useMemo(() => {

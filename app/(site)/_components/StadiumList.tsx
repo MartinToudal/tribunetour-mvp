@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../../data/stadiums.json';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { compareLeagues, sortLeagues } from '../_lib/leagueOrder';
 import { supabase } from '../_lib/supabaseClient';
 
 type Stadium = {
@@ -32,7 +33,6 @@ export default function StadiumList() {
     supabase
       ?.from('stadiums')
       .select('*')
-      .order('league', { ascending: true })
       .order('name', { ascending: true })
       .then(({ data, error }) => {
         if (error) {
@@ -46,11 +46,11 @@ export default function StadiumList() {
           return;
         }
 
-        setStadiums(data as Stadium[]);
+        setStadiums([...(data as Stadium[])].sort((a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')));
       });
   }, [hasSupabaseEnv]);
 
-  const leagues = useMemo(() => ['Alle', ...Array.from(new Set(stadiums.map((s) => s.league))).sort()], [stadiums]);
+  const leagues = useMemo(() => ['Alle', ...sortLeagues(Array.from(new Set(stadiums.map((s) => s.league))))], [stadiums]);
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();

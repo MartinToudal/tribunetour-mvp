@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import stadiumSeed from '../../data/stadiums.json';
 import SiteShell from '../(site)/_components/SiteShell';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
+import { compareLeagues } from '../(site)/_lib/leagueOrder';
 import { supabase } from '../(site)/_lib/supabaseClient';
 
 type Stadium = {
@@ -28,7 +29,6 @@ export default function MyPage() {
     supabase
       ?.from('stadiums')
       .select('*')
-      .order('league', { ascending: true })
       .order('name', { ascending: true })
       .then(({ data, error }) => {
         if (error) {
@@ -42,7 +42,7 @@ export default function MyPage() {
           return;
         }
 
-        setStadiums(data as Stadium[]);
+        setStadiums([...(data as Stadium[])].sort((a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')));
       });
   }, [hasSupabaseEnv]);
   const totalCount = stadiums.length;
