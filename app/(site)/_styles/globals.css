@@ -25,6 +25,7 @@ body {
 }
 
 body {
+  overflow-x: hidden;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(126, 217, 87, 0.14), transparent 28%),
@@ -44,11 +45,11 @@ a {
 
 @layer components {
   .site-shell {
-    @apply min-h-screen;
+    @apply min-h-screen overflow-x-clip;
   }
 
   .site-main {
-    @apply mx-auto grid max-w-6xl gap-6 px-4 py-6 md:gap-8 md:py-8;
+    @apply mx-auto grid max-w-6xl gap-6 overflow-x-clip px-4 py-6 md:gap-8 md:py-8;
   }
 
   .site-card {
@@ -134,5 +135,23 @@ a {
   .field-input:focus {
     border-color: rgba(184, 255, 106, 0.45);
     box-shadow: 0 0 0 4px rgba(184, 255, 106, 0.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .pill-nav {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.875rem;
+  }
+
+  .stat-chip {
+    padding: 0.875rem 1rem;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    min-height: 2.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

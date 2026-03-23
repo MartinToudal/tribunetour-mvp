@@ -99,12 +99,12 @@ export default function LoginButton() {
 
   return (
     <div className="relative">
-      <button type="button" onClick={() => setMenuOpen((v) => !v)} className="cta-primary">
+      <button type="button" onClick={() => setMenuOpen((v) => !v)} className="cta-primary px-4 py-2.5 text-sm sm:px-5 sm:py-3">
         {loading ? 'Sender link…' : 'Log ind'}
       </button>
 
       {menuOpen && (
-        <div className="absolute right-0 top-[calc(100%+12px)] w-[min(92vw,22rem)] rounded-[28px] border border-white/10 bg-[var(--surface-strong)] p-5 shadow-2xl">
+        <div className="absolute right-0 top-[calc(100%+12px)] z-40 w-[min(92vw,22rem)] rounded-[28px] border border-white/10 bg-[var(--surface-strong)] p-4 shadow-2xl sm:p-5">
           <div className="mb-4">
             <div className="text-lg font-semibold">Få din egen Tribunetour</div>
             <p className="mt-1 text-sm text-[var(--muted)]">Gem din personlige visited-status, hold styr på dine stadionbesøg og byg videre på samme Tribunetour senere.</p>

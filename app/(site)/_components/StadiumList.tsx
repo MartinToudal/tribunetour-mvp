@@ -94,13 +94,13 @@ export default function StadiumList() {
 
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
           <input className="field-input" placeholder="Søg stadion, klub, by…" value={filter} onChange={(e) => setFilter(e.target.value)} />
-          <div className="flex flex-wrap gap-2 md:justify-end">
+          <div className="grid grid-cols-3 gap-2 md:flex md:flex-wrap md:justify-end">
             {(['all', 'not-visited', 'visited'] as VisitFilter[]).map((mode) => (
               <button
                 key={mode}
                 type="button"
                 onClick={() => setVisitFilter(mode)}
-                className="pill-nav"
+                className="pill-nav justify-center text-center"
                 data-active={visitFilter === mode ? 'true' : 'false'}
               >
                 {mode === 'all' ? 'Alle' : mode === 'visited' ? 'Besøgte' : 'Ikke-besøgte'}
@@ -111,13 +111,13 @@ export default function StadiumList() {
 
         <div className="mt-4">
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
-          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+          <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
             {leagues.map((league) => (
               <button
                 key={league}
                 type="button"
                 onClick={() => setLeagueFilter(league)}
-                className="pill-nav shrink-0"
+                className="pill-nav min-w-0 justify-center text-center md:shrink-0"
                 data-active={leagueFilter === league ? 'true' : 'false'}
               >
                 {league}

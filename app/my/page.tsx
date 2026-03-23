@@ -140,10 +140,10 @@ export default function MyPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <input className="field-input md:max-w-md" placeholder="Søg stadion, klub, by…" value={filter} onChange={(e) => setFilter(e.target.value)} />
             <div className="grid w-full grid-cols-2 rounded-full border border-white/10 bg-white/5 p-1 md:w-auto md:min-w-[15rem]">
-              <button className={`rounded-full px-4 py-2 text-sm ${!showVisited ? 'bg-white text-neutral-900' : 'text-[var(--muted)]'}`} onClick={() => setShowVisited(false)}>
+              <button className={`min-w-0 rounded-full px-3 py-2 text-sm ${!showVisited ? 'bg-white text-neutral-900' : 'text-[var(--muted)]'}`} onClick={() => setShowVisited(false)}>
                 Ubesøgte
               </button>
-              <button className={`rounded-full px-4 py-2 text-sm ${showVisited ? 'bg-white text-neutral-900' : 'text-[var(--muted)]'}`} onClick={() => setShowVisited(true)}>
+              <button className={`min-w-0 rounded-full px-3 py-2 text-sm ${showVisited ? 'bg-white text-neutral-900' : 'text-[var(--muted)]'}`} onClick={() => setShowVisited(true)}>
                 Besøgte
               </button>
             </div>

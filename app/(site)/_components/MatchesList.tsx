@@ -127,13 +127,13 @@ export default function MatchesList() {
 
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
           <input className="field-input" placeholder="Søg runde, klub eller stadion…" value={search} onChange={(e) => setSearch(e.target.value)} />
-          <div className="flex flex-wrap gap-2 md:justify-end">
+          <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
             {windowOptions.map((option) => (
-              <button key={option.value} type="button" onClick={() => setWindowFilter(option.value)} className="pill-nav" data-active={windowFilter === option.value ? 'true' : 'false'}>
+              <button key={option.value} type="button" onClick={() => setWindowFilter(option.value)} className="pill-nav justify-center text-center" data-active={windowFilter === option.value ? 'true' : 'false'}>
                 {option.label}
               </button>
             ))}
-            <button type="button" onClick={() => setVisitFilter(visitFilter === 'all' ? 'not-visited' : 'all')} className="pill-nav" data-active={visitFilter === 'not-visited' ? 'true' : 'false'}>
+            <button type="button" onClick={() => setVisitFilter(visitFilter === 'all' ? 'not-visited' : 'all')} className="pill-nav justify-center text-center" data-active={visitFilter === 'not-visited' ? 'true' : 'false'}>
               {visitFilter === 'all' ? 'Alle venues' : 'Kun ikke-besøgte'}
             </button>
           </div>
@@ -141,9 +141,9 @@ export default function MatchesList() {
 
         <div className="mt-4">
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
-          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+          <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
             {leagues.map((league) => (
-              <button key={league} type="button" onClick={() => setLeagueFilter(league)} className="pill-nav shrink-0" data-active={leagueFilter === league ? 'true' : 'false'}>
+              <button key={league} type="button" onClick={() => setLeagueFilter(league)} className="pill-nav min-w-0 justify-center text-center md:shrink-0" data-active={leagueFilter === league ? 'true' : 'false'}>
                 {league}
               </button>
             ))}
