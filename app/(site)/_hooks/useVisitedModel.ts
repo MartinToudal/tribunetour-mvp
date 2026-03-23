@@ -1,11 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { getVisitedForUser, setVisitedForUser } from '../_lib/visitedRepository';
 import { hasSupabaseEnv, supabase } from '../_lib/supabaseClient';
-
-type VisitRow = {
-    stadium_id: string;
-};
 
 type ToggleResult = {
     ok: boolean;
@@ -49,25 +46,21 @@ export function useVisitedModel() {
         let isCancelled = false;
         setIsLoadingVisits(true);
 
-        supabase
-            .from('visits')
-            .select('stadium_id')
-            .then(({ data, error }) => {
+        getVisitedForUser(userId)
+            .then((map) => {
                 if (isCancelled) {
                     return;
                 }
 
-                if (error) {
-                    console.error(error);
-                    setIsLoadingVisits(false);
+                setVisited(map);
+                setIsLoadingVisits(false);
+            })
+            .catch((error) => {
+                if (isCancelled) {
                     return;
                 }
 
-                const map: Record<string, boolean> = {};
-                (data as VisitRow[] | null)?.forEach((row) => {
-                    map[row.stadium_id] = true;
-                });
-                setVisited(map);
+                console.error(error);
                 setIsLoadingVisits(false);
             });
 
@@ -86,8 +79,9 @@ export function useVisitedModel() {
         }
 
         if (visited[clubId]) {
-            const { error } = await supabase.from('visits').delete().eq('stadium_id', clubId).eq('user_id', userId);
-            if (error) {
+            try {
+                await setVisitedForUser(userId, clubId, false);
+            } catch (error) {
                 console.error(error);
                 return { ok: false, error: 'write_failed' };
             }
@@ -95,8 +89,9 @@ export function useVisitedModel() {
             return { ok: true };
         }
 
-        const { error } = await supabase.from('visits').insert({ user_id: userId, stadium_id: clubId });
-        if (error) {
+        try {
+            await setVisitedForUser(userId, clubId, true);
+        } catch (error) {
             console.error(error);
             return { ok: false, error: 'write_failed' };
         }
