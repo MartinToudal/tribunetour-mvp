@@ -9,10 +9,11 @@ function isValidEmail(email: string) {
 
 export default function LoginButton() {
   const [loading, setLoading] = useState(false);
-  const [emailSent, setEmailSent] = useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -22,8 +23,9 @@ export default function LoginButton() {
       setUserEmail(session?.user?.email ?? null);
       if (session?.user?.email) {
         setMenuOpen(false);
-        setEmailSent(null);
+        setInfoMessage(null);
         setEmail('');
+        setPassword('');
       }
     });
     return () => {
@@ -32,9 +34,9 @@ export default function LoginButton() {
   }, []);
 
   const helperText = useMemo(() => {
-    if (emailSent) return `Magic link sendt til ${emailSent}. Tjek inbox og spam.`;
-    return 'Log ind med e-mail for at gemme din personlige visited-status og fortsætte på tværs af Tribunetour senere.';
-  }, [emailSent]);
+    if (infoMessage) return infoMessage;
+    return 'Log ind med e-mail og adgangskode. Har du tidligere brugt magic link, så vælg at sætte eller nulstille adgangskoden først.';
+  }, [infoMessage]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -43,13 +45,18 @@ export default function LoginButton() {
       setErrorMessage('Indtast en gyldig e-mailadresse.');
       return;
     }
+    if (password.length < 8) {
+      setErrorMessage('Adgangskoden skal være mindst 8 tegn.');
+      return;
+    }
 
     setLoading(true);
     setErrorMessage(null);
+    setInfoMessage(null);
 
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      password,
     });
 
     setLoading(false);
@@ -58,7 +65,65 @@ export default function LoginButton() {
       return;
     }
 
-    setEmailSent(email);
+    setInfoMessage('Du er nu logget ind.');
+  }
+
+  async function handleSignUp() {
+    if (!supabase) return;
+    if (!isValidEmail(email)) {
+      setErrorMessage('Indtast en gyldig e-mailadresse.');
+      return;
+    }
+    if (password.length < 8) {
+      setErrorMessage('Adgangskoden skal være mindst 8 tegn.');
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage(null);
+    setInfoMessage(null);
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    setLoading(false);
+    if (error) {
+      setErrorMessage(error.message);
+      return;
+    }
+
+    if (data.session) {
+      setInfoMessage('Konto oprettet og logget ind.');
+      return;
+    }
+
+    setInfoMessage('Konto oprettet. Bekræft din e-mail, hvis Supabase kræver det, og log derefter ind.');
+  }
+
+  async function handlePasswordReset() {
+    if (!supabase) return;
+    if (!isValidEmail(email)) {
+      setErrorMessage('Indtast en gyldig e-mailadresse.');
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage(null);
+    setInfoMessage(null);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/reset-password`,
+    });
+
+    setLoading(false);
+    if (error) {
+      setErrorMessage(error.message);
+      return;
+    }
+
+    setInfoMessage(`Vi har sendt et link til ${email}, hvor du kan sætte eller nulstille adgangskoden.`);
   }
 
   async function handleLogout() {
@@ -118,8 +183,21 @@ export default function LoginButton() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <input
+              type="password"
+              className="field-input"
+              placeholder="Adgangskode"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button type="submit" disabled={loading} className="cta-primary w-full">
-              {loading ? 'Sender magic link…' : 'Send magic link'}
+              {loading ? 'Logger ind…' : 'Log ind'}
+            </button>
+            <button type="button" disabled={loading} onClick={handleSignUp} className="cta-secondary w-full">
+              Opret konto
+            </button>
+            <button type="button" disabled={loading} onClick={handlePasswordReset} className="w-full text-sm text-[var(--accent)] underline-offset-4 hover:underline">
+              Sæt eller nulstil adgangskode
             </button>
           </form>
 
