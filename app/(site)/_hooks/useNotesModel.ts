@@ -70,6 +70,30 @@ export function useNotesModel() {
         return reloadNotes(userId);
     }, [userId]);
 
+    useEffect(() => {
+        if (!supabase || !userId) {
+            return;
+        }
+
+        const handleRefresh = () => {
+            void reloadNotes(userId);
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                handleRefresh();
+            }
+        };
+
+        window.addEventListener('focus', handleRefresh);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener('focus', handleRefresh);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, [userId]);
+
     async function saveNote(clubId: string, note: string): Promise<SaveResult> {
         if (!supabase) {
             return { ok: false, error: 'notes_unavailable' };
