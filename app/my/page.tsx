@@ -1,18 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import stadiumSeed from '../../data/stadiums.json';
 import SiteShell from '../(site)/_components/SiteShell';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
-import { compareLeagues } from '../(site)/_lib/leagueOrder';
-import { supabase } from '../(site)/_lib/supabaseClient';
-
-type Stadium = {
-  id: string;
-  name: string;
-  team: string;
-  league: string;
-  city?: string;
-};
+import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
 
 export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
@@ -21,29 +11,17 @@ export default function MyPage() {
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
-    if (!hasSupabaseEnv) {
-      setStadiums(stadiumSeed as Stadium[]);
-      return;
-    }
+    let isCancelled = false;
 
-    supabase
-      ?.from('stadiums')
-      .select('*')
-      .order('name', { ascending: true })
-      .then(({ data, error }) => {
-        if (error) {
-          console.error(error);
-          setStadiums(stadiumSeed as Stadium[]);
-          return;
-        }
+    getStadiums().then((data) => {
+      if (!isCancelled) {
+        setStadiums(data);
+      }
+    });
 
-        if (!data || data.length === 0) {
-          setStadiums(stadiumSeed as Stadium[]);
-          return;
-        }
-
-        setStadiums([...(data as Stadium[])].sort((a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')));
-      });
+    return () => {
+      isCancelled = true;
+    };
   }, [hasSupabaseEnv]);
   const totalCount = stadiums.length;
   const remainingCount = Math.max(totalCount - visitedCount, 0);

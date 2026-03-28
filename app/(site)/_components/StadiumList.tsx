@@ -1,19 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import stadiumSeed from '../../../data/stadiums.json';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
-import { compareLeagues, sortLeagues } from '../_lib/leagueOrder';
-import { supabase } from '../_lib/supabaseClient';
-
-type Stadium = {
-  id: string;
-  name: string;
-  team: string;
-  league: string;
-  city?: string;
-  lat?: number;
-  lon?: number;
-};
+import { sortLeagues } from '../_lib/leagueOrder';
+import { getStadiums, type Stadium } from '../_lib/referenceData';
 
 type VisitFilter = 'all' | 'visited' | 'not-visited';
 
@@ -25,29 +14,17 @@ export default function StadiumList() {
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
-    if (!hasSupabaseEnv) {
-      setStadiums(stadiumSeed as Stadium[]);
-      return;
-    }
+    let isCancelled = false;
 
-    supabase
-      ?.from('stadiums')
-      .select('*')
-      .order('name', { ascending: true })
-      .then(({ data, error }) => {
-        if (error) {
-          console.error(error);
-          setStadiums(stadiumSeed as Stadium[]);
-          return;
-        }
+    getStadiums().then((data) => {
+      if (!isCancelled) {
+        setStadiums(data);
+      }
+    });
 
-        if (!data || data.length === 0) {
-          setStadiums(stadiumSeed as Stadium[]);
-          return;
-        }
-
-        setStadiums([...(data as Stadium[])].sort((a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')));
-      });
+    return () => {
+      isCancelled = true;
+    };
   }, [hasSupabaseEnv]);
 
   const leagues = useMemo(() => ['Alle', ...sortLeagues(Array.from(new Set(stadiums.map((s) => s.league))))], [stadiums]);

@@ -1,27 +1,13 @@
-import stadiumSeed from '../../../data/stadiums.json';
-import fixturesSeed from '../../../data/fixtures.json';
 import SiteShell from '../../(site)/_components/SiteShell';
+import {
+    getSeedFixtures,
+    getSeedStadiumById,
+    getSeedStadiumMap,
+    getStaticStadiumParams,
+    type Fixture,
+    type Stadium,
+} from '../../(site)/_lib/referenceData';
 import StadiumDetailClient from './StadiumDetailClient';
-
-type Stadium = {
-    id: string;
-    name: string;
-    team: string;
-    league: string;
-    city?: string;
-    lat?: number;
-    lon?: number;
-};
-
-type Fixture = {
-  id: string;
-  kickoff: string;
-  round: string;
-  homeTeamId: string;
-    awayTeamId: string;
-    venueClubId: string;
-    status: string;
-};
 
 type StadiumDetailPageProps = {
     params: {
@@ -29,12 +15,11 @@ type StadiumDetailPageProps = {
     };
 };
 
-const stadiums = stadiumSeed as Stadium[];
-const fixtures = fixturesSeed as Fixture[];
-const stadiumMap = Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium])) as Record<string, Stadium>;
+const fixtures = getSeedFixtures();
+const stadiumMap = getSeedStadiumMap();
 
 export function generateStaticParams() {
-    return stadiums.map((stadium) => ({ id: stadium.id }));
+    return getStaticStadiumParams();
 }
 
 function formatKickoff(value: string) {
@@ -56,7 +41,7 @@ function mapsHref(stadium: Stadium) {
 }
 
 export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
-    const stadium = stadiums.find((item) => item.id === params.id);
+    const stadium = getSeedStadiumById(params.id);
 
     if (!stadium) {
         return (

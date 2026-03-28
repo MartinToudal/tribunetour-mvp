@@ -4,10 +4,11 @@
   "version": "0.5.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "generate:data": "node scripts/generate-reference-data.mjs",
+    "build": "npm run generate:data && next build",
     "start": "next start",
     "lint": "next lint",
-    "validate:data": "node scripts/validate-reference-data.mjs"
+    "validate:data": "npm run generate:data && node scripts/validate-reference-data.mjs"
   },
   "dependencies": {
     "next": "14.2.4",

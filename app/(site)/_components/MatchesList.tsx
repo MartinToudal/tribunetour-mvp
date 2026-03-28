@@ -1,29 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import fixturesSeed from '../../../data/fixtures.json';
-import stadiumSeed from '../../../data/stadiums.json';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { sortLeagues } from '../_lib/leagueOrder';
-
-type Fixture = {
-  id: string;
-  kickoff: string;
-  round: string;
-  homeTeamId: string;
-  awayTeamId: string;
-  venueClubId: string;
-  status: string;
-  homeScore?: string;
-  awayScore?: string;
-};
-
-type Stadium = {
-  id: string;
-  name: string;
-  team: string;
-  league: string;
-  city?: string;
-};
+import { getFixtures, getSeedStadiumMap, type Fixture, type Stadium } from '../_lib/referenceData';
 
 type WindowFilter = '14' | '30' | 'all';
 type VisitFilter = 'all' | 'not-visited';
@@ -35,18 +14,27 @@ const windowOptions: { value: WindowFilter; label: string }[] = [
 ];
 
 export default function MatchesList() {
-  const [fixtures] = useState<Fixture[]>(fixturesSeed as Fixture[]);
-  const [stadiums] = useState<Stadium[]>(stadiumSeed as Stadium[]);
+  const [fixtures, setFixtures] = useState<Fixture[]>([]);
   const [search, setSearch] = useState('');
   const [windowFilter, setWindowFilter] = useState<WindowFilter>('30');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const [leagueFilter, setLeagueFilter] = useState('Alle');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited } = useVisitedModel();
+  const stadiumMap = useMemo<Record<string, Stadium>>(() => getSeedStadiumMap(), []);
 
-  const stadiumMap = useMemo(
-    () => Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium])) as Record<string, Stadium>,
-    [stadiums]
-  );
+  useEffect(() => {
+    let isCancelled = false;
+
+    getFixtures().then((data) => {
+      if (!isCancelled) {
+        setFixtures(data);
+      }
+    });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
 
   const leagues = useMemo(() => {
     const values = Array.from(

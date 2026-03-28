@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import stadiumSeed from '../../../data/stadiums.json';
+import { getSeedStadiums } from '../_lib/referenceData';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 
 const MapContainer = dynamic(() => import('react-leaflet').then((m) => m.MapContainer), { ssr: false });
@@ -43,7 +43,7 @@ export default function MapView() {
     }, []);
 
     useEffect(() => {
-        setStadiums(stadiumSeed as Stadium[]);
+        setStadiums(getSeedStadiums() as Stadium[]);
     }, []);
 
     const points = useMemo(
