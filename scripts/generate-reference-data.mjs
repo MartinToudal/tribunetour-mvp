@@ -72,6 +72,10 @@ function readCsv(relativePath) {
   return fs.readFileSync(relativePath, 'utf8');
 }
 
+function readExistingJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
 function parseStadiums() {
   const rows = parseCsv(readCsv(stadiumsCsvPath));
 
@@ -129,14 +133,25 @@ function buildRemoteFixturesEnvelope(fixtures) {
   };
 }
 
-const stadiums = parseStadiums();
-const fixtures = parseFixtures();
+const hasCanonicalCsvInputs = fs.existsSync(stadiumsCsvPath) && fs.existsSync(fixturesCsvPath);
+
+const stadiums = hasCanonicalCsvInputs
+  ? parseStadiums()
+  : readExistingJson(stadiumsJsonPath);
+const fixtures = hasCanonicalCsvInputs
+  ? parseFixtures()
+  : readExistingJson(fixturesJsonPath);
 const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(fixtures);
 
 writeFileEnsured(stadiumsJsonPath, stableJson(stadiums));
 writeFileEnsured(fixturesJsonPath, stableJson(fixtures));
 writeFileEnsured(remoteFixturesJsonPath, stableJson(remoteFixturesEnvelope));
 
+if (hasCanonicalCsvInputs) {
+  console.log('Source: app CSV files');
+} else {
+  console.log('Source: checked-in web JSON fallback');
+}
 console.log(`Generated stadiums: ${stadiums.length}`);
 console.log(`Generated fixtures: ${fixtures.length}`);
 console.log(`Updated ${path.relative(websiteRootDir, stadiumsJsonPath)}`);
