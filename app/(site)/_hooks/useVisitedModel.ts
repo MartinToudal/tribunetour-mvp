@@ -38,15 +38,11 @@ export function useVisitedModel() {
         };
     }, []);
 
-    useEffect(() => {
-        if (!supabase || !userId) {
-            return;
-        }
-
+    function reloadVisited(currentUserId: string) {
         let isCancelled = false;
         setIsLoadingVisits(true);
 
-        getVisitedForUser(userId)
+        getVisitedForUser(currentUserId)
             .then((map) => {
                 if (isCancelled) {
                     return;
@@ -66,6 +62,38 @@ export function useVisitedModel() {
 
         return () => {
             isCancelled = true;
+        };
+    }
+
+    useEffect(() => {
+        if (!supabase || !userId) {
+            return;
+        }
+
+        return reloadVisited(userId);
+    }, [userId]);
+
+    useEffect(() => {
+        if (!supabase || !userId) {
+            return;
+        }
+
+        const handleRefresh = () => {
+            void reloadVisited(userId);
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                handleRefresh();
+            }
+        };
+
+        window.addEventListener('focus', handleRefresh);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener('focus', handleRefresh);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, [userId]);
 
