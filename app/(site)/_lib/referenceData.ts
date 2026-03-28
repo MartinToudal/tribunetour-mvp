@@ -23,8 +23,8 @@ export type Fixture = {
   awayTeamId: string;
   venueClubId: string;
   status: string;
-  homeScore?: string;
-  awayScore?: string;
+  homeScore?: number | null;
+  awayScore?: number | null;
 };
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
