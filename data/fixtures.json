@@ -7,8 +7,8 @@
     "awayTeamId": "sje",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r19-sif-vff",
@@ -18,8 +18,8 @@
     "awayTeamId": "vff",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r19-fcm-fck",
@@ -29,8 +29,8 @@
     "awayTeamId": "fck",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r19-bif-ran",
@@ -40,8 +40,8 @@
     "awayTeamId": "ran",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r19-vb-fcf",
@@ -51,8 +51,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r19-agf-ob",
@@ -62,8 +62,8 @@
     "awayTeamId": "ob",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-ran-vb",
@@ -73,8 +73,8 @@
     "awayTeamId": "vb",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-fck-fcn",
@@ -84,8 +84,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-fcf-agf",
@@ -95,8 +95,8 @@
     "awayTeamId": "agf",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-ob-fcm",
@@ -106,8 +106,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-vff-bif",
@@ -117,8 +117,8 @@
     "awayTeamId": "bif",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r20-sje-sif",
@@ -128,8 +128,8 @@
     "awayTeamId": "sif",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-fcn-vb",
@@ -139,8 +139,8 @@
     "awayTeamId": "vb",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-ob-fck",
@@ -150,8 +150,8 @@
     "awayTeamId": "fck",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-ran-fcf",
@@ -161,8 +161,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-sif-fcm",
@@ -172,8 +172,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-agf-vff",
@@ -183,8 +183,8 @@
     "awayTeamId": "vff",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r21-bif-sje",
@@ -194,8 +194,8 @@
     "awayTeamId": "sje",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-fck-ran",
@@ -205,8 +205,8 @@
     "awayTeamId": "ran",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-fcf-sif",
@@ -216,8 +216,8 @@
     "awayTeamId": "sif",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-fcm-bif",
@@ -227,8 +227,8 @@
     "awayTeamId": "bif",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-vb-agf",
@@ -238,8 +238,8 @@
     "awayTeamId": "agf",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-sje-ob",
@@ -249,8 +249,8 @@
     "awayTeamId": "ob",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r22-vff-fcn",
@@ -260,8 +260,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-fcf-fck",
@@ -271,8 +271,8 @@
     "awayTeamId": "fck",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-ob-fcm",
@@ -282,8 +282,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-fcm-fcn",
@@ -293,8 +293,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-sje-agf",
@@ -304,8 +304,8 @@
     "awayTeamId": "agf",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-bif-vff",
@@ -315,8 +315,8 @@
     "awayTeamId": "vff",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r23-sif-vb",
@@ -326,8 +326,8 @@
     "awayTeamId": "vb",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-vb-ob",
@@ -337,8 +337,8 @@
     "awayTeamId": "ob",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-ran-sif",
@@ -348,8 +348,8 @@
     "awayTeamId": "sif",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-fcn-sje",
@@ -359,8 +359,8 @@
     "awayTeamId": "sje",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-fck-fcf",
@@ -370,8 +370,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-agf-bif",
@@ -381,8 +381,8 @@
     "awayTeamId": "bif",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r24-vff-fcm",
@@ -392,8 +392,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-fcm-sje",
@@ -403,8 +403,8 @@
     "awayTeamId": "sje",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-fck-sif",
@@ -414,8 +414,8 @@
     "awayTeamId": "sif",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-vb-ran",
@@ -425,8 +425,8 @@
     "awayTeamId": "ran",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-ob-fcf",
@@ -436,8 +436,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-vff-agf",
@@ -447,8 +447,8 @@
     "awayTeamId": "agf",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r25-fcn-bif",
@@ -458,8 +458,8 @@
     "awayTeamId": "bif",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-agf-fcn",
@@ -469,8 +469,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-sif-ob",
@@ -480,8 +480,8 @@
     "awayTeamId": "ob",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-sje-vff",
@@ -491,8 +491,8 @@
     "awayTeamId": "vff",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-bif-fcm",
@@ -502,8 +502,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-ran-fck",
@@ -513,8 +513,8 @@
     "awayTeamId": "fck",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r26-fcf-vb",
@@ -524,8 +524,8 @@
     "awayTeamId": "vb",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-bif-sje",
@@ -535,8 +535,8 @@
     "awayTeamId": "sje",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-ob-ran",
@@ -546,8 +546,8 @@
     "awayTeamId": "ran",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-sif-fcf",
@@ -557,8 +557,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-fcn-vff",
@@ -568,8 +568,8 @@
     "awayTeamId": "vff",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-vb-fck",
@@ -579,8 +579,8 @@
     "awayTeamId": "fck",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r27-fcm-agf",
@@ -590,8 +590,8 @@
     "awayTeamId": "agf",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-fck-ob",
@@ -601,8 +601,8 @@
     "awayTeamId": "ob",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-vb-sif",
@@ -612,8 +612,8 @@
     "awayTeamId": "sif",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-vff-bif",
@@ -623,8 +623,8 @@
     "awayTeamId": "bif",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-ran-fcf",
@@ -634,8 +634,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-fcn-agf",
@@ -645,8 +645,8 @@
     "awayTeamId": "agf",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r28-sje-fcm",
@@ -656,8 +656,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-fcf-ob",
@@ -667,8 +667,8 @@
     "awayTeamId": "ob",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-sif-ran",
@@ -678,8 +678,8 @@
     "awayTeamId": "ran",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-sje-bif",
@@ -689,8 +689,8 @@
     "awayTeamId": "bif",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-vff-fcn",
@@ -700,8 +700,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-agf-fcm",
@@ -711,8 +711,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r29-fck-vb",
@@ -722,8 +722,8 @@
     "awayTeamId": "vb",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-bif-fcn",
@@ -733,8 +733,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-ran-vb",
@@ -744,8 +744,8 @@
     "awayTeamId": "vb",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-ob-sif",
@@ -755,8 +755,8 @@
     "awayTeamId": "sif",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-fcf-fck",
@@ -766,8 +766,8 @@
     "awayTeamId": "fck",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-agf-sje",
@@ -777,8 +777,8 @@
     "awayTeamId": "sje",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r30-fcm-vff",
@@ -788,8 +788,8 @@
     "awayTeamId": "vff",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-sif-fck",
@@ -799,8 +799,8 @@
     "awayTeamId": "fck",
     "venueClubId": "sif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-vb-fcf",
@@ -810,8 +810,8 @@
     "awayTeamId": "fcf",
     "venueClubId": "vb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-ran-ob",
@@ -821,8 +821,8 @@
     "awayTeamId": "ob",
     "venueClubId": "ran",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-bif-agf",
@@ -832,8 +832,8 @@
     "awayTeamId": "agf",
     "venueClubId": "bif",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-fcn-fcm",
@@ -843,8 +843,8 @@
     "awayTeamId": "fcm",
     "venueClubId": "fcn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r31-vff-sje",
@@ -854,8 +854,8 @@
     "awayTeamId": "sje",
     "venueClubId": "vff",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-fcf-sif",
@@ -865,8 +865,8 @@
     "awayTeamId": "sif",
     "venueClubId": "fcf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-ob-vb",
@@ -876,8 +876,8 @@
     "awayTeamId": "vb",
     "venueClubId": "ob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-fck-ran",
@@ -887,8 +887,8 @@
     "awayTeamId": "ran",
     "venueClubId": "fck",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-agf-vff",
@@ -898,8 +898,8 @@
     "awayTeamId": "vff",
     "venueClubId": "agf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-fcm-bif",
@@ -909,8 +909,8 @@
     "awayTeamId": "bif",
     "venueClubId": "fcm",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "sl-r32-sje-fcn",
@@ -920,8 +920,8 @@
     "awayTeamId": "fcn",
     "venueClubId": "sje",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-hob-hbk",
@@ -931,8 +931,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-b93-hvi",
@@ -942,8 +942,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-lyn-kol",
@@ -953,8 +953,8 @@
     "awayTeamId": "kol",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-aab-hil",
@@ -964,8 +964,8 @@
     "awayTeamId": "hil",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-efb-ach",
@@ -975,8 +975,8 @@
     "awayTeamId": "ach",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r19-aaf-mid",
@@ -986,8 +986,8 @@
     "awayTeamId": "mid",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-hbk-efb",
@@ -997,8 +997,8 @@
     "awayTeamId": "efb",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-kol-hob",
@@ -1008,8 +1008,8 @@
     "awayTeamId": "hob",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-aab-aaf",
@@ -1019,8 +1019,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-hil-b93",
@@ -1030,8 +1030,8 @@
     "awayTeamId": "b93",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-mid-hvi",
@@ -1041,8 +1041,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r20-ach-lyn",
@@ -1052,8 +1052,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-b93-hbk",
@@ -1063,8 +1063,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-lyn-mid",
@@ -1074,8 +1074,8 @@
     "awayTeamId": "mid",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-hob-aab",
@@ -1085,8 +1085,8 @@
     "awayTeamId": "aab",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-aaf-ach",
@@ -1096,8 +1096,8 @@
     "awayTeamId": "ach",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-efb-hil",
@@ -1107,8 +1107,8 @@
     "awayTeamId": "hil",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r21-hvi-kol",
@@ -1118,8 +1118,8 @@
     "awayTeamId": "kol",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-ach-hvi",
@@ -1129,8 +1129,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-hil-aaf",
@@ -1140,8 +1140,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-mid-hob",
@@ -1151,8 +1151,8 @@
     "awayTeamId": "hob",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-kol-b93",
@@ -1162,8 +1162,8 @@
     "awayTeamId": "b93",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-hbk-lyn",
@@ -1173,8 +1173,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r22-aab-efb",
@@ -1184,8 +1184,8 @@
     "awayTeamId": "efb",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-kol-efb",
@@ -1195,8 +1195,8 @@
     "awayTeamId": "efb",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-b93-hob",
@@ -1206,8 +1206,8 @@
     "awayTeamId": "hob",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-hvi-hil",
@@ -1217,8 +1217,8 @@
     "awayTeamId": "hil",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-mid-aab",
@@ -1228,8 +1228,8 @@
     "awayTeamId": "aab",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-ach-lyn",
@@ -1239,8 +1239,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r23-hbk-aaf",
@@ -1250,8 +1250,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-hob-aab",
@@ -1261,8 +1261,8 @@
     "awayTeamId": "aab",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-hbk-mid",
@@ -1272,8 +1272,8 @@
     "awayTeamId": "mid",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-efb-hvi",
@@ -1283,8 +1283,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-hil-ach",
@@ -1294,8 +1294,8 @@
     "awayTeamId": "ach",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-aaf-b93",
@@ -1305,8 +1305,8 @@
     "awayTeamId": "b93",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r24-lyn-kol",
@@ -1316,8 +1316,8 @@
     "awayTeamId": "kol",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-efb-hil",
@@ -1327,8 +1327,8 @@
     "awayTeamId": "hil",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-b93-hbk",
@@ -1338,8 +1338,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-kol-ach",
@@ -1349,8 +1349,8 @@
     "awayTeamId": "ach",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-lyn-hvi",
@@ -1360,8 +1360,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-mid-hob",
@@ -1371,8 +1371,8 @@
     "awayTeamId": "hob",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r25-aab-aaf",
@@ -1382,8 +1382,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-ach-efb",
@@ -1393,8 +1393,8 @@
     "awayTeamId": "efb",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-hvi-kol",
@@ -1404,8 +1404,8 @@
     "awayTeamId": "kol",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-hil-lyn",
@@ -1415,8 +1415,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-aaf-mid",
@@ -1426,8 +1426,8 @@
     "awayTeamId": "mid",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-hob-hbk",
@@ -1437,8 +1437,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r26-aab-b93",
@@ -1448,8 +1448,8 @@
     "awayTeamId": "b93",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-lyn-efb",
@@ -1459,8 +1459,8 @@
     "awayTeamId": "efb",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-hvi-ach",
@@ -1470,8 +1470,8 @@
     "awayTeamId": "ach",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-hil-kol",
@@ -1481,8 +1481,8 @@
     "awayTeamId": "kol",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-b93-mid",
@@ -1492,8 +1492,8 @@
     "awayTeamId": "mid",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-aaf-hob",
@@ -1503,8 +1503,8 @@
     "awayTeamId": "hob",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r27-hbk-aab",
@@ -1514,8 +1514,8 @@
     "awayTeamId": "aab",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-mid-aaf",
@@ -1525,8 +1525,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-kol-hvi",
@@ -1536,8 +1536,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-hbk-b93",
@@ -1547,8 +1547,8 @@
     "awayTeamId": "b93",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-lyn-hil",
@@ -1558,8 +1558,8 @@
     "awayTeamId": "hil",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-efb-ach",
@@ -1569,8 +1569,8 @@
     "awayTeamId": "ach",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r28-aab-hob",
@@ -1580,8 +1580,8 @@
     "awayTeamId": "hob",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-hvi-lyn",
@@ -1591,8 +1591,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-efb-kol",
@@ -1602,8 +1602,8 @@
     "awayTeamId": "kol",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-aab-mid",
@@ -1613,8 +1613,8 @@
     "awayTeamId": "mid",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-ach-hil",
@@ -1624,8 +1624,8 @@
     "awayTeamId": "hil",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-aaf-hbk",
@@ -1635,8 +1635,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r29-hob-b93",
@@ -1646,8 +1646,8 @@
     "awayTeamId": "b93",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-hob-aaf",
@@ -1657,8 +1657,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-hil-efb",
@@ -1668,8 +1668,8 @@
     "awayTeamId": "efb",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-kol-lyn",
@@ -1679,8 +1679,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-b93-aab",
@@ -1690,8 +1690,8 @@
     "awayTeamId": "aab",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-ach-hvi",
@@ -1701,8 +1701,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r30-mid-hbk",
@@ -1712,8 +1712,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-mid-b93",
@@ -1723,8 +1723,8 @@
     "awayTeamId": "b93",
     "venueClubId": "mid",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-aaf-aab",
@@ -1734,8 +1734,8 @@
     "awayTeamId": "aab",
     "venueClubId": "aaf",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-hvi-efb",
@@ -1745,8 +1745,8 @@
     "awayTeamId": "efb",
     "venueClubId": "hvi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-lyn-ach",
@@ -1756,8 +1756,8 @@
     "awayTeamId": "ach",
     "venueClubId": "lyn",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-hbk-hob",
@@ -1767,8 +1767,8 @@
     "awayTeamId": "hob",
     "venueClubId": "hbk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r31-kol-hil",
@@ -1778,8 +1778,8 @@
     "awayTeamId": "hil",
     "venueClubId": "kol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-b93-aaf",
@@ -1789,8 +1789,8 @@
     "awayTeamId": "aaf",
     "venueClubId": "b93",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-hob-mid",
@@ -1800,8 +1800,8 @@
     "awayTeamId": "mid",
     "venueClubId": "hob",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-aab-hbk",
@@ -1811,8 +1811,8 @@
     "awayTeamId": "hbk",
     "venueClubId": "aab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-ach-kol",
@@ -1822,8 +1822,8 @@
     "awayTeamId": "kol",
     "venueClubId": "ach",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-efb-lyn",
@@ -1833,8 +1833,8 @@
     "awayTeamId": "lyn",
     "venueClubId": "efb",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "1d-r32-hil-hvi",
@@ -1844,8 +1844,8 @@
     "awayTeamId": "hvi",
     "venueClubId": "hil",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-faa-nas",
@@ -1855,8 +1855,8 @@
     "awayTeamId": "nas",
     "venueClubId": "faa",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-ski-hel",
@@ -1866,8 +1866,8 @@
     "awayTeamId": "hel",
     "venueClubId": "ski",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-ros-ish",
@@ -1877,8 +1877,8 @@
     "awayTeamId": "ish",
     "venueClubId": "ros",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-vsk-thi",
@@ -1888,8 +1888,8 @@
     "awayTeamId": "thi",
     "venueClubId": "vsk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-ab-hik",
@@ -1899,8 +1899,8 @@
     "awayTeamId": "hik",
     "venueClubId": "ab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r17-ven-bra",
@@ -1910,8 +1910,8 @@
     "awayTeamId": "bra",
     "venueClubId": "ven",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-hik-ros",
@@ -1921,8 +1921,8 @@
     "awayTeamId": "ros",
     "venueClubId": "hik",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-ish-faa",
@@ -1932,8 +1932,8 @@
     "awayTeamId": "faa",
     "venueClubId": "ish",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-bra-ski",
@@ -1943,8 +1943,8 @@
     "awayTeamId": "ski",
     "venueClubId": "bra",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-hel-vsk",
@@ -1954,8 +1954,8 @@
     "awayTeamId": "vsk",
     "venueClubId": "hel",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-nas-ven",
@@ -1965,8 +1965,8 @@
     "awayTeamId": "ven",
     "venueClubId": "nas",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r18-thi-ab",
@@ -1976,8 +1976,8 @@
     "awayTeamId": "ab",
     "venueClubId": "thi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-ros-hel",
@@ -1987,8 +1987,8 @@
     "awayTeamId": "hel",
     "venueClubId": "ros",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-ven-thi",
@@ -1998,8 +1998,8 @@
     "awayTeamId": "thi",
     "venueClubId": "ven",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-ski-nas",
@@ -2009,8 +2009,8 @@
     "awayTeamId": "nas",
     "venueClubId": "ski",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-faa-bra",
@@ -2020,8 +2020,8 @@
     "awayTeamId": "bra",
     "venueClubId": "faa",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-vsk-hik",
@@ -2031,8 +2031,8 @@
     "awayTeamId": "hik",
     "venueClubId": "vsk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r19-ab-ish",
@@ -2042,8 +2042,8 @@
     "awayTeamId": "ish",
     "venueClubId": "ab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-ab-ros",
@@ -2053,8 +2053,8 @@
     "awayTeamId": "ros",
     "venueClubId": "ab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-hik-faa",
@@ -2064,8 +2064,8 @@
     "awayTeamId": "faa",
     "venueClubId": "hik",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-thi-ski",
@@ -2075,8 +2075,8 @@
     "awayTeamId": "ski",
     "venueClubId": "thi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-hel-ven",
@@ -2086,8 +2086,8 @@
     "awayTeamId": "ven",
     "venueClubId": "hel",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-ish-vsk",
@@ -2097,8 +2097,8 @@
     "awayTeamId": "vsk",
     "venueClubId": "ish",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r20-nas-bra",
@@ -2108,8 +2108,8 @@
     "awayTeamId": "bra",
     "venueClubId": "nas",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-hik-ish",
@@ -2119,8 +2119,8 @@
     "awayTeamId": "ish",
     "venueClubId": "hik",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-faa-thi",
@@ -2130,8 +2130,8 @@
     "awayTeamId": "thi",
     "venueClubId": "faa",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-vsk-ven",
@@ -2141,8 +2141,8 @@
     "awayTeamId": "ven",
     "venueClubId": "vsk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-ski-ab",
@@ -2152,8 +2152,8 @@
     "awayTeamId": "ab",
     "venueClubId": "ski",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-ros-nas",
@@ -2163,8 +2163,8 @@
     "awayTeamId": "nas",
     "venueClubId": "ros",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r21-bra-hel",
@@ -2174,8 +2174,8 @@
     "awayTeamId": "hel",
     "venueClubId": "bra",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-nas-hik",
@@ -2185,8 +2185,8 @@
     "awayTeamId": "hik",
     "venueClubId": "nas",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-ab-vsk",
@@ -2196,8 +2196,8 @@
     "awayTeamId": "vsk",
     "venueClubId": "ab",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-ven-ros",
@@ -2207,8 +2207,8 @@
     "awayTeamId": "ros",
     "venueClubId": "ven",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-thi-bra",
@@ -2218,8 +2218,8 @@
     "awayTeamId": "bra",
     "venueClubId": "thi",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-ish-ski",
@@ -2229,8 +2229,8 @@
     "awayTeamId": "ski",
     "venueClubId": "ish",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "2d-r22-hel-faa",
@@ -2240,8 +2240,8 @@
     "awayTeamId": "faa",
     "venueClubId": "hel",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-odd-vej",
@@ -2251,8 +2251,8 @@
     "awayTeamId": "vej",
     "venueClubId": "odd",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-hør-van",
@@ -2262,8 +2262,8 @@
     "awayTeamId": "van",
     "venueClubId": "hør",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-hol-næs",
@@ -2273,8 +2273,8 @@
     "awayTeamId": "næs",
     "venueClubId": "hol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-brø-sun",
@@ -2284,8 +2284,8 @@
     "awayTeamId": "sun",
     "venueClubId": "brø",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-fa2-lys",
@@ -2295,8 +2295,8 @@
     "awayTeamId": "lys",
     "venueClubId": "fa2",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r17-fre-nyk",
@@ -2306,8 +2306,8 @@
     "awayTeamId": "nyk",
     "venueClubId": "fre",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-lys-hol",
@@ -2317,8 +2317,8 @@
     "awayTeamId": "hol",
     "venueClubId": "lys",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-næs-odd",
@@ -2328,8 +2328,8 @@
     "awayTeamId": "odd",
     "venueClubId": "næs",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-van-vej",
@@ -2339,8 +2339,8 @@
     "awayTeamId": "vej",
     "venueClubId": "van",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-sun-hør",
@@ -2350,8 +2350,8 @@
     "awayTeamId": "hør",
     "venueClubId": "sun",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-brø-fre",
@@ -2361,8 +2361,8 @@
     "awayTeamId": "fre",
     "venueClubId": "brø",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r18-nyk-fa2",
@@ -2372,8 +2372,8 @@
     "awayTeamId": "fa2",
     "venueClubId": "nyk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-vej-næs",
@@ -2383,8 +2383,8 @@
     "awayTeamId": "næs",
     "venueClubId": "vej",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-odd-nyk",
@@ -2394,8 +2394,8 @@
     "awayTeamId": "nyk",
     "venueClubId": "odd",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-hør-lys",
@@ -2405,8 +2405,8 @@
     "awayTeamId": "lys",
     "venueClubId": "hør",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-hol-sun",
@@ -2416,8 +2416,8 @@
     "awayTeamId": "sun",
     "venueClubId": "hol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-fre-van",
@@ -2427,8 +2427,8 @@
     "awayTeamId": "van",
     "venueClubId": "fre",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r19-fa2-brø",
@@ -2438,8 +2438,8 @@
     "awayTeamId": "brø",
     "venueClubId": "fa2",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-lys-fre",
@@ -2449,8 +2449,8 @@
     "awayTeamId": "fre",
     "venueClubId": "lys",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-sun-vej",
@@ -2460,8 +2460,8 @@
     "awayTeamId": "vej",
     "venueClubId": "sun",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-næs-hør",
@@ -2471,8 +2471,8 @@
     "awayTeamId": "hør",
     "venueClubId": "næs",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-fa2-hol",
@@ -2482,8 +2482,8 @@
     "awayTeamId": "hol",
     "venueClubId": "fa2",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-brø-odd",
@@ -2493,8 +2493,8 @@
     "awayTeamId": "odd",
     "venueClubId": "brø",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r20-nyk-van",
@@ -2504,8 +2504,8 @@
     "awayTeamId": "van",
     "venueClubId": "nyk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-hør-brø",
@@ -2515,8 +2515,8 @@
     "awayTeamId": "brø",
     "venueClubId": "hør",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-hol-nyk",
@@ -2526,8 +2526,8 @@
     "awayTeamId": "nyk",
     "venueClubId": "hol",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-vej-lys",
@@ -2537,8 +2537,8 @@
     "awayTeamId": "lys",
     "venueClubId": "vej",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-fre-fa2",
@@ -2548,8 +2548,8 @@
     "awayTeamId": "fa2",
     "venueClubId": "fre",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-odd-sun",
@@ -2559,8 +2559,8 @@
     "awayTeamId": "sun",
     "venueClubId": "odd",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r21-van-næs",
@@ -2570,8 +2570,8 @@
     "awayTeamId": "næs",
     "venueClubId": "van",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-nyk-vej",
@@ -2581,8 +2581,8 @@
     "awayTeamId": "vej",
     "venueClubId": "nyk",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-lys-odd",
@@ -2592,8 +2592,8 @@
     "awayTeamId": "odd",
     "venueClubId": "lys",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-fa2-hør",
@@ -2603,8 +2603,8 @@
     "awayTeamId": "hør",
     "venueClubId": "fa2",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-brø-hol",
@@ -2614,8 +2614,8 @@
     "awayTeamId": "hol",
     "venueClubId": "brø",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-sun-van",
@@ -2625,8 +2625,8 @@
     "awayTeamId": "van",
     "venueClubId": "sun",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   },
   {
     "id": "3d-r22-næs-fre",
@@ -2636,7 +2636,7 @@
     "awayTeamId": "fre",
     "venueClubId": "næs",
     "status": "scheduled",
-    "homeScore": "",
-    "awayScore": ""
+    "homeScore": null,
+    "awayScore": null
   }
 ]

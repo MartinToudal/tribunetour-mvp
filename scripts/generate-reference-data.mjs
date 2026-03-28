@@ -76,6 +76,20 @@ function readExistingJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function parseOptionalScore(value) {
+  if (value === undefined || value === null) {
+    return null;
+  }
+
+  const trimmed = String(value).trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const parsed = Number.parseInt(trimmed, 10);
+  return Number.isNaN(parsed) ? null : parsed;
+}
+
 function parseStadiums() {
   const rows = parseCsv(readCsv(stadiumsCsvPath));
 
@@ -101,8 +115,8 @@ function parseFixtures() {
     awayTeamId: row.awayTeamId,
     venueClubId: row.venueClubId,
     status: row.status,
-    homeScore: row.homeScore || '',
-    awayScore: row.awayScore || '',
+    homeScore: parseOptionalScore(row.homeScore),
+    awayScore: parseOptionalScore(row.awayScore),
   }));
 }
 
