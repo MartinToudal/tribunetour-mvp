@@ -2,16 +2,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { sortLeagues } from '../_lib/leagueOrder';
-import { getStadiums, type Stadium } from '../_lib/referenceData';
+import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
 
 type VisitFilter = 'all' | 'visited' | 'not-visited';
 
 export default function StadiumList() {
-  const [stadiums, setStadiums] = useState<Stadium[]>([]);
+  const [stadiums, setStadiums] = useState<Stadium[]>(() => getSeedStadiums());
   const [filter, setFilter] = useState('');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
-  const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visitedLoadError, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
 
   useEffect(() => {
     let isCancelled = false;
@@ -134,7 +134,13 @@ export default function StadiumList() {
         </div>
       )}
 
-      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && visitedCount === 0 && (
+      {hasSupabaseEnv && isLoggedIn && visitedLoadError && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          {visitedLoadError}
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && !visitedLoadError && visitedCount === 0 && (
         <div className="border-b border-white/5 p-5 md:p-6">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>

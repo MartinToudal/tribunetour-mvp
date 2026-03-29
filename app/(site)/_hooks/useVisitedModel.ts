@@ -9,11 +9,32 @@ type ToggleResult = {
     error?: string;
 };
 
+const VISITED_LOAD_TIMEOUT_MS = 8000;
+
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+        const timeoutId = window.setTimeout(() => {
+            reject(new Error('visited_load_timeout'));
+        }, timeoutMs);
+
+        promise
+            .then((value) => {
+                window.clearTimeout(timeoutId);
+                resolve(value);
+            })
+            .catch((error) => {
+                window.clearTimeout(timeoutId);
+                reject(error);
+            });
+    });
+}
+
 export function useVisitedModel() {
     const [userId, setUserId] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [visited, setVisited] = useState<Record<string, boolean>>({});
     const [isLoadingVisits, setIsLoadingVisits] = useState(false);
+    const [visitedLoadError, setVisitedLoadError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!supabase) {
@@ -30,6 +51,7 @@ export function useVisitedModel() {
             setUserEmail(session?.user?.email ?? null);
             if (!session?.user?.id) {
                 setVisited({});
+                setVisitedLoadError(null);
             }
         });
 
@@ -41,8 +63,9 @@ export function useVisitedModel() {
     function reloadVisited(currentUserId: string) {
         let isCancelled = false;
         setIsLoadingVisits(true);
+        setVisitedLoadError(null);
 
-        getVisitedForUser(currentUserId)
+        withTimeout(getVisitedForUser(currentUserId), VISITED_LOAD_TIMEOUT_MS)
             .then((map) => {
                 if (isCancelled) {
                     return;
@@ -58,6 +81,7 @@ export function useVisitedModel() {
 
                 console.error(error);
                 setIsLoadingVisits(false);
+                setVisitedLoadError('Kunne ikke hente din besøgsstatus lige nu.');
             });
 
         return () => {
@@ -138,6 +162,7 @@ export function useVisitedModel() {
         visitedCount,
         isLoggedIn: Boolean(userId),
         isLoadingVisits,
+        visitedLoadError,
         toggleVisited,
     };
 }
