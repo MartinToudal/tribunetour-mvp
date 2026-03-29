@@ -23,6 +23,7 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
     const sharedNote = notes[stadium.id] ?? '';
     const [noteDraft, setNoteDraft] = useState(sharedNote);
     const [noteState, setNoteState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+    const [noteError, setNoteError] = useState<string | null>(null);
 
     useEffect(() => {
         setNoteDraft(sharedNote);
@@ -34,9 +35,30 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
     );
 
     async function handleSaveNote() {
+        setNoteError(null);
         setNoteState('saving');
         const result = await saveNote(stadium.id, noteDraft);
         setNoteState(result.ok ? 'saved' : 'error');
+        if (!result.ok) {
+            if (result.error === 'notes_table_missing') {
+                setNoteError('Notes-backend er ikke oprettet endnu.');
+                return;
+            }
+
+            if (result.error === 'notes_permission_denied') {
+                setNoteError('Notes-backend mangler adgang eller policy for denne bruger.');
+                return;
+            }
+
+            if (result.error === 'auth_required') {
+                setNoteError('Log ind for at gemme din note.');
+                return;
+            }
+
+            setNoteError('Noten kunne ikke gemmes lige nu.');
+            return;
+        }
+
         if (result.ok) {
             window.setTimeout(() => {
                 setNoteState((current) => (current === 'saved' ? 'idle' : current));
@@ -121,8 +143,10 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
                                     ? 'Log ind for at gemme noter på tværs af app og web.'
                                     : noteState === 'saved'
                                         ? 'Noten er gemt.'
-                                        : noteState === 'error'
-                                            ? 'Noten kunne ikke gemmes lige nu.'
+                                        : noteError
+                                            ? noteError
+                                            : noteState === 'error'
+                                                ? 'Noten kunne ikke gemmes lige nu.'
                                             : hasUnsavedChanges
                                                 ? 'Du har ikke-gemte ændringer.'
                                                 : 'Din note følger denne konto.'}

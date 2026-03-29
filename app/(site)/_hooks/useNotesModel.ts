@@ -9,6 +9,47 @@ type SaveResult = {
     error?: string;
 };
 
+function classifyNotesError(error: unknown): string {
+    if (!error || typeof error !== 'object') {
+        return 'write_failed';
+    }
+
+    const maybeError = error as {
+        code?: string;
+        message?: string;
+        details?: string;
+        hint?: string;
+    };
+
+    const combinedText = [
+        maybeError.code ?? '',
+        maybeError.message ?? '',
+        maybeError.details ?? '',
+        maybeError.hint ?? '',
+    ]
+        .join(' ')
+        .toLowerCase();
+
+    if (
+        maybeError.code === '42P01'
+        || combinedText.includes('relation')
+        || combinedText.includes('table')
+    ) {
+        return 'notes_table_missing';
+    }
+
+    if (
+        maybeError.code === '42501'
+        || combinedText.includes('row-level security')
+        || combinedText.includes('permission denied')
+        || combinedText.includes('not allowed')
+    ) {
+        return 'notes_permission_denied';
+    }
+
+    return 'write_failed';
+}
+
 export function useNotesModel() {
     const [userId, setUserId] = useState<string | null>(null);
     const [notes, setNotes] = useState<Record<string, string>>({});
@@ -107,7 +148,7 @@ export function useNotesModel() {
             await setNoteForUser(userId, clubId, note);
         } catch (error) {
             console.error(error);
-            return { ok: false, error: 'write_failed' };
+            return { ok: false, error: classifyNotesError(error) };
         }
 
         setNotes((current) => {
