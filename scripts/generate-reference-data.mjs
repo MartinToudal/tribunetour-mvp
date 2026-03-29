@@ -126,22 +126,39 @@ function stableJson(value) {
 
 function writeFileEnsured(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  if (fs.existsSync(filePath)) {
+    const existingContent = fs.readFileSync(filePath, 'utf8');
+    if (existingContent === content) {
+      return false;
+    }
+  }
   fs.writeFileSync(filePath, content, 'utf8');
+  return true;
 }
 
-function buildRemoteFixturesEnvelope(fixtures) {
-  const generatedAt = new Date().toISOString();
+function buildRemoteFixturesEnvelope(fixtures, previousEnvelope) {
   const checksum = crypto
     .createHash('sha256')
     .update(JSON.stringify(fixtures))
     .digest('hex');
 
+  const previousChecksum = previousEnvelope?.metadata?.checksum;
+  const previousGeneratedAt = previousEnvelope?.metadata?.generatedAt;
+  const previousVersion = previousEnvelope?.metadata?.version;
+  const previousSignature = previousEnvelope?.metadata?.signature ?? null;
+  const generatedAt = previousChecksum === checksum && previousGeneratedAt
+    ? previousGeneratedAt
+    : new Date().toISOString();
+  const version = previousChecksum === checksum && previousVersion
+    ? previousVersion
+    : generatedAt;
+
   return {
     metadata: {
-      version: generatedAt,
+      version,
       generatedAt,
       checksum,
-      signature: null,
+      signature: previousSignature,
     },
     fixtures,
   };
@@ -155,7 +172,10 @@ const stadiums = hasCanonicalCsvInputs
 const fixtures = hasCanonicalCsvInputs
   ? parseFixtures()
   : readExistingJson(fixturesJsonPath);
-const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(fixtures);
+const previousRemoteFixturesEnvelope = fs.existsSync(remoteFixturesJsonPath)
+  ? readExistingJson(remoteFixturesJsonPath)
+  : null;
+const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(fixtures, previousRemoteFixturesEnvelope);
 
 writeFileEnsured(stadiumsJsonPath, stableJson(stadiums));
 writeFileEnsured(fixturesJsonPath, stableJson(fixtures));
