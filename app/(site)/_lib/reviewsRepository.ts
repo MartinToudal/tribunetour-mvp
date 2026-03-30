@@ -21,8 +21,8 @@ export type ReviewCategoryNotes = Partial<Record<ReviewCategory, string>>;
 type SharedReviewRow = {
     club_id: string;
     match_label: string | null;
-    scores: Record<string, unknown> | null;
-    category_notes: Record<string, unknown> | null;
+    scores: unknown;
+    category_notes: unknown;
     summary: string | null;
     tags: string | null;
     updated_at: string | null;
@@ -44,15 +44,34 @@ function normalizeText(value: string | null | undefined): string {
     return value ?? '';
 }
 
-function normalizeScores(value: Record<string, unknown> | null | undefined): ReviewScores {
+function normalizeScores(value: unknown): ReviewScores {
     const next: ReviewScores = {};
 
     if (!value) {
         return next;
     }
 
+    if (Array.isArray(value)) {
+        for (let index = 0; index + 1 < value.length; index += 2) {
+            const rawCategory = value[index];
+            const rawScore = value[index + 1];
+            if (typeof rawCategory !== 'string' || typeof rawScore !== 'number' || !Number.isFinite(rawScore)) {
+                continue;
+            }
+            if (!REVIEW_CATEGORIES.includes(rawCategory as ReviewCategory)) {
+                continue;
+            }
+            next[rawCategory as ReviewCategory] = Math.min(10, Math.max(1, Math.round(rawScore)));
+        }
+        return next;
+    }
+
+    if (typeof value !== 'object') {
+        return next;
+    }
+
     REVIEW_CATEGORIES.forEach((category) => {
-        const raw = value[category];
+        const raw = (value as Record<string, unknown>)[category];
         if (typeof raw !== 'number' || !Number.isFinite(raw)) {
             return;
         }
@@ -62,15 +81,37 @@ function normalizeScores(value: Record<string, unknown> | null | undefined): Rev
     return next;
 }
 
-function normalizeCategoryNotes(value: Record<string, unknown> | null | undefined): ReviewCategoryNotes {
+function normalizeCategoryNotes(value: unknown): ReviewCategoryNotes {
     const next: ReviewCategoryNotes = {};
 
     if (!value) {
         return next;
     }
 
+    if (Array.isArray(value)) {
+        for (let index = 0; index + 1 < value.length; index += 2) {
+            const rawCategory = value[index];
+            const rawNote = value[index + 1];
+            if (typeof rawCategory !== 'string' || typeof rawNote !== 'string') {
+                continue;
+            }
+            if (!REVIEW_CATEGORIES.includes(rawCategory as ReviewCategory)) {
+                continue;
+            }
+            if (!rawNote.trim()) {
+                continue;
+            }
+            next[rawCategory as ReviewCategory] = rawNote;
+        }
+        return next;
+    }
+
+    if (typeof value !== 'object') {
+        return next;
+    }
+
     REVIEW_CATEGORIES.forEach((category) => {
-        const raw = value[category];
+        const raw = (value as Record<string, unknown>)[category];
         if (typeof raw !== 'string') {
             return;
         }
