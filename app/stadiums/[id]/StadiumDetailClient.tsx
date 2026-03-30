@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../../(site)/_hooks/useVisitedModel';
 import { useNotesModel } from '../../(site)/_hooks/useNotesModel';
+import { usePhotosModel } from '../../(site)/_hooks/usePhotosModel';
 import { useReviewsModel } from '../../(site)/_hooks/useReviewsModel';
 import {
     REVIEW_CATEGORIES,
@@ -94,13 +95,19 @@ function hasMeaningfulReviewDraft(review: ReviewDraft): boolean {
 export default function StadiumDetailClient({ stadium }: StadiumDetailClientProps) {
     const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visited, toggleVisited } = useVisitedModel();
     const { notes, isLoadingNotes, saveNote } = useNotesModel();
+    const { photosByClubId, isLoadingPhotos, uploadPhoto, saveCaption, deletePhoto } = usePhotosModel();
     const { reviews, isLoadingReviews, saveReview } = useReviewsModel();
     const isVisited = Boolean(visited[stadium.id]);
     const sharedNote = notes[stadium.id] ?? '';
+    const sharedPhotos = photosByClubId[stadium.id] ?? [];
     const sharedReview = reviews[stadium.id];
     const [noteDraft, setNoteDraft] = useState(sharedNote);
     const [noteState, setNoteState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
     const [noteError, setNoteError] = useState<string | null>(null);
+    const [uploadCaptionDraft, setUploadCaptionDraft] = useState('');
+    const [captionDrafts, setCaptionDrafts] = useState<Record<string, string>>({});
+    const [photoState, setPhotoState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+    const [photoError, setPhotoError] = useState<string | null>(null);
     const [reviewDraft, setReviewDraft] = useState<ReviewDraft>(toReviewDraft(sharedReview));
     const [reviewState, setReviewState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
     const [reviewError, setReviewError] = useState<string | null>(null);
@@ -113,6 +120,15 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
         setReviewDraft(toReviewDraft(sharedReview));
     }, [sharedReview]);
 
+    useEffect(() => {
+        setCaptionDrafts(
+            sharedPhotos.reduce<Record<string, string>>((acc, photo) => {
+                acc[photo.fileName] = photo.caption;
+                return acc;
+            }, {})
+        );
+    }, [sharedPhotos]);
+
     const hasUnsavedChanges = useMemo(
         () => noteDraft !== sharedNote,
         [noteDraft, sharedNote]
@@ -121,6 +137,11 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
     const hasUnsavedReviewChanges = useMemo(
         () => !draftsAreEqual(reviewDraft, toReviewDraft(sharedReview)),
         [reviewDraft, sharedReview]
+    );
+
+    const photoCount = useMemo(
+        () => sharedPhotos.length,
+        [sharedPhotos]
     );
 
     const reviewScoreCount = useMemo(
@@ -209,6 +230,103 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
 
         window.setTimeout(() => {
             setReviewState((current) => (current === 'saved' ? 'idle' : current));
+        }, 1400);
+    }
+
+    async function handleUploadPhoto(file: File) {
+        setPhotoError(null);
+        setPhotoState('saving');
+
+        const result = await uploadPhoto(stadium.id, file, uploadCaptionDraft.trim());
+        setPhotoState(result.ok ? 'saved' : 'error');
+
+        if (!result.ok) {
+            if (result.error === 'photos_table_missing') {
+                setPhotoError('Photos-backend er ikke oprettet endnu.');
+                return;
+            }
+
+            if (result.error === 'photos_storage_missing') {
+                setPhotoError('Photos-storage mangler bucket eller policy.');
+                return;
+            }
+
+            if (result.error === 'photos_permission_denied') {
+                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                return;
+            }
+
+            if (result.error === 'auth_required') {
+                setPhotoError('Log ind for at gemme billeder.');
+                return;
+            }
+
+            setPhotoError('Billedet kunne ikke gemmes lige nu.');
+            return;
+        }
+
+        setUploadCaptionDraft('');
+        window.setTimeout(() => {
+            setPhotoState((current) => (current === 'saved' ? 'idle' : current));
+        }, 1400);
+    }
+
+    async function handleSavePhotoCaption(fileName: string) {
+        setPhotoError(null);
+        setPhotoState('saving');
+
+        const result = await saveCaption(stadium.id, fileName, captionDrafts[fileName] ?? '');
+        setPhotoState(result.ok ? 'saved' : 'error');
+
+        if (!result.ok) {
+            if (result.error === 'auth_required') {
+                setPhotoError('Log ind for at gemme billedtekster.');
+                return;
+            }
+
+            if (result.error === 'photos_permission_denied') {
+                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                return;
+            }
+
+            setPhotoError('Billedteksten kunne ikke gemmes lige nu.');
+            return;
+        }
+
+        window.setTimeout(() => {
+            setPhotoState((current) => (current === 'saved' ? 'idle' : current));
+        }, 1400);
+    }
+
+    async function handleDeletePhoto(fileName: string) {
+        setPhotoError(null);
+        setPhotoState('saving');
+
+        const result = await deletePhoto(stadium.id, fileName);
+        setPhotoState(result.ok ? 'saved' : 'error');
+
+        if (!result.ok) {
+            if (result.error === 'auth_required') {
+                setPhotoError('Log ind for at slette billeder.');
+                return;
+            }
+
+            if (result.error === 'photos_permission_denied') {
+                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                return;
+            }
+
+            if (result.error === 'photos_storage_missing') {
+                setPhotoError('Photos-storage mangler bucket eller policy.');
+                return;
+            }
+
+            setPhotoError('Billedet kunne ikke slettes lige nu.');
+            return;
+        }
+
+        window.setTimeout(() => {
+            setPhotoState((current) => (current === 'saved' ? 'idle' : current));
         }, 1400);
     }
 
@@ -309,6 +427,167 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
                             {noteState === 'saving' ? 'Gemmer…' : 'Gem note'}
                         </button>
                     </div>
+                </div>
+
+                <div className="site-card-soft p-4">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Personlige billeder</div>
+                            <div className="mt-1 max-w-2xl text-sm text-[var(--muted)]">
+                                Brug de samme stadionbilleder på tværs af app og web. Du kan uploade, skrive billedtekst og slette dem her.
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 text-xs text-[var(--muted)]">
+                            <span className="rounded-full bg-white/5 px-3 py-1">
+                                Billeder: {photoCount}
+                            </span>
+                            {hasSupabaseEnv && isLoggedIn && isLoadingPhotos && (
+                                <span className="rounded-full bg-white/5 px-3 py-1">Henter billeder…</span>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
+                        <label className="grid gap-2">
+                            <span className="text-sm font-medium text-white">Valgfri billedtekst til næste upload</span>
+                            <input
+                                value={uploadCaptionDraft}
+                                onChange={(event) => {
+                                    setUploadCaptionDraft(event.target.value);
+                                    setPhotoState('idle');
+                                }}
+                                placeholder={!hasSupabaseEnv ? 'Photos kommer senere på web.' : !isLoggedIn ? 'Log ind for at gemme billeder.' : 'Fx Aftenlys over tribunen'}
+                                disabled={!hasSupabaseEnv || !isLoggedIn}
+                                className="field-input"
+                            />
+                        </label>
+
+                        <label className={`cta-secondary cursor-pointer text-center ${(!hasSupabaseEnv || !isLoggedIn) ? 'pointer-events-none opacity-60' : ''}`}>
+                            Vælg billede
+                            <input
+                                type="file"
+                                accept="image/*"
+                                disabled={!hasSupabaseEnv || !isLoggedIn || photoState === 'saving'}
+                                className="hidden"
+                                onChange={(event) => {
+                                    const file = event.target.files?.[0];
+                                    event.currentTarget.value = '';
+                                    if (!file) {
+                                        return;
+                                    }
+                                    void handleUploadPhoto(file);
+                                }}
+                            />
+                        </label>
+                    </div>
+
+                    <div className="mt-4 text-xs text-[var(--muted)]">
+                        {!hasSupabaseEnv
+                            ? 'Personlige billeder er ikke aktive på web endnu.'
+                            : !isLoggedIn
+                                ? 'Log ind for at gemme billeder på tværs af app og web.'
+                                : photoState === 'saved'
+                                    ? 'Fotoændringen er gemt.'
+                                    : photoError
+                                        ? photoError
+                                        : photoState === 'saving'
+                                            ? 'Gemmer fotoændring…'
+                                            : 'Dine billeder følger denne konto.'}
+                    </div>
+
+                    {sharedPhotos.length === 0 ? (
+                        <div className="mt-4 rounded-2xl border border-dashed border-white/10 bg-black/10 p-5 text-sm text-[var(--muted)]">
+                            Ingen billeder endnu.
+                        </div>
+                    ) : (
+                        <div className="mt-4 grid gap-4">
+                            {sharedPhotos.map((photo) => (
+                                <article key={photo.fileName} className="rounded-2xl border border-white/8 bg-black/10 p-4">
+                                    <div className="grid gap-4 md:grid-cols-[180px_1fr]">
+                                        <div className="overflow-hidden rounded-2xl border border-white/8 bg-white/5">
+                                            {photo.signedUrl ? (
+                                                <img
+                                                    src={photo.signedUrl}
+                                                    alt={`Stadionfoto fra ${stadium.name}`}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="flex min-h-[11rem] items-center justify-center text-sm text-[var(--muted)]">
+                                                    Kunne ikke hente preview
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="grid gap-3">
+                                            <div className="flex flex-wrap items-center justify-between gap-3">
+                                                <div>
+                                                    <div className="text-sm font-medium text-white">{photo.fileName}</div>
+                                                    <div className="mt-1 text-xs text-[var(--muted)]">
+                                                        {photo.createdAt
+                                                            ? `Uploadet ${new Date(photo.createdAt).toLocaleDateString('da-DK')}`
+                                                            : 'Uploadtidspunkt ukendt'}
+                                                    </div>
+                                                </div>
+
+                                                {photo.signedUrl && (
+                                                    <a
+                                                        href={photo.signedUrl}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--muted)] transition hover:text-white"
+                                                    >
+                                                        Åbn billede
+                                                    </a>
+                                                )}
+                                            </div>
+
+                                            <label className="grid gap-2">
+                                                <span className="text-sm font-medium text-white">Billedtekst</span>
+                                                <textarea
+                                                    value={captionDrafts[photo.fileName] ?? ''}
+                                                    onChange={(event) => {
+                                                        const value = event.target.value;
+                                                        setCaptionDrafts((current) => ({
+                                                            ...current,
+                                                            [photo.fileName]: value,
+                                                        }));
+                                                        setPhotoState('idle');
+                                                    }}
+                                                    rows={3}
+                                                    disabled={!hasSupabaseEnv || !isLoggedIn}
+                                                    className="field-input min-h-[6rem] resize-y"
+                                                />
+                                            </label>
+
+                                            <div className="flex flex-wrap gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        void handleSavePhotoCaption(photo.fileName);
+                                                    }}
+                                                    disabled={!hasSupabaseEnv || !isLoggedIn || photoState === 'saving'}
+                                                    className="cta-secondary"
+                                                >
+                                                    Gem billedtekst
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        void handleDeletePhoto(photo.fileName);
+                                                    }}
+                                                    disabled={!hasSupabaseEnv || !isLoggedIn || photoState === 'saving'}
+                                                    className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--muted)] transition hover:text-white"
+                                                >
+                                                    Slet billede
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div className="site-card-soft p-4">
