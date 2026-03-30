@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getFixtures, getSeedStadiumMap, type Fixture, type Stadium } from '../_lib/referenceData';
 
@@ -20,7 +21,9 @@ export default function MatchesList() {
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const [leagueFilter, setLeagueFilter] = useState('Alle');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited } = useVisitedModel();
+  const { fixtureIdSet, fixtureIds, isLoadingPlan, toggleFixture, clearPlan } = useWeekendPlanModel();
   const stadiumMap = useMemo<Record<string, Stadium>>(() => getSeedStadiumMap(), []);
+  const [planMessage, setPlanMessage] = useState<string | null>(null);
 
   useEffect(() => {
     let isCancelled = false;
@@ -72,6 +75,24 @@ export default function MatchesList() {
 
   const hasActiveFilters = search.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all' || windowFilter !== '30';
 
+  const plannedFixtures = useMemo(() => {
+    if (fixtureIds.length === 0) {
+      return [];
+    }
+
+    const orderMap = new Map(fixtureIds.map((fixtureId, index) => [fixtureId, index]));
+    return fixtures
+      .filter((fixture) => fixtureIdSet.has(fixture.id))
+      .sort((left, right) => {
+        const leftOrder = orderMap.get(left.id) ?? Number.MAX_SAFE_INTEGER;
+        const rightOrder = orderMap.get(right.id) ?? Number.MAX_SAFE_INTEGER;
+        if (leftOrder !== rightOrder) {
+          return leftOrder - rightOrder;
+        }
+        return new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime();
+      });
+  }, [fixtureIdSet, fixtureIds, fixtures]);
+
   function teamName(teamId: string) {
     return stadiumMap[teamId]?.team ?? teamId;
   }
@@ -84,6 +105,16 @@ export default function MatchesList() {
       hour: '2-digit',
       minute: '2-digit',
     }).format(new Date(value));
+  }
+
+  async function handleTogglePlan(fixtureId: string) {
+    const result = await toggleFixture(fixtureId);
+    setPlanMessage(result.ok ? null : 'Vi kunne ikke opdatere planen lige nu.');
+  }
+
+  async function handleClearPlan() {
+    const result = await clearPlan();
+    setPlanMessage(result.ok ? null : 'Vi kunne ikke rydde planen lige nu.');
   }
 
   return (
@@ -185,10 +216,78 @@ export default function MatchesList() {
         </div>
       )}
 
+      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+            <div>
+              <div className="text-sm font-medium text-white">Weekendplan</div>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                Vælg kampe direkte fra listen og hold din plan synkroniseret mellem web og app.
+              </p>
+              {planMessage && (
+                <p className="mt-2 text-sm text-rose-300">{planMessage}</p>
+              )}
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[18rem]">
+              <div className="stat-chip">
+                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">I plan</div>
+                <div className="mt-2 text-2xl font-semibold">{plannedFixtures.length}</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => void handleClearPlan()}
+                className="cta-secondary disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={plannedFixtures.length === 0 || isLoadingPlan}
+              >
+                Ryd plan
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            {isLoadingPlan ? (
+              <div className="text-sm text-[var(--muted)]">Henter plan…</div>
+            ) : plannedFixtures.length === 0 ? (
+              <div className="rounded-3xl border border-dashed border-white/10 px-4 py-5 text-sm text-[var(--muted)]">
+                Din plan er tom endnu. Brug “Tilføj til plan” på kampene nedenfor.
+              </div>
+            ) : (
+              <ul className="space-y-3">
+                {plannedFixtures.map((fixture) => {
+                  const venue = stadiumMap[fixture.venueClubId];
+                  return (
+                    <li key={fixture.id} className="rounded-3xl border border-white/8 bg-white/[0.03] px-4 py-4">
+                      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-white">
+                            {teamName(fixture.homeTeamId)} – {teamName(fixture.awayTeamId)}
+                          </div>
+                          <div className="mt-1 text-sm text-[var(--muted)]">
+                            {formatKickoff(fixture.kickoff)} · {venue?.name ?? fixture.venueClubId}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => void handleTogglePlan(fixture.id)}
+                          className="pill-nav justify-center text-center"
+                        >
+                          Fjern fra plan
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
+
       <ul className="divide-y divide-white/5">
         {filteredFixtures.map((fixture) => {
           const venue = stadiumMap[fixture.venueClubId];
           const isVisited = Boolean(visited[fixture.venueClubId]);
+          const isPlanned = fixtureIdSet.has(fixture.id);
           const homeTeam = teamName(fixture.homeTeamId);
           const awayTeam = teamName(fixture.awayTeamId);
 
@@ -216,6 +315,16 @@ export default function MatchesList() {
                 </div>
               </div>
               <div className="flex items-center gap-3 md:ml-auto">
+                {hasSupabaseEnv && isLoggedIn && (
+                  <button
+                    type="button"
+                    onClick={() => void handleTogglePlan(fixture.id)}
+                    className="pill-nav justify-center text-center"
+                    data-active={isPlanned ? 'true' : 'false'}
+                  >
+                    {isPlanned ? 'I plan' : 'Tilføj til plan'}
+                  </button>
+                )}
                 <div className="rounded-full bg-white/5 px-3 py-2 text-sm text-white">{formatKickoff(fixture.kickoff)}</div>
                 <span className={`rounded-full px-3 py-1 text-xs font-medium ${isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'}`}>
                   {isVisited ? 'Venue besøgt' : 'Venue ikke besøgt'}
