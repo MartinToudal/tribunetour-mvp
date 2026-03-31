@@ -1,14 +1,32 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import SiteShell from '../(site)/_components/SiteShell';
+import { useNotesModel } from '../(site)/_hooks/useNotesModel';
+import { usePhotosModel } from '../(site)/_hooks/usePhotosModel';
+import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
+
+type Achievement = {
+  id: string;
+  title: string;
+  description: string;
+  isUnlocked: boolean;
+  progressText: string;
+};
+
+function clampProgress(value: number, max: number) {
+  return `${Math.min(value, max)}/${max}`;
+}
 
 export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { notesCount, isLoadingNotes } = useNotesModel();
+  const { reviews, reviewsCount, isLoadingReviews } = useReviewsModel();
+  const { photosByClubId, photosCount, isLoadingPhotos } = usePhotosModel();
 
   useEffect(() => {
     let isCancelled = false;
@@ -23,9 +41,205 @@ export default function MyPage() {
       isCancelled = true;
     };
   }, [hasSupabaseEnv]);
+
   const totalCount = stadiums.length;
   const remainingCount = Math.max(totalCount - visitedCount, 0);
   const completion = totalCount > 0 ? Math.round((visitedCount / totalCount) * 100) : 0;
+  const progress = totalCount > 0 ? visitedCount / totalCount : 0;
+  const isLoadingProgression = isLoadingVisits || isLoadingNotes || isLoadingReviews || isLoadingPhotos;
+
+  const visitedStadiums = useMemo(
+    () => stadiums.filter((stadium) => visited[stadium.id]),
+    [stadiums, visited]
+  );
+
+  const visitedByLeague = useMemo(() => {
+    const grouped = new Map<string, Stadium[]>();
+    stadiums.forEach((stadium) => {
+      const current = grouped.get(stadium.league) ?? [];
+      current.push(stadium);
+      grouped.set(stadium.league, current);
+    });
+
+    return [...grouped.entries()]
+      .map(([league, items]) => ({
+        league,
+        total: items.length,
+        visited: items.filter((stadium) => visited[stadium.id]).length,
+      }))
+      .sort((left, right) => {
+        if (left.total !== right.total) {
+          return right.total - left.total;
+        }
+        return left.league.localeCompare(right.league, 'da');
+      });
+  }, [stadiums, visited]);
+
+  const completeLeagues = visitedByLeague.filter((row) => row.total > 0 && row.visited === row.total).length;
+  const averageReviewScoreText = useMemo(() => {
+    const reviewAverages = Object.values(reviews)
+      .map((review) => {
+        const values = Object.values(review.scores);
+        if (!values.length) {
+          return null;
+        }
+        const total = values.reduce((sum, score) => sum + score, 0);
+        return total / values.length;
+      })
+      .filter((value): value is number => value !== null);
+
+    if (!reviewAverages.length) {
+      return null;
+    }
+
+    const total = reviewAverages.reduce((sum, value) => sum + value, 0);
+    return `${(total / reviewAverages.length).toFixed(1)} / 10`;
+  }, [reviews]);
+
+  const stadiumsWithPhotosCount = useMemo(
+    () => Object.values(photosByClubId).filter((items) => items.length > 0).length,
+    [photosByClubId]
+  );
+
+  const visitedCitiesCount = useMemo(
+    () => new Set(
+      visitedStadiums
+        .map((stadium) => stadium.city?.trim().toLowerCase())
+        .filter((value): value is string => Boolean(value))
+    ).size,
+    [visitedStadiums]
+  );
+
+  const visitedLeaguesCount = useMemo(
+    () => new Set(
+      visitedStadiums
+        .map((stadium) => stadium.league.trim().toLowerCase())
+        .filter(Boolean)
+    ).size,
+    [visitedStadiums]
+  );
+
+  const achievements = useMemo<Achievement[]>(() => {
+    const halfThreshold = Math.max(1, Math.ceil(totalCount * 0.5));
+
+    return [
+      {
+        id: 'first_visit',
+        title: 'Første skridt',
+        description: 'Besøg dit første stadion.',
+        isUnlocked: visitedCount >= 1,
+        progressText: clampProgress(visitedCount, 1),
+      },
+      {
+        id: 'five_stadiums',
+        title: 'Groundhopper I',
+        description: 'Besøg 5 stadions.',
+        isUnlocked: visitedCount >= 5,
+        progressText: clampProgress(visitedCount, 5),
+      },
+      {
+        id: 'twelve_stadiums',
+        title: 'Groundhopper II',
+        description: 'Besøg 12 stadions.',
+        isUnlocked: visitedCount >= 12,
+        progressText: clampProgress(visitedCount, 12),
+      },
+      {
+        id: 'halfway',
+        title: 'Halvvejs',
+        description: 'Besøg halvdelen af alle stadions.',
+        isUnlocked: visitedCount >= halfThreshold,
+        progressText: clampProgress(visitedCount, halfThreshold),
+      },
+      {
+        id: 'league_complete',
+        title: 'Række-specialist',
+        description: 'Fuldfør alle stadions i én liga.',
+        isUnlocked: completeLeagues >= 1,
+        progressText: clampProgress(completeLeagues, 1),
+      },
+      {
+        id: 'first_review',
+        title: 'Anmelder',
+        description: 'Lav din første stadion-anmeldelse.',
+        isUnlocked: reviewsCount >= 1,
+        progressText: clampProgress(reviewsCount, 1),
+      },
+      {
+        id: 'reviewer_level_2',
+        title: 'Anmelder II',
+        description: 'Lav anmeldelser af 5 stadions.',
+        isUnlocked: reviewsCount >= 5,
+        progressText: clampProgress(reviewsCount, 5),
+      },
+      {
+        id: 'note_writer',
+        title: 'Noteskriver',
+        description: 'Skriv noter på 5 stadions.',
+        isUnlocked: notesCount >= 5,
+        progressText: clampProgress(notesCount, 5),
+      },
+      {
+        id: 'first_photo',
+        title: 'Fotograf',
+        description: 'Tilføj dit første stadionbillede.',
+        isUnlocked: photosCount >= 1,
+        progressText: clampProgress(photosCount, 1),
+      },
+      {
+        id: 'photo_collector',
+        title: 'Fotojæger',
+        description: 'Tilføj 10 stadionbilleder i alt.',
+        isUnlocked: photosCount >= 10,
+        progressText: clampProgress(photosCount, 10),
+      },
+      {
+        id: 'gallery_builder',
+        title: 'Galleri-bygger',
+        description: 'Tilføj billeder på 3 forskellige stadions.',
+        isUnlocked: stadiumsWithPhotosCount >= 3,
+        progressText: clampProgress(stadiumsWithPhotosCount, 3),
+      },
+      {
+        id: 'city_hopper',
+        title: 'Byhopper',
+        description: 'Besøg stadions i 5 forskellige byer.',
+        isUnlocked: visitedCitiesCount >= 5,
+        progressText: clampProgress(visitedCitiesCount, 5),
+      },
+      {
+        id: 'league_explorer',
+        title: 'Række-rejsende',
+        description: 'Besøg stadions i 3 forskellige ligaer.',
+        isUnlocked: visitedLeaguesCount >= 3,
+        progressText: clampProgress(visitedLeaguesCount, 3),
+      },
+      {
+        id: 'all_stadiums',
+        title: 'Tribune Tour Master',
+        description: 'Besøg alle stadions.',
+        isUnlocked: totalCount > 0 && visitedCount === totalCount,
+        progressText: `${visitedCount}/${Math.max(1, totalCount)}`,
+      },
+    ].sort((left, right) => {
+      if (left.isUnlocked !== right.isUnlocked) {
+        return left.isUnlocked ? -1 : 1;
+      }
+      return left.title.localeCompare(right.title, 'da');
+    });
+  }, [
+    completeLeagues,
+    notesCount,
+    photosCount,
+    reviewsCount,
+    stadiumsWithPhotosCount,
+    totalCount,
+    visitedCitiesCount,
+    visitedCount,
+    visitedLeaguesCount,
+  ]);
+
+  const unlockedAchievementsCount = achievements.filter((achievement) => achievement.isUnlocked).length;
 
   const list = useMemo(() => {
     const search = filter.toLowerCase().trim();
@@ -41,7 +255,7 @@ export default function MyPage() {
             <div className="label-eyebrow">Min tur</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight">Overblik over dine stadionbesøg</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Se hvor mange stadions du har besøgt, hvor mange der mangler, og brug din egen status som grundlag for resten af Tribunetour.
+              Se hvor mange stadions du har besøgt, hvor mange der mangler, og følg din progression på tværs af anmeldelser, noter og billeder.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[28rem]">
@@ -58,6 +272,92 @@ export default function MyPage() {
               <div className="mt-2 text-2xl font-semibold">{completion}%</div>
             </div>
           </div>
+        </div>
+        <div className="mt-5">
+          <div className="flex items-center justify-between text-sm text-[var(--muted)]">
+            <span>Fremdrift</span>
+            <span>{completion}%</span>
+          </div>
+          <div className="mt-2 h-3 overflow-hidden rounded-full bg-white/8">
+            <div
+              className="h-full rounded-full bg-[linear-gradient(90deg,rgba(184,255,106,0.95),rgba(241,255,214,0.95))]"
+              style={{ width: `${Math.max(progress * 100, 0)}%` }}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="site-card p-5 md:p-6">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="label-eyebrow">Progression</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Din konto begynder at ligne appen</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Web beregner nu achievements ud fra de samme shared data som appen: besøg, anmeldelser, noter og billeder.
+            </p>
+          </div>
+          <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4">
+            <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Låst op</div>
+            <div className="mt-2 text-3xl font-semibold">{unlockedAchievementsCount}/{achievements.length}</div>
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Noter</div>
+            <div className="mt-2 text-2xl font-semibold">{notesCount}</div>
+          </div>
+          <div className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Anmeldelser</div>
+            <div className="mt-2 text-2xl font-semibold">{reviewsCount}</div>
+            {averageReviewScoreText && <p className="mt-2 text-xs text-[var(--muted)]">Snit: {averageReviewScoreText}</p>}
+          </div>
+          <div className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Billeder</div>
+            <div className="mt-2 text-2xl font-semibold">{photosCount}</div>
+            <p className="mt-2 text-xs text-[var(--muted)]">{stadiumsWithPhotosCount} stadions med billeder</p>
+          </div>
+          <div className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Udforskning</div>
+            <div className="mt-2 text-2xl font-semibold">{visitedCitiesCount}</div>
+            <p className="mt-2 text-xs text-[var(--muted)]">{visitedLeaguesCount} ligaer besøgt</p>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-3 lg:grid-cols-2">
+          {achievements.map((achievement) => (
+            <article
+              key={achievement.id}
+              className={`rounded-[28px] border p-4 transition ${
+                achievement.isUnlocked
+                  ? 'border-[rgba(184,255,106,0.26)] bg-[rgba(184,255,106,0.08)]'
+                  : 'border-white/8 bg-white/4'
+              }`}
+            >
+              <div className="flex items-start gap-4">
+                <div
+                  className={`grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border text-lg ${
+                    achievement.isUnlocked
+                      ? 'border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-[var(--accent)]'
+                      : 'border-white/10 bg-white/5 text-[var(--muted)]'
+                  }`}
+                >
+                  <span aria-hidden="true">{achievement.isUnlocked ? '✓' : '○'}</span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h4 className="font-semibold tracking-tight">{achievement.title}</h4>
+                      <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{achievement.description}</p>
+                    </div>
+                    <div className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                      {achievement.progressText}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -92,6 +392,12 @@ export default function MyPage() {
       {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
         <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
           Henter din besøgsstatus…
+        </section>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingProgression && (
+        <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
+          Opdaterer din progression…
         </section>
       )}
 
