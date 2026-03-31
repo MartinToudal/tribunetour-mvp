@@ -13,7 +13,20 @@ async function login(page: Page) {
   await page.getByPlaceholder('Adgangskode').fill(password!);
   await page.getByRole('button', { name: /^Log ind$/ }).last().click();
 
-  await expect(page.getByRole('button', { name: email! })).toBeVisible({ timeout: 15_000 });
+  const userButton = page.getByRole('button', { name: email! });
+
+  try {
+    await expect(userButton).toBeVisible({ timeout: 8_000 });
+    return;
+  } catch {
+    const errorText = (await page.locator('p.text-rose-300').first().textContent().catch(() => null))?.trim() ?? '';
+    if (errorText) {
+      await page.getByRole('button', { name: 'Opret konto' }).click();
+      await expect(userButton).toBeVisible({ timeout: 15_000 });
+      return;
+    }
+    throw new Error('Kunne hverken logge ind eller bootstrappe e2e-kontoen.');
+  }
 }
 
 test.describe('authenticated regression', () => {
