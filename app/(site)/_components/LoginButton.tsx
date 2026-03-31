@@ -7,6 +7,28 @@ function isValidEmail(email: string) {
   return /\S+@\S+\.\S+/.test(email);
 }
 
+function toFriendlyAuthError(errorMessage: string) {
+  const normalized = errorMessage.trim().toLowerCase();
+
+  if (normalized.includes('email rate limit exceeded')) {
+    return 'Der er midlertidigt for mange forsøg på kontooprettelse. Vent lidt og prøv igen.';
+  }
+
+  if (normalized.includes('invalid login credentials')) {
+    return 'Forkert e-mail eller adgangskode. Prøv igen eller nulstil adgangskoden.';
+  }
+
+  if (normalized.includes('user already registered')) {
+    return 'Der findes allerede en konto med den e-mail. Prøv at logge ind eller nulstil adgangskoden.';
+  }
+
+  if (normalized.includes('email address') && normalized.includes('invalid')) {
+    return 'E-mailadressen bliver afvist. Prøv en almindelig e-mailadresse på et gyldigt domæne.';
+  }
+
+  return errorMessage;
+}
+
 export default function LoginButton() {
   const [loading, setLoading] = useState(false);
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
@@ -61,7 +83,7 @@ export default function LoginButton() {
 
     setLoading(false);
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(toFriendlyAuthError(error.message));
       return;
     }
 
@@ -90,7 +112,7 @@ export default function LoginButton() {
 
     setLoading(false);
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(toFriendlyAuthError(error.message));
       return;
     }
 
@@ -119,7 +141,7 @@ export default function LoginButton() {
 
     setLoading(false);
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(toFriendlyAuthError(error.message));
       return;
     }
 
