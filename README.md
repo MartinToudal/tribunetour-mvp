@@ -80,6 +80,29 @@ Se også:
 - `npm run build`
 - `npm run start`
 - `npm run validate:data`
+- `npm run test:e2e`
+
+## Automatisk regressionstest
+
+Webrepoet har nu en Playwright-baseret regressionstest.
+
+Den er delt i to lag:
+- `tests/e2e/smoke.spec.ts`
+  - gæste-smoke for `/`, `/matches` og `/my`
+- `tests/e2e/auth-regression.spec.ts`
+  - login-baseret regression for `visited`, `weekend plan` og note-flow
+  - kræver en dedikeret testkonto
+
+### Forudsætninger for auth-regression
+- `E2E_EMAIL`
+- `E2E_PASSWORD`
+- valgfrit: `E2E_STADIUM_ID` (default er `vff`)
+- valgfrit: `E2E_BASE_URL` hvis testen skal køre mod en allerede kørende server
+
+### Anbefalet release-gate
+1. Kør `npm run build`
+2. Kør `npm run test:e2e`
+3. Brug en dedikeret testkonto til auth-regressionen, så testen kan rydde op efter sig selv uden at røre din normale bruger
 
 ## Drift lige nu
 
