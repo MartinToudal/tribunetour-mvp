@@ -88,4 +88,44 @@ test.describe('authenticated regression', () => {
     await page.getByRole('button', { name: 'Gem note' }).click();
     await expect(page.getByText('Noten er gemt.')).toBeVisible();
   });
+
+  test('can save a review with details and load it again after reload', async ({ page }) => {
+    await page.goto(`/stadiums/${stadiumId}`);
+    await expect(page.getByText('Personlig anmeldelse')).toBeVisible();
+
+    const matchLabel = `E2E kamp ${Date.now()}`;
+    const summary = `E2E review summary ${Date.now()}`;
+    const tags = 'e2e,test';
+    const categoryNote = `E2E category note ${Date.now()}`;
+
+    await page.getByRole('textbox', { name: 'Kamp' }).fill(matchLabel);
+
+    const atmosphereCard = page
+      .getByText('Atmosfære og lyd')
+      .locator('xpath=ancestor::div[contains(@class,"rounded-2xl")][1]');
+
+    await atmosphereCard.getByRole('button', { name: '+' }).click();
+    await expect(atmosphereCard.getByText('5/10')).toBeVisible();
+    await atmosphereCard.getByPlaceholder('Valgfri note til denne kategori…').fill(categoryNote);
+
+    await page.getByRole('textbox', { name: 'Kort opsummering' }).fill(summary);
+    await page.getByRole('textbox', { name: 'Tags' }).fill(tags);
+
+    await page.getByRole('button', { name: 'Gem anmeldelse' }).click();
+    await expect(page.getByText('Anmeldelsen er gemt.')).toBeVisible();
+
+    await page.reload();
+    await expect(page.getByText('Personlig anmeldelse')).toBeVisible();
+
+    await expect(page.getByRole('textbox', { name: 'Kamp' })).toHaveValue(matchLabel);
+    await expect(page.getByRole('textbox', { name: 'Kort opsummering' })).toHaveValue(summary);
+    await expect(page.getByRole('textbox', { name: 'Tags' })).toHaveValue(tags);
+
+    const reloadedAtmosphereCard = page
+      .getByText('Atmosfære og lyd')
+      .locator('xpath=ancestor::div[contains(@class,"rounded-2xl")][1]');
+
+    await expect(reloadedAtmosphereCard.getByText('5/10')).toBeVisible();
+    await expect(reloadedAtmosphereCard.getByPlaceholder('Valgfri note til denne kategori…')).toHaveValue(categoryNote);
+  });
 });
