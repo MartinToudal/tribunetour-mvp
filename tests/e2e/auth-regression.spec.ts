@@ -36,10 +36,11 @@ test.describe('authenticated regression', () => {
   });
 
   test('can toggle visited from My page and restore original state', async ({ page }) => {
-    await page.goto('/my');
-    await expect(page.getByRole('heading', { name: 'Overblik over dine stadionbesøg' })).toBeVisible();
+    await page.goto('/');
+    await expect(page.getByRole('heading', { name: 'Find dit næste stadion' })).toBeVisible();
 
-    const targetRow = page.locator('li').filter({ has: page.getByText('Viborg Stadion') }).first();
+    const stadiumLink = page.locator(`a[href="/stadiums/${stadiumId}"]`).first();
+    const targetRow = stadiumLink.locator('xpath=ancestor::li[1]');
     await expect(targetRow).toBeVisible();
 
     const actionButton = targetRow.getByRole('button');
