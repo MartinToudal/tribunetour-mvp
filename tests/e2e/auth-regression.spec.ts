@@ -78,15 +78,17 @@ test.describe('authenticated regression', () => {
     await expect(page.getByRole('heading', { name: new RegExp(`Status, note og anmeldelse for`, 'i') })).toBeVisible();
 
     const noteField = page.getByPlaceholder('Skriv din note om stadionet her…');
+    const saveNoteButton = page.getByRole('button', { name: 'Gem note' });
     const noteValue = `E2E note ${Date.now()}`;
 
     await noteField.fill(noteValue);
-    await page.getByRole('button', { name: 'Gem note' }).click();
+    await saveNoteButton.click();
     await expect(page.getByText('Noten er gemt.')).toBeVisible();
 
     await noteField.fill('');
-    await page.getByRole('button', { name: 'Gem note' }).click();
-    await expect(page.getByText('Noten er gemt.')).toBeVisible();
+    await saveNoteButton.click();
+    await expect(saveNoteButton).toBeDisabled();
+    await expect(noteField).toHaveValue('');
   });
 
   test('can save a review with details and load it again after reload', async ({ page }) => {
@@ -127,5 +129,46 @@ test.describe('authenticated regression', () => {
 
     await expect(reloadedAtmosphereCard.getByText('5/10')).toBeVisible();
     await expect(reloadedAtmosphereCard.getByPlaceholder('Valgfri note til denne kategori…')).toHaveValue(categoryNote);
+  });
+
+  test('can upload, update and delete a photo', async ({ page }) => {
+    await page.goto(`/stadiums/${stadiumId}`);
+    await expect(page.getByText('Personlige billeder')).toBeVisible();
+
+    const uploadCaption = `E2E upload caption ${Date.now()}`;
+    const updatedCaption = `E2E updated caption ${Date.now()}`;
+    const photoCard = page
+      .getByText('Personlige billeder')
+      .locator('xpath=ancestor::div[contains(@class,"site-card-soft")][1]');
+
+    await page.getByRole('textbox', { name: 'Valgfri billedtekst til næste upload' }).fill(uploadCaption);
+    await page.locator('input[type="file"]').setInputFiles({
+      name: 'e2e-photo.png',
+      mimeType: 'image/png',
+      buffer: Buffer.from(
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wn7n6kAAAAASUVORK5CYII=',
+        'base64'
+      ),
+    });
+
+    await expect(page.getByText('Fotoændringen er gemt.')).toBeVisible();
+    const newestPhoto = photoCard.locator('article').first();
+    await expect(newestPhoto.getByRole('textbox', { name: 'Billedtekst' })).toHaveValue(uploadCaption);
+
+    await newestPhoto.getByRole('textbox', { name: 'Billedtekst' }).fill(updatedCaption);
+    await newestPhoto.getByRole('button', { name: 'Gem billedtekst' }).click();
+    await expect(page.getByText('Fotoændringen er gemt.')).toBeVisible();
+
+    const uploadedFileName = ((await newestPhoto.locator('.text-sm.font-medium.text-white').first().textContent()) ?? '').trim();
+    expect(uploadedFileName).not.toBe('');
+
+    await page.reload();
+    await expect(page.getByText('Personlige billeder')).toBeVisible();
+    const reloadedPhoto = photoCard.locator('article').filter({ hasText: uploadedFileName }).first();
+    await expect(reloadedPhoto.getByRole('textbox', { name: 'Billedtekst' })).toHaveValue(updatedCaption);
+
+    await reloadedPhoto.getByRole('button', { name: 'Slet billede' }).click();
+    await expect(page.getByText('Fotoændringen er gemt.')).toBeVisible();
+    await expect(photoCard.locator('article').filter({ hasText: uploadedFileName })).toHaveCount(0);
   });
 });
