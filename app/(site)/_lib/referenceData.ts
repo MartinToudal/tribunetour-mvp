@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
-import { aliasMap, canonicalClubId } from './clubIdentityResolver';
+import { aliasMap, canonicalClubId, normalizeIncomingClubId } from './clubIdentityResolver';
 import { compareLeagues } from './leagueOrder';
 
 // Generated from the app's canonical CSV reference-data via scripts/generate-reference-data.mjs.
@@ -62,7 +62,7 @@ export function getSeedStadiumMap(): Record<string, Stadium> {
 }
 
 export function getSeedStadiumById(id: string): Stadium | undefined {
-  return seedStadiumMap[id];
+  return seedStadiumMap[normalizeIncomingClubId(id)];
 }
 
 export function getSeedFixtureById(id: string): Fixture | undefined {

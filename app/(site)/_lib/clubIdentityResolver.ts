@@ -53,7 +53,7 @@ const canonicalToLegacyClubId = Object.fromEntries(
   Object.entries(legacyToCanonicalClubId).map(([legacyId, canonicalId]) => [canonicalId, legacyId])
 ) as Record<string, string>;
 
-function normalizeIncomingClubId(clubId: string): string {
+export function normalizeIncomingClubId(clubId: string): string {
   try {
     return decodeURIComponent(clubId).trim().toLowerCase().normalize('NFC');
   } catch {
