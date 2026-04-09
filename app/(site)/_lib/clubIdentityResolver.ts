@@ -53,11 +53,21 @@ const canonicalToLegacyClubId = Object.fromEntries(
   Object.entries(legacyToCanonicalClubId).map(([legacyId, canonicalId]) => [canonicalId, legacyId])
 ) as Record<string, string>;
 
+function normalizeIncomingClubId(clubId: string): string {
+  try {
+    return decodeURIComponent(clubId);
+  } catch {
+    return clubId;
+  }
+}
+
 export function canonicalClubId(clubId: string): string {
-  return legacyToCanonicalClubId[clubId] ?? clubId;
+  const normalizedClubId = normalizeIncomingClubId(clubId);
+  return legacyToCanonicalClubId[normalizedClubId] ?? normalizedClubId;
 }
 
 export function allKnownClubIds(clubId: string): string[] {
+  clubId = normalizeIncomingClubId(clubId);
   const canonicalId = canonicalClubId(clubId);
   const ids = [clubId];
 
