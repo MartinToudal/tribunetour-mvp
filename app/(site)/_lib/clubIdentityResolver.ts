@@ -55,9 +55,9 @@ const canonicalToLegacyClubId = Object.fromEntries(
 
 function normalizeIncomingClubId(clubId: string): string {
   try {
-    return decodeURIComponent(clubId);
+    return decodeURIComponent(clubId).trim().toLowerCase().normalize('NFC');
   } catch {
-    return clubId;
+    return clubId.trim().toLowerCase().normalize('NFC');
   }
 }
 
