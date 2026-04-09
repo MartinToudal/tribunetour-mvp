@@ -77,6 +77,26 @@ export function getStaticFixtureParams() {
   return seedFixtures.map((fixture) => ({ id: fixture.id }));
 }
 
+function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
+  const latestByCanonicalId = new Map<string, Stadium>();
+
+  for (const stadium of stadiums) {
+    const canonicalId = canonicalClubId(stadium.id);
+    if (latestByCanonicalId.has(canonicalId)) {
+      continue;
+    }
+
+    latestByCanonicalId.set(canonicalId, {
+      ...stadium,
+      id: canonicalId,
+    });
+  }
+
+  return Array.from(latestByCanonicalId.values()).sort(
+    (a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')
+  );
+}
+
 export async function getStadiums(): Promise<Stadium[]> {
   if (!hasSupabaseReferenceData) {
     return seedStadiums;
@@ -95,9 +115,7 @@ export async function getStadiums(): Promise<Stadium[]> {
     return seedStadiums;
   }
 
-  return [...(data as Stadium[])].sort(
-    (a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')
-  );
+  return normalizeStadiums(data as Stadium[]);
 }
 
 export async function getFixtures(): Promise<Fixture[]> {
