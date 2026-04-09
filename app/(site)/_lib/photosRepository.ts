@@ -1,3 +1,4 @@
+import { canonicalClubId } from './clubIdentityResolver';
 import { supabase } from './supabaseClient';
 
 export const PHOTOS_BUCKET = 'stadium-photos';
@@ -29,7 +30,7 @@ function normalizeText(value: string | null | undefined): string {
 }
 
 function buildStoragePath(userId: string, clubId: string, fileName: string): string {
-    return `${userId}/${clubId}/${fileName}`;
+    return `${userId}/${canonicalClubId(clubId)}/${fileName}`;
 }
 
 function sanitizeFileName(value: string): string {
@@ -56,7 +57,7 @@ function inferExtension(file: File): string {
 }
 
 function buildUploadFileName(clubId: string, file: File): string {
-    const slug = sanitizeFileName(clubId) || 'stadium';
+    const slug = sanitizeFileName(canonicalClubId(clubId)) || 'stadium';
     const extension = inferExtension(file);
     return `${slug}_${crypto.randomUUID()}.${extension}`;
 }
@@ -88,13 +89,13 @@ async function loadSignedUrl(userId: string, clubId: string, fileName: string): 
 
 async function toPhotoRecord(userId: string, row: SharedPhotoRow): Promise<PhotoRecord> {
     return {
-        clubId: row.club_id,
+        clubId: canonicalClubId(row.club_id),
         fileName: row.file_name,
         caption: normalizeText(row.caption),
         createdAt: row.created_at ?? null,
         updatedAt: row.updated_at ?? null,
         source: normalizeText(row.source) || 'shared',
-        signedUrl: await loadSignedUrl(userId, row.club_id, row.file_name),
+        signedUrl: await loadSignedUrl(userId, canonicalClubId(row.club_id), row.file_name),
     };
 }
 
@@ -138,6 +139,7 @@ export async function setPhotoCaptionForUser(
         throw new Error('photos_unavailable');
     }
 
+    clubId = canonicalClubId(clubId);
     const timestamp = new Date().toISOString();
     const { data, error } = await supabase
         .from('photos')
@@ -169,6 +171,7 @@ export async function uploadPhotoForUser(
         throw new Error('photos_unavailable');
     }
 
+    clubId = canonicalClubId(clubId);
     const fileName = buildUploadFileName(clubId, file);
     const path = buildStoragePath(userId, clubId, fileName);
 
@@ -216,6 +219,7 @@ export async function deletePhotoForUser(
         throw new Error('photos_unavailable');
     }
 
+    clubId = canonicalClubId(clubId);
     const { error: storageError } = await supabase.storage
         .from(PHOTOS_BUCKET)
         .remove([buildStoragePath(userId, clubId, fileName)]);

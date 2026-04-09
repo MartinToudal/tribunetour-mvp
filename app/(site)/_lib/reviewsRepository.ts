@@ -1,3 +1,4 @@
+import { canonicalClubId } from './clubIdentityResolver';
 import { supabase } from './supabaseClient';
 
 export const REVIEW_CATEGORIES = [
@@ -126,7 +127,7 @@ function normalizeCategoryNotes(value: unknown): ReviewCategoryNotes {
 
 function toReviewRecord(row: SharedReviewRow): ReviewRecord {
     return {
-        clubId: row.club_id,
+        clubId: canonicalClubId(row.club_id),
         matchLabel: normalizeText(row.match_label),
         scores: normalizeScores(row.scores),
         categoryNotes: normalizeCategoryNotes(row.category_notes),
@@ -147,13 +148,26 @@ function hasMeaningfulReview(review: ReviewRecord): boolean {
 }
 
 function toReviewsMap(rows: SharedReviewRow[] | null): ReviewsMap {
-    const map: ReviewsMap = {};
+    const latestByClubId: Record<string, SharedReviewRow> = {};
+
     rows?.forEach((row) => {
+        const clubId = canonicalClubId(row.club_id);
+        const current = latestByClubId[clubId];
+        const currentTime = current?.updated_at ? Date.parse(current.updated_at) : 0;
+        const nextTime = row.updated_at ? Date.parse(row.updated_at) : 0;
+        if (current && currentTime > nextTime) {
+            return;
+        }
+        latestByClubId[clubId] = row;
+    });
+
+    const map: ReviewsMap = {};
+    Object.values(latestByClubId).forEach((row) => {
         const review = toReviewRecord(row);
         if (!hasMeaningfulReview(review)) {
             return;
         }
-        map[row.club_id] = review;
+        map[review.clubId] = review;
     });
     return map;
 }
@@ -179,6 +193,8 @@ export async function getReviewRecordForUser(userId: string, clubId: string): Pr
     if (!supabase) {
         return null;
     }
+
+    clubId = canonicalClubId(clubId);
 
     const { data, error } = await supabase
         .from('reviews')
@@ -207,6 +223,7 @@ export async function setReviewForUser(
         return;
     }
 
+    clubId = canonicalClubId(clubId);
     const timestamp = review.updatedAt ?? new Date().toISOString();
     const { error } = await supabase
         .from('reviews')

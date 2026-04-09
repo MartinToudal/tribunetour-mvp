@@ -1,16 +1,31 @@
+import { canonicalClubId } from './clubIdentityResolver';
 import { supabase } from './supabaseClient';
 
 type SharedVisitedRow = {
     club_id: string;
     visited: boolean;
+    updated_at?: string | null;
 };
 
 export type VisitedMap = Record<string, boolean>;
 
 function toVisitedMap(rows: SharedVisitedRow[] | null): VisitedMap {
-    const map: VisitedMap = {};
+    const latestByClubId: Record<string, SharedVisitedRow> = {};
+
     rows?.forEach((row) => {
-        map[row.club_id] = Boolean(row.visited);
+        const clubId = canonicalClubId(row.club_id);
+        const current = latestByClubId[clubId];
+        const currentTime = current?.updated_at ? Date.parse(current.updated_at) : 0;
+        const nextTime = row.updated_at ? Date.parse(row.updated_at) : 0;
+        if (current && currentTime > nextTime) {
+            return;
+        }
+        latestByClubId[clubId] = row;
+    });
+
+    const map: VisitedMap = {};
+    Object.values(latestByClubId).forEach((row) => {
+        map[canonicalClubId(row.club_id)] = Boolean(row.visited);
     });
     return map;
 }
@@ -22,7 +37,7 @@ export async function getVisitedForUser(userId: string): Promise<VisitedMap> {
 
     const { data, error } = await supabase
         .from('visited')
-        .select('club_id, visited')
+        .select('club_id, visited, updated_at')
         .eq('user_id', userId);
 
     if (error) {
@@ -37,6 +52,7 @@ export async function setVisitedForUser(userId: string, clubId: string, nextVisi
         return;
     }
 
+    clubId = canonicalClubId(clubId);
     const timestamp = new Date().toISOString();
     const { error } = await supabase
         .from('visited')
