@@ -1,4 +1,4 @@
-import { canonicalClubId } from './clubIdentityResolver';
+import { allKnownClubIds, canonicalClubId } from './clubIdentityResolver';
 import { supabase } from './supabaseClient';
 
 export const PHOTOS_BUCKET = 'stadium-photos';
@@ -31,6 +31,14 @@ function normalizeText(value: string | null | undefined): string {
 
 function buildStoragePath(userId: string, clubId: string, fileName: string): string {
     return `${userId}/${canonicalClubId(clubId)}/${fileName}`;
+}
+
+function buildStoragePaths(userId: string, clubId: string, fileName: string): string[] {
+    return Array.from(
+        new Set(
+            allKnownClubIds(clubId).map((candidateClubId) => `${userId}/${candidateClubId}/${fileName}`)
+        )
+    );
 }
 
 function sanitizeFileName(value: string): string {
@@ -76,15 +84,21 @@ async function loadSignedUrl(userId: string, clubId: string, fileName: string): 
         return null;
     }
 
-    const { data, error } = await supabase.storage
-        .from(PHOTOS_BUCKET)
-        .createSignedUrl(buildStoragePath(userId, clubId, fileName), SIGNED_URL_TTL_SECONDS);
+    for (const path of buildStoragePaths(userId, clubId, fileName)) {
+        const { data, error } = await supabase.storage
+            .from(PHOTOS_BUCKET)
+            .createSignedUrl(path, SIGNED_URL_TTL_SECONDS);
 
-    if (error) {
-        throw error;
+        if (error) {
+            continue;
+        }
+
+        if (data.signedUrl) {
+            return data.signedUrl;
+        }
     }
 
-    return data.signedUrl ?? null;
+    return null;
 }
 
 async function toPhotoRecord(userId: string, row: SharedPhotoRow): Promise<PhotoRecord> {
@@ -222,7 +236,7 @@ export async function deletePhotoForUser(
     clubId = canonicalClubId(clubId);
     const { error: storageError } = await supabase.storage
         .from(PHOTOS_BUCKET)
-        .remove([buildStoragePath(userId, clubId, fileName)]);
+        .remove(buildStoragePaths(userId, clubId, fileName));
 
     if (storageError) {
         throw storageError;
