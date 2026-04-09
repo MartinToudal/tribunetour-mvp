@@ -1,3 +1,4 @@
+import { permanentRedirect } from 'next/navigation';
 import SiteShell from '../../(site)/_components/SiteShell';
 import {
     getSeedFixtures,
@@ -7,6 +8,7 @@ import {
     type Fixture,
     type Stadium,
 } from '../../(site)/_lib/referenceData';
+import { canonicalClubId, isSameClubId } from '../../(site)/_lib/clubIdentityResolver';
 import StadiumDetailClient from './StadiumDetailClient';
 
 type StadiumDetailPageProps = {
@@ -62,8 +64,13 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
         );
     }
 
+    const canonicalId = canonicalClubId(stadium.id);
+    if (params.id !== canonicalId) {
+        permanentRedirect(`/stadiums/${canonicalId}`);
+    }
+
     const upcomingFixtures = fixtures
-        .filter((fixture) => fixture.venueClubId === stadium.id)
+        .filter((fixture) => isSameClubId(fixture.venueClubId, stadium.id))
         .filter((fixture) => new Date(fixture.kickoff).getTime() >= Date.now())
         .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime())
         .slice(0, 5);

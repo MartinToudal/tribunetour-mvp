@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
+import { aliasMap, canonicalClubId } from './clubIdentityResolver';
 import { compareLeagues } from './leagueOrder';
 
 // Generated from the app's canonical CSV reference-data via scripts/generate-reference-data.mjs.
@@ -36,9 +37,9 @@ const seedStadiums = [...(stadiumSeed as Stadium[])].sort(
   (a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')
 );
 const seedFixtures = fixturesSeed as Fixture[];
-const seedStadiumMap = Object.fromEntries(
+const seedStadiumMap = aliasMap(Object.fromEntries(
   seedStadiums.map((stadium) => [stadium.id, stadium])
-) as Record<string, Stadium>;
+) as Record<string, Stadium>);
 
 function createReferenceDataClient() {
   if (!hasSupabaseReferenceData) {
@@ -69,7 +70,7 @@ export function getSeedFixtureById(id: string): Fixture | undefined {
 }
 
 export function getStaticStadiumParams() {
-  return seedStadiums.map((stadium) => ({ id: stadium.id }));
+  return Array.from(new Set(seedStadiums.map((stadium) => canonicalClubId(stadium.id)))).map((id) => ({ id }));
 }
 
 export function getStaticFixtureParams() {
