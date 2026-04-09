@@ -1,6 +1,6 @@
 [
   {
-    "id": "aab",
+    "id": "dk-aab",
     "name": "Aalborg Portland Park",
     "team": "AaB",
     "league": "1. division",
@@ -9,7 +9,7 @@
     "lon": 9.89852188383537
   },
   {
-    "id": "aaf",
+    "id": "dk-aarhus-fremad",
     "name": "Riisvangen Stadion",
     "team": "Aarhus Fremad",
     "league": "1. division",
@@ -18,7 +18,7 @@
     "lon": 10.2121272616921
   },
   {
-    "id": "ab",
+    "id": "dk-ab",
     "name": "Gladsaxe Stadion",
     "team": "AB",
     "league": "2. division",
@@ -27,7 +27,7 @@
     "lon": 12.4972067660195
   },
   {
-    "id": "ach",
+    "id": "dk-ac-horsens",
     "name": "Nordstern Arena Horsens",
     "team": "AC Horsens",
     "league": "1. division",
@@ -36,7 +36,7 @@
     "lon": 9.85772155979409
   },
   {
-    "id": "agf",
+    "id": "dk-agf",
     "name": "Ceres Park Vejlby",
     "team": "AGF",
     "league": "Superliga",
@@ -45,7 +45,7 @@
     "lon": 10.21018
   },
   {
-    "id": "b93",
+    "id": "dk-b-93",
     "name": "Østebro Stadion",
     "team": "B.93",
     "league": "1. division",
@@ -54,7 +54,7 @@
     "lon": 12.5748493107378
   },
   {
-    "id": "bif",
+    "id": "dk-brondby-if",
     "name": "Brøndby Stadion",
     "team": "Brøndby IF",
     "league": "Superliga",
@@ -63,7 +63,7 @@
     "lon": 12.41903
   },
   {
-    "id": "bra",
+    "id": "dk-brabrand-if",
     "name": "Brabrand IF's Idrætsanlæg",
     "team": "Brabrand IF",
     "league": "2. division",
@@ -72,7 +72,7 @@
     "lon": 10.1185003697454
   },
   {
-    "id": "brø",
+    "id": "dk-bronshoj",
     "name": "Tingbjerg Idrætspark",
     "team": "Brønshøj",
     "league": "3. division",
@@ -81,7 +81,7 @@
     "lon": 12.493001215748
   },
   {
-    "id": "efb",
+    "id": "dk-esbjerg-fb",
     "name": "Blue Water Arena",
     "team": "Esbjerg fB",
     "league": "1. division",
@@ -90,7 +90,7 @@
     "lon": 8.43954519233529
   },
   {
-    "id": "fa2",
+    "id": "dk-fa-2000",
     "name": "Frederiksberg IP",
     "team": "FA 2000",
     "league": "3. division",
@@ -99,7 +99,7 @@
     "lon": 12.4993036697168
   },
   {
-    "id": "faa",
+    "id": "dk-fremad-amager",
     "name": "Sundby Idrætspark",
     "team": "Fremad Amager",
     "league": "2. division",
@@ -108,7 +108,7 @@
     "lon": 12.6011449157438
   },
   {
-    "id": "fcf",
+    "id": "dk-fc-fredericia",
     "name": "Monjasa Park",
     "team": "FC Fredericia",
     "league": "Superliga",
@@ -117,7 +117,7 @@
     "lon": 9.73136
   },
   {
-    "id": "fck",
+    "id": "dk-fc-kobenhavn",
     "name": "Parken",
     "team": "F.C. København",
     "league": "Superliga",
@@ -126,7 +126,7 @@
     "lon": 12.57197
   },
   {
-    "id": "fcm",
+    "id": "dk-fc-midtjylland",
     "name": "MCH Arena",
     "team": "FC Midtjylland",
     "league": "Superliga",
@@ -135,7 +135,7 @@
     "lon": 8.95148
   },
   {
-    "id": "fcn",
+    "id": "dk-fc-nordsjaelland",
     "name": "Right to Dream Park",
     "team": "FC Nordsjælland",
     "league": "Superliga",
@@ -144,7 +144,7 @@
     "lon": 12.35214
   },
   {
-    "id": "fre",
+    "id": "dk-frem",
     "name": "Valby Idrætspark",
     "team": "Frem",
     "league": "3. division",
@@ -153,7 +153,7 @@
     "lon": 12.5129358569653
   },
   {
-    "id": "hbk",
+    "id": "dk-hb-koge",
     "name": "Capelli Sport Stadion",
     "team": "HB Køge",
     "league": "1. division",
@@ -162,7 +162,7 @@
     "lon": 12.1768118395592
   },
   {
-    "id": "hel",
+    "id": "dk-fc-helsingor",
     "name": "Helsingør Stadion",
     "team": "FC Helsingør",
     "league": "2. division",
@@ -171,7 +171,7 @@
     "lon": 12.5844512438363
   },
   {
-    "id": "hik",
+    "id": "dk-hik",
     "name": "Gentofte Sportspark",
     "team": "HIK",
     "league": "2. division",
@@ -180,7 +180,7 @@
     "lon": 12.5270017538371
   },
   {
-    "id": "hil",
+    "id": "dk-hillerod-fodbold",
     "name": "Hillerød Stadion",
     "team": "Hillerød Fodbold",
     "league": "1. division",
@@ -189,7 +189,7 @@
     "lon": 12.2961146255542
   },
   {
-    "id": "hob",
+    "id": "dk-hobro-ik",
     "name": "DS Arena",
     "team": "Hobro IK",
     "league": "1. division",
@@ -198,7 +198,7 @@
     "lon": 9.81985518195932
   },
   {
-    "id": "hol",
+    "id": "dk-holbaek-bi",
     "name": "Holbæk Sportsby",
     "team": "Holbæk B&I",
     "league": "3. division",
@@ -207,7 +207,7 @@
     "lon": 11.6861971014864
   },
   {
-    "id": "hør",
+    "id": "dk-horsholm-usserod-ik",
     "name": "Hørsholm Idrætspark",
     "team": "Hørsholm-Usserød IK",
     "league": "3. division",
@@ -216,7 +216,7 @@
     "lon": 12.5148313446898
   },
   {
-    "id": "hvi",
+    "id": "dk-hvidovre-if",
     "name": "PRO Ventilation Arena",
     "team": "Hvidovre IF",
     "league": "1. division",
@@ -225,7 +225,7 @@
     "lon": 12.4828832414193
   },
   {
-    "id": "ish",
+    "id": "dk-ishoj-if",
     "name": "Ishøj Idrætscenter",
     "team": "Ishøj IF",
     "league": "2. division",
@@ -234,7 +234,7 @@
     "lon": 12.3693592427273
   },
   {
-    "id": "kol",
+    "id": "dk-kolding-if",
     "name": "Autocentralen Park",
     "team": "Kolding IF",
     "league": "1. division",
@@ -243,7 +243,7 @@
     "lon": 9.45910440950349
   },
   {
-    "id": "lyn",
+    "id": "dk-lyngby-boldklub",
     "name": "Lyngby Stadion",
     "team": "Lyngby Boldklub",
     "league": "1. division",
@@ -252,7 +252,7 @@
     "lon": 12.5080822678727
   },
   {
-    "id": "lys",
+    "id": "dk-if-lyseng",
     "name": "Lyseng Idrætspark",
     "team": "IF Lyseng",
     "league": "3. division",
@@ -261,7 +261,7 @@
     "lon": 10.19435835255
   },
   {
-    "id": "mid",
+    "id": "dk-middelfart",
     "name": "Middelfart Sparekasse Stadion",
     "team": "Middelfart",
     "league": "1. division",
@@ -270,7 +270,7 @@
     "lon": 9.73372668504236
   },
   {
-    "id": "næs",
+    "id": "dk-naesby-bk",
     "name": "Alpi Arena Næsby",
     "team": "Næsby BK",
     "league": "3. division",
@@ -279,7 +279,7 @@
     "lon": 10.3407493715518
   },
   {
-    "id": "nas",
+    "id": "dk-naestved",
     "name": "MTM Service Park",
     "team": "Næstved",
     "league": "2. division",
@@ -288,7 +288,7 @@
     "lon": 11.7665970875364
   },
   {
-    "id": "nyk",
+    "id": "dk-nykobing-fc",
     "name": "Lollands Bank Park",
     "team": "Nykøbing FC",
     "league": "3. division",
@@ -297,7 +297,7 @@
     "lon": 11.8759723524684
   },
   {
-    "id": "ob",
+    "id": "dk-ob",
     "name": "Nature Energy Park",
     "team": "OB",
     "league": "Superliga",
@@ -306,7 +306,7 @@
     "lon": 10.3501
   },
   {
-    "id": "odd",
+    "id": "dk-odder-fodbold",
     "name": "Spektrum Odder",
     "team": "Odder Fodbold",
     "league": "3. division",
@@ -315,7 +315,7 @@
     "lon": 10.1531481427494
   },
   {
-    "id": "ran",
+    "id": "dk-randers-fc",
     "name": "Cepheus Park Randers",
     "team": "Randers FC",
     "league": "Superliga",
@@ -324,7 +324,7 @@
     "lon": 10.01029
   },
   {
-    "id": "ros",
+    "id": "dk-fc-roskilde",
     "name": "Roskilde Idrætspark",
     "team": "FC Roskilde",
     "league": "2. division",
@@ -333,7 +333,7 @@
     "lon": 12.0736958182476
   },
   {
-    "id": "sif",
+    "id": "dk-silkeborg-if",
     "name": "JYSK Park",
     "team": "Silkeborg IF",
     "league": "Superliga",
@@ -342,7 +342,7 @@
     "lon": 9.57424
   },
   {
-    "id": "sje",
+    "id": "dk-sonderjyske",
     "name": "Sydbank Park",
     "team": "Sønderjyske Fodbold",
     "league": "Superliga",
@@ -351,7 +351,7 @@
     "lon": 9.48767
   },
   {
-    "id": "ski",
+    "id": "dk-skive",
     "name": "Hancock Arena",
     "team": "Skive",
     "league": "2. division",
@@ -360,7 +360,7 @@
     "lon": 9.0379069753219
   },
   {
-    "id": "sun",
+    "id": "dk-sundby-bk",
     "name": "Kløvermarkens Idrætsanlæg",
     "team": "Sundby BK",
     "league": "3. division",
@@ -369,7 +369,7 @@
     "lon": 12.607451512473
   },
   {
-    "id": "thi",
+    "id": "dk-thisted-fc",
     "name": "Sparekassen Thy Arena",
     "team": "Thisted FC",
     "league": "2. division",
@@ -378,7 +378,7 @@
     "lon": 8.70191221050862
   },
   {
-    "id": "van",
+    "id": "dk-vanlose",
     "name": "Vanløse Idrætspark",
     "team": "Vanløse",
     "league": "3. division",
@@ -387,7 +387,7 @@
     "lon": 12.4778320022532
   },
   {
-    "id": "vb",
+    "id": "dk-vejle-boldklub",
     "name": "Vejle Stadion",
     "team": "Vejle Boldklub",
     "league": "Superliga",
@@ -396,7 +396,7 @@
     "lon": 9.55615
   },
   {
-    "id": "vej",
+    "id": "dk-vejgaard-b",
     "name": "Spar Nord Arena",
     "team": "Vejgaard B",
     "league": "3. division",
@@ -405,7 +405,7 @@
     "lon": 9.96672625701582
   },
   {
-    "id": "ven",
+    "id": "dk-vendsyssel-ff",
     "name": "Nord Energi Arena",
     "team": "Vendsyssel FF",
     "league": "2. division",
@@ -414,7 +414,7 @@
     "lon": 9.99827034654147
   },
   {
-    "id": "vff",
+    "id": "dk-viborg-ff",
     "name": "Energi Viborg Arena",
     "team": "Viborg FF",
     "league": "Superliga",
@@ -423,7 +423,7 @@
     "lon": 9.40213
   },
   {
-    "id": "vsk",
+    "id": "dk-vsk-aarhus",
     "name": "Vejlby Stadion",
     "team": "VSK Aarhus",
     "league": "2. division",
