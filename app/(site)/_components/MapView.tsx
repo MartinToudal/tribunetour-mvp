@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { countryLabel } from '../_lib/leaguePacks';
+import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { getSeedStadiums, type Stadium } from '../_lib/referenceData';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 
@@ -38,20 +38,33 @@ export default function MapView() {
         setStadiums(getSeedStadiums() as Stadium[]);
     }, []);
 
+    const visibleStadiums = useMemo(
+        () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
+        [stadiums, isLoggedIn]
+    );
+    const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+
     const points = useMemo(
         () =>
-            stadiums
+            visibleStadiums
                 .filter((stadium) => stadium.lat && stadium.lon)
                 .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
                 .filter((stadium) => (onlyUnvisited ? !visited[stadium.id] : true)),
-        [stadiums, visited, countryFilter, onlyUnvisited]
+        [visibleStadiums, visited, countryFilter, onlyUnvisited]
     );
 
     const highlighted = useMemo(() => points.slice(0, 6), [points]);
     const countries = useMemo(
-        () => ['Alle', ...Array.from(new Set(stadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
-        [stadiums]
+        () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
+        [visibleStadiums]
     );
+
+    useEffect(() => {
+        if (!countries.includes(countryFilter)) {
+            setCountryFilter('Alle');
+        }
+    }, [countries, countryFilter]);
+
     const center = useMemo<[number, number]>(() => {
         if (countryFilter === 'de') {
             return [51.2, 10.4];
@@ -109,6 +122,12 @@ export default function MapView() {
             {hasSupabaseEnv && !isLoggedIn && (
                 <div className="text-sm text-[var(--muted)]">
                     Log ind for at bruge din besøgsstatus som filter på kortet og resten af Tribunetour.
+                </div>
+            )}
+
+            {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
+                <div className="text-sm text-[var(--muted)]">
+                    Tyske stadions vises på kortet, når du er logget ind.
                 </div>
             )}
 

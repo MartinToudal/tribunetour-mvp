@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
-import { countryLabel } from '../_lib/leaguePacks';
+import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
 
@@ -29,22 +29,38 @@ export default function StadiumList() {
     };
   }, [hasSupabaseEnv]);
 
+  const visibleStadiums = useMemo(
+    () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
+    [stadiums, isLoggedIn]
+  );
+  const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+  const visibleVisitedCount = useMemo(
+    () => visibleStadiums.filter((stadium) => visited[stadium.id]).length,
+    [visibleStadiums, visited]
+  );
   const countries = useMemo(
-    () => ['Alle', ...Array.from(new Set(stadiums.map((s) => s.countryCode ?? 'dk'))).sort()],
-    [stadiums]
+    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((s) => s.countryCode ?? 'dk'))).sort()],
+    [visibleStadiums]
   );
   const leagues = useMemo(
     () => ['Alle', ...sortLeagues(Array.from(new Set(
-      stadiums
+      visibleStadiums
         .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
         .map((s) => s.league)
     )))],
-    [countryFilter, stadiums]
+    [countryFilter, visibleStadiums]
   );
+
+  useEffect(() => {
+    if (!countries.includes(countryFilter)) {
+      setCountryFilter('Alle');
+      setLeagueFilter('Alle');
+    }
+  }, [countries, countryFilter]);
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();
-    return stadiums.filter((stadium) => {
+    return visibleStadiums.filter((stadium) => {
       const matchesSearch = !search || `${stadium.name} ${stadium.team} ${stadium.city ?? ''} ${stadium.league}`.toLowerCase().includes(search);
       const matchesCountry = countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter;
       const matchesLeague = leagueFilter === 'Alle' || stadium.league === leagueFilter;
@@ -52,7 +68,7 @@ export default function StadiumList() {
       const matchesVisit = visitFilter === 'all' || (visitFilter === 'visited' ? isVisited : !isVisited);
       return matchesSearch && matchesCountry && matchesLeague && matchesVisit;
     });
-  }, [stadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
+  }, [visibleStadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
 
   const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'Alle' || leagueFilter !== 'Alle' || visitFilter !== 'all';
 
@@ -70,11 +86,11 @@ export default function StadiumList() {
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Stadions</div>
-              <div className="mt-2 text-2xl font-semibold">{stadiums.length}</div>
+              <div className="mt-2 text-2xl font-semibold">{visibleStadiums.length}</div>
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Besøgte</div>
-              <div className="mt-2 text-2xl font-semibold">{visitedCount}</div>
+              <div className="mt-2 text-2xl font-semibold">{visibleVisitedCount}</div>
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Viser nu</div>
@@ -160,6 +176,14 @@ export default function StadiumList() {
             <a href="/my" className="cta-secondary">
               Gå til Min tur
             </a>
+          </div>
+        </div>
+      )}
+
+      {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="text-sm leading-6 text-[var(--muted)]">
+            Tyske stadions er skjult, indtil du er logget ind.
           </div>
         </div>
       )}

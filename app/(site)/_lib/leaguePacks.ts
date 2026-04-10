@@ -58,3 +58,18 @@ export function getEnabledLeaguePackIds(): LeaguePackId[] {
     ...getEnabledExperimentalLeaguePacks().map((pack) => pack.id),
   ];
 }
+
+export function isExperimentalLeaguePackStadium(stadium: Stadium): boolean {
+  const countryCode = stadium.countryCode ?? (stadium.id.startsWith('dk-') ? 'dk' : undefined);
+  const leaguePack = stadium.leaguePack ?? (countryCode === coreDenmarkLeaguePack.countryCode ? coreDenmarkLeaguePack.id : undefined);
+
+  return leaguePack !== coreDenmarkLeaguePack.id || countryCode !== coreDenmarkLeaguePack.countryCode;
+}
+
+export function filterStadiumsForLeaguePackAccess(stadiums: Stadium[], isLoggedIn: boolean): Stadium[] {
+  if (isLoggedIn) {
+    return stadiums;
+  }
+
+  return stadiums.filter((stadium) => !isExperimentalLeaguePackStadium(stadium));
+}

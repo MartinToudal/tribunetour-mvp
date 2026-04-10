@@ -5,7 +5,7 @@ import { useNotesModel } from '../(site)/_hooks/useNotesModel';
 import { usePhotosModel } from '../(site)/_hooks/usePhotosModel';
 import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
-import { countryLabel } from '../(site)/_lib/leaguePacks';
+import { countryLabel, filterStadiumsForLeaguePackAccess } from '../(site)/_lib/leaguePacks';
 import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
 
 type Achievement = {
@@ -44,13 +44,26 @@ export default function MyPage() {
     };
   }, [hasSupabaseEnv]);
 
-  const countries = useMemo(
-    () => ['Alle', ...Array.from(new Set(stadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
-    [stadiums]
+  const visibleStadiums = useMemo(
+    () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
+    [stadiums, isLoggedIn]
   );
+  const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+
+  const countries = useMemo(
+    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
+    [visibleStadiums]
+  );
+
+  useEffect(() => {
+    if (!countries.includes(countryFilter)) {
+      setCountryFilter('Alle');
+    }
+  }, [countries, countryFilter]);
+
   const scopedStadiums = useMemo(
-    () => stadiums.filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter),
-    [stadiums, countryFilter]
+    () => visibleStadiums.filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter),
+    [visibleStadiums, countryFilter]
   );
   const scopedClubIds = useMemo(
     () => new Set(scopedStadiums.map((stadium) => stadium.id)),
@@ -436,6 +449,16 @@ export default function MyPage() {
               Se kommende kampe
             </a>
           </div>
+        </section>
+      )}
+
+      {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
+        <section className="site-card-soft p-5 md:p-6">
+          <div className="label-eyebrow">League pack</div>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Tyskland låses op efter login</h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan Tyskland indgå som eksperimentelt league pack.
+          </p>
         </section>
       )}
 
