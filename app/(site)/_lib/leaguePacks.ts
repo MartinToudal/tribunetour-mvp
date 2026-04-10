@@ -13,6 +13,19 @@ export type LeaguePackDefinition = {
 
 const germanyTop3Enabled = process.env.NEXT_PUBLIC_ENABLE_GERMANY_TOP_3 === 'true';
 
+export const countryLabels: Record<string, string> = {
+  dk: 'Danmark',
+  de: 'Tyskland',
+};
+
+export function countryLabel(countryCode: string | null | undefined): string {
+  if (!countryCode) {
+    return 'Ukendt';
+  }
+
+  return countryLabels[countryCode] ?? countryCode.toUpperCase();
+}
+
 export const coreDenmarkLeaguePack: LeaguePackDefinition = {
   id: 'core_denmark',
   label: 'Danmark',

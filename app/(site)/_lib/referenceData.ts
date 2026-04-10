@@ -89,6 +89,7 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
 
   for (const stadium of stadiums) {
     const canonicalId = canonicalClubId(stadium.id);
+    const countryCode = stadium.countryCode ?? (canonicalId.startsWith('dk-') ? 'dk' : undefined);
     if (latestByCanonicalId.has(canonicalId)) {
       continue;
     }
@@ -96,6 +97,8 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
     latestByCanonicalId.set(canonicalId, {
       ...stadium,
       id: canonicalId,
+      countryCode,
+      leaguePack: stadium.leaguePack ?? (countryCode === 'dk' ? 'core_denmark' : undefined),
     });
   }
 

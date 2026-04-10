@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { countryLabel } from '../_lib/leaguePacks';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
 
@@ -9,6 +10,7 @@ type VisitFilter = 'all' | 'visited' | 'not-visited';
 export default function StadiumList() {
   const [stadiums, setStadiums] = useState<Stadium[]>(() => getSeedStadiums());
   const [filter, setFilter] = useState('');
+  const [countryFilter, setCountryFilter] = useState<string>('Alle');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visitedLoadError, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
@@ -27,20 +29,32 @@ export default function StadiumList() {
     };
   }, [hasSupabaseEnv]);
 
-  const leagues = useMemo(() => ['Alle', ...sortLeagues(Array.from(new Set(stadiums.map((s) => s.league))))], [stadiums]);
+  const countries = useMemo(
+    () => ['Alle', ...Array.from(new Set(stadiums.map((s) => s.countryCode ?? 'dk'))).sort()],
+    [stadiums]
+  );
+  const leagues = useMemo(
+    () => ['Alle', ...sortLeagues(Array.from(new Set(
+      stadiums
+        .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
+        .map((s) => s.league)
+    )))],
+    [countryFilter, stadiums]
+  );
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();
     return stadiums.filter((stadium) => {
       const matchesSearch = !search || `${stadium.name} ${stadium.team} ${stadium.city ?? ''} ${stadium.league}`.toLowerCase().includes(search);
+      const matchesCountry = countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter;
       const matchesLeague = leagueFilter === 'Alle' || stadium.league === leagueFilter;
       const isVisited = Boolean(visited[stadium.id]);
       const matchesVisit = visitFilter === 'all' || (visitFilter === 'visited' ? isVisited : !isVisited);
-      return matchesSearch && matchesLeague && matchesVisit;
+      return matchesSearch && matchesCountry && matchesLeague && matchesVisit;
     });
-  }, [stadiums, filter, leagueFilter, visitFilter, visited]);
+  }, [stadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
 
-  const hasActiveFilters = filter.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all';
+  const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'Alle' || leagueFilter !== 'Alle' || visitFilter !== 'all';
 
   return (
     <section id="stadiums" className="site-card overflow-hidden">
@@ -85,6 +99,28 @@ export default function StadiumList() {
             ))}
           </div>
         </div>
+
+        {countries.length > 2 && (
+          <div className="mt-4">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
+            <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
+              {countries.map((countryCode) => (
+                <button
+                  key={countryCode}
+                  type="button"
+                  onClick={() => {
+                    setCountryFilter(countryCode);
+                    setLeagueFilter('Alle');
+                  }}
+                  className="pill-nav min-w-0 justify-center text-center md:shrink-0"
+                  data-active={countryFilter === countryCode ? 'true' : 'false'}
+                >
+                  {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-4">
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
