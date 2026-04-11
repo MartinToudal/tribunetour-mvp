@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const email = process.env.E2E_EMAIL;
 const password = process.env.E2E_PASSWORD;
-const stadiumId = process.env.E2E_STADIUM_ID ?? 'vff';
+const stadiumId = process.env.E2E_STADIUM_ID ?? 'dk-viborg-ff';
 
 const hasCredentials = Boolean(email && password);
 
@@ -17,16 +17,18 @@ async function login(page: Page) {
 
   try {
     await expect(userButton).toBeVisible({ timeout: 8_000 });
-    return;
   } catch {
     const errorText = (await page.locator('p.text-rose-300').first().textContent().catch(() => null))?.trim() ?? '';
     if (errorText) {
       await page.getByRole('button', { name: 'Opret konto' }).click();
       await expect(userButton).toBeVisible({ timeout: 15_000 });
-      return;
+    } else {
+      throw new Error('Kunne hverken logge ind eller bootstrappe e2e-kontoen.');
     }
-    throw new Error('Kunne hverken logge ind eller bootstrappe e2e-kontoen.');
   }
+
+  await page.reload();
+  await expect(page.getByRole('button', { name: email! })).toBeVisible({ timeout: 10_000 });
 }
 
 test.describe('authenticated regression', () => {

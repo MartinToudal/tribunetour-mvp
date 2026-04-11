@@ -96,7 +96,7 @@ Den er delt i to lag:
 ### Forudsætninger for auth-regression
 - `E2E_EMAIL`
 - `E2E_PASSWORD`
-- valgfrit: `E2E_STADIUM_ID` (default er `vff`)
+- valgfrit: `E2E_STADIUM_ID` (default er `dk-viborg-ff`)
 - valgfrit: `E2E_BASE_URL` hvis testen skal køre mod en allerede kørende server
 
 ### Anbefalet release-gate
