@@ -1,7 +1,9 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
+import { countryLabel, filterStadiumsForLeaguePackAccess, stadiumLeaguePackId } from '../_lib/leaguePacks';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getFixtures, getSeedStadiumMap, type Fixture, type Stadium } from '../_lib/referenceData';
 
@@ -20,7 +22,9 @@ export default function MatchesList() {
   const [windowFilter, setWindowFilter] = useState<WindowFilter>('30');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const [leagueFilter, setLeagueFilter] = useState('Alle');
+  const [countryFilter, setCountryFilter] = useState('Alle');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited } = useVisitedModel();
+  const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
   const { fixtureIdSet, fixtureIds, isLoadingPlan, toggleFixture, clearPlan } = useWeekendPlanModel();
   const stadiumMap = useMemo<Record<string, Stadium>>(() => getSeedStadiumMap(), []);
   const [planMessage, setPlanMessage] = useState<string | null>(null);
@@ -39,16 +43,39 @@ export default function MatchesList() {
     };
   }, []);
 
+  const visibleStadiums = useMemo(
+    () => filterStadiumsForLeaguePackAccess(Object.values(stadiumMap), enabledPackIds),
+    [stadiumMap, enabledPackIds]
+  );
+  const visibleStadiumIdSet = useMemo(
+    () => new Set(visibleStadiums.map((stadium) => stadium.id)),
+    [visibleStadiums]
+  );
+  const countries = useMemo(
+    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
+    [visibleStadiums]
+  );
+
   const leagues = useMemo(() => {
     const values = Array.from(
       new Set(
         fixtures
+          .filter((fixture) => visibleStadiumIdSet.has(fixture.venueClubId) || visibleStadiumIdSet.has(stadiumMap[fixture.venueClubId]?.id ?? ''))
           .map((fixture) => stadiumMap[fixture.venueClubId]?.league)
+          .filter((league) => {
+            if (!league) {
+              return false;
+            }
+            if (countryFilter === 'Alle') {
+              return true;
+            }
+            return (visibleStadiums.find((stadium) => stadium.league === league)?.countryCode ?? 'dk') === countryFilter;
+          })
           .filter(Boolean)
       )
     ) as string[];
     return ['Alle', ...sortLeagues(values)];
-  }, [fixtures, stadiumMap]);
+  }, [countryFilter, fixtures, stadiumMap, visibleStadiumIdSet, visibleStadiums]);
 
   const filteredFixtures = useMemo(() => {
     const now = new Date();
@@ -57,6 +84,10 @@ export default function MatchesList() {
     return fixtures
       .filter((fixture) => new Date(fixture.kickoff).getTime() >= now.getTime())
       .filter((fixture) => {
+        const venue = stadiumMap[fixture.venueClubId];
+        return venue ? enabledPackIds.includes(stadiumLeaguePackId(venue)) : false;
+      })
+      .filter((fixture) => {
         if (windowFilter === 'all') return true;
         const days = Number(windowFilter);
         const diff = new Date(fixture.kickoff).getTime() - now.getTime();
@@ -64,16 +95,17 @@ export default function MatchesList() {
       })
       .filter((fixture) => {
         const venue = stadiumMap[fixture.venueClubId];
+        const matchesCountry = countryFilter === 'Alle' || (venue?.countryCode ?? 'dk') === countryFilter;
         const matchesLeague = leagueFilter === 'Alle' || venue?.league === leagueFilter;
         const matchesVisit = visitFilter === 'all' || !visited[fixture.venueClubId];
         const haystack = `${fixture.round} ${venue?.team ?? fixture.homeTeamId} ${venue?.name ?? fixture.venueClubId} ${venue?.city ?? ''}`.toLowerCase();
         const matchesSearch = !needle || haystack.includes(needle);
-        return matchesLeague && matchesVisit && matchesSearch;
+        return matchesCountry && matchesLeague && matchesVisit && matchesSearch;
       })
       .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime());
-  }, [fixtures, leagueFilter, search, stadiumMap, visitFilter, visited, windowFilter]);
+  }, [countryFilter, enabledPackIds, fixtures, leagueFilter, search, stadiumMap, visitFilter, visited, windowFilter]);
 
-  const hasActiveFilters = search.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all' || windowFilter !== '30';
+  const hasActiveFilters = search.trim().length > 0 || countryFilter !== 'Alle' || leagueFilter !== 'Alle' || visitFilter !== 'all' || windowFilter !== '30';
 
   const plannedFixtures = useMemo(() => {
     if (fixtureIds.length === 0) {
@@ -159,6 +191,21 @@ export default function MatchesList() {
         </div>
 
         <div className="mt-4">
+          {countries.length > 2 && (
+            <>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
+              <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-4">
+                {countries.map((countryCode) => (
+                  <button key={countryCode} type="button" onClick={() => {
+                    setCountryFilter(countryCode);
+                    setLeagueFilter('Alle');
+                  }} className="pill-nav min-w-0 justify-center text-center md:shrink-0" data-active={countryFilter === countryCode ? 'true' : 'false'}>
+                    {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
           <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
             {leagues.map((league) => (
@@ -191,6 +238,18 @@ export default function MatchesList() {
               Gå til Min tur
             </a>
           </div>
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          Henter din adgang til league packs…
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          {leaguePackAccessError}
         </div>
       )}
 

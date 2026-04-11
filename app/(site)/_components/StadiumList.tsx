@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
@@ -14,6 +15,7 @@ export default function StadiumList() {
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visitedLoadError, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
 
   useEffect(() => {
     let isCancelled = false;
@@ -30,8 +32,8 @@ export default function StadiumList() {
   }, [hasSupabaseEnv]);
 
   const visibleStadiums = useMemo(
-    () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
-    [stadiums, isLoggedIn]
+    () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
+    [stadiums, enabledPackIds]
   );
   const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
   const visibleVisitedCount = useMemo(
@@ -185,6 +187,18 @@ export default function StadiumList() {
           <div className="text-sm leading-6 text-[var(--muted)]">
             Tyske stadions er skjult, indtil du er logget ind.
           </div>
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          Henter din adgang til league packs…
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          {leaguePackAccessError}
         </div>
       )}
 

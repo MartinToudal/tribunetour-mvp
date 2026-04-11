@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { getSeedStadiums, type Stadium } from '../_lib/referenceData';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
@@ -17,6 +18,7 @@ export default function MapView() {
     const [onlyUnvisited, setOnlyUnvisited] = useState(false);
     const [icon, setIcon] = useState<any>(null);
     const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visited } = useVisitedModel();
+    const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
 
     useEffect(() => {
         (async () => {
@@ -39,8 +41,8 @@ export default function MapView() {
     }, []);
 
     const visibleStadiums = useMemo(
-        () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
-        [stadiums, isLoggedIn]
+        () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
+        [stadiums, enabledPackIds]
     );
     const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
 
@@ -128,6 +130,18 @@ export default function MapView() {
             {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
                 <div className="text-sm text-[var(--muted)]">
                     Tyske stadions vises på kortet, når du er logget ind.
+                </div>
+            )}
+
+            {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
+                <div className="text-sm text-[var(--muted)]">
+                    Henter din adgang til league packs…
+                </div>
+            )}
+
+            {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
+                <div className="text-sm text-[var(--muted)]">
+                    {leaguePackAccessError}
                 </div>
             )}
 

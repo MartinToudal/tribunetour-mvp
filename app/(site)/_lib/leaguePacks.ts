@@ -59,17 +59,23 @@ export function getEnabledLeaguePackIds(): LeaguePackId[] {
   ];
 }
 
-export function isExperimentalLeaguePackStadium(stadium: Stadium): boolean {
+export function getBuildAvailableLeaguePackIds(): LeaguePackId[] {
+  return getEnabledLeaguePackIds();
+}
+
+export function stadiumLeaguePackId(stadium: Stadium): LeaguePackId {
   const countryCode = stadium.countryCode ?? (stadium.id.startsWith('dk-') ? 'dk' : undefined);
   const leaguePack = stadium.leaguePack ?? (countryCode === coreDenmarkLeaguePack.countryCode ? coreDenmarkLeaguePack.id : undefined);
+  return (leaguePack as LeaguePackId | undefined) ?? coreDenmarkLeaguePack.id;
+}
 
+export function isExperimentalLeaguePackStadium(stadium: Stadium): boolean {
+  const countryCode = stadium.countryCode ?? (stadium.id.startsWith('dk-') ? 'dk' : undefined);
+  const leaguePack = stadiumLeaguePackId(stadium);
   return leaguePack !== coreDenmarkLeaguePack.id || countryCode !== coreDenmarkLeaguePack.countryCode;
 }
 
-export function filterStadiumsForLeaguePackAccess(stadiums: Stadium[], isLoggedIn: boolean): Stadium[] {
-  if (isLoggedIn) {
-    return stadiums;
-  }
-
-  return stadiums.filter((stadium) => !isExperimentalLeaguePackStadium(stadium));
+export function filterStadiumsForLeaguePackAccess(stadiums: Stadium[], enabledPackIds: Iterable<LeaguePackId>): Stadium[] {
+  const packIdSet = new Set(enabledPackIds);
+  return stadiums.filter((stadium) => packIdSet.has(stadiumLeaguePackId(stadium)));
 }

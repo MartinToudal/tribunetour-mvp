@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import SiteShell from '../(site)/_components/SiteShell';
+import { useLeaguePackAccessModel } from '../(site)/_hooks/useLeaguePackAccessModel';
 import { useNotesModel } from '../(site)/_hooks/useNotesModel';
 import { usePhotosModel } from '../(site)/_hooks/usePhotosModel';
 import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
@@ -26,6 +27,7 @@ export default function MyPage() {
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, toggleVisited } = useVisitedModel();
+  const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
   const { notes, isLoadingNotes } = useNotesModel();
   const { reviews, isLoadingReviews } = useReviewsModel();
   const { photosByClubId, isLoadingPhotos } = usePhotosModel();
@@ -45,8 +47,8 @@ export default function MyPage() {
   }, [hasSupabaseEnv]);
 
   const visibleStadiums = useMemo(
-    () => filterStadiumsForLeaguePackAccess(stadiums, isLoggedIn),
-    [stadiums, isLoggedIn]
+    () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
+    [stadiums, enabledPackIds]
   );
   const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
 
