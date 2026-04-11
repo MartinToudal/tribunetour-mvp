@@ -1,4 +1,12 @@
-export const LEAGUE_ORDER = ['Superliga', '1. division', '2. division', '3. division'] as const;
+export const LEAGUE_ORDER = [
+  'Superliga',
+  '1. division',
+  '2. division',
+  '3. division',
+  'Bundesliga',
+  '2. Bundesliga',
+  '3. Liga',
+] as const;
 
 const leagueRankMap = new Map<string, number>(LEAGUE_ORDER.map((league, index) => [league, index]));
 

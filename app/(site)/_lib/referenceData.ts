@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
 import { aliasMap, canonicalClubId, normalizeIncomingClubId } from './clubIdentityResolver';
+import { getEnabledExperimentalLeaguePacks } from './leaguePacks';
 import { compareLeagues } from './leagueOrder';
 
 // Generated from the app's canonical CSV reference-data via scripts/generate-reference-data.mjs.
@@ -14,6 +15,10 @@ export type Stadium = {
   city?: string;
   lat?: number;
   lon?: number;
+  countryCode?: string;
+  leagueCode?: string;
+  leaguePack?: string;
+  shortCode?: string;
 };
 
 export type Fixture = {
@@ -36,9 +41,11 @@ const hasSupabaseReferenceData = Boolean(supabaseUrl && supabaseAnonKey);
 const seedStadiums = [...(stadiumSeed as Stadium[])].sort(
   (a, b) => compareLeagues(a.league, b.league) || a.name.localeCompare(b.name, 'da')
 );
+const enabledExperimentalStadiums = getEnabledExperimentalLeaguePacks().flatMap((pack) => pack.stadiums);
+const enabledSeedStadiums = normalizeStadiums([...seedStadiums, ...enabledExperimentalStadiums]);
 const seedFixtures = fixturesSeed as Fixture[];
 const seedStadiumMap = aliasMap(Object.fromEntries(
-  seedStadiums.map((stadium) => [stadium.id, stadium])
+  enabledSeedStadiums.map((stadium) => [stadium.id, stadium])
 ) as Record<string, Stadium>);
 
 function createReferenceDataClient() {
@@ -50,7 +57,7 @@ function createReferenceDataClient() {
 }
 
 export function getSeedStadiums(): Stadium[] {
-  return seedStadiums;
+  return enabledSeedStadiums;
 }
 
 export function getSeedFixtures(): Fixture[] {
@@ -70,7 +77,7 @@ export function getSeedFixtureById(id: string): Fixture | undefined {
 }
 
 export function getStaticStadiumParams() {
-  return Array.from(new Set(seedStadiums.map((stadium) => canonicalClubId(stadium.id)))).map((id) => ({ id }));
+  return Array.from(new Set(enabledSeedStadiums.map((stadium) => canonicalClubId(stadium.id)))).map((id) => ({ id }));
 }
 
 export function getStaticFixtureParams() {
@@ -82,6 +89,7 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
 
   for (const stadium of stadiums) {
     const canonicalId = canonicalClubId(stadium.id);
+    const countryCode = stadium.countryCode ?? (canonicalId.startsWith('dk-') ? 'dk' : undefined);
     if (latestByCanonicalId.has(canonicalId)) {
       continue;
     }
@@ -89,6 +97,8 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
     latestByCanonicalId.set(canonicalId, {
       ...stadium,
       id: canonicalId,
+      countryCode,
+      leaguePack: stadium.leaguePack ?? (countryCode === 'dk' ? 'core_denmark' : undefined),
     });
   }
 
@@ -99,7 +109,7 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
 
 export async function getStadiums(): Promise<Stadium[]> {
   if (!hasSupabaseReferenceData) {
-    return seedStadiums;
+    return enabledSeedStadiums;
   }
 
   const client = createReferenceDataClient();
@@ -112,10 +122,10 @@ export async function getStadiums(): Promise<Stadium[]> {
     if (error) {
       console.error(error);
     }
-    return seedStadiums;
+    return enabledSeedStadiums;
   }
 
-  return normalizeStadiums(data as Stadium[]);
+  return normalizeStadiums([...(data as Stadium[]), ...enabledExperimentalStadiums]);
 }
 
 export async function getFixtures(): Promise<Fixture[]> {

@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
+import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
+import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
 
@@ -9,9 +11,11 @@ type VisitFilter = 'all' | 'visited' | 'not-visited';
 export default function StadiumList() {
   const [stadiums, setStadiums] = useState<Stadium[]>(() => getSeedStadiums());
   const [filter, setFilter] = useState('');
+  const [countryFilter, setCountryFilter] = useState<string>('Alle');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visitedLoadError, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
+  const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
 
   useEffect(() => {
     let isCancelled = false;
@@ -27,20 +31,48 @@ export default function StadiumList() {
     };
   }, [hasSupabaseEnv]);
 
-  const leagues = useMemo(() => ['Alle', ...sortLeagues(Array.from(new Set(stadiums.map((s) => s.league))))], [stadiums]);
+  const visibleStadiums = useMemo(
+    () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
+    [stadiums, enabledPackIds]
+  );
+  const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+  const visibleVisitedCount = useMemo(
+    () => visibleStadiums.filter((stadium) => visited[stadium.id]).length,
+    [visibleStadiums, visited]
+  );
+  const countries = useMemo(
+    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((s) => s.countryCode ?? 'dk'))).sort()],
+    [visibleStadiums]
+  );
+  const leagues = useMemo(
+    () => ['Alle', ...sortLeagues(Array.from(new Set(
+      visibleStadiums
+        .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
+        .map((s) => s.league)
+    )))],
+    [countryFilter, visibleStadiums]
+  );
+
+  useEffect(() => {
+    if (!countries.includes(countryFilter)) {
+      setCountryFilter('Alle');
+      setLeagueFilter('Alle');
+    }
+  }, [countries, countryFilter]);
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();
-    return stadiums.filter((stadium) => {
+    return visibleStadiums.filter((stadium) => {
       const matchesSearch = !search || `${stadium.name} ${stadium.team} ${stadium.city ?? ''} ${stadium.league}`.toLowerCase().includes(search);
+      const matchesCountry = countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter;
       const matchesLeague = leagueFilter === 'Alle' || stadium.league === leagueFilter;
       const isVisited = Boolean(visited[stadium.id]);
       const matchesVisit = visitFilter === 'all' || (visitFilter === 'visited' ? isVisited : !isVisited);
-      return matchesSearch && matchesLeague && matchesVisit;
+      return matchesSearch && matchesCountry && matchesLeague && matchesVisit;
     });
-  }, [stadiums, filter, leagueFilter, visitFilter, visited]);
+  }, [visibleStadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
 
-  const hasActiveFilters = filter.trim().length > 0 || leagueFilter !== 'Alle' || visitFilter !== 'all';
+  const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'Alle' || leagueFilter !== 'Alle' || visitFilter !== 'all';
 
   return (
     <section id="stadiums" className="site-card overflow-hidden">
@@ -56,11 +88,11 @@ export default function StadiumList() {
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Stadions</div>
-              <div className="mt-2 text-2xl font-semibold">{stadiums.length}</div>
+              <div className="mt-2 text-2xl font-semibold">{visibleStadiums.length}</div>
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Besøgte</div>
-              <div className="mt-2 text-2xl font-semibold">{visitedCount}</div>
+              <div className="mt-2 text-2xl font-semibold">{visibleVisitedCount}</div>
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Viser nu</div>
@@ -85,6 +117,28 @@ export default function StadiumList() {
             ))}
           </div>
         </div>
+
+        {countries.length > 2 && (
+          <div className="mt-4">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
+            <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
+              {countries.map((countryCode) => (
+                <button
+                  key={countryCode}
+                  type="button"
+                  onClick={() => {
+                    setCountryFilter(countryCode);
+                    setLeagueFilter('Alle');
+                  }}
+                  className="pill-nav min-w-0 justify-center text-center md:shrink-0"
+                  data-active={countryFilter === countryCode ? 'true' : 'false'}
+                >
+                  {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-4">
           <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
@@ -125,6 +179,26 @@ export default function StadiumList() {
               Gå til Min tur
             </a>
           </div>
+        </div>
+      )}
+
+      {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
+        <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="text-sm leading-6 text-[var(--muted)]">
+            Tyske stadions er skjult, indtil du er logget ind.
+          </div>
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          Henter din adgang til league packs…
+        </div>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
+        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
+          {leaguePackAccessError}
         </div>
       )}
 

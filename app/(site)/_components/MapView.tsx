@@ -2,7 +2,9 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { getSeedStadiums } from '../_lib/referenceData';
+import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
+import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
+import { getSeedStadiums, type Stadium } from '../_lib/referenceData';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 
 const MapContainer = dynamic(() => import('react-leaflet').then((m) => m.MapContainer), { ssr: false });
@@ -10,21 +12,13 @@ const TileLayer = dynamic(() => import('react-leaflet').then((m) => m.TileLayer)
 const Marker = dynamic(() => import('react-leaflet').then((m) => m.Marker), { ssr: false });
 const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), { ssr: false });
 
-type Stadium = {
-    id: string;
-    name: string;
-    team: string;
-    league: string;
-    city: string;
-    lat?: number | null;
-    lon?: number | null;
-};
-
 export default function MapView() {
     const [stadiums, setStadiums] = useState<Stadium[]>([]);
+    const [countryFilter, setCountryFilter] = useState<string>('Alle');
     const [onlyUnvisited, setOnlyUnvisited] = useState(false);
     const [icon, setIcon] = useState<any>(null);
     const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visited } = useVisitedModel();
+    const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
 
     useEffect(() => {
         (async () => {
@@ -46,16 +40,41 @@ export default function MapView() {
         setStadiums(getSeedStadiums() as Stadium[]);
     }, []);
 
+    const visibleStadiums = useMemo(
+        () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
+        [stadiums, enabledPackIds]
+    );
+    const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+
     const points = useMemo(
         () =>
-            stadiums
+            visibleStadiums
                 .filter((stadium) => stadium.lat && stadium.lon)
+                .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
                 .filter((stadium) => (onlyUnvisited ? !visited[stadium.id] : true)),
-        [stadiums, visited, onlyUnvisited]
+        [visibleStadiums, visited, countryFilter, onlyUnvisited]
     );
 
     const highlighted = useMemo(() => points.slice(0, 6), [points]);
-    const center = useMemo<[number, number]>(() => [56.0, 10.0], []);
+    const countries = useMemo(
+        () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
+        [visibleStadiums]
+    );
+
+    useEffect(() => {
+        if (!countries.includes(countryFilter)) {
+            setCountryFilter('Alle');
+        }
+    }, [countries, countryFilter]);
+
+    const center = useMemo<[number, number]>(() => {
+        if (countryFilter === 'de') {
+            return [51.2, 10.4];
+        }
+
+        return [56.0, 10.0];
+    }, [countryFilter]);
+    const zoom = countryFilter === 'de' ? 6 : 7;
 
     const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
     const tileUrl = mapboxToken
@@ -73,10 +92,27 @@ export default function MapView() {
                         Brug kortet som indgang til stadioner, du vil udforske eller markere som besøgt.
                     </p>
                 </div>
-                <label className="flex items-center gap-2 text-sm">
-                    <input type="checkbox" checked={onlyUnvisited} onChange={(e) => setOnlyUnvisited(e.target.checked)} />
-                    Vis kun ubesøgte
-                </label>
+                <div className="flex flex-col gap-3 md:items-end">
+                    {countries.length > 2 && (
+                        <div className="flex flex-wrap justify-start gap-2 md:justify-end">
+                            {countries.map((countryCode) => (
+                                <button
+                                    key={countryCode}
+                                    type="button"
+                                    onClick={() => setCountryFilter(countryCode)}
+                                    className="pill-nav justify-center text-center"
+                                    data-active={countryFilter === countryCode ? 'true' : 'false'}
+                                >
+                                    {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                    <label className="flex items-center gap-2 text-sm">
+                        <input type="checkbox" checked={onlyUnvisited} onChange={(e) => setOnlyUnvisited(e.target.checked)} />
+                        Vis kun ubesøgte
+                    </label>
+                </div>
             </div>
 
             {!hasSupabaseEnv && (
@@ -91,6 +127,24 @@ export default function MapView() {
                 </div>
             )}
 
+            {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
+                <div className="text-sm text-[var(--muted)]">
+                    Tyske stadions vises på kortet, når du er logget ind.
+                </div>
+            )}
+
+            {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
+                <div className="text-sm text-[var(--muted)]">
+                    Henter din adgang til league packs…
+                </div>
+            )}
+
+            {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
+                <div className="text-sm text-[var(--muted)]">
+                    {leaguePackAccessError}
+                </div>
+            )}
+
             {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
                 <div className="text-sm text-[var(--muted)]">
                     Henter din besøgsstatus…
@@ -98,7 +152,7 @@ export default function MapView() {
             )}
 
             <div className="h-[70vh] w-full overflow-hidden rounded-2xl border border-neutral-800">
-                <MapContainer center={center} zoom={7} style={{ height: '100%', width: '100%' }}>
+                <MapContainer key={countryFilter} center={center} zoom={zoom} style={{ height: '100%', width: '100%' }}>
                     <TileLayer url={tileUrl} attribution={tileAttribution} />
                     {points.map((stadium) => (
                         <Marker key={stadium.id} position={[stadium.lat as number, stadium.lon as number]} icon={icon || undefined}>

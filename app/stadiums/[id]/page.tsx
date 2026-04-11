@@ -9,6 +9,7 @@ import {
     type Stadium,
 } from '../../(site)/_lib/referenceData';
 import { canonicalClubId, isSameClubId } from '../../(site)/_lib/clubIdentityResolver';
+import { countryLabel } from '../../(site)/_lib/leaguePacks';
 import StadiumDetailClient from './StadiumDetailClient';
 
 type StadiumDetailPageProps = {
@@ -76,13 +77,17 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
         .slice(0, 5);
     const nextFixture = upcomingFixtures[0] ?? null;
     const directionsHref = mapsHref(stadium);
+    const isExpandedLeaguePack = Boolean(stadium.countryCode && stadium.countryCode !== 'dk');
+    const locationLabel = isExpandedLeaguePack
+        ? `${countryLabel(stadium.countryCode)} · ${stadium.league}`
+        : stadium.league;
 
     return (
         <SiteShell title={`Tribunetour · ${stadium.name}`}>
             <section className="site-card p-5 md:p-6">
                 <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
                     <div>
-                        <div className="label-eyebrow">{stadium.league}</div>
+                        <div className="label-eyebrow">{locationLabel}</div>
                         <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">{stadium.name}</h1>
                         <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)] md:text-base">
                             Hjemmebane for {stadium.team}
@@ -120,6 +125,18 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kommende kampe</div>
                             <div className="mt-2 text-xl font-semibold">{upcomingFixtures.length}</div>
                         </div>
+                        {isExpandedLeaguePack && (
+                            <div className="stat-chip">
+                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
+                                <div className="mt-2 text-xl font-semibold">{countryLabel(stadium.countryCode)}</div>
+                            </div>
+                        )}
+                        {isExpandedLeaguePack && stadium.shortCode && (
+                            <div className="stat-chip">
+                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kode</div>
+                                <div className="mt-2 text-xl font-semibold">{stadium.shortCode}</div>
+                            </div>
+                        )}
                         <div className="stat-chip">
                             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste kamp</div>
                             <div className="mt-2 text-sm font-semibold text-white">
@@ -181,6 +198,18 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                         <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
                         <div className="mt-2 text-lg font-semibold">{stadium.league}</div>
                     </div>
+                    {isExpandedLeaguePack && (
+                        <div className="site-card-soft p-4">
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
+                            <div className="mt-2 text-lg font-semibold">{countryLabel(stadium.countryCode)}</div>
+                        </div>
+                    )}
+                    {isExpandedLeaguePack && stadium.shortCode && (
+                        <div className="site-card-soft p-4">
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Intern kode</div>
+                            <div className="mt-2 text-lg font-semibold">{stadium.shortCode}</div>
+                        </div>
+                    )}
                     <div className="site-card-soft p-4">
                         <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Koordinater</div>
                         <div className="mt-2 text-sm text-white">

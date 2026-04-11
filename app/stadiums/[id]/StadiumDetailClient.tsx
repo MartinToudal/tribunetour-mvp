@@ -12,14 +12,7 @@ import {
     type ReviewRecord,
     type ReviewScores,
 } from '../../(site)/_lib/reviewsRepository';
-
-type Stadium = {
-    id: string;
-    name: string;
-    team: string;
-    league: string;
-    city?: string;
-};
+import type { Stadium } from '../../(site)/_lib/referenceData';
 
 type StadiumDetailClientProps = {
     stadium: Stadium;
