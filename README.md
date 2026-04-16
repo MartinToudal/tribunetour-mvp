@@ -70,6 +70,21 @@ Validering:
 - `stadiums`-tabel med mindst: `id`, `name`, `team`, `league`, `city`, `lat`, `lon`
 - `visited`-tabel med shared visited-model
 - auth slået til for e-mail/password-flow
+- `user_league_pack_access` til premium-/league-pack adgang
+
+### League pack access
+Premium-ligaer og ekstra lande styres via:
+- `supabase/user_league_pack_access.sql`
+
+Tabellen bruges til at afgøre hvilke `pack_key`s den enkelte bruger må se.
+
+Eksempel:
+- `germany_top_3`
+- `england_top_4`
+
+Aktuel retning:
+- brugeren ser en pakke hvis de har entitlement til den konkrete `pack_key`
+- senere kan modellen udvides med fx `premium_full`
 
 Se også:
 - `../Tribunetour/Tribunetour_docs/docs/VISITED_BACKEND_CONTRACT.md`

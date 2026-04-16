@@ -9,19 +9,22 @@ create table if not exists public.user_league_pack_access (
 
 alter table public.user_league_pack_access enable row level security;
 
-create policy if not exists user_league_pack_access_select_own
+drop policy if exists user_league_pack_access_select_own on public.user_league_pack_access;
+create policy user_league_pack_access_select_own
 on public.user_league_pack_access
 for select
 to authenticated
 using (auth.uid() = user_id);
 
-create policy if not exists user_league_pack_access_insert_own
+drop policy if exists user_league_pack_access_insert_own on public.user_league_pack_access;
+create policy user_league_pack_access_insert_own
 on public.user_league_pack_access
 for insert
 to authenticated
 with check (auth.uid() = user_id);
 
-create policy if not exists user_league_pack_access_update_own
+drop policy if exists user_league_pack_access_update_own on public.user_league_pack_access;
+create policy user_league_pack_access_update_own
 on public.user_league_pack_access
 for update
 to authenticated

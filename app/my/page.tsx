@@ -457,9 +457,9 @@ export default function MyPage() {
       {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
         <section className="site-card-soft p-5 md:p-6">
           <div className="label-eyebrow">League pack</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Tyskland låses op efter login</h3>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Ekstra ligaer låses op efter login</h3>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan Tyskland indgå som eksperimentelt league pack.
+            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan ekstra ligaer som Tyskland og England indgå som eksperimentelle league packs.
           </p>
         </section>
       )}

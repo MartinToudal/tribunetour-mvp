@@ -1,7 +1,8 @@
 import germanyTop3Stadiums from '../../../data/league-packs/germany_top_3/stadiums.json';
+import englandTop4Stadiums from '../../../data/league-packs/england_top_4/stadiums.json';
 import type { Stadium } from './referenceData';
 
-export type LeaguePackId = 'core_denmark' | 'germany_top_3';
+export type LeaguePackId = 'core_denmark' | 'germany_top_3' | 'england_top_4';
 
 export type LeaguePackDefinition = {
   id: LeaguePackId;
@@ -12,10 +13,12 @@ export type LeaguePackDefinition = {
 };
 
 const germanyTop3Enabled = process.env.NEXT_PUBLIC_ENABLE_GERMANY_TOP_3 === 'true';
+const englandTop4Enabled = process.env.NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4 === 'true';
 
 export const countryLabels: Record<string, string> = {
   dk: 'Danmark',
   de: 'Tyskland',
+  en: 'England',
 };
 
 export function countryLabel(countryCode: string | null | undefined): string {
@@ -42,14 +45,26 @@ export const experimentalLeaguePacks: LeaguePackDefinition[] = [
     isCore: false,
     stadiums: germanyTop3Stadiums as Stadium[],
   },
+  {
+    id: 'england_top_4',
+    label: 'England top 4',
+    countryCode: 'en',
+    isCore: false,
+    stadiums: englandTop4Stadiums as Stadium[],
+  },
 ];
 
 export function getEnabledExperimentalLeaguePacks(): LeaguePackDefinition[] {
-  if (!germanyTop3Enabled) {
-    return [];
-  }
-
-  return experimentalLeaguePacks;
+  return experimentalLeaguePacks.filter((pack) => {
+    switch (pack.id) {
+      case 'germany_top_3':
+        return germanyTop3Enabled;
+      case 'england_top_4':
+        return englandTop4Enabled;
+      default:
+        return false;
+    }
+  });
 }
 
 export function getEnabledLeaguePackIds(): LeaguePackId[] {

@@ -6,6 +6,10 @@ export const LEAGUE_ORDER = [
   'Bundesliga',
   '2. Bundesliga',
   '3. Liga',
+  'Premier League',
+  'Championship',
+  'League One',
+  'League Two',
 ] as const;
 
 const leagueRankMap = new Map<string, number>(LEAGUE_ORDER.map((league, index) => [league, index]));
