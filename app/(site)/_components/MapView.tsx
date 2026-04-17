@@ -14,7 +14,7 @@ const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), { ssr:
 
 export default function MapView() {
     const [stadiums, setStadiums] = useState<Stadium[]>([]);
-    const [countryFilter, setCountryFilter] = useState<string>('Alle');
+    const [countryFilter, setCountryFilter] = useState<string>('dk');
     const [onlyUnvisited, setOnlyUnvisited] = useState(false);
     const [icon, setIcon] = useState<any>(null);
     const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visited } = useVisitedModel();
@@ -45,6 +45,15 @@ export default function MapView() {
         [stadiums, enabledPackIds]
     );
     const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+    const hasMultipleCountries = useMemo(() => new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk')).size > 1, [visibleStadiums]);
+
+    const resolvedDefaultCountry = useMemo(() => {
+        const available = Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk')));
+        if (available.includes('dk')) {
+            return 'dk';
+        }
+        return available[0] ?? 'Alle';
+    }, [visibleStadiums]);
 
     const points = useMemo(
         () =>
@@ -55,7 +64,6 @@ export default function MapView() {
         [visibleStadiums, visited, countryFilter, onlyUnvisited]
     );
 
-    const highlighted = useMemo(() => points.slice(0, 6), [points]);
     const countries = useMemo(
         () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
         [visibleStadiums]
@@ -63,18 +71,28 @@ export default function MapView() {
 
     useEffect(() => {
         if (!countries.includes(countryFilter)) {
-            setCountryFilter('Alle');
+            setCountryFilter(resolvedDefaultCountry);
         }
-    }, [countries, countryFilter]);
+    }, [countries, countryFilter, resolvedDefaultCountry]);
+
+    useEffect(() => {
+        if (countryFilter === 'Alle' && hasMultipleCountries) {
+            setCountryFilter(resolvedDefaultCountry);
+        }
+    }, [countryFilter, hasMultipleCountries, resolvedDefaultCountry]);
 
     const center = useMemo<[number, number]>(() => {
         if (countryFilter === 'de') {
             return [51.2, 10.4];
         }
 
+        if (countryFilter === 'en') {
+            return [53.6, -1.7];
+        }
+
         return [56.0, 10.0];
     }, [countryFilter]);
-    const zoom = countryFilter === 'de' ? 6 : 7;
+    const zoom = countryFilter === 'de' || countryFilter === 'en' ? 6 : 7;
 
     const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
     const tileUrl = mapboxToken
@@ -82,6 +100,20 @@ export default function MapView() {
         : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
     const tileAttribution = mapboxToken ? '© Mapbox © OpenStreetMap' : '© OpenStreetMap contributors';
+    const currentScopeLabel = countryFilter === 'Alle' ? 'Alle aktive lande' : countryLabel(countryFilter);
+    const unvisitedCount = points.filter((stadium) => !visited[stadium.id]).length;
+    const highlighted = useMemo(() => {
+        const ranked = [...points].sort((left, right) => {
+            const leftVisited = Boolean(visited[left.id]);
+            const rightVisited = Boolean(visited[right.id]);
+            if (leftVisited !== rightVisited) {
+                return Number(leftVisited) - Number(rightVisited);
+            }
+            return left.team.localeCompare(right.team, 'da');
+        });
+        return ranked.slice(0, 6);
+    }, [points, visited]);
+    const highlightedTitle = onlyUnvisited ? 'Ubesøgte i visningen' : 'Relevante stadions i visningen';
 
     return (
         <div className="grid gap-4">
@@ -89,7 +121,7 @@ export default function MapView() {
                 <div>
                     <h3 className="text-lg font-semibold">Stadions på kort</h3>
                     <p className="mt-1 text-sm text-[var(--muted)]">
-                        Brug kortet som indgang til stadioner, du vil udforske eller markere som besøgt.
+                        Brug kortet som indgang til de stadions, der er relevante i dit aktuelle scope lige nu.
                     </p>
                 </div>
                 <div className="flex flex-col gap-3 md:items-end">
@@ -113,6 +145,18 @@ export default function MapView() {
                         Vis kun ubesøgte
                     </label>
                 </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-xs text-[var(--muted)]">
+                <span className="rounded-full bg-white/5 px-3 py-1">
+                    Scope: {currentScopeLabel}
+                </span>
+                <span className="rounded-full bg-white/5 px-3 py-1">
+                    Stadions i visningen: {points.length}
+                </span>
+                <span className="rounded-full bg-white/5 px-3 py-1">
+                    Ubesøgte: {unvisitedCount}
+                </span>
             </div>
 
             {!hasSupabaseEnv && (
@@ -188,25 +232,33 @@ export default function MapView() {
             )}
 
             {!!highlighted.length && (
-                <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                    {highlighted.map((stadium) => {
-                        const isVisited = Boolean(visited[stadium.id]);
-                        return (
-                            <a key={stadium.id} href={`/stadiums/${stadium.id}`} className="site-card-soft p-4 transition hover:border-[var(--line-strong)]">
-                                <div className="text-sm font-medium text-white">{stadium.name}</div>
-                                <div className="mt-1 text-sm text-[var(--muted)]">
-                                    {stadium.team} · {stadium.league}
-                                </div>
-                                <div
-                                    className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-medium ${
-                                        isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'
-                                    }`}
-                                >
-                                    {isVisited ? 'Besøgt' : 'Ikke besøgt'}
-                                </div>
-                            </a>
-                        );
-                    })}
+                <div className="grid gap-3">
+                    <div>
+                        <h4 className="text-base font-semibold text-white">{highlightedTitle}</h4>
+                        <p className="mt-1 text-sm text-[var(--muted)]">
+                            Her er de mest oplagte stadions at åbne videre fra i den aktuelle kortvisning.
+                        </p>
+                    </div>
+                    <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                        {highlighted.map((stadium) => {
+                            const isVisited = Boolean(visited[stadium.id]);
+                            return (
+                                <a key={stadium.id} href={`/stadiums/${stadium.id}`} className="site-card-soft p-4 transition hover:border-[var(--line-strong)]">
+                                    <div className="text-sm font-medium text-white">{stadium.name}</div>
+                                    <div className="mt-1 text-sm text-[var(--muted)]">
+                                        {stadium.team} · {stadium.league}
+                                    </div>
+                                    <div
+                                        className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-medium ${
+                                            isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'
+                                        }`}
+                                    >
+                                        {isVisited ? 'Besøgt' : 'Ikke besøgt'}
+                                    </div>
+                                </a>
+                            );
+                        })}
+                    </div>
                 </div>
             )}
         </div>

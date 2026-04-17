@@ -324,16 +324,7 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
     }
 
     return (
-        <section className="site-card overflow-hidden">
-            <div className="border-b border-white/5 p-5 md:p-6">
-                <div className="label-eyebrow">Din tur</div>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight">Status, note og anmeldelse for {stadium.name}</h2>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-                    Brug samme besøgsstatus, note og stadionanmeldelse her som i resten af Tribunetour, så stedet indgår korrekt i din tur på tværs af app og web.
-                </p>
-            </div>
-
-            <div className="grid gap-6 p-5 md:p-6">
+        <div className="grid gap-6 p-5 md:p-6">
                 <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
                     <div className="flex flex-wrap items-center gap-3">
                         <span className={`rounded-full px-3 py-1 text-xs font-medium ${isVisited ? 'bg-[rgba(184,255,106,0.12)] text-[var(--accent)]' : 'bg-white/5 text-[var(--muted)]'}`}>
@@ -799,7 +790,6 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+        </div>
     );
 }

@@ -81,6 +81,18 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
     const locationLabel = isExpandedLeaguePack
         ? `${countryLabel(stadium.countryCode)} · ${stadium.league}`
         : stadium.league;
+    const quickStats = [
+        { label: 'Klub', value: stadium.team },
+        { label: 'By', value: stadium.city ?? 'Ukendt' },
+        { label: 'Kommende kampe', value: String(upcomingFixtures.length) },
+        ...(isExpandedLeaguePack
+            ? [{ label: 'Land', value: countryLabel(stadium.countryCode) }]
+            : []),
+        ...(isExpandedLeaguePack && stadium.shortCode
+            ? [{ label: 'Kode', value: stadium.shortCode }]
+            : []),
+        { label: 'Næste kamp', value: nextFixture ? formatKickoff(nextFixture.kickoff) : 'Ingen planlagt endnu' },
+    ];
 
     return (
         <SiteShell title={`Tribunetour · ${stadium.name}`}>
@@ -93,6 +105,15 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                             Hjemmebane for {stadium.team}
                             {stadium.city ? ` i ${stadium.city}` : ''}. Brug stadionet som anker for kommende kampe og din egen tur rundt i landet.
                         </p>
+
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-white">
+                                {locationLabel}
+                            </span>
+                            <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                                Stadionrejse og matchday-noter
+                            </span>
+                        </div>
 
                         <div className="mt-5 flex flex-wrap gap-3">
                             <a href="/" className="cta-primary">
@@ -113,36 +134,12 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                     </div>
 
                     <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                        <div className="stat-chip">
-                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Klub</div>
-                            <div className="mt-2 text-xl font-semibold">{stadium.team}</div>
-                        </div>
-                        <div className="stat-chip">
-                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">By</div>
-                            <div className="mt-2 text-xl font-semibold">{stadium.city ?? 'Ukendt'}</div>
-                        </div>
-                        <div className="stat-chip">
-                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kommende kampe</div>
-                            <div className="mt-2 text-xl font-semibold">{upcomingFixtures.length}</div>
-                        </div>
-                        {isExpandedLeaguePack && (
-                            <div className="stat-chip">
-                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
-                                <div className="mt-2 text-xl font-semibold">{countryLabel(stadium.countryCode)}</div>
+                        {quickStats.map((stat) => (
+                            <div key={stat.label} className="stat-chip">
+                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">{stat.label}</div>
+                                <div className="mt-2 text-xl font-semibold">{stat.value}</div>
                             </div>
-                        )}
-                        {isExpandedLeaguePack && stadium.shortCode && (
-                            <div className="stat-chip">
-                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Kode</div>
-                                <div className="mt-2 text-xl font-semibold">{stadium.shortCode}</div>
-                            </div>
-                        )}
-                        <div className="stat-chip">
-                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste kamp</div>
-                            <div className="mt-2 text-sm font-semibold text-white">
-                                {nextFixture ? formatKickoff(nextFixture.kickoff) : 'Ingen planlagt endnu'}
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -178,6 +175,17 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                     </div>
                 </section>
             )}
+
+            <section className="site-card overflow-hidden">
+                <div className="border-b border-white/5 p-5 md:p-6">
+                    <div className="label-eyebrow">Din relation</div>
+                    <h2 className="mt-2 text-2xl font-semibold tracking-tight">Din status, note og anmeldelse</h2>
+                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                        Her gemmer du din egen relation til stadionet: besøgt-status, noter, billeder og din samlede oplevelse.
+                    </p>
+                </div>
+                <StadiumDetailClient stadium={stadium} />
+            </section>
 
             <section className="site-card overflow-hidden">
                 <div className="border-b border-white/5 p-5 md:p-6">
@@ -247,8 +255,6 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                     )}
                 </ul>
             </section>
-
-            <StadiumDetailClient stadium={stadium} />
         </SiteShell>
     );
 }
