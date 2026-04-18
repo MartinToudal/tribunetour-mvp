@@ -75,12 +75,6 @@ export default function MapView() {
         }
     }, [countries, countryFilter, resolvedDefaultCountry]);
 
-    useEffect(() => {
-        if (countryFilter === 'Alle' && hasMultipleCountries) {
-            setCountryFilter(resolvedDefaultCountry);
-        }
-    }, [countryFilter, hasMultipleCountries, resolvedDefaultCountry]);
-
     const center = useMemo<[number, number]>(() => {
         if (countryFilter === 'de') {
             return [51.2, 10.4];
