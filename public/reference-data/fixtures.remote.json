@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-04-15T11:17:08.105Z",
-    "generatedAt": "2026-04-15T11:17:08.105Z",
-    "checksum": "12e89c032121f6eca440767f3b2df1c317111dfbcae8f403eb711d1a3f124363",
+    "version": "2026-04-19T16:34:44.270Z",
+    "generatedAt": "2026-04-19T16:34:44.270Z",
+    "checksum": "490adfff5478d8305c4dd39d15c338d109046e3c5570e97dc7e5a9519b18b072",
     "signature": null
   },
   "fixtures": [
@@ -3775,6 +3775,17 @@
       "homeTeamId": "en-sunderland",
       "awayTeamId": "en-nottingham-forest",
       "venueClubId": "en-sunderland",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "ech-r45-southampton-blackburn-rovers",
+      "kickoff": "2026-04-14T20:00:00+01:00",
+      "round": "Championship - 45. runde",
+      "homeTeamId": "en-southampton",
+      "awayTeamId": "en-blackburn-rovers",
+      "venueClubId": "en-southampton",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
