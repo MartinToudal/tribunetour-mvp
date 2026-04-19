@@ -3,6 +3,8 @@ import React from 'react';
 import SiteShell from './(site)/_components/SiteShell';
 import StadiumList from './(site)/_components/StadiumList';
 
+const appStoreUrl = 'https://apps.apple.com/dk/app/tribunetour/id6759063990';
+
 export default function Page() {
   return (
     <SiteShell>
@@ -14,6 +16,14 @@ export default function Page() {
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)] md:text-base">
               Find stadioner, få overblik over dine besøg og brug kortet til at udforske nye destinationer.
             </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a href={appStoreUrl} target="_blank" rel="noreferrer" className="cta-primary text-center">
+                Download i App Store
+              </a>
+              <span className="text-sm leading-6 text-[var(--muted)]">
+                Tag Tribunetour med på farten og hold styr på dine stadionbesøg direkte i appen.
+              </span>
+            </div>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
