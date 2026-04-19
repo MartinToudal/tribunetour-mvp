@@ -17,8 +17,18 @@ export default function Page() {
               Find stadioner, få overblik over dine besøg og brug kortet til at udforske nye destinationer.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a href={appStoreUrl} target="_blank" rel="noreferrer" className="cta-primary text-center">
-                Download i App Store
+              <a
+                href={appStoreUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-fit rounded-[18px] border border-white/10 bg-white/5 p-2 transition hover:border-white/20 hover:bg-white/10"
+                aria-label="Download Tribunetour i App Store"
+              >
+                <img
+                  src="/app-store-badge-dk.svg"
+                  alt="Download on the App Store"
+                  className="h-[52px] w-auto"
+                />
               </a>
               <span className="text-sm leading-6 text-[var(--muted)]">
                 Tag Tribunetour med på farten og hold styr på dine stadionbesøg direkte i appen.
