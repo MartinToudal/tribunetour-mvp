@@ -8,6 +8,7 @@ import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../(site)/_lib/leaguePacks';
 import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
+import { supabase } from '../(site)/_lib/supabaseClient';
 
 type Achievement = {
   id: string;
@@ -16,6 +17,26 @@ type Achievement = {
   isUnlocked: boolean;
   progressText: string;
 };
+
+type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'premium_full';
+
+const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = [
+  {
+    key: 'england_top_4',
+    label: 'England top 4',
+    description: 'Premier League, Championship, League One og League Two',
+  },
+  {
+    key: 'germany_top_3',
+    label: 'Tyskland top 3',
+    description: 'Bundesliga, 2. Bundesliga og 3. Liga',
+  },
+  {
+    key: 'premium_full',
+    label: 'Alle premium-pakker',
+    description: 'Adgang til alle nuværende og kommende premium-pakker',
+  },
+];
 
 function clampProgress(value: number, max: number) {
   return `${Math.min(value, max)}/${max}`;
@@ -26,6 +47,11 @@ export default function MyPage() {
   const [countryFilter, setCountryFilter] = useState<string>('Alle');
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
+  const [premiumRequestPackKey, setPremiumRequestPackKey] = useState<PremiumRequestPackKey>('premium_full');
+  const [premiumRequestMessage, setPremiumRequestMessage] = useState('');
+  const [premiumRequestStatus, setPremiumRequestStatus] = useState<string | null>(null);
+  const [premiumRequestError, setPremiumRequestError] = useState<string | null>(null);
+  const [isSubmittingPremiumRequest, setIsSubmittingPremiumRequest] = useState(false);
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, toggleVisited } = useVisitedModel();
   const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
   const { notes, isLoadingNotes } = useNotesModel();
@@ -147,6 +173,43 @@ export default function MyPage() {
   }, [scopedReviews]);
 
   const stadiumsWithPhotosCount = scopedPhotosByClubId.length;
+
+  async function submitPremiumRequest() {
+    if (!supabase || !isLoggedIn) {
+      setPremiumRequestError('Du skal være logget ind for at anmode om premium-adgang.');
+      return;
+    }
+
+    setIsSubmittingPremiumRequest(true);
+    setPremiumRequestStatus(null);
+    setPremiumRequestError(null);
+
+    try {
+      const { error } = await supabase.rpc('submit_premium_access_request', {
+        target_pack_key: premiumRequestPackKey,
+        request_message: premiumRequestMessage.trim() || null,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      const selectedLabel = premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.label ?? premiumRequestPackKey;
+      setPremiumRequestStatus(`Din anmodning om ${selectedLabel} er sendt.`);
+      setPremiumRequestMessage('');
+    } catch (caught) {
+      const message = caught instanceof Error ? caught.message : String(caught);
+      if (message.includes('auth_required')) {
+        setPremiumRequestError('Du skal være logget ind for at anmode om premium-adgang.');
+      } else if (message.includes('invalid_pack_key')) {
+        setPremiumRequestError('Den valgte premium-pakke er ikke gyldig.');
+      } else {
+        setPremiumRequestError(message);
+      }
+    } finally {
+      setIsSubmittingPremiumRequest(false);
+    }
+  }
 
   const visitedCitiesCount = useMemo(
     () => new Set(
@@ -473,6 +536,73 @@ export default function MyPage() {
       {hasSupabaseEnv && isLoggedIn && isLoadingProgression && (
         <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
           Opdaterer din progression…
+        </section>
+      )}
+
+      {hasSupabaseEnv && isLoggedIn && (
+        <section className="site-card-soft p-5 md:p-6">
+          <div className="label-eyebrow">Premium</div>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight">Anmod om adgang til flere ligaer</h3>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Send en anmodning, så vi kan åbne den rigtige landepakke for din konto.
+          </p>
+
+          <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div>
+              <label className="text-sm font-medium text-white" htmlFor="premium-request-pack">
+                Premium-pakke
+              </label>
+              <select
+                id="premium-request-pack"
+                className="field-input mt-2"
+                value={premiumRequestPackKey}
+                onChange={(event) => setPremiumRequestPackKey(event.target.value as PremiumRequestPackKey)}
+              >
+                {premiumRequestOptions.map((option) => (
+                  <option key={option.key} value={option.key}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                {premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.description}
+              </p>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-white" htmlFor="premium-request-message">
+                Besked, valgfri
+              </label>
+              <textarea
+                id="premium-request-message"
+                className="field-input mt-2 min-h-24"
+                value={premiumRequestMessage}
+                onChange={(event) => setPremiumRequestMessage(event.target.value)}
+                placeholder="Fx hvilken pakke du gerne vil teste først."
+              />
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="cta-primary mt-4"
+            disabled={isSubmittingPremiumRequest}
+            onClick={submitPremiumRequest}
+          >
+            {isSubmittingPremiumRequest ? 'Sender…' : 'Send anmodning'}
+          </button>
+
+          {premiumRequestStatus && (
+            <div className="mt-4 rounded-2xl border border-[rgba(184,255,106,0.25)] bg-[rgba(184,255,106,0.08)] px-4 py-3 text-sm text-[var(--accent)]">
+              {premiumRequestStatus}
+            </div>
+          )}
+
+          {premiumRequestError && (
+            <div className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+              {premiumRequestError}
+            </div>
+          )}
         </section>
       )}
 

@@ -14,6 +14,17 @@ type PremiumAccessRow = {
   updated_at: string;
 };
 
+type PremiumAccessRequestRow = {
+  request_id: string;
+  email: string;
+  user_id: string;
+  pack_key: PackKey;
+  status: 'open' | 'handled' | 'dismissed';
+  message: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 const packOptions: Array<{ key: PackKey; label: string; description: string }> = [
   {
     key: 'germany_top_3',
@@ -54,6 +65,7 @@ export default function PremiumAdminPage() {
   const [email, setEmail] = useState('');
   const [packKey, setPackKey] = useState<PackKey>('england_top_4');
   const [accessRows, setAccessRows] = useState<PremiumAccessRow[]>([]);
+  const [requestRows, setRequestRows] = useState<PremiumAccessRequestRow[]>([]);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +94,7 @@ export default function PremiumAdminPage() {
       if (!userData.user) {
         setIsAdmin(false);
         setAccessRows([]);
+        setRequestRows([]);
         return;
       }
 
@@ -95,6 +108,7 @@ export default function PremiumAdminPage() {
 
       if (!nextIsAdmin) {
         setAccessRows([]);
+        setRequestRows([]);
         return;
       }
 
@@ -104,9 +118,17 @@ export default function PremiumAdminPage() {
       }
 
       setAccessRows((data as PremiumAccessRow[] | null) ?? []);
+
+      const { data: requestsData, error: requestsError } = await supabase.rpc('list_premium_access_requests');
+      if (requestsError) {
+        throw requestsError;
+      }
+
+      setRequestRows((requestsData as PremiumAccessRequestRow[] | null) ?? []);
     } catch (caught) {
       setError(errorText(caught));
       setAccessRows([]);
+      setRequestRows([]);
     } finally {
       setIsLoading(false);
     }
@@ -281,6 +303,42 @@ export default function PremiumAdminPage() {
               <div className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
                 {error}
               </div>
+            )}
+          </section>
+
+          <section className="site-card overflow-hidden">
+            <div className="border-b border-white/5 p-5 md:p-6">
+              <h2 className="text-xl font-semibold">Premium-anmodninger</h2>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Viser brugere, der har anmodet om adgang. Tildel adgang ovenfor, når anmodningen er behandlet.
+              </p>
+            </div>
+
+            {!requestRows.length ? (
+              <div className="p-5 text-sm text-[var(--muted)] md:p-6">
+                Der er ingen premium-anmodninger endnu.
+              </div>
+            ) : (
+              <ul className="divide-y divide-white/5">
+                {requestRows.map((row) => (
+                  <li key={row.request_id} className="grid gap-3 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+                    <div>
+                      <div className="font-medium text-white">{row.email}</div>
+                      <div className="mt-1 text-sm text-[var(--muted)]">
+                        {packLabel(row.pack_key)} · {row.status === 'open' ? 'Åben' : row.status}
+                      </div>
+                      {row.message && (
+                        <div className="mt-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-[var(--muted)]">
+                          {row.message}
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-sm text-[var(--muted)]">
+                      {new Date(row.created_at).toLocaleDateString('da-DK')}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             )}
           </section>
 
