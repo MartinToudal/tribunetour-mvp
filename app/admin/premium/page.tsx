@@ -192,6 +192,33 @@ export default function PremiumAdminPage() {
     }
   }
 
+  async function approveAccessRequest(row: PremiumAccessRequestRow) {
+    if (!supabase) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+    setMessage(null);
+
+    try {
+      const { error: approveError } = await supabase.rpc('approve_premium_access_request', {
+        target_request_id: row.request_id,
+      });
+
+      if (approveError) {
+        throw approveError;
+      }
+
+      setMessage(`${row.email} har nu adgang til ${packLabel(row.pack_key)}.`);
+      await loadAdminState();
+    } catch (caught) {
+      setError(errorText(caught));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     await submitAccessChange('grant');
@@ -315,7 +342,7 @@ export default function PremiumAdminPage() {
             <div className="border-b border-white/5 p-5 md:p-6">
               <h2 className="text-xl font-semibold">Premium-anmodninger</h2>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Viser brugere, der har anmodet om adgang. Tildel adgang ovenfor, når anmodningen er behandlet.
+                Godkend en anmodning for automatisk at åbne den ønskede pakke på brugerens konto.
               </p>
             </div>
 
@@ -340,6 +367,16 @@ export default function PremiumAdminPage() {
                     </div>
                     <div className="text-sm text-[var(--muted)]">
                       {new Date(row.created_at).toLocaleDateString('da-DK')}
+                      {row.status === 'open' && (
+                        <button
+                          type="button"
+                          className="cta-secondary mt-3 justify-center disabled:cursor-not-allowed disabled:opacity-60"
+                          disabled={isSubmitting}
+                          onClick={() => approveAccessRequest(row)}
+                        >
+                          Godkend
+                        </button>
+                      )}
                     </div>
                   </li>
                 ))}

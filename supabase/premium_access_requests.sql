@@ -140,3 +140,64 @@ end;
 $function$;
 
 grant execute on function public.list_premium_access_requests() to authenticated;
+
+create or replace function public.approve_premium_access_request(
+  target_request_id uuid
+)
+returns table (
+  email text,
+  user_id uuid,
+  pack_key text,
+  enabled boolean,
+  updated_at timestamptz
+)
+language plpgsql
+security definer
+set search_path = public, auth
+as $function$
+declare
+  v_request public.premium_access_requests%rowtype;
+begin
+  if not public.is_current_user_admin() then
+    raise exception 'not_authorized';
+  end if;
+
+  select *
+  into v_request
+  from public.premium_access_requests request
+  where request.id = target_request_id;
+
+  if v_request.id is null then
+    raise exception 'request_not_found';
+  end if;
+
+  if v_request.pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full') then
+    raise exception 'invalid_pack_key';
+  end if;
+
+  insert into public.user_league_pack_access (user_id, pack_key, enabled)
+  values (v_request.user_id, v_request.pack_key, true)
+  on conflict on constraint user_league_pack_access_pkey
+  do update set
+    enabled = true,
+    updated_at = timezone('utc', now());
+
+  update public.premium_access_requests request
+  set status = 'handled'
+  where request.id = v_request.id;
+
+  return query
+  select
+    auth_user.email::text,
+    access.user_id,
+    access.pack_key,
+    access.enabled,
+    access.updated_at
+  from public.user_league_pack_access access
+  join auth.users auth_user on auth_user.id = access.user_id
+  where access.user_id = v_request.user_id
+    and access.pack_key = v_request.pack_key;
+end;
+$function$;
+
+grant execute on function public.approve_premium_access_request(uuid) to authenticated;
