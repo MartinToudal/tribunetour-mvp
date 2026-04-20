@@ -94,11 +94,12 @@ begin
     raise exception 'invalid_pack_key';
   end if;
 
-  select id
-  into v_target_user_id
-  from auth.users
-  where lower(email) = lower(trim(target_email))
-  limit 1;
+  v_target_user_id := (
+    select auth_user.id
+    from auth.users auth_user
+    where lower(auth_user.email) = lower(trim(target_email))
+    limit 1
+  );
 
   if v_target_user_id is null then
     raise exception 'user_not_found';
@@ -153,11 +154,12 @@ begin
     raise exception 'invalid_pack_key';
   end if;
 
-  select id
-  into v_target_user_id
-  from auth.users
-  where lower(email) = lower(trim(target_email))
-  limit 1;
+  v_target_user_id := (
+    select auth_user.id
+    from auth.users auth_user
+    where lower(auth_user.email) = lower(trim(target_email))
+    limit 1
+  );
 
   if v_target_user_id is null then
     raise exception 'user_not_found';
