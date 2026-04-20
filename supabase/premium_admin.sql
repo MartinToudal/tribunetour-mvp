@@ -84,7 +84,7 @@ security definer
 set search_path = public, auth
 as $$
 declare
-  target_user_id uuid;
+  v_target_user_id uuid;
 begin
   if not public.is_current_user_admin() then
     raise exception 'not_authorized';
@@ -95,17 +95,17 @@ begin
   end if;
 
   select id
-  into target_user_id
+  into v_target_user_id
   from auth.users
   where lower(email) = lower(trim(target_email))
   limit 1;
 
-  if target_user_id is null then
+  if v_target_user_id is null then
     raise exception 'user_not_found';
   end if;
 
   insert into public.user_league_pack_access (user_id, pack_key, enabled)
-  values (target_user_id, target_pack_key, true)
+  values (v_target_user_id, target_pack_key, true)
   on conflict (user_id, pack_key)
   do update set
     enabled = excluded.enabled,
@@ -120,7 +120,7 @@ begin
     access.updated_at
   from public.user_league_pack_access access
   join auth.users auth_user on auth_user.id = access.user_id
-  where access.user_id = target_user_id
+  where access.user_id = v_target_user_id
     and access.pack_key = target_pack_key;
 end;
 $$;
@@ -143,7 +143,7 @@ security definer
 set search_path = public, auth
 as $$
 declare
-  target_user_id uuid;
+  v_target_user_id uuid;
 begin
   if not public.is_current_user_admin() then
     raise exception 'not_authorized';
@@ -154,17 +154,17 @@ begin
   end if;
 
   select id
-  into target_user_id
+  into v_target_user_id
   from auth.users
   where lower(email) = lower(trim(target_email))
   limit 1;
 
-  if target_user_id is null then
+  if v_target_user_id is null then
     raise exception 'user_not_found';
   end if;
 
   insert into public.user_league_pack_access (user_id, pack_key, enabled)
-  values (target_user_id, target_pack_key, false)
+  values (v_target_user_id, target_pack_key, false)
   on conflict (user_id, pack_key)
   do update set
     enabled = false,
@@ -179,7 +179,7 @@ begin
     access.updated_at
   from public.user_league_pack_access access
   join auth.users auth_user on auth_user.id = access.user_id
-  where access.user_id = target_user_id
+  where access.user_id = v_target_user_id
     and access.pack_key = target_pack_key;
 end;
 $$;
