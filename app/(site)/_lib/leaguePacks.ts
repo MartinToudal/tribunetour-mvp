@@ -40,14 +40,14 @@ export const coreDenmarkLeaguePack: LeaguePackDefinition = {
 export const experimentalLeaguePacks: LeaguePackDefinition[] = [
   {
     id: 'germany_top_3',
-    label: 'Tyskland top 3',
+    label: 'Tyskland',
     countryCode: 'de',
     isCore: false,
     stadiums: germanyTop3Stadiums as Stadium[],
   },
   {
     id: 'england_top_4',
-    label: 'England top 4',
+    label: 'England',
     countryCode: 'en',
     isCore: false,
     stadiums: englandTop4Stadiums as Stadium[],

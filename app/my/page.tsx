@@ -23,12 +23,12 @@ type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'premium_full';
 const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = [
   {
     key: 'england_top_4',
-    label: 'England top 4',
+    label: 'England',
     description: 'Premier League, Championship, League One og League Two',
   },
   {
     key: 'germany_top_3',
-    label: 'Tyskland top 3',
+    label: 'Tyskland',
     description: 'Bundesliga, 2. Bundesliga og 3. Liga',
   },
   {

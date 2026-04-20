@@ -28,12 +28,12 @@ type PremiumAccessRequestRow = {
 const packOptions: Array<{ key: PackKey; label: string; description: string }> = [
   {
     key: 'germany_top_3',
-    label: 'Tyskland top 3',
+    label: 'Tyskland',
     description: 'Bundesliga, 2. Bundesliga og 3. Liga',
   },
   {
     key: 'england_top_4',
-    label: 'England top 4',
+    label: 'England',
     description: 'Premier League, Championship, League One og League Two',
   },
   {
