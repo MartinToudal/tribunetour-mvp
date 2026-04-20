@@ -1014,6 +1014,32 @@
     "shortCode": "SAM2"
   },
   {
+    "id": "it-ravenna",
+    "name": "Stadio Bruno Benelli",
+    "team": "Ravenna",
+    "league": "Serie C - Gruppe B",
+    "city": "Ravenna",
+    "lat": 44.404,
+    "lon": 12.19,
+    "countryCode": "it",
+    "leagueCode": "it-serie-c-b",
+    "leaguePack": "italy_top_3",
+    "shortCode": "RAV"
+  },
+  {
+    "id": "it-rimini",
+    "name": "Stadio Romeo Neri",
+    "team": "Rimini",
+    "league": "Serie C - Gruppe B",
+    "city": "Rimini",
+    "lat": 44.052,
+    "lon": 12.573,
+    "countryCode": "it",
+    "leagueCode": "it-serie-c-b",
+    "leaguePack": "italy_top_3",
+    "shortCode": "RIM"
+  },
+  {
     "id": "it-altamura",
     "name": "Stadio Tonino D Angelo",
     "team": "Altamura",
