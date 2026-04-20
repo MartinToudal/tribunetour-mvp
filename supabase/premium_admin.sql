@@ -107,7 +107,7 @@ begin
 
   insert into public.user_league_pack_access (user_id, pack_key, enabled)
   values (v_target_user_id, target_pack_key, true)
-  on conflict (user_id, pack_key)
+  on conflict on constraint user_league_pack_access_pkey
   do update set
     enabled = excluded.enabled,
     updated_at = timezone('utc', now());
@@ -167,7 +167,7 @@ begin
 
   insert into public.user_league_pack_access (user_id, pack_key, enabled)
   values (v_target_user_id, target_pack_key, false)
-  on conflict (user_id, pack_key)
+  on conflict on constraint user_league_pack_access_pkey
   do update set
     enabled = false,
     updated_at = timezone('utc', now());
