@@ -30,10 +30,16 @@ export async function getEnabledLeaguePacksForUser(userId: string): Promise<Leag
     if (row.pack_key === 'premium_full') {
       ids.add('germany_top_3');
       ids.add('england_top_4');
+      ids.add('italy_top_3');
       return;
     }
 
-    if (row.pack_key === 'core_denmark' || row.pack_key === 'germany_top_3' || row.pack_key === 'england_top_4') {
+    if (
+      row.pack_key === 'core_denmark' ||
+      row.pack_key === 'germany_top_3' ||
+      row.pack_key === 'england_top_4' ||
+      row.pack_key === 'italy_top_3'
+    ) {
       ids.add(row.pack_key);
     }
   });

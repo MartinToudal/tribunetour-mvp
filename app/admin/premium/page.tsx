@@ -4,7 +4,7 @@ import React, { FormEvent, useEffect, useMemo, useState } from 'react';
 import SiteShell from '../../(site)/_components/SiteShell';
 import { hasSupabaseEnv, supabase } from '../../(site)/_lib/supabaseClient';
 
-type PackKey = 'germany_top_3' | 'england_top_4' | 'premium_full';
+type PackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'premium_full';
 
 type PremiumAccessRow = {
   email: string;
@@ -35,6 +35,11 @@ const packOptions: Array<{ key: PackKey; label: string; description: string }> =
     key: 'england_top_4',
     label: 'England',
     description: 'Premier League, Championship, League One og League Two',
+  },
+  {
+    key: 'italy_top_3',
+    label: 'Italien',
+    description: 'Serie A, Serie B og Serie C',
   },
   {
     key: 'premium_full',

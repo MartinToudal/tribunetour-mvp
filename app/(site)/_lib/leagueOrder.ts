@@ -10,6 +10,11 @@ export const LEAGUE_ORDER = [
   'Championship',
   'League One',
   'League Two',
+  'Serie A',
+  'Serie B',
+  'Serie C - Gruppe A',
+  'Serie C - Gruppe B',
+  'Serie C - Gruppe C',
 ] as const;
 
 const leagueRankMap = new Map<string, number>(LEAGUE_ORDER.map((league, index) => [league, index]));

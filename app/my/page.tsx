@@ -18,7 +18,7 @@ type Achievement = {
   progressText: string;
 };
 
-type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'premium_full';
+type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'premium_full';
 
 const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = [
   {
@@ -30,6 +30,11 @@ const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; 
     key: 'germany_top_3',
     label: 'Tyskland',
     description: 'Bundesliga, 2. Bundesliga og 3. Liga',
+  },
+  {
+    key: 'italy_top_3',
+    label: 'Italien',
+    description: 'Serie A, Serie B og Serie C',
   },
   {
     key: 'premium_full',
@@ -522,7 +527,7 @@ export default function MyPage() {
           <div className="label-eyebrow">League pack</div>
           <h3 className="mt-2 text-xl font-semibold tracking-tight">Ekstra ligaer låses op efter login</h3>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan ekstra ligaer som Tyskland og England indgå som eksperimentelle league packs.
+            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan ekstra lande og ligaer indgå som premium-pakker.
           </p>
         </section>
       )}

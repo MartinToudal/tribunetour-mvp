@@ -81,10 +81,12 @@ Tabellen bruges til at afgøre hvilke `pack_key`s den enkelte bruger må se.
 Eksempel:
 - `germany_top_3`
 - `england_top_4`
+- `italy_top_3`
+- `premium_full`
 
 Aktuel retning:
 - brugeren ser en pakke hvis de har entitlement til den konkrete `pack_key`
-- senere kan modellen udvides med fx `premium_full`
+- `premium_full` giver adgang til alle premium-pakker, der er bygget ind i den aktuelle version
 
 Se også:
 - `../Tribunetour/Tribunetour_docs/docs/VISITED_BACKEND_CONTRACT.md`

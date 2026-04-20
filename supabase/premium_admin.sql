@@ -61,7 +61,7 @@ begin
     access.updated_at
   from public.user_league_pack_access access
   join auth.users auth_user on auth_user.id = access.user_id
-  where access.pack_key in ('germany_top_3', 'england_top_4', 'premium_full')
+  where access.pack_key in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full')
   order by auth_user.email, access.pack_key;
 end;
 $$;
@@ -90,7 +90,7 @@ begin
     raise exception 'not_authorized';
   end if;
 
-  if target_pack_key not in ('germany_top_3', 'england_top_4', 'premium_full') then
+  if target_pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full') then
     raise exception 'invalid_pack_key';
   end if;
 
@@ -150,7 +150,7 @@ begin
     raise exception 'not_authorized';
   end if;
 
-  if target_pack_key not in ('germany_top_3', 'england_top_4', 'premium_full') then
+  if target_pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full') then
     raise exception 'invalid_pack_key';
   end if;
 
