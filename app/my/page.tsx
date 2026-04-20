@@ -47,6 +47,31 @@ function clampProgress(value: number, max: number) {
   return `${Math.min(value, max)}/${max}`;
 }
 
+async function notifyPremiumAccessRequest(requestId: string) {
+  if (!supabase) {
+    return;
+  }
+
+  const { data } = await supabase.auth.getSession();
+  const accessToken = data.session?.access_token;
+  if (!accessToken) {
+    return;
+  }
+
+  try {
+    await fetch('/api/premium-access-request-notification', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ request_id: requestId }),
+    });
+  } catch (caught) {
+    console.warn('Premium request notification failed', caught);
+  }
+}
+
 export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
   const [countryFilter, setCountryFilter] = useState<string>('Alle');
@@ -190,13 +215,18 @@ export default function MyPage() {
     setPremiumRequestError(null);
 
     try {
-      const { error } = await supabase.rpc('submit_premium_access_request', {
+      const { data, error } = await supabase.rpc('submit_premium_access_request', {
         target_pack_key: premiumRequestPackKey,
         request_message: premiumRequestMessage.trim() || null,
       });
 
       if (error) {
         throw error;
+      }
+
+      const requestId = ((data as Array<{ request_id?: string }> | null) ?? [])[0]?.request_id;
+      if (requestId) {
+        await notifyPremiumAccessRequest(requestId);
       }
 
       const selectedLabel = premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.label ?? premiumRequestPackKey;

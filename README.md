@@ -65,6 +65,9 @@ Validering:
 ### Env vars
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `RESEND_API_KEY` for mailnotifikationer ved nye premium-anmodninger
+- `PREMIUM_REQUEST_NOTIFY_TO` som modtageradresse for premium-anmodninger
+- `PREMIUM_REQUEST_NOTIFY_FROM` som afsenderadresse for premium-anmodninger, fx `Tribunetour <premium@tribunetour.dk>`
 
 ### Forventet Supabase-setup
 - `stadiums`-tabel med mindst: `id`, `name`, `team`, `league`, `city`, `lat`, `lon`
@@ -87,6 +90,7 @@ Eksempel:
 Aktuel retning:
 - brugeren ser en pakke hvis de har entitlement til den konkrete `pack_key`
 - `premium_full` giver adgang til alle premium-pakker, der er bygget ind i den aktuelle version
+- nye premium-anmodninger kan sende mail via `app/api/premium-access-request-notification/route.ts`
 
 Se også:
 - `../Tribunetour/Tribunetour_docs/docs/VISITED_BACKEND_CONTRACT.md`
