@@ -47,29 +47,35 @@ function clampProgress(value: number, max: number) {
   return `${Math.min(value, max)}/${max}`;
 }
 
-async function notifyPremiumAccessRequest(requestId: string) {
+async function submitPremiumAccessRequestViaApi(targetPackKey: PremiumRequestPackKey, requestMessage: string) {
   if (!supabase) {
-    return;
+    throw new Error('Supabase er ikke konfigureret.');
   }
 
   const { data } = await supabase.auth.getSession();
   const accessToken = data.session?.access_token;
   if (!accessToken) {
-    return;
+    throw new Error('auth_required');
   }
 
-  try {
-    await fetch('/api/premium-access-request-notification', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ request_id: requestId }),
-    });
-  } catch (caught) {
-    console.warn('Premium request notification failed', caught);
+  const response = await fetch('/api/premium-access-request', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      target_pack_key: targetPackKey,
+      request_message: requestMessage.trim() || null,
+    }),
+  });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(typeof payload?.error === 'string' ? payload.error : 'request_failed');
   }
+
+  return payload;
 }
 
 export default function MyPage() {
@@ -215,19 +221,7 @@ export default function MyPage() {
     setPremiumRequestError(null);
 
     try {
-      const { data, error } = await supabase.rpc('submit_premium_access_request', {
-        target_pack_key: premiumRequestPackKey,
-        request_message: premiumRequestMessage.trim() || null,
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      const requestId = ((data as Array<{ request_id?: string }> | null) ?? [])[0]?.request_id;
-      if (requestId) {
-        await notifyPremiumAccessRequest(requestId);
-      }
+      await submitPremiumAccessRequestViaApi(premiumRequestPackKey, premiumRequestMessage);
 
       const selectedLabel = premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.label ?? premiumRequestPackKey;
       setPremiumRequestStatus(`Din anmodning om ${selectedLabel} er sendt.`);
