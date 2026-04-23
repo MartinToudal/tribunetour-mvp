@@ -34,14 +34,18 @@ export async function POST(request: NextRequest) {
 
   const authorization = request.headers.get('authorization') ?? '';
   const token = authorization.replace(/^Bearer\s+/i, '').trim();
-  if (!token) {
-    return json(401, { error: 'auth_required' });
-  }
 
   const body = await request.json().catch(() => null) as {
     target_pack_key?: string;
     request_message?: string | null;
+    access_token?: string;
   } | null;
+
+  const bodyToken = body?.access_token?.trim() ?? '';
+  const effectiveToken = token || bodyToken;
+  if (!effectiveToken) {
+    return json(401, { error: 'auth_required' });
+  }
 
   const targetPackKey = body?.target_pack_key?.trim();
   const requestMessage = body?.request_message?.trim() || null;
@@ -57,12 +61,12 @@ export async function POST(request: NextRequest) {
     },
     global: {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${effectiveToken}`,
       },
     },
   });
 
-  const { data: userData, error: userError } = await supabase.auth.getUser(token);
+  const { data: userData, error: userError } = await supabase.auth.getUser(effectiveToken);
   if (userError || !userData.user) {
     return json(401, { error: 'auth_required' });
   }
