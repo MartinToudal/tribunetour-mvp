@@ -19,6 +19,14 @@ type Achievement = {
 };
 
 type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'premium_full';
+type PremiumAccessRequestRow = {
+  id: string;
+  pack_key: PremiumRequestPackKey;
+  status: 'open' | 'handled' | 'dismissed';
+  message: string | null;
+  created_at: string;
+  updated_at: string;
+};
 
 const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = [
   {
@@ -88,6 +96,8 @@ export default function MyPage() {
   const [premiumRequestStatus, setPremiumRequestStatus] = useState<string | null>(null);
   const [premiumRequestError, setPremiumRequestError] = useState<string | null>(null);
   const [isSubmittingPremiumRequest, setIsSubmittingPremiumRequest] = useState(false);
+  const [premiumRequestRows, setPremiumRequestRows] = useState<PremiumAccessRequestRow[]>([]);
+  const [isLoadingPremiumRequestRows, setIsLoadingPremiumRequestRows] = useState(false);
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, userEmail, visited, toggleVisited } = useVisitedModel();
   const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
   const { notes, isLoadingNotes } = useNotesModel();
@@ -209,6 +219,58 @@ export default function MyPage() {
   }, [scopedReviews]);
 
   const stadiumsWithPhotosCount = scopedPhotosByClubId.length;
+  const openPremiumRequestRows = useMemo(
+    () => premiumRequestRows.filter((row) => row.status === 'open'),
+    [premiumRequestRows]
+  );
+  const selectedPackOpenRequest = useMemo(
+    () => openPremiumRequestRows.find((row) => row.pack_key === premiumRequestPackKey) ?? null,
+    [openPremiumRequestRows, premiumRequestPackKey]
+  );
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function loadPremiumRequestRows() {
+      if (!supabase || !isLoggedIn) {
+        if (!isCancelled) {
+          setPremiumRequestRows([]);
+          setIsLoadingPremiumRequestRows(false);
+        }
+        return;
+      }
+
+      setIsLoadingPremiumRequestRows(true);
+      try {
+        const { data, error } = await supabase
+          .from('premium_access_requests')
+          .select('id, pack_key, status, message, created_at, updated_at')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        if (!isCancelled) {
+          setPremiumRequestRows((data as PremiumAccessRequestRow[] | null) ?? []);
+        }
+      } catch {
+        if (!isCancelled) {
+          setPremiumRequestRows([]);
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoadingPremiumRequestRows(false);
+        }
+      }
+    }
+
+    loadPremiumRequestRows();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [isLoggedIn]);
 
   async function submitPremiumRequest() {
     if (!supabase || !isLoggedIn) {
@@ -226,6 +288,13 @@ export default function MyPage() {
       const selectedLabel = premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.label ?? premiumRequestPackKey;
       setPremiumRequestStatus(`Din anmodning om ${selectedLabel} er sendt.`);
       setPremiumRequestMessage('');
+      const { data, error } = await supabase
+        .from('premium_access_requests')
+        .select('id, pack_key, status, message, created_at, updated_at')
+        .order('created_at', { ascending: false });
+      if (!error) {
+        setPremiumRequestRows((data as PremiumAccessRequestRow[] | null) ?? []);
+      }
     } catch (caught) {
       const message = caught instanceof Error ? caught.message : String(caught);
       if (message.includes('auth_required')) {
@@ -576,6 +645,27 @@ export default function MyPage() {
             Send en anmodning, så vi kan åbne den rigtige landepakke for din konto.
           </p>
 
+          {isLoadingPremiumRequestRows && (
+            <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+              Henter dine premium-anmodninger…
+            </p>
+          )}
+
+          {!isLoadingPremiumRequestRows && selectedPackOpenRequest && (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+              Du har allerede en åben anmodning om {premiumRequestOptions.find((option) => option.key === selectedPackOpenRequest.pack_key)?.label ?? selectedPackOpenRequest.pack_key}.
+              <div className="mt-1 text-xs text-[var(--muted)]">
+                Sendt {new Date(selectedPackOpenRequest.created_at).toLocaleString('da-DK')}.
+              </div>
+            </div>
+          )}
+
+          {!isLoadingPremiumRequestRows && !selectedPackOpenRequest && openPremiumRequestRows.length > 0 && (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+              Du har allerede åbne anmodninger om {openPremiumRequestRows.map((row) => premiumRequestOptions.find((option) => option.key === row.pack_key)?.label ?? row.pack_key).join(', ')}.
+            </div>
+          )}
+
           <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div>
               <label className="text-sm font-medium text-white" htmlFor="premium-request-pack">
@@ -615,10 +705,10 @@ export default function MyPage() {
           <button
             type="button"
             className="cta-primary mt-4"
-            disabled={isSubmittingPremiumRequest}
+            disabled={isSubmittingPremiumRequest || Boolean(selectedPackOpenRequest)}
             onClick={submitPremiumRequest}
           >
-            {isSubmittingPremiumRequest ? 'Sender…' : 'Send anmodning'}
+            {isSubmittingPremiumRequest ? 'Sender…' : selectedPackOpenRequest ? 'Anmodning allerede sendt' : 'Send anmodning'}
           </button>
 
           {premiumRequestStatus && (

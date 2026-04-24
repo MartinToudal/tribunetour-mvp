@@ -82,6 +82,14 @@ export default function PremiumAdminPage() {
     () => accessRows.filter((row) => row.enabled),
     [accessRows]
   );
+  const openRequestRows = useMemo(
+    () => requestRows.filter((row) => row.status === 'open'),
+    [requestRows]
+  );
+  const handledRequestRows = useMemo(
+    () => requestRows.filter((row) => row.status !== 'open'),
+    [requestRows]
+  );
 
   async function loadAdminState() {
     if (!supabase) {
@@ -344,6 +352,9 @@ export default function PremiumAdminPage() {
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                 Godkend en anmodning for automatisk at åbne den ønskede pakke på brugerens konto.
               </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                {openRequestRows.length} åbne · {handledRequestRows.length} behandlede
+              </p>
             </div>
 
             {!requestRows.length ? (
@@ -351,36 +362,75 @@ export default function PremiumAdminPage() {
                 Der er ingen premium-anmodninger endnu.
               </div>
             ) : (
-              <ul className="divide-y divide-white/5">
-                {requestRows.map((row) => (
-                  <li key={row.request_id} className="grid gap-3 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
-                    <div>
-                      <div className="font-medium text-white">{row.email}</div>
-                      <div className="mt-1 text-sm text-[var(--muted)]">
-                        {packLabel(row.pack_key)} · {row.status === 'open' ? 'Åben' : row.status}
-                      </div>
-                      {row.message && (
-                        <div className="mt-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-[var(--muted)]">
-                          {row.message}
+              <div>
+                <div className="border-b border-white/5 px-5 py-4 md:px-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Åbne</h3>
+                </div>
+                {!openRequestRows.length ? (
+                  <div className="p-5 text-sm text-[var(--muted)] md:p-6">
+                    Ingen åbne anmodninger lige nu.
+                  </div>
+                ) : (
+                  <ul className="divide-y divide-white/5">
+                    {openRequestRows.map((row) => (
+                      <li key={row.request_id} className="grid gap-3 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+                        <div>
+                          <div className="font-medium text-white">{row.email}</div>
+                          <div className="mt-1 text-sm text-[var(--muted)]">
+                            {packLabel(row.pack_key)} · Åben
+                          </div>
+                          {row.message && (
+                            <div className="mt-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-[var(--muted)]">
+                              {row.message}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                    <div className="text-sm text-[var(--muted)]">
-                      {new Date(row.created_at).toLocaleDateString('da-DK')}
-                      {row.status === 'open' && (
-                        <button
-                          type="button"
-                          className="cta-secondary mt-3 justify-center disabled:cursor-not-allowed disabled:opacity-60"
-                          disabled={isSubmitting}
-                          onClick={() => approveAccessRequest(row)}
-                        >
-                          Godkend
-                        </button>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                        <div className="text-sm text-[var(--muted)]">
+                          {new Date(row.created_at).toLocaleString('da-DK')}
+                          <button
+                            type="button"
+                            className="cta-secondary mt-3 justify-center disabled:cursor-not-allowed disabled:opacity-60"
+                            disabled={isSubmitting}
+                            onClick={() => approveAccessRequest(row)}
+                          >
+                            Godkend
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="border-y border-white/5 px-5 py-4 md:px-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Senest behandlede</h3>
+                </div>
+                {!handledRequestRows.length ? (
+                  <div className="p-5 text-sm text-[var(--muted)] md:p-6">
+                    Ingen behandlede anmodninger endnu.
+                  </div>
+                ) : (
+                  <ul className="divide-y divide-white/5">
+                    {handledRequestRows.slice(0, 10).map((row) => (
+                      <li key={row.request_id} className="grid gap-3 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+                        <div>
+                          <div className="font-medium text-white">{row.email}</div>
+                          <div className="mt-1 text-sm text-[var(--muted)]">
+                            {packLabel(row.pack_key)} · {row.status === 'handled' ? 'Godkendt' : 'Afvist'}
+                          </div>
+                          {row.message && (
+                            <div className="mt-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-[var(--muted)]">
+                              {row.message}
+                            </div>
+                          )}
+                        </div>
+                        <div className="text-sm text-[var(--muted)]">
+                          {new Date(row.updated_at).toLocaleString('da-DK')}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             )}
           </section>
 
