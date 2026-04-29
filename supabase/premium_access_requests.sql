@@ -1,7 +1,7 @@
 create table if not exists public.premium_access_requests (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  pack_key text not null check (pack_key in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full')),
+  pack_key text not null check (pack_key in ('germany_top_3', 'england_top_4', 'italy_top_3', 'spain_top_4', 'premium_full')),
   status text not null default 'open' check (status in ('open', 'handled', 'dismissed')),
   message text,
   created_at timestamptz not null default timezone('utc', now()),
@@ -15,7 +15,7 @@ drop constraint if exists premium_access_requests_pack_key_check;
 
 alter table public.premium_access_requests
 add constraint premium_access_requests_pack_key_check
-check (pack_key in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full'));
+check (pack_key in ('germany_top_3', 'england_top_4', 'italy_top_3', 'spain_top_4', 'premium_full'));
 
 drop policy if exists premium_access_requests_select_own on public.premium_access_requests;
 create policy premium_access_requests_select_own
@@ -68,7 +68,7 @@ begin
     raise exception 'auth_required';
   end if;
 
-  if target_pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full') then
+  if target_pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'spain_top_4', 'premium_full') then
     raise exception 'invalid_pack_key';
   end if;
 
@@ -171,7 +171,7 @@ begin
     raise exception 'request_not_found';
   end if;
 
-  if v_request.pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'premium_full') then
+  if v_request.pack_key not in ('germany_top_3', 'england_top_4', 'italy_top_3', 'spain_top_4', 'premium_full') then
     raise exception 'invalid_pack_key';
   end if;
 

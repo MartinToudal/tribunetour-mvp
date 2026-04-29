@@ -85,6 +85,7 @@ Eksempel:
 - `germany_top_3`
 - `england_top_4`
 - `italy_top_3`
+- `spain_top_4`
 - `premium_full`
 
 Aktuel retning:

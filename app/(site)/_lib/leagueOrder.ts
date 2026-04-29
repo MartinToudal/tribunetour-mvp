@@ -15,6 +15,10 @@ export const LEAGUE_ORDER = [
   'Serie C - Gruppe A',
   'Serie C - Gruppe B',
   'Serie C - Gruppe C',
+  'La Liga',
+  'Segunda División',
+  'Primera Federación - Gruppe 1',
+  'Primera Federación - Gruppe 2',
 ] as const;
 
 const leagueRankMap = new Map<string, number>(LEAGUE_ORDER.map((league, index) => [league, index]));
