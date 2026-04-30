@@ -79,6 +79,47 @@ begin
     nullif(trim(coalesce(request_message, '')), '')
   );
 
+  insert into public.admin_notifications (
+    user_id,
+    type,
+    title,
+    body,
+    payload_json
+  )
+  select
+    admin_user.user_id,
+    'premium_access_request',
+    'Ny premium-anmodning',
+    coalesce(auth_user.email, 'Ukendt bruger') || ' vil have adgang til ' ||
+      case target_pack_key
+        when 'germany_top_3' then 'Tyskland'
+        when 'england_top_4' then 'England'
+        when 'italy_top_3' then 'Italien'
+        when 'spain_top_4' then 'Spanien'
+        when 'france_top_3' then 'Frankrig'
+        when 'premium_full' then 'alle premium-pakker'
+        else target_pack_key
+      end || '.',
+    jsonb_build_object(
+      'request_id',
+      (
+        select request.id
+        from public.premium_access_requests request
+        where request.user_id = auth.uid()
+          and request.pack_key = target_pack_key
+        order by request.created_at desc
+        limit 1
+      ),
+      'pack_key',
+      target_pack_key,
+      'requester_user_id',
+      auth.uid(),
+      'requester_email',
+      auth_user.email
+    )
+  from public.admin_users admin_user
+  left join auth.users auth_user on auth_user.id = auth.uid();
+
   return query
   select
     request.id,
@@ -185,6 +226,14 @@ begin
   update public.premium_access_requests request
   set status = 'handled'
   where request.id = v_request.id;
+
+  update public.admin_notifications notification
+  set
+    is_actioned = true,
+    is_read = true,
+    updated_at = timezone('utc', now())
+  where notification.type = 'premium_access_request'
+    and notification.payload_json ->> 'request_id' = v_request.id::text;
 
   return query
   select

@@ -1,20 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { packLabels, sendPremiumRequestPushNotifications } from '../_lib/adminNotificationDelivery';
+
+export const runtime = 'nodejs';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const resendApiKey = process.env.RESEND_API_KEY;
 const notificationTo = process.env.PREMIUM_REQUEST_NOTIFY_TO;
 const notificationFrom = process.env.PREMIUM_REQUEST_NOTIFY_FROM ?? 'Tribunetour <onboarding@resend.dev>';
-
-const packLabels: Record<string, string> = {
-  germany_top_3: 'Tyskland',
-  england_top_4: 'England',
-  italy_top_3: 'Italien',
-  spain_top_4: 'Spanien',
-  france_top_3: 'Frankrig',
-  premium_full: 'Alle premium-pakker',
-};
 
 function json(status: number, body: Record<string, unknown>) {
   return NextResponse.json(body, { status });
@@ -95,6 +89,7 @@ export async function POST(request: NextRequest) {
     return json(500, { error: 'invalid_payload' });
   }
 
+  let emailNotified = false;
   if (resendApiKey && notificationTo) {
     const packLabel = packLabels[targetPackKey] ?? targetPackKey;
     const adminUrl = new URL('/admin/premium', request.nextUrl.origin).toString();
@@ -148,9 +143,22 @@ export async function POST(request: NextRequest) {
     if (!emailResponse.ok) {
       const responseText = await emailResponse.text();
       console.error('Premium access request email failed', emailResponse.status, responseText);
-      return json(502, { error: 'email_failed', request_id: requestId });
+    } else {
+      emailNotified = true;
     }
   }
 
-  return json(200, { ok: true, request_id: requestId });
+  const pushSummary = await sendPremiumRequestPushNotifications({
+    requestId,
+    targetPackKey,
+    requesterEmail: userData.user.email ?? 'Ukendt bruger',
+  });
+
+  return json(200, {
+    ok: true,
+    request_id: requestId,
+    email_notified: emailNotified,
+    push_sent: pushSummary.sent,
+    push_skipped_reason: pushSummary.skippedReason,
+  });
 }
