@@ -1,13 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 import { connect } from 'node:http2';
-import { createSign } from 'node:crypto';
+import { createPrivateKey, createSign } from 'node:crypto';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const apnsKeyId = process.env.APNS_KEY_ID;
 const apnsTeamId = process.env.APNS_TEAM_ID;
 const apnsTopic = process.env.APNS_TOPIC ?? 'everystadium.Tribunetour';
-const apnsPrivateKey = process.env.APNS_PRIVATE_KEY?.replaceAll('\\n', '\n');
+const apnsPrivateKey = normalizeApnsPrivateKey(process.env.APNS_PRIVATE_KEY);
 const useApnsSandbox = process.env.APNS_USE_SANDBOX === 'true';
 
 const apnsEndpoints = {
@@ -159,7 +159,14 @@ function createApnsJwt() {
   const signer = createSign('SHA256');
   signer.update(unsignedToken);
   signer.end();
-  const signature = signer.sign(apnsPrivateKey!);
+  const privateKey = createPrivateKey({
+    key: apnsPrivateKey!,
+    format: 'pem',
+  });
+  const signature = signer.sign({
+    key: privateKey,
+    dsaEncoding: 'ieee-p1363',
+  });
   return `${unsignedToken}.${base64UrlEncode(signature)}`;
 }
 
@@ -301,6 +308,34 @@ function shouldRetryInAlternateEnvironment(status: number, reason?: string) {
   }
 
   return ['BadDeviceToken', 'DeviceTokenNotForTopic'].includes(reason);
+}
+
+function normalizeApnsPrivateKey(rawKey?: string) {
+  if (!rawKey) {
+    return undefined;
+  }
+
+  let normalized = rawKey.trim();
+
+  if (
+    (normalized.startsWith('"') && normalized.endsWith('"')) ||
+    (normalized.startsWith("'") && normalized.endsWith("'"))
+  ) {
+    normalized = normalized.slice(1, -1).trim();
+  }
+
+  normalized = normalized
+    .replaceAll('\r\n', '\n')
+    .replaceAll('\\r\\n', '\n')
+    .replaceAll('\\n', '\n');
+
+  if (!normalized.includes('BEGIN PRIVATE KEY')) {
+    const body = normalized.replace(/\s+/g, '');
+    const wrappedBody = body.match(/.{1,64}/g)?.join('\n') ?? body;
+    normalized = `-----BEGIN PRIVATE KEY-----\n${wrappedBody}\n-----END PRIVATE KEY-----`;
+  }
+
+  return normalized;
 }
 
 function base64UrlEncode(input: string | Buffer) {
