@@ -10,7 +10,10 @@ const apnsTopic = process.env.APNS_TOPIC ?? 'everystadium.Tribunetour';
 const apnsPrivateKey = process.env.APNS_PRIVATE_KEY?.replaceAll('\\n', '\n');
 const useApnsSandbox = process.env.APNS_USE_SANDBOX === 'true';
 
-const apnsEndpoint = useApnsSandbox ? 'https://api.sandbox.push.apple.com' : 'https://api.push.apple.com';
+const apnsEndpoints = {
+  production: 'https://api.push.apple.com',
+  sandbox: 'https://api.sandbox.push.apple.com',
+} as const;
 
 type PushSummary = {
   sent: number;
@@ -108,12 +111,14 @@ export async function sendPremiumRequestPushNotifications(params: {
 
   for (const target of pushTargets) {
     const badge = badgeCounts.get(target.user_id) ?? 1;
-    const result = await sendApnsPush({
+    const preferredEnvironment: ApnsEnvironment = useApnsSandbox ? 'sandbox' : 'production';
+    const result = await sendApnsPushWithFallback({
       jwt: pushJwt,
       deviceToken: target.device_token,
       badge,
       title,
       body,
+      preferredEnvironment,
       payload: {
         type: 'premium_access_request',
         request_id: params.requestId,
@@ -164,6 +169,7 @@ async function sendApnsPush(params: {
   badge: number;
   title: string;
   body: string;
+  environment: ApnsEnvironment;
   payload: Record<string, string>;
 }): Promise<{ ok: boolean; status: number; reason?: string }> {
   const body = JSON.stringify({
@@ -179,7 +185,7 @@ async function sendApnsPush(params: {
   });
 
   return new Promise((resolve) => {
-    const client = connect(apnsEndpoint);
+    const client = connect(apnsEndpoints[params.environment]);
     client.on('error', (error) => {
       console.error('APNs connection error', error);
       resolve({ ok: false, status: 0, reason: 'connection_error' });
@@ -231,6 +237,54 @@ async function sendApnsPush(params: {
   });
 }
 
+type ApnsEnvironment = 'production' | 'sandbox';
+
+async function sendApnsPushWithFallback(params: {
+  jwt: string;
+  deviceToken: string;
+  badge: number;
+  title: string;
+  body: string;
+  preferredEnvironment: ApnsEnvironment;
+  payload: Record<string, string>;
+}) {
+  const primary = await sendApnsPush({
+    jwt: params.jwt,
+    deviceToken: params.deviceToken,
+    badge: params.badge,
+    title: params.title,
+    body: params.body,
+    environment: params.preferredEnvironment,
+    payload: params.payload,
+  });
+
+  if (primary.ok || !shouldRetryInAlternateEnvironment(primary.status, primary.reason)) {
+    return primary;
+  }
+
+  const alternateEnvironment: ApnsEnvironment =
+    params.preferredEnvironment === 'sandbox' ? 'production' : 'sandbox';
+
+  const fallback = await sendApnsPush({
+    jwt: params.jwt,
+    deviceToken: params.deviceToken,
+    badge: params.badge,
+    title: params.title,
+    body: params.body,
+    environment: alternateEnvironment,
+    payload: params.payload,
+  });
+
+  if (fallback.ok) {
+    console.info(
+      `APNs push succeeded after retrying ${alternateEnvironment} for device token ${params.deviceToken.slice(0, 10)}…`
+    );
+    return fallback;
+  }
+
+  return fallback;
+}
+
 function shouldDeactivateToken(status: number, reason?: string) {
   if (status === 410) {
     return true;
@@ -239,6 +293,14 @@ function shouldDeactivateToken(status: number, reason?: string) {
     return false;
   }
   return ['BadDeviceToken', 'Unregistered', 'DeviceTokenNotForTopic'].includes(reason);
+}
+
+function shouldRetryInAlternateEnvironment(status: number, reason?: string) {
+  if (status !== 400 || !reason) {
+    return false;
+  }
+
+  return ['BadDeviceToken', 'DeviceTokenNotForTopic'].includes(reason);
 }
 
 function base64UrlEncode(input: string | Buffer) {
