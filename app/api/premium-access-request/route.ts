@@ -149,10 +149,14 @@ export async function POST(request: NextRequest) {
   }
 
   let pushSummary: {
+    attempted?: number;
     sent: number;
     skippedReason?: string;
     failedTokens: string[];
+    failureReasons?: string[];
+    preferredEnvironment?: string;
   } = {
+    attempted: 0,
     sent: 0,
     skippedReason: 'not_attempted',
     failedTokens: [],
@@ -167,11 +171,19 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Premium access request push delivery failed unexpectedly', error);
     pushSummary = {
+      attempted: 0,
       sent: 0,
       skippedReason: 'push_delivery_failed',
       failedTokens: [],
     };
   }
+
+  console.info('Premium access request processed', {
+    requestId,
+    targetPackKey,
+    emailNotified,
+    pushSummary,
+  });
 
   return json(200, {
     ok: true,

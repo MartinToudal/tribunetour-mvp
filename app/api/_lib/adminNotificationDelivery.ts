@@ -16,9 +16,12 @@ const apnsEndpoints = {
 } as const;
 
 type PushSummary = {
+  attempted: number;
   sent: number;
   skippedReason?: string;
   failedTokens: string[];
+  failureReasons?: string[];
+  preferredEnvironment?: ApnsEnvironment;
 };
 
 type PushTarget = {
@@ -41,7 +44,7 @@ export async function sendPremiumRequestPushNotifications(params: {
   requesterEmail: string;
 }) : Promise<PushSummary> {
   if (!supabaseUrl || !supabaseServiceRoleKey) {
-    return { sent: 0, skippedReason: 'service_role_not_configured', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'service_role_not_configured', failedTokens: [] };
   }
 
   const serviceClient = createClient(supabaseUrl, supabaseServiceRoleKey, {
@@ -57,12 +60,12 @@ export async function sendPremiumRequestPushNotifications(params: {
 
   if (adminError) {
     console.error('Unable to load admin users for push notifications', adminError);
-    return { sent: 0, skippedReason: 'admin_lookup_failed', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'admin_lookup_failed', failedTokens: [] };
   }
 
   const userIds = Array.from(new Set((adminRows ?? []).map((row) => row.user_id).filter(Boolean)));
   if (userIds.length === 0) {
-    return { sent: 0, skippedReason: 'no_admin_users', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'no_admin_users', failedTokens: [] };
   }
 
   const { data: tokenRows, error: tokenError } = await serviceClient
@@ -73,16 +76,16 @@ export async function sendPremiumRequestPushNotifications(params: {
 
   if (tokenError) {
     console.error('Unable to load admin device tokens', tokenError);
-    return { sent: 0, skippedReason: 'token_lookup_failed', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'token_lookup_failed', failedTokens: [] };
   }
 
   const pushTargets = ((tokenRows ?? []) as PushTarget[]).filter((row) => row.device_token && row.user_id);
   if (pushTargets.length === 0) {
-    return { sent: 0, skippedReason: 'no_active_devices', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'no_active_devices', failedTokens: [] };
   }
 
   if (!apnsKeyId || !apnsTeamId || !apnsPrivateKey) {
-    return { sent: 0, skippedReason: 'apns_not_configured', failedTokens: [] };
+    return { attempted: 0, sent: 0, skippedReason: 'apns_not_configured', failedTokens: [] };
   }
 
   const badgeCounts = new Map<string, number>();
@@ -105,13 +108,23 @@ export async function sendPremiumRequestPushNotifications(params: {
   const packLabel = packLabels[params.targetPackKey] ?? params.targetPackKey;
   const title = 'Ny premium-anmodning';
   const body = `${params.requesterEmail} vil have adgang til ${packLabel}.`;
+  const preferredEnvironment: ApnsEnvironment = useApnsSandbox ? 'sandbox' : 'production';
 
   let sent = 0;
   const failedTokens: string[] = [];
+  const failureReasons: string[] = [];
+
+  console.info('APNs push delivery starting', {
+    requestId: params.requestId,
+    targetPackKey: params.targetPackKey,
+    adminUsers: userIds.length,
+    devices: pushTargets.length,
+    preferredEnvironment,
+    topic: apnsTopic,
+  });
 
   for (const target of pushTargets) {
     const badge = badgeCounts.get(target.user_id) ?? 1;
-    const preferredEnvironment: ApnsEnvironment = useApnsSandbox ? 'sandbox' : 'production';
     const result = await sendApnsPushWithFallback({
       jwt: pushJwt,
       deviceToken: target.device_token,
@@ -132,7 +145,14 @@ export async function sendPremiumRequestPushNotifications(params: {
     }
 
     failedTokens.push(target.device_token);
-    console.error('APNs push failed', result.status, result.reason);
+    failureReasons.push(`${result.status}:${result.reason ?? 'unknown'}`);
+    console.error('APNs push failed', {
+      status: result.status,
+      reason: result.reason,
+      preferredEnvironment,
+      topic: apnsTopic,
+      tokenSuffix: target.device_token.slice(-10),
+    });
 
     if (shouldDeactivateToken(result.status, result.reason)) {
       await serviceClient
@@ -142,7 +162,21 @@ export async function sendPremiumRequestPushNotifications(params: {
     }
   }
 
-  return { sent, failedTokens };
+  console.info('APNs push delivery completed', {
+    requestId: params.requestId,
+    attempted: pushTargets.length,
+    sent,
+    failed: failedTokens.length,
+    failureReasons,
+  });
+
+  return {
+    attempted: pushTargets.length,
+    sent,
+    failedTokens,
+    failureReasons,
+    preferredEnvironment,
+  };
 }
 
 function createApnsJwt() {
