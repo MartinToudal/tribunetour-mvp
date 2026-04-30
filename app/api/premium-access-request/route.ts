@@ -148,11 +148,30 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const pushSummary = await sendPremiumRequestPushNotifications({
-    requestId,
-    targetPackKey,
-    requesterEmail: userData.user.email ?? 'Ukendt bruger',
-  });
+  let pushSummary: {
+    sent: number;
+    skippedReason?: string;
+    failedTokens: string[];
+  } = {
+    sent: 0,
+    skippedReason: 'not_attempted',
+    failedTokens: [],
+  };
+
+  try {
+    pushSummary = await sendPremiumRequestPushNotifications({
+      requestId,
+      targetPackKey,
+      requesterEmail: userData.user.email ?? 'Ukendt bruger',
+    });
+  } catch (error) {
+    console.error('Premium access request push delivery failed unexpectedly', error);
+    pushSummary = {
+      sent: 0,
+      skippedReason: 'push_delivery_failed',
+      failedTokens: [],
+    };
+  }
 
   return json(200, {
     ok: true,
