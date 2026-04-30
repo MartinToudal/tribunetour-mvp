@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-04-30T09:51:36.737Z",
-    "generatedAt": "2026-04-30T09:51:36.737Z",
-    "checksum": "36d77eec80ae1345b79eac373499fd4a85529e5ed3087c9f6d65fd4a9782bf5e",
+    "version": "2026-04-30T10:15:26.962Z",
+    "generatedAt": "2026-04-30T10:15:26.962Z",
+    "checksum": "1989a097dd61c9ae78a5903130d8ce45bdf0625d20904d5fd217798894d9e846",
     "signature": null
   },
   "fixtures": [
@@ -5287,6 +5287,39 @@
       "awayScore": null
     },
     {
+      "id": "1d-r28-efb-ach",
+      "kickoff": "2026-04-30T19:00:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "efb",
+      "awayTeamId": "ach",
+      "venueClubId": "efb",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-concarneau-paris-13-atl",
+      "kickoff": "2026-04-30T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-concarneau",
+      "awayTeamId": "fr-paris-13-atl",
+      "venueClubId": "fr-concarneau",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-dijon-chateauroux",
+      "kickoff": "2026-04-30T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-dijon",
+      "awayTeamId": "fr-chateauroux",
+      "venueClubId": "fr-dijon",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "itb-r37-bari-virtus-entella",
       "kickoff": "2026-05-01T15:00:00+02:00",
       "round": "Serie B - 37. runde",
@@ -5430,12 +5463,56 @@
       "awayScore": null
     },
     {
+      "id": "fr3-r32-versailles-orleans",
+      "kickoff": "2026-05-01T17:00:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-versailles",
+      "awayTeamId": "fr-orleans",
+      "venueClubId": "fr-versailles",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r28-mid-aaf",
+      "kickoff": "2026-05-01T18:00:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "mid",
+      "awayTeamId": "aaf",
+      "venueClubId": "mid",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r28-hbk-b93",
+      "kickoff": "2026-05-01T18:30:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "hbk",
+      "awayTeamId": "b93",
+      "venueClubId": "hbk",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r38-la-coruna-leganes",
       "kickoff": "2026-05-01T18:30:00+02:00",
       "round": "Segunda División - 38. runde",
       "homeTeamId": "es-la-coruna",
       "awayTeamId": "es-leganes",
       "venueClubId": "es-la-coruna",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r28-aab-hob",
+      "kickoff": "2026-05-01T19:00:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "aab",
+      "awayTeamId": "hob",
+      "venueClubId": "aab",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -5480,6 +5557,28 @@
       "homeTeamId": "bif",
       "awayTeamId": "fcn",
       "venueClubId": "bif",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-aubagne-stade-briochin",
+      "kickoff": "2026-05-01T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-aubagne",
+      "awayTeamId": "fr-stade-briochin",
+      "venueClubId": "fr-aubagne",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-fleury-merogis-le-puy",
+      "kickoff": "2026-05-01T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-fleury-merogis",
+      "awayTeamId": "fr-le-puy",
+      "venueClubId": "fr-fleury-merogis",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -5936,6 +6035,17 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r32-nantes-marseille",
+      "kickoff": "2026-05-02T15:00:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-nantes",
+      "awayTeamId": "fr-marseille",
+      "venueClubId": "fr-nantes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "ita-r35-udinese-torino",
       "kickoff": "2026-05-02T15:00:00+02:00",
       "round": "Serie A - 35. runde",
@@ -6332,6 +6442,28 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r32-psg-lorient",
+      "kickoff": "2026-05-02T17:00:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-psg",
+      "awayTeamId": "fr-lorient",
+      "venueClubId": "fr-psg",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-sochaux-valenciennes",
+      "kickoff": "2026-05-02T17:00:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-sochaux",
+      "awayTeamId": "fr-valenciennes",
+      "venueClubId": "fr-sochaux",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "ita-r35-como-ssc-napoli",
       "kickoff": "2026-05-02T18:00:00+02:00",
       "round": "Serie A - 35. runde",
@@ -6431,6 +6563,138 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r32-metz-monaco",
+      "kickoff": "2026-05-02T19:00:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-metz",
+      "awayTeamId": "fr-monaco",
+      "venueClubId": "fr-metz",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-bourg-en-bresse-villefranche",
+      "kickoff": "2026-05-02T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-bourg-en-bresse",
+      "awayTeamId": "fr-villefranche",
+      "venueClubId": "fr-bourg-en-bresse",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r32-quevilly-rouen-rouen",
+      "kickoff": "2026-05-02T19:30:00+02:00",
+      "round": "National - 32. runde",
+      "homeTeamId": "fr-quevilly-rouen",
+      "awayTeamId": "fr-rouen",
+      "venueClubId": "fr-quevilly-rouen",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-amiens-red-star",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-amiens",
+      "awayTeamId": "fr-red-star",
+      "venueClubId": "fr-amiens",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-boulogne-annecy-fc",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-boulogne",
+      "awayTeamId": "fr-annecy-fc",
+      "venueClubId": "fr-boulogne",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-guingamp-bastia",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-guingamp",
+      "awayTeamId": "fr-bastia",
+      "venueClubId": "fr-guingamp",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-le-mans-reims",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-le-mans",
+      "awayTeamId": "fr-reims",
+      "venueClubId": "fr-le-mans",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-montpellier-clermont",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-montpellier",
+      "awayTeamId": "fr-clermont",
+      "venueClubId": "fr-montpellier",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-pau-fc-nancy",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-pau-fc",
+      "awayTeamId": "fr-nancy",
+      "venueClubId": "fr-pau-fc",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-rodez-st-etienne",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-rodez",
+      "awayTeamId": "fr-st-etienne",
+      "venueClubId": "fr-rodez",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-troyes-laval",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-troyes",
+      "awayTeamId": "fr-laval",
+      "venueClubId": "fr-troyes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r33-usl-dunkerque-grenoble",
+      "kickoff": "2026-05-02T20:00:00+02:00",
+      "round": "Ligue 2 - 33. runde",
+      "homeTeamId": "fr-usl-dunkerque",
+      "awayTeamId": "fr-grenoble",
+      "venueClubId": "fr-usl-dunkerque",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "ita-r35-atalanta-genoa",
       "kickoff": "2026-05-02T20:45:00+02:00",
       "round": "Serie A - 35. runde",
@@ -6475,67 +6739,12 @@
       "awayScore": null
     },
     {
-      "id": "1d-r28-aab-hob",
-      "kickoff": "2026-05-01T19:00:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "aab",
-      "awayTeamId": "hob",
-      "venueClubId": "aab",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r28-efb-ach",
-      "kickoff": "2026-04-30T19:00:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "efb",
-      "awayTeamId": "ach",
-      "venueClubId": "efb",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r28-hbk-b93",
-      "kickoff": "2026-05-01T18:30:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "hbk",
-      "awayTeamId": "b93",
-      "venueClubId": "hbk",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r28-kol-hvi",
-      "kickoff": "2026-05-03T13:00:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "kol",
-      "awayTeamId": "hvi",
-      "venueClubId": "kol",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r28-lyn-hil",
-      "kickoff": "2026-05-03T16:00:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "lyn",
-      "awayTeamId": "hil",
-      "venueClubId": "lyn",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r28-mid-aaf",
-      "kickoff": "2026-05-01T18:00:00+02:00",
-      "round": "1. division - Spillerunde 28",
-      "homeTeamId": "mid",
-      "awayTeamId": "aaf",
-      "venueClubId": "mid",
+      "id": "fr1-r32-nice-lens",
+      "kickoff": "2026-05-02T21:05:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-nice",
+      "awayTeamId": "fr-lens",
+      "venueClubId": "fr-nice",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -6651,6 +6860,17 @@
       "awayScore": null
     },
     {
+      "id": "1d-r28-kol-hvi",
+      "kickoff": "2026-05-03T13:00:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "kol",
+      "awayTeamId": "hvi",
+      "venueClubId": "kol",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "b3-r36-msv-fce",
       "kickoff": "2026-05-03T13:30:00+02:00",
       "round": "3. Liga - Runde 36",
@@ -6728,6 +6948,17 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r32-lille-le-havre",
+      "kickoff": "2026-05-03T15:00:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-lille",
+      "awayTeamId": "fr-le-havre",
+      "venueClubId": "fr-lille",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "ita-r35-sassuolo-ac-milan",
       "kickoff": "2026-05-03T15:00:00+02:00",
       "round": "Serie A - 35. runde",
@@ -6745,6 +6976,17 @@
       "homeTeamId": "de-borussia-monchengladbach",
       "awayTeamId": "de-borussia-dortmund",
       "venueClubId": "de-borussia-monchengladbach",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r28-lyn-hil",
+      "kickoff": "2026-05-03T16:00:00+02:00",
+      "round": "1. division - Spillerunde 28",
+      "homeTeamId": "lyn",
+      "awayTeamId": "hil",
+      "venueClubId": "lyn",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -6822,6 +7064,39 @@
       "homeTeamId": "de-wehen-wiesbaden",
       "awayTeamId": "de-vfl-osnabruck",
       "venueClubId": "de-wehen-wiesbaden",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r32-auxerre-angers",
+      "kickoff": "2026-05-03T17:15:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-auxerre",
+      "awayTeamId": "fr-angers",
+      "venueClubId": "fr-auxerre",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r32-paris-fc-brest",
+      "kickoff": "2026-05-03T17:15:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-paris-fc",
+      "awayTeamId": "fr-brest",
+      "venueClubId": "fr-paris-fc",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r32-strasbourg-toulouse",
+      "kickoff": "2026-05-03T17:15:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-strasbourg",
+      "awayTeamId": "fr-toulouse",
+      "venueClubId": "fr-strasbourg",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -6921,6 +7196,17 @@
       "homeTeamId": "es-eldense",
       "awayTeamId": "es-ud-marbella",
       "venueClubId": "es-eldense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r32-lyon-rennes",
+      "kickoff": "2026-05-03T20:45:00+02:00",
+      "round": "Ligue 1 - 32. runde",
+      "homeTeamId": "fr-lyon",
+      "awayTeamId": "fr-rennes",
+      "venueClubId": "fr-lyon",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -7058,6 +7344,17 @@
       "awayScore": null
     },
     {
+      "id": "1d-r29-hob-b93",
+      "kickoff": "2026-05-08T18:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "hob",
+      "awayTeamId": "b93",
+      "venueClubId": "hob",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "2d-r27-thi-ab",
       "kickoff": "2026-05-08T18:00:00+02:00",
       "round": "2. division - Spillerunde 27",
@@ -7097,6 +7394,17 @@
       "homeTeamId": "odd",
       "awayTeamId": "lys",
       "venueClubId": "odd",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r29-aab-mid",
+      "kickoff": "2026-05-08T19:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "aab",
+      "awayTeamId": "mid",
+      "venueClubId": "aab",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -7289,6 +7597,17 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r33-lens-nantes",
+      "kickoff": "2026-05-08T20:45:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-lens",
+      "awayTeamId": "fr-nantes",
+      "venueClubId": "fr-lens",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "esl-r35-levante-osasuna",
       "kickoff": "2026-05-08T21:00:00+02:00",
       "round": "La Liga - 35. runde",
@@ -7339,6 +7658,17 @@
       "homeTeamId": "de-holstein-kiel",
       "awayTeamId": "de-magdeburg",
       "venueClubId": "de-holstein-kiel",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r29-hvi-lyn",
+      "kickoff": "2026-05-09T13:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "hvi",
+      "awayTeamId": "lyn",
+      "venueClubId": "hvi",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -7427,6 +7757,28 @@
       "homeTeamId": "de-vfb-stuttgart",
       "awayTeamId": "de-bayer-leverkusen",
       "venueClubId": "de-vfb-stuttgart",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r29-aaf-hbk",
+      "kickoff": "2026-05-09T14:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "aaf",
+      "awayTeamId": "hbk",
+      "venueClubId": "aaf",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r29-ach-hil",
+      "kickoff": "2026-05-09T14:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "ach",
+      "awayTeamId": "hil",
+      "venueClubId": "ach",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -7773,6 +8125,204 @@
       "awayScore": null
     },
     {
+      "id": "1d-r29-efb-kol",
+      "kickoff": "2026-05-09T19:00:00+02:00",
+      "round": "1. division - Spillerunde 29",
+      "homeTeamId": "efb",
+      "awayTeamId": "kol",
+      "venueClubId": "efb",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-bourg-en-bresse-valenciennes",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-bourg-en-bresse",
+      "awayTeamId": "fr-valenciennes",
+      "venueClubId": "fr-bourg-en-bresse",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-caen-concarneau",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-caen",
+      "awayTeamId": "fr-concarneau",
+      "venueClubId": "fr-caen",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-chateauroux-sochaux",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-chateauroux",
+      "awayTeamId": "fr-sochaux",
+      "venueClubId": "fr-chateauroux",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-le-puy-dijon",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-le-puy",
+      "awayTeamId": "fr-dijon",
+      "venueClubId": "fr-le-puy",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-orleans-fleury-merogis",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-orleans",
+      "awayTeamId": "fr-fleury-merogis",
+      "venueClubId": "fr-orleans",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-paris-13-atl-aubagne",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-paris-13-atl",
+      "awayTeamId": "fr-aubagne",
+      "venueClubId": "fr-paris-13-atl",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-rouen-versailles",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-rouen",
+      "awayTeamId": "fr-versailles",
+      "venueClubId": "fr-rouen",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r33-stade-briochin-quevilly-rouen",
+      "kickoff": "2026-05-09T19:30:00+02:00",
+      "round": "National - 33. runde",
+      "homeTeamId": "fr-stade-briochin",
+      "awayTeamId": "fr-quevilly-rouen",
+      "venueClubId": "fr-stade-briochin",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-annecy-fc-rodez",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-annecy-fc",
+      "awayTeamId": "fr-rodez",
+      "venueClubId": "fr-annecy-fc",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-bastia-le-mans",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-bastia",
+      "awayTeamId": "fr-le-mans",
+      "venueClubId": "fr-bastia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-clermont-guingamp",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-clermont",
+      "awayTeamId": "fr-guingamp",
+      "venueClubId": "fr-clermont",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-grenoble-troyes",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-grenoble",
+      "awayTeamId": "fr-troyes",
+      "venueClubId": "fr-grenoble",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-laval-boulogne",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-laval",
+      "awayTeamId": "fr-boulogne",
+      "venueClubId": "fr-laval",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-nancy-usl-dunkerque",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-nancy",
+      "awayTeamId": "fr-usl-dunkerque",
+      "venueClubId": "fr-nancy",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-red-star-montpellier",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-red-star",
+      "awayTeamId": "fr-montpellier",
+      "venueClubId": "fr-red-star",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-reims-pau-fc",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-reims",
+      "awayTeamId": "fr-pau-fc",
+      "venueClubId": "fr-reims",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr2-r34-st-etienne-amiens",
+      "kickoff": "2026-05-09T20:00:00+02:00",
+      "round": "Ligue 2 - 34. runde",
+      "homeTeamId": "fr-st-etienne",
+      "awayTeamId": "fr-amiens",
+      "venueClubId": "fr-st-etienne",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r39-malaga-gijon",
       "kickoff": "2026-05-09T21:00:00+02:00",
       "round": "Segunda División - 39. runde",
@@ -7801,72 +8351,6 @@
       "homeTeamId": "es-real-sociedad",
       "awayTeamId": "es-betis",
       "venueClubId": "es-real-sociedad",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-aab-mid",
-      "kickoff": "2026-05-08T19:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "aab",
-      "awayTeamId": "mid",
-      "venueClubId": "aab",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-aaf-hbk",
-      "kickoff": "2026-05-09T14:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "aaf",
-      "awayTeamId": "hbk",
-      "venueClubId": "aaf",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-ach-hil",
-      "kickoff": "2026-05-09T14:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "ach",
-      "awayTeamId": "hil",
-      "venueClubId": "ach",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-efb-kol",
-      "kickoff": "2026-05-09T19:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "efb",
-      "awayTeamId": "kol",
-      "venueClubId": "efb",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-hob-b93",
-      "kickoff": "2026-05-08T18:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "hob",
-      "awayTeamId": "b93",
-      "venueClubId": "hob",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r29-hvi-lyn",
-      "kickoff": "2026-05-09T13:00:00+02:00",
-      "round": "1. division - Spillerunde 29",
-      "homeTeamId": "hvi",
-      "awayTeamId": "lyn",
-      "venueClubId": "hvi",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8356,6 +8840,94 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r33-angers-strasbourg",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-angers",
+      "awayTeamId": "fr-strasbourg",
+      "venueClubId": "fr-angers",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-auxerre-nice",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-auxerre",
+      "awayTeamId": "fr-nice",
+      "venueClubId": "fr-auxerre",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-le-havre-marseille",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-le-havre",
+      "awayTeamId": "fr-marseille",
+      "venueClubId": "fr-le-havre",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-metz-lorient",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-metz",
+      "awayTeamId": "fr-lorient",
+      "venueClubId": "fr-metz",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-monaco-lille",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-monaco",
+      "awayTeamId": "fr-lille",
+      "venueClubId": "fr-monaco",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-psg-brest",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-psg",
+      "awayTeamId": "fr-brest",
+      "venueClubId": "fr-psg",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-rennes-paris-fc",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-rennes",
+      "awayTeamId": "fr-paris-fc",
+      "venueClubId": "fr-rennes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r33-toulouse-lyon",
+      "kickoff": "2026-05-10T21:00:00+02:00",
+      "round": "Ligue 1 - 33. runde",
+      "homeTeamId": "fr-toulouse",
+      "awayTeamId": "fr-lyon",
+      "venueClubId": "fr-toulouse",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r39-huesca-real-sociedad-b",
       "kickoff": "2026-05-11T20:30:00+02:00",
       "round": "Segunda División - 39. runde",
@@ -8510,6 +9082,28 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r29-brest-strasbourg",
+      "kickoff": "2026-05-13T19:00:00+02:00",
+      "round": "Ligue 1 - 29. runde",
+      "homeTeamId": "fr-brest",
+      "awayTeamId": "fr-strasbourg",
+      "venueClubId": "fr-brest",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r29-lens-psg",
+      "kickoff": "2026-05-13T21:00:00+02:00",
+      "round": "Ligue 1 - 29. runde",
+      "homeTeamId": "fr-lens",
+      "awayTeamId": "fr-psg",
+      "venueClubId": "fr-lens",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "esl-r36-alaves-barcelona",
       "kickoff": "2026-05-13T21:30:00+02:00",
       "round": "La Liga - 36. runde",
@@ -8527,6 +9121,17 @@
       "homeTeamId": "es-getafe",
       "awayTeamId": "es-mallorca",
       "venueClubId": "es-getafe",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r30-hob-aaf",
+      "kickoff": "2026-05-14T13:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "hob",
+      "awayTeamId": "aaf",
+      "venueClubId": "hob",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8565,12 +9170,122 @@
       "awayScore": null
     },
     {
+      "id": "1d-r30-kol-lyn",
+      "kickoff": "2026-05-15T18:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "kol",
+      "awayTeamId": "lyn",
+      "venueClubId": "kol",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r30-b93-aab",
+      "kickoff": "2026-05-15T19:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "b93",
+      "awayTeamId": "aab",
+      "venueClubId": "b93",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "3d-r28-nyk-hør",
       "kickoff": "2026-05-15T19:00:00+02:00",
       "round": "3. division - Spillerunde 28",
       "homeTeamId": "nyk",
       "awayTeamId": "hør",
       "venueClubId": "nyk",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-aubagne-caen",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-aubagne",
+      "awayTeamId": "fr-caen",
+      "venueClubId": "fr-aubagne",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-concarneau-villefranche",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-concarneau",
+      "awayTeamId": "fr-villefranche",
+      "venueClubId": "fr-concarneau",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-dijon-orleans",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-dijon",
+      "awayTeamId": "fr-orleans",
+      "venueClubId": "fr-dijon",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-fleury-merogis-rouen",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-fleury-merogis",
+      "awayTeamId": "fr-rouen",
+      "venueClubId": "fr-fleury-merogis",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-quevilly-rouen-paris-13-atl",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-quevilly-rouen",
+      "awayTeamId": "fr-paris-13-atl",
+      "venueClubId": "fr-quevilly-rouen",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-sochaux-le-puy",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-sochaux",
+      "awayTeamId": "fr-le-puy",
+      "venueClubId": "fr-sochaux",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-valenciennes-chateauroux",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-valenciennes",
+      "awayTeamId": "fr-chateauroux",
+      "venueClubId": "fr-valenciennes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr3-r34-versailles-stade-briochin",
+      "kickoff": "2026-05-15T19:30:00+02:00",
+      "round": "National - 34. runde",
+      "homeTeamId": "fr-versailles",
+      "awayTeamId": "fr-stade-briochin",
+      "venueClubId": "fr-versailles",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8593,6 +9308,17 @@
       "homeTeamId": "es-cordoba",
       "awayTeamId": "es-albacete",
       "venueClubId": "es-cordoba",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r30-hil-efb",
+      "kickoff": "2026-05-16T13:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "hil",
+      "awayTeamId": "efb",
+      "venueClubId": "hil",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8818,6 +9544,17 @@
       "awayScore": null
     },
     {
+      "id": "1d-r30-mid-hbk",
+      "kickoff": "2026-05-16T14:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "mid",
+      "awayTeamId": "hbk",
+      "venueClubId": "mid",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "2d-r29-bra-vsk",
       "kickoff": "2026-05-16T14:00:00+02:00",
       "round": "2. division - Spillerunde 29",
@@ -8895,6 +9632,17 @@
       "awayScore": null
     },
     {
+      "id": "1d-r30-ach-hvi",
+      "kickoff": "2026-05-16T15:00:00+02:00",
+      "round": "1. division - Spillerunde 30",
+      "homeTeamId": "ach",
+      "awayTeamId": "hvi",
+      "venueClubId": "ach",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "2d-r29-faa-ish",
       "kickoff": "2026-05-16T15:00:00+02:00",
       "round": "2. division - Spillerunde 29",
@@ -8956,72 +9704,6 @@
       "homeTeamId": "es-racing-santander",
       "awayTeamId": "es-valladolid",
       "venueClubId": "es-racing-santander",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-ach-hvi",
-      "kickoff": "2026-05-16T15:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "ach",
-      "awayTeamId": "hvi",
-      "venueClubId": "ach",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-b93-aab",
-      "kickoff": "2026-05-15T19:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "b93",
-      "awayTeamId": "aab",
-      "venueClubId": "b93",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-hil-efb",
-      "kickoff": "2026-05-16T13:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "hil",
-      "awayTeamId": "efb",
-      "venueClubId": "hil",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-hob-aaf",
-      "kickoff": "2026-05-14T13:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "hob",
-      "awayTeamId": "aaf",
-      "venueClubId": "hob",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-kol-lyn",
-      "kickoff": "2026-05-15T18:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "kol",
-      "awayTeamId": "lyn",
-      "venueClubId": "kol",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r30-mid-hbk",
-      "kickoff": "2026-05-16T14:00:00+02:00",
-      "round": "1. division - Spillerunde 30",
-      "homeTeamId": "mid",
-      "awayTeamId": "hbk",
-      "venueClubId": "mid",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -9786,6 +10468,105 @@
       "awayScore": null
     },
     {
+      "id": "fr1-r34-brest-angers",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-brest",
+      "awayTeamId": "fr-angers",
+      "venueClubId": "fr-brest",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-lille-auxerre",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-lille",
+      "awayTeamId": "fr-auxerre",
+      "venueClubId": "fr-lille",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-lorient-le-havre",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-lorient",
+      "awayTeamId": "fr-le-havre",
+      "venueClubId": "fr-lorient",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-lyon-lens",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-lyon",
+      "awayTeamId": "fr-lens",
+      "venueClubId": "fr-lyon",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-marseille-rennes",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-marseille",
+      "awayTeamId": "fr-rennes",
+      "venueClubId": "fr-marseille",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-nantes-toulouse",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-nantes",
+      "awayTeamId": "fr-toulouse",
+      "venueClubId": "fr-nantes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-nice-metz",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-nice",
+      "awayTeamId": "fr-metz",
+      "venueClubId": "fr-nice",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-paris-fc-psg",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-paris-fc",
+      "awayTeamId": "fr-psg",
+      "venueClubId": "fr-paris-fc",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "fr1-r34-strasbourg-monaco",
+      "kickoff": "2026-05-17T21:00:00+02:00",
+      "round": "Ligue 1 - 34. runde",
+      "homeTeamId": "fr-strasbourg",
+      "awayTeamId": "fr-monaco",
+      "venueClubId": "fr-strasbourg",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r40-zaragoza-gijon",
       "kickoff": "2026-05-17T21:15:00+02:00",
       "round": "Segunda División - 40. runde",
@@ -9803,6 +10584,17 @@
       "homeTeamId": "es-leganes",
       "awayTeamId": "es-huesca",
       "venueClubId": "es-leganes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r31-aaf-aab",
+      "kickoff": "2026-05-22T18:00:00+02:00",
+      "round": "1. division - Spillerunde 31",
+      "homeTeamId": "aaf",
+      "awayTeamId": "aab",
+      "venueClubId": "aaf",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -9896,6 +10688,17 @@
       "awayScore": null
     },
     {
+      "id": "1d-r31-mid-b93",
+      "kickoff": "2026-05-23T14:00:00+02:00",
+      "round": "1. division - Spillerunde 31",
+      "homeTeamId": "mid",
+      "awayTeamId": "b93",
+      "venueClubId": "mid",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "3d-r29-fa2-nyk",
       "kickoff": "2026-05-23T14:00:00+02:00",
       "round": "3. division - Spillerunde 29",
@@ -9924,6 +10727,17 @@
       "homeTeamId": "ven",
       "awayTeamId": "ros",
       "venueClubId": "ven",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "1d-r31-hbk-hob",
+      "kickoff": "2026-05-24T16:00:00+02:00",
+      "round": "1. division - Spillerunde 31",
+      "homeTeamId": "hbk",
+      "awayTeamId": "hob",
+      "venueClubId": "hbk",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -10600,23 +11414,23 @@
       "awayScore": null
     },
     {
-      "id": "1d-r31-aaf-aab",
-      "kickoff": "2026-05-22T18:00:00+02:00",
+      "id": "1d-r31-kol-hil",
+      "kickoff": "2026-05-25T13:00:00+02:00",
       "round": "1. division - Spillerunde 31",
-      "homeTeamId": "aaf",
-      "awayTeamId": "aab",
-      "venueClubId": "aaf",
+      "homeTeamId": "kol",
+      "awayTeamId": "hil",
+      "venueClubId": "kol",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
     },
     {
-      "id": "1d-r31-hbk-hob",
-      "kickoff": "2026-05-24T16:00:00+02:00",
-      "round": "1. division - Spillerunde 31",
-      "homeTeamId": "hbk",
-      "awayTeamId": "hob",
-      "venueClubId": "hbk",
+      "id": "3d-r29-van-næs",
+      "kickoff": "2026-05-25T14:00:00+02:00",
+      "round": "3. division - Spillerunde 29",
+      "homeTeamId": "van",
+      "awayTeamId": "næs",
+      "venueClubId": "van",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -10633,45 +11447,12 @@
       "awayScore": null
     },
     {
-      "id": "1d-r31-kol-hil",
-      "kickoff": "2026-05-25T13:00:00+02:00",
-      "round": "1. division - Spillerunde 31",
-      "homeTeamId": "kol",
-      "awayTeamId": "hil",
-      "venueClubId": "kol",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
       "id": "1d-r31-lyn-ach",
       "kickoff": "2026-05-25T18:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "lyn",
       "awayTeamId": "ach",
       "venueClubId": "lyn",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "1d-r31-mid-b93",
-      "kickoff": "2026-05-23T14:00:00+02:00",
-      "round": "1. division - Spillerunde 31",
-      "homeTeamId": "mid",
-      "awayTeamId": "b93",
-      "venueClubId": "mid",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "3d-r29-van-næs",
-      "kickoff": "2026-05-25T14:00:00+02:00",
-      "round": "3. division - Spillerunde 29",
-      "homeTeamId": "van",
-      "awayTeamId": "næs",
-      "venueClubId": "van",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null

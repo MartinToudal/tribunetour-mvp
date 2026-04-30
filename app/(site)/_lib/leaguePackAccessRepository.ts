@@ -32,6 +32,7 @@ export async function getEnabledLeaguePacksForUser(userId: string): Promise<Leag
       ids.add('england_top_4');
       ids.add('italy_top_3');
       ids.add('spain_top_4');
+      ids.add('france_top_3');
       return;
     }
 
@@ -40,7 +41,8 @@ export async function getEnabledLeaguePacksForUser(userId: string): Promise<Leag
       row.pack_key === 'germany_top_3' ||
       row.pack_key === 'england_top_4' ||
       row.pack_key === 'italy_top_3' ||
-      row.pack_key === 'spain_top_4'
+      row.pack_key === 'spain_top_4' ||
+      row.pack_key === 'france_top_3'
     ) {
       ids.add(row.pack_key);
     }

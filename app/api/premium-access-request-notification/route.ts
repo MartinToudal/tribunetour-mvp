@@ -12,6 +12,7 @@ const packLabels: Record<string, string> = {
   england_top_4: 'England',
   italy_top_3: 'Italien',
   spain_top_4: 'Spanien',
+  france_top_3: 'Frankrig',
   premium_full: 'Alle premium-pakker',
 };
 
