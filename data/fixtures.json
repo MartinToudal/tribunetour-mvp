@@ -6469,7 +6469,7 @@
   },
   {
     "id": "1d-r28-aab-hob",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-05-01T19:00:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-aab",
     "awayTeamId": "dk-hobro-ik",
@@ -6480,7 +6480,7 @@
   },
   {
     "id": "1d-r28-efb-ach",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-04-30T19:00:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-esbjerg-fb",
     "awayTeamId": "dk-ac-horsens",
@@ -6491,7 +6491,7 @@
   },
   {
     "id": "1d-r28-hbk-b93",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-05-01T18:30:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-hb-koge",
     "awayTeamId": "dk-b-93",
@@ -6502,7 +6502,7 @@
   },
   {
     "id": "1d-r28-kol-hvi",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-05-03T13:00:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-kolding-if",
     "awayTeamId": "dk-hvidovre-if",
@@ -6513,7 +6513,7 @@
   },
   {
     "id": "1d-r28-lyn-hil",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-05-03T16:00:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-lyngby-boldklub",
     "awayTeamId": "dk-hillerod-fodbold",
@@ -6524,7 +6524,7 @@
   },
   {
     "id": "1d-r28-mid-aaf",
-    "kickoff": "2026-05-03T00:00:00+02:00",
+    "kickoff": "2026-05-01T18:00:00+02:00",
     "round": "1. division - Spillerunde 28",
     "homeTeamId": "dk-middelfart",
     "awayTeamId": "dk-aarhus-fremad",
@@ -7800,7 +7800,7 @@
   },
   {
     "id": "1d-r29-aab-mid",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-08T19:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-aab",
     "awayTeamId": "dk-middelfart",
@@ -7811,7 +7811,7 @@
   },
   {
     "id": "1d-r29-aaf-hbk",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-09T14:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-aarhus-fremad",
     "awayTeamId": "dk-hb-koge",
@@ -7822,7 +7822,7 @@
   },
   {
     "id": "1d-r29-ach-hil",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-09T14:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-ac-horsens",
     "awayTeamId": "dk-hillerod-fodbold",
@@ -7833,7 +7833,7 @@
   },
   {
     "id": "1d-r29-efb-kol",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-09T19:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-esbjerg-fb",
     "awayTeamId": "dk-kolding-if",
@@ -7844,7 +7844,7 @@
   },
   {
     "id": "1d-r29-hob-b93",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-08T18:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-hobro-ik",
     "awayTeamId": "dk-b-93",
@@ -7855,7 +7855,7 @@
   },
   {
     "id": "1d-r29-hvi-lyn",
-    "kickoff": "2026-05-10T00:00:00+02:00",
+    "kickoff": "2026-05-09T13:00:00+02:00",
     "round": "1. division - Spillerunde 29",
     "homeTeamId": "dk-hvidovre-if",
     "awayTeamId": "dk-lyngby-boldklub",
@@ -8955,7 +8955,7 @@
   },
   {
     "id": "1d-r30-ach-hvi",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-16T15:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-ac-horsens",
     "awayTeamId": "dk-hvidovre-if",
@@ -8966,7 +8966,7 @@
   },
   {
     "id": "1d-r30-b93-aab",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-15T19:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-b-93",
     "awayTeamId": "dk-aab",
@@ -8977,7 +8977,7 @@
   },
   {
     "id": "1d-r30-hil-efb",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-16T13:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-hillerod-fodbold",
     "awayTeamId": "dk-esbjerg-fb",
@@ -8988,7 +8988,7 @@
   },
   {
     "id": "1d-r30-hob-aaf",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-14T13:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-hobro-ik",
     "awayTeamId": "dk-aarhus-fremad",
@@ -8999,7 +8999,7 @@
   },
   {
     "id": "1d-r30-kol-lyn",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-15T18:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-kolding-if",
     "awayTeamId": "dk-lyngby-boldklub",
@@ -9010,7 +9010,7 @@
   },
   {
     "id": "1d-r30-mid-hbk",
-    "kickoff": "2026-05-17T00:00:00+02:00",
+    "kickoff": "2026-05-16T14:00:00+02:00",
     "round": "1. division - Spillerunde 30",
     "homeTeamId": "dk-middelfart",
     "awayTeamId": "dk-hb-koge",
@@ -10594,7 +10594,7 @@
   },
   {
     "id": "1d-r31-aaf-aab",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-22T18:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-aarhus-fremad",
     "awayTeamId": "dk-aab",
@@ -10605,7 +10605,7 @@
   },
   {
     "id": "1d-r31-hbk-hob",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-24T16:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-hb-koge",
     "awayTeamId": "dk-hobro-ik",
@@ -10616,7 +10616,7 @@
   },
   {
     "id": "1d-r31-hvi-efb",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-25T15:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-hvidovre-if",
     "awayTeamId": "dk-esbjerg-fb",
@@ -10627,7 +10627,7 @@
   },
   {
     "id": "1d-r31-kol-hil",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-25T13:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-kolding-if",
     "awayTeamId": "dk-hillerod-fodbold",
@@ -10638,7 +10638,7 @@
   },
   {
     "id": "1d-r31-lyn-ach",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-25T18:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-lyngby-boldklub",
     "awayTeamId": "dk-ac-horsens",
@@ -10649,7 +10649,7 @@
   },
   {
     "id": "1d-r31-mid-b93",
-    "kickoff": "2026-05-25T00:00:00+02:00",
+    "kickoff": "2026-05-23T14:00:00+02:00",
     "round": "1. division - Spillerunde 31",
     "homeTeamId": "dk-middelfart",
     "awayTeamId": "dk-b-93",

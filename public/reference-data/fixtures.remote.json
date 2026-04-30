@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-04-29T19:27:23.814Z",
-    "generatedAt": "2026-04-29T19:27:23.814Z",
-    "checksum": "9984540a437ee51f5d188fbf0a494d85c28ac82f055b6dead46362d3d7f0d102",
+    "version": "2026-04-30T09:51:36.737Z",
+    "generatedAt": "2026-04-30T09:51:36.737Z",
+    "checksum": "36d77eec80ae1345b79eac373499fd4a85529e5ed3087c9f6d65fd4a9782bf5e",
     "signature": null
   },
   "fixtures": [
@@ -6476,7 +6476,7 @@
     },
     {
       "id": "1d-r28-aab-hob",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-05-01T19:00:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "aab",
       "awayTeamId": "hob",
@@ -6487,7 +6487,7 @@
     },
     {
       "id": "1d-r28-efb-ach",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-04-30T19:00:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "efb",
       "awayTeamId": "ach",
@@ -6498,7 +6498,7 @@
     },
     {
       "id": "1d-r28-hbk-b93",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-05-01T18:30:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "hbk",
       "awayTeamId": "b93",
@@ -6509,7 +6509,7 @@
     },
     {
       "id": "1d-r28-kol-hvi",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-05-03T13:00:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "kol",
       "awayTeamId": "hvi",
@@ -6520,7 +6520,7 @@
     },
     {
       "id": "1d-r28-lyn-hil",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-05-03T16:00:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "lyn",
       "awayTeamId": "hil",
@@ -6531,7 +6531,7 @@
     },
     {
       "id": "1d-r28-mid-aaf",
-      "kickoff": "2026-05-03T00:00:00+02:00",
+      "kickoff": "2026-05-01T18:00:00+02:00",
       "round": "1. division - Spillerunde 28",
       "homeTeamId": "mid",
       "awayTeamId": "aaf",
@@ -7807,7 +7807,7 @@
     },
     {
       "id": "1d-r29-aab-mid",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-08T19:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "aab",
       "awayTeamId": "mid",
@@ -7818,7 +7818,7 @@
     },
     {
       "id": "1d-r29-aaf-hbk",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-09T14:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "aaf",
       "awayTeamId": "hbk",
@@ -7829,7 +7829,7 @@
     },
     {
       "id": "1d-r29-ach-hil",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-09T14:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "ach",
       "awayTeamId": "hil",
@@ -7840,7 +7840,7 @@
     },
     {
       "id": "1d-r29-efb-kol",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-09T19:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "efb",
       "awayTeamId": "kol",
@@ -7851,7 +7851,7 @@
     },
     {
       "id": "1d-r29-hob-b93",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-08T18:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "hob",
       "awayTeamId": "b93",
@@ -7862,7 +7862,7 @@
     },
     {
       "id": "1d-r29-hvi-lyn",
-      "kickoff": "2026-05-10T00:00:00+02:00",
+      "kickoff": "2026-05-09T13:00:00+02:00",
       "round": "1. division - Spillerunde 29",
       "homeTeamId": "hvi",
       "awayTeamId": "lyn",
@@ -8962,7 +8962,7 @@
     },
     {
       "id": "1d-r30-ach-hvi",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-16T15:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "ach",
       "awayTeamId": "hvi",
@@ -8973,7 +8973,7 @@
     },
     {
       "id": "1d-r30-b93-aab",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-15T19:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "b93",
       "awayTeamId": "aab",
@@ -8984,7 +8984,7 @@
     },
     {
       "id": "1d-r30-hil-efb",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-16T13:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "hil",
       "awayTeamId": "efb",
@@ -8995,7 +8995,7 @@
     },
     {
       "id": "1d-r30-hob-aaf",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-14T13:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "hob",
       "awayTeamId": "aaf",
@@ -9006,7 +9006,7 @@
     },
     {
       "id": "1d-r30-kol-lyn",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-15T18:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "kol",
       "awayTeamId": "lyn",
@@ -9017,7 +9017,7 @@
     },
     {
       "id": "1d-r30-mid-hbk",
-      "kickoff": "2026-05-17T00:00:00+02:00",
+      "kickoff": "2026-05-16T14:00:00+02:00",
       "round": "1. division - Spillerunde 30",
       "homeTeamId": "mid",
       "awayTeamId": "hbk",
@@ -10601,7 +10601,7 @@
     },
     {
       "id": "1d-r31-aaf-aab",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-22T18:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "aaf",
       "awayTeamId": "aab",
@@ -10612,7 +10612,7 @@
     },
     {
       "id": "1d-r31-hbk-hob",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-24T16:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "hbk",
       "awayTeamId": "hob",
@@ -10623,7 +10623,7 @@
     },
     {
       "id": "1d-r31-hvi-efb",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-25T15:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "hvi",
       "awayTeamId": "efb",
@@ -10634,7 +10634,7 @@
     },
     {
       "id": "1d-r31-kol-hil",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-25T13:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "kol",
       "awayTeamId": "hil",
@@ -10645,7 +10645,7 @@
     },
     {
       "id": "1d-r31-lyn-ach",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-25T18:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "lyn",
       "awayTeamId": "ach",
@@ -10656,7 +10656,7 @@
     },
     {
       "id": "1d-r31-mid-b93",
-      "kickoff": "2026-05-25T00:00:00+02:00",
+      "kickoff": "2026-05-23T14:00:00+02:00",
       "round": "1. division - Spillerunde 31",
       "homeTeamId": "mid",
       "awayTeamId": "b93",
