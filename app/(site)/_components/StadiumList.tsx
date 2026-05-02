@@ -8,12 +8,34 @@ import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceDat
 
 type VisitFilter = 'all' | 'visited' | 'not-visited';
 
+const homeCountryStorageKey = 'app.preferredHomeCountryCode';
+const stadiumsCountryFilterStorageKey = 'stadiums.countryFilter';
+const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
+
+function compareCountryCodes(left: string, right: string) {
+  const leftRank = countryOrder.indexOf(left);
+  const rightRank = countryOrder.indexOf(right);
+  const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
+  const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
+
+  if (normalizedLeftRank !== normalizedRightRank) {
+    return normalizedLeftRank - normalizedRightRank;
+  }
+
+  return countryLabel(left).localeCompare(countryLabel(right), 'da');
+}
+
+function StadiumsContextChip({ text }: { text: string }) {
+  return <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-[var(--muted)]">{text}</span>;
+}
+
 export default function StadiumList() {
   const [stadiums, setStadiums] = useState<Stadium[]>(() => getSeedStadiums());
   const [filter, setFilter] = useState('');
-  const [countryFilter, setCountryFilter] = useState<string>('Alle');
+  const [countryFilter, setCountryFilter] = useState<string>('all');
   const [leagueFilter, setLeagueFilter] = useState<string>('Alle');
   const [visitFilter, setVisitFilter] = useState<VisitFilter>('all');
+  const [preferredHomeCountryCode, setPreferredHomeCountryCode] = useState('dk');
   const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visitedLoadError, userEmail, visited, visitedCount, toggleVisited } = useVisitedModel();
   const { enabledPackIds, isLoadingLeaguePackAccess, leaguePackAccessError } = useLeaguePackAccessModel();
 
@@ -31,6 +53,25 @@ export default function StadiumList() {
     };
   }, [hasSupabaseEnv]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const storedHomeCountryCode = window.localStorage.getItem(homeCountryStorageKey)?.trim().toLowerCase();
+    const storedCountryFilter = window.localStorage.getItem(stadiumsCountryFilterStorageKey)?.trim().toLowerCase();
+
+    if (storedHomeCountryCode) {
+      setPreferredHomeCountryCode(storedHomeCountryCode);
+    }
+
+    if (storedCountryFilter) {
+      setCountryFilter(storedCountryFilter);
+    } else if (storedHomeCountryCode) {
+      setCountryFilter(storedHomeCountryCode);
+    }
+  }, []);
+
   const visibleStadiums = useMemo(
     () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
     [stadiums, enabledPackIds]
@@ -41,30 +82,61 @@ export default function StadiumList() {
     [visibleStadiums, visited]
   );
   const countries = useMemo(
-    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((s) => s.countryCode ?? 'dk'))).sort()],
+    () => Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
     [visibleStadiums]
   );
+
+  useEffect(() => {
+    if (!countries.length) {
+      return;
+    }
+
+    const resolvedHomeCountryCode = countries.includes(preferredHomeCountryCode)
+      ? preferredHomeCountryCode
+      : countries.includes('dk')
+        ? 'dk'
+        : countries[0];
+
+    if (resolvedHomeCountryCode !== preferredHomeCountryCode) {
+      setPreferredHomeCountryCode(resolvedHomeCountryCode);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(homeCountryStorageKey, resolvedHomeCountryCode);
+      }
+    }
+
+    if (countryFilter !== 'all' && !countries.includes(countryFilter)) {
+      setCountryFilter(resolvedHomeCountryCode);
+    }
+  }, [countries, countryFilter, preferredHomeCountryCode]);
+
   const leagues = useMemo(
     () => ['Alle', ...sortLeagues(Array.from(new Set(
       visibleStadiums
-        .filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter)
-        .map((s) => s.league)
+        .filter((stadium) => countryFilter === 'all' || (stadium.countryCode ?? 'dk') === countryFilter)
+        .map((stadium) => stadium.league)
     )))],
     [countryFilter, visibleStadiums]
   );
 
   useEffect(() => {
-    if (!countries.includes(countryFilter)) {
-      setCountryFilter('Alle');
+    if (leagueFilter !== 'Alle' && !leagues.includes(leagueFilter)) {
       setLeagueFilter('Alle');
     }
-  }, [countries, countryFilter]);
+  }, [leagueFilter, leagues]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.setItem(stadiumsCountryFilterStorageKey, countryFilter);
+  }, [countryFilter]);
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();
     return visibleStadiums.filter((stadium) => {
       const matchesSearch = !search || `${stadium.name} ${stadium.team} ${stadium.city ?? ''} ${stadium.league}`.toLowerCase().includes(search);
-      const matchesCountry = countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter;
+      const matchesCountry = countryFilter === 'all' || (stadium.countryCode ?? 'dk') === countryFilter;
       const matchesLeague = leagueFilter === 'Alle' || stadium.league === leagueFilter;
       const isVisited = Boolean(visited[stadium.id]);
       const matchesVisit = visitFilter === 'all' || (visitFilter === 'visited' ? isVisited : !isVisited);
@@ -72,88 +144,112 @@ export default function StadiumList() {
     });
   }, [visibleStadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
 
-  const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'Alle' || leagueFilter !== 'Alle' || visitFilter !== 'all';
+  const currentScopeLabel = countryFilter === 'all' ? 'Alle aktive lande' : countryLabel(countryFilter);
+  const visitFilterLabel = visitFilter === 'all' ? 'Alle stadions' : visitFilter === 'visited' ? 'Kun besøgte' : 'Kun ubesøgte';
+  const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'all' || leagueFilter !== 'Alle' || visitFilter !== 'all';
+  const activeFilterCount = [
+    countryFilter !== 'all',
+    leagueFilter !== 'Alle',
+    visitFilter !== 'all',
+  ].filter(Boolean).length;
+  const resultSummaryText =
+    activeFilterCount === 0
+      ? `${filtered.length} stadions i dit nuværende scope`
+      : `${filtered.length} stadions med ${activeFilterCount} aktive filtre`;
 
   return (
     <section id="stadiums" className="site-card overflow-hidden">
       <div className="border-b border-white/5 p-5 md:p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <div className="label-eyebrow">Stadions</div>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Søg blandt stadioner, filtrér efter liga, og brug din egen besøgsstatus til at fokusere på steder du mangler eller allerede har været.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[26rem]">
-            <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Stadions</div>
-              <div className="mt-2 text-2xl font-semibold">{visibleStadiums.length}</div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <div className="label-eyebrow">Stadions</div>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                Brug samme scope-logik som i appen og skift mellem liste, divisioner og besøgsstatus uden at miste overblikket.
+              </p>
             </div>
-            <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Besøgte</div>
-              <div className="mt-2 text-2xl font-semibold">{visibleVisitedCount}</div>
-            </div>
-            <div className="stat-chip">
-              <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Viser nu</div>
-              <div className="mt-2 text-2xl font-semibold">{filtered.length}</div>
+            <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4 lg:min-w-[18rem]">
+              <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Stadions i visning</div>
+              <div className="mt-2 text-3xl font-semibold">{filtered.length}</div>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{resultSummaryText}</p>
             </div>
           </div>
-        </div>
 
-        <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
-          <input className="field-input" placeholder="Søg stadion, klub, by…" value={filter} onChange={(e) => setFilter(e.target.value)} />
-          <div className="grid grid-cols-3 gap-2 md:flex md:flex-wrap md:justify-end">
-            {(['all', 'not-visited', 'visited'] as VisitFilter[]).map((mode) => (
-              <button
-                key={mode}
-                type="button"
-                onClick={() => setVisitFilter(mode)}
-                className="pill-nav justify-center text-center"
-                data-active={visitFilter === mode ? 'true' : 'false'}
-              >
-                {mode === 'all' ? 'Alle' : mode === 'visited' ? 'Besøgte' : 'Ikke-besøgte'}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center gap-2">
+            <StadiumsContextChip text={currentScopeLabel} />
+            <StadiumsContextChip text={visitFilterLabel} />
+            <StadiumsContextChip text={`Besøgt: ${visibleVisitedCount}`} />
           </div>
-        </div>
 
-        {countries.length > 2 && (
-          <div className="mt-4">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Land</div>
-            <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
-              {countries.map((countryCode) => (
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Scope</div>
+              <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap">
                 <button
-                  key={countryCode}
                   type="button"
                   onClick={() => {
-                    setCountryFilter(countryCode);
+                    setCountryFilter('all');
                     setLeagueFilter('Alle');
                   }}
-                  className="pill-nav min-w-0 justify-center text-center md:shrink-0"
-                  data-active={countryFilter === countryCode ? 'true' : 'false'}
+                  className="pill-nav justify-center text-center"
+                  data-active={countryFilter === 'all' ? 'true' : 'false'}
                 >
-                  {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                  Alle aktive lande
                 </button>
-              ))}
+                {countries.map((countryCode) => (
+                  <button
+                    key={countryCode}
+                    type="button"
+                    onClick={() => {
+                      setCountryFilter(countryCode);
+                      setLeagueFilter('Alle');
+                    }}
+                    className="pill-nav justify-center text-center"
+                    data-active={countryFilter === countryCode ? 'true' : 'false'}
+                  >
+                    {countryLabel(countryCode)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Filtre</div>
+              <div className="grid grid-cols-3 gap-2 md:flex md:flex-wrap">
+                {(['all', 'not-visited', 'visited'] as VisitFilter[]).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setVisitFilter(mode)}
+                    className="pill-nav justify-center text-center"
+                    data-active={visitFilter === mode ? 'true' : 'false'}
+                  >
+                    {mode === 'all' ? 'Alle stadions' : mode === 'visited' ? 'Kun besøgte' : 'Kun ubesøgte'}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        )}
 
-        <div className="mt-4">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
-          <div className="grid grid-cols-3 gap-2 md:flex md:gap-2 md:overflow-x-auto md:px-1 md:pb-1">
-            {leagues.map((league) => (
-              <button
-                key={league}
-                type="button"
-                onClick={() => setLeagueFilter(league)}
-                className="pill-nav min-w-0 justify-center text-center md:shrink-0"
-                data-active={leagueFilter === league ? 'true' : 'false'}
-              >
-                {league}
-              </button>
-            ))}
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <input className="field-input" placeholder="Søg klub, stadion, by eller liga…" value={filter} onChange={(e) => setFilter(e.target.value)} />
+            <div>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
+              <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
+                {leagues.map((league) => (
+                  <button
+                    key={league}
+                    type="button"
+                    onClick={() => setLeagueFilter(league)}
+                    className="pill-nav min-w-0 justify-center text-center"
+                    data-active={leagueFilter === league ? 'true' : 'false'}
+                  >
+                    {league}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -185,7 +281,7 @@ export default function StadiumList() {
       {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
         <div className="border-b border-white/5 p-5 md:p-6">
           <div className="text-sm leading-6 text-[var(--muted)]">
-            Tyske stadions er skjult, indtil du er logget ind.
+            Premium-stadions er skjult, indtil du er logget ind og har adgang til de relevante landepakker.
           </div>
         </div>
       )}
@@ -267,9 +363,9 @@ export default function StadiumList() {
                   {!hasSupabaseEnv ? 'Visited kommer senere' : !isLoggedIn ? 'Log ind for at gemme' : isVisited ? 'Marker som ubesøgt' : 'Marker som besøgt'}
                 </button>
               </div>
-              </li>
-            );
-          })}
+            </li>
+          );
+        })}
         {filtered.length === 0 && (
           <li className="p-6 text-[var(--muted)]">
             {hasActiveFilters

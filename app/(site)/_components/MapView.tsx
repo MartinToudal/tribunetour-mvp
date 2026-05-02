@@ -11,10 +11,26 @@ const MapContainer = dynamic(() => import('react-leaflet').then((m) => m.MapCont
 const TileLayer = dynamic(() => import('react-leaflet').then((m) => m.TileLayer), { ssr: false });
 const Marker = dynamic(() => import('react-leaflet').then((m) => m.Marker), { ssr: false });
 const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), { ssr: false });
+const homeCountryStorageKey = 'app.preferredHomeCountryCode';
+const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
+
+function compareCountryCodes(left: string, right: string) {
+    const leftRank = countryOrder.indexOf(left);
+    const rightRank = countryOrder.indexOf(right);
+    const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
+    const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
+
+    if (normalizedLeftRank !== normalizedRightRank) {
+        return normalizedLeftRank - normalizedRightRank;
+    }
+
+    return countryLabel(left).localeCompare(countryLabel(right), 'da');
+}
 
 export default function MapView() {
     const [stadiums, setStadiums] = useState<Stadium[]>([]);
     const [countryFilter, setCountryFilter] = useState<string>('dk');
+    const [preferredHomeCountryCode, setPreferredHomeCountryCode] = useState('dk');
     const [onlyUnvisited, setOnlyUnvisited] = useState(false);
     const [icon, setIcon] = useState<any>(null);
     const { hasSupabaseEnv, isLoggedIn, isLoadingVisits, visited } = useVisitedModel();
@@ -40,20 +56,37 @@ export default function MapView() {
         setStadiums(getSeedStadiums() as Stadium[]);
     }, []);
 
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        const storedHomeCountryCode = window.localStorage.getItem(homeCountryStorageKey)?.trim().toLowerCase();
+        if (storedHomeCountryCode) {
+            setPreferredHomeCountryCode(storedHomeCountryCode);
+            setCountryFilter(storedHomeCountryCode);
+        }
+    }, []);
+
     const visibleStadiums = useMemo(
         () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
         [stadiums, enabledPackIds]
     );
     const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
     const hasMultipleCountries = useMemo(() => new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk')).size > 1, [visibleStadiums]);
-
+    const countries = useMemo(
+        () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes)],
+        [visibleStadiums]
+    );
     const resolvedDefaultCountry = useMemo(() => {
-        const available = Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk')));
-        if (available.includes('dk')) {
+        if (countries.includes(preferredHomeCountryCode)) {
+            return preferredHomeCountryCode;
+        }
+        if (countries.includes('dk')) {
             return 'dk';
         }
-        return available[0] ?? 'Alle';
-    }, [visibleStadiums]);
+        return countries[0] ?? 'Alle';
+    }, [countries, preferredHomeCountryCode]);
 
     const points = useMemo(
         () =>
@@ -64,11 +97,6 @@ export default function MapView() {
         [visibleStadiums, visited, countryFilter, onlyUnvisited]
     );
 
-    const countries = useMemo(
-        () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
-        [visibleStadiums]
-    );
-
     useEffect(() => {
         if (!countries.includes(countryFilter)) {
             setCountryFilter(resolvedDefaultCountry);
@@ -76,6 +104,18 @@ export default function MapView() {
     }, [countries, countryFilter, resolvedDefaultCountry]);
 
     const center = useMemo<[number, number]>(() => {
+        if (countryFilter === 'it') {
+            return [42.8, 12.5];
+        }
+
+        if (countryFilter === 'es') {
+            return [40.2, -3.7];
+        }
+
+        if (countryFilter === 'fr') {
+            return [46.5, 2.2];
+        }
+
         if (countryFilter === 'de') {
             return [51.2, 10.4];
         }
@@ -86,7 +126,7 @@ export default function MapView() {
 
         return [56.0, 10.0];
     }, [countryFilter]);
-    const zoom = countryFilter === 'de' || countryFilter === 'en' ? 6 : 7;
+    const zoom = countryFilter === 'de' || countryFilter === 'en' || countryFilter === 'it' || countryFilter === 'es' || countryFilter === 'fr' ? 6 : 7;
 
     const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
     const tileUrl = mapboxToken
@@ -167,7 +207,7 @@ export default function MapView() {
 
             {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
                 <div className="text-sm text-[var(--muted)]">
-                    Tyske stadions vises på kortet, når du er logget ind.
+                    Premium-stadions vises på kortet, når du er logget ind og har adgang til de relevante landepakker.
                 </div>
             )}
 
