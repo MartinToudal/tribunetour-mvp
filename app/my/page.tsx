@@ -7,6 +7,7 @@ import { usePhotosModel } from '../(site)/_hooks/usePhotosModel';
 import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../(site)/_lib/leaguePacks';
+import { compareLeagues } from '../(site)/_lib/leagueOrder';
 import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
 import { supabase } from '../(site)/_lib/supabaseClient';
 
@@ -18,7 +19,7 @@ type Achievement = {
   progressText: string;
 };
 
-type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'spain_top_4' | 'premium_full';
+type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'spain_top_4' | 'france_top_3' | 'premium_full';
 type PremiumAccessRequestRow = {
   id: string;
   pack_key: PremiumRequestPackKey;
@@ -50,11 +51,32 @@ const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; 
     description: 'La Liga, Segunda División og Primera Federación gruppe 1-2',
   },
   {
+    key: 'france_top_3',
+    label: 'Frankrig',
+    description: 'Ligue 1, Ligue 2 og National',
+  },
+  {
     key: 'premium_full',
     label: 'Alle premium-pakker',
     description: 'Adgang til alle nuværende og kommende premium-pakker',
   },
 ];
+
+const homeCountryStorageKey = 'app.preferredHomeCountryCode';
+const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
+
+function compareCountryCodes(left: string, right: string) {
+  const leftRank = countryOrder.indexOf(left);
+  const rightRank = countryOrder.indexOf(right);
+  const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
+  const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
+
+  if (normalizedLeftRank !== normalizedRightRank) {
+    return normalizedLeftRank - normalizedRightRank;
+  }
+
+  return countryLabel(left).localeCompare(countryLabel(right), 'da');
+}
 
 function clampProgress(value: number, max: number) {
   return `${Math.min(value, max)}/${max}`;
@@ -93,7 +115,8 @@ async function submitPremiumAccessRequestViaApi(targetPackKey: PremiumRequestPac
 
 export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
-  const [countryFilter, setCountryFilter] = useState<string>('Alle');
+  const [countryFilter, setCountryFilter] = useState<string>('dk');
+  const [preferredHomeCountryCode, setPreferredHomeCountryCode] = useState<string>('dk');
   const [showVisited, setShowVisited] = useState(false);
   const [filter, setFilter] = useState('');
   const [premiumRequestPackKey, setPremiumRequestPackKey] = useState<PremiumRequestPackKey>('premium_full');
@@ -123,22 +146,87 @@ export default function MyPage() {
     };
   }, [hasSupabaseEnv]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const storedHomeCountryCode = window.localStorage.getItem(homeCountryStorageKey)?.trim().toLowerCase();
+    if (!storedHomeCountryCode) {
+      return;
+    }
+
+    setPreferredHomeCountryCode(storedHomeCountryCode);
+    setCountryFilter(storedHomeCountryCode);
+  }, []);
+
   const visibleStadiums = useMemo(
     () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
     [stadiums, enabledPackIds]
   );
   const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
+  const visibleClubIds = useMemo(
+    () => new Set(visibleStadiums.map((stadium) => stadium.id)),
+    [visibleStadiums]
+  );
+  const visitedStadiums = useMemo(
+    () => visibleStadiums.filter((stadium) => visited[stadium.id]),
+    [visibleStadiums, visited]
+  );
+  const visitedCount = visitedStadiums.length;
+  const totalCount = visibleStadiums.length;
+  const remainingCount = Math.max(totalCount - visitedCount, 0);
+  const completion = totalCount > 0 ? Math.round((visitedCount / totalCount) * 100) : 0;
+  const progress = totalCount > 0 ? visitedCount / totalCount : 0;
+  const coreVisibleStadiums = useMemo(
+    () => visibleStadiums.filter((stadium) => (stadium.leaguePack ?? 'core_denmark') === 'core_denmark'),
+    [visibleStadiums]
+  );
+  const premiumVisibleStadiums = useMemo(
+    () => visibleStadiums.filter((stadium) => (stadium.leaguePack ?? 'core_denmark') !== 'core_denmark'),
+    [visibleStadiums]
+  );
+  const coreVisitedCount = useMemo(
+    () => coreVisibleStadiums.filter((stadium) => visited[stadium.id]).length,
+    [coreVisibleStadiums, visited]
+  );
+  const premiumVisitedCount = useMemo(
+    () => premiumVisibleStadiums.filter((stadium) => visited[stadium.id]).length,
+    [premiumVisibleStadiums, visited]
+  );
+  const hasPremiumCountries = premiumVisibleStadiums.length > 0;
+  const visibleCountryCount = new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk')).size;
+  const crossBorderTarget = Math.min(visibleCountryCount, 2);
 
   const countries = useMemo(
-    () => ['Alle', ...Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort()],
+    () => Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
     [visibleStadiums]
   );
 
   useEffect(() => {
-    if (!countries.includes(countryFilter)) {
-      setCountryFilter('Alle');
+    if (!countries.length) {
+      return;
     }
-  }, [countries, countryFilter]);
+
+    const resolvedHomeCountryCode = countries.includes(preferredHomeCountryCode)
+      ? preferredHomeCountryCode
+      : countries.includes('dk')
+        ? 'dk'
+        : countries[0];
+
+    if (resolvedHomeCountryCode !== preferredHomeCountryCode) {
+      setPreferredHomeCountryCode(resolvedHomeCountryCode);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(homeCountryStorageKey, resolvedHomeCountryCode);
+      }
+    }
+
+    if (countryFilter !== 'Alle' && !countries.includes(countryFilter)) {
+      setCountryFilter(resolvedHomeCountryCode);
+    }
+  }, [countries, countryFilter, preferredHomeCountryCode]);
+
+  const currentScopeLabel = countryFilter === 'Alle' ? 'Alle aktive lande' : countryLabel(countryFilter);
 
   const scopedStadiums = useMemo(
     () => visibleStadiums.filter((stadium) => countryFilter === 'Alle' || (stadium.countryCode ?? 'dk') === countryFilter),
@@ -156,11 +244,19 @@ export default function MyPage() {
     () => Object.entries(notes).filter(([clubId, note]) => scopedClubIds.has(clubId) && note.trim().length > 0).length,
     [notes, scopedClubIds]
   );
+  const notesCount = useMemo(
+    () => Object.entries(notes).filter(([clubId, note]) => visibleClubIds.has(clubId) && note.trim().length > 0).length,
+    [notes, visibleClubIds]
+  );
   const scopedReviews = useMemo(
     () => Object.values(reviews).filter((review) => scopedClubIds.has(review.clubId)),
     [reviews, scopedClubIds]
   );
   const scopedReviewsCount = scopedReviews.length;
+  const reviewsCount = useMemo(
+    () => Object.values(reviews).filter((review) => visibleClubIds.has(review.clubId)).length,
+    [reviews, visibleClubIds]
+  );
   const scopedPhotosByClubId = useMemo(
     () => Object.entries(photosByClubId).filter(([clubId, items]) => scopedClubIds.has(clubId) && items.length > 0),
     [photosByClubId, scopedClubIds]
@@ -169,42 +265,61 @@ export default function MyPage() {
     () => scopedPhotosByClubId.reduce((sum, [, items]) => sum + items.length, 0),
     [scopedPhotosByClubId]
   );
-  const totalCount = scopedStadiums.length;
-  const remainingCount = Math.max(totalCount - scopedVisitedCount, 0);
-  const completion = totalCount > 0 ? Math.round((scopedVisitedCount / totalCount) * 100) : 0;
-  const progress = totalCount > 0 ? scopedVisitedCount / totalCount : 0;
+  const photosByVisibleClubId = useMemo(
+    () => Object.entries(photosByClubId).filter(([clubId, items]) => visibleClubIds.has(clubId) && items.length > 0),
+    [photosByClubId, visibleClubIds]
+  );
+  const photosCount = useMemo(
+    () => photosByVisibleClubId.reduce((sum, [, items]) => sum + items.length, 0),
+    [photosByVisibleClubId]
+  );
   const isLoadingProgression = isLoadingVisits || isLoadingNotes || isLoadingReviews || isLoadingPhotos;
 
-  const visitedStadiums = useMemo(
-    () => scopedStadiums.filter((stadium) => visited[stadium.id]),
-    [scopedStadiums, visited]
-  );
-
   const visitedByLeague = useMemo(() => {
-    const grouped = new Map<string, Stadium[]>();
-    scopedStadiums.forEach((stadium) => {
-      const current = grouped.get(stadium.league) ?? [];
-      current.push(stadium);
-      grouped.set(stadium.league, current);
+    const grouped = new Map<string, { countryCode: string; league: string; total: number; visited: number }>();
+    visibleStadiums.forEach((stadium) => {
+      const countryCode = stadium.countryCode ?? 'dk';
+      const key = `${countryCode}:${stadium.league}`;
+      const current = grouped.get(key) ?? {
+        countryCode,
+        league: stadium.league,
+        total: 0,
+        visited: 0,
+      };
+      current.total += 1;
+      if (visited[stadium.id]) {
+        current.visited += 1;
+      }
+      grouped.set(key, current);
     });
 
-    return [...grouped.entries()]
-      .map(([league, items]) => ({
-        league,
-        total: items.length,
-        visited: items.filter((stadium) => visited[stadium.id]).length,
-      }))
-      .sort((left, right) => {
-        if (left.total !== right.total) {
-          return right.total - left.total;
-        }
-        return left.league.localeCompare(right.league, 'da');
-      });
-  }, [scopedStadiums, visited]);
+    return [...grouped.values()].sort((left, right) => {
+      const countryComparison = compareCountryCodes(left.countryCode, right.countryCode);
+      if (countryComparison !== 0) {
+        return countryComparison;
+      }
+      return compareLeagues(left.league, right.league);
+    });
+  }, [visibleStadiums, visited]);
 
   const completeLeagues = visitedByLeague.filter((row) => row.total > 0 && row.visited === row.total).length;
+  const completePremiumLeagues = useMemo(() => {
+    const grouped = new Map<string, { total: number; visited: number }>();
+    premiumVisibleStadiums.forEach((stadium) => {
+      const key = `${stadium.countryCode ?? 'dk'}:${stadium.league}`;
+      const current = grouped.get(key) ?? { total: 0, visited: 0 };
+      current.total += 1;
+      if (visited[stadium.id]) {
+        current.visited += 1;
+      }
+      grouped.set(key, current);
+    });
+
+    return [...grouped.values()].filter((row) => row.total > 0 && row.total === row.visited).length;
+  }, [premiumVisibleStadiums, visited]);
   const averageReviewScoreText = useMemo(() => {
-    const reviewAverages = scopedReviews
+    const reviewAverages = Object.values(reviews)
+      .filter((review) => visibleClubIds.has(review.clubId))
       .map((review) => {
         const values = Object.values(review.scores);
         if (!values.length) {
@@ -221,9 +336,9 @@ export default function MyPage() {
 
     const total = reviewAverages.reduce((sum, value) => sum + value, 0);
     return `${(total / reviewAverages.length).toFixed(1)} / 10`;
-  }, [scopedReviews]);
+  }, [reviews, visibleClubIds]);
 
-  const stadiumsWithPhotosCount = scopedPhotosByClubId.length;
+  const stadiumsWithPhotosCount = photosByVisibleClubId.length;
   const openPremiumRequestRows = useMemo(
     () => premiumRequestRows.filter((row) => row.status === 'open'),
     [premiumRequestRows]
@@ -331,38 +446,42 @@ export default function MyPage() {
     ).size,
     [visitedStadiums]
   );
+  const visitedCountriesCount = useMemo(
+    () => new Set(visitedStadiums.map((stadium) => stadium.countryCode ?? 'dk')).size,
+    [visitedStadiums]
+  );
 
-  const achievements = useMemo<Achievement[]>(() => {
-    const halfThreshold = Math.max(1, Math.ceil(totalCount * 0.5));
+  const baseAchievements = useMemo<Achievement[]>(() => {
+    const halfThreshold = Math.max(1, Math.ceil(Math.max(coreVisibleStadiums.length, 1) * 0.5));
 
     return [
       {
         id: 'first_visit',
         title: 'Første skridt',
         description: 'Besøg dit første stadion.',
-        isUnlocked: scopedVisitedCount >= 1,
-        progressText: clampProgress(scopedVisitedCount, 1),
+        isUnlocked: visitedCount >= 1,
+        progressText: clampProgress(visitedCount, 1),
       },
       {
         id: 'five_stadiums',
         title: 'Groundhopper I',
         description: 'Besøg 5 stadions.',
-        isUnlocked: scopedVisitedCount >= 5,
-        progressText: clampProgress(scopedVisitedCount, 5),
+        isUnlocked: visitedCount >= 5,
+        progressText: clampProgress(visitedCount, 5),
       },
       {
         id: 'twelve_stadiums',
         title: 'Groundhopper II',
         description: 'Besøg 12 stadions.',
-        isUnlocked: scopedVisitedCount >= 12,
-        progressText: clampProgress(scopedVisitedCount, 12),
+        isUnlocked: visitedCount >= 12,
+        progressText: clampProgress(visitedCount, 12),
       },
       {
         id: 'halfway',
         title: 'Halvvejs',
-        description: 'Besøg halvdelen af alle stadions.',
-        isUnlocked: scopedVisitedCount >= halfThreshold,
-        progressText: clampProgress(scopedVisitedCount, halfThreshold),
+        description: 'Besøg halvdelen af de danske stadions i grundpakken.',
+        isUnlocked: coreVisitedCount >= halfThreshold,
+        progressText: clampProgress(coreVisitedCount, halfThreshold),
       },
       {
         id: 'league_complete',
@@ -375,36 +494,36 @@ export default function MyPage() {
         id: 'first_review',
         title: 'Anmelder',
         description: 'Lav din første stadion-anmeldelse.',
-        isUnlocked: scopedReviewsCount >= 1,
-        progressText: clampProgress(scopedReviewsCount, 1),
+        isUnlocked: reviewsCount >= 1,
+        progressText: clampProgress(reviewsCount, 1),
       },
       {
         id: 'reviewer_level_2',
         title: 'Anmelder II',
         description: 'Lav anmeldelser af 5 stadions.',
-        isUnlocked: scopedReviewsCount >= 5,
-        progressText: clampProgress(scopedReviewsCount, 5),
+        isUnlocked: reviewsCount >= 5,
+        progressText: clampProgress(reviewsCount, 5),
       },
       {
         id: 'note_writer',
         title: 'Noteskriver',
         description: 'Skriv noter på 5 stadions.',
-        isUnlocked: scopedNotesCount >= 5,
-        progressText: clampProgress(scopedNotesCount, 5),
+        isUnlocked: notesCount >= 5,
+        progressText: clampProgress(notesCount, 5),
       },
       {
         id: 'first_photo',
         title: 'Fotograf',
         description: 'Tilføj dit første stadionbillede.',
-        isUnlocked: scopedPhotosCount >= 1,
-        progressText: clampProgress(scopedPhotosCount, 1),
+        isUnlocked: photosCount >= 1,
+        progressText: clampProgress(photosCount, 1),
       },
       {
         id: 'photo_collector',
         title: 'Fotojæger',
         description: 'Tilføj 10 stadionbilleder i alt.',
-        isUnlocked: scopedPhotosCount >= 10,
-        progressText: clampProgress(scopedPhotosCount, 10),
+        isUnlocked: photosCount >= 10,
+        progressText: clampProgress(photosCount, 10),
       },
       {
         id: 'gallery_builder',
@@ -430,9 +549,9 @@ export default function MyPage() {
       {
         id: 'all_stadiums',
         title: 'Tribune Tour Master',
-        description: 'Besøg alle stadions.',
-        isUnlocked: totalCount > 0 && scopedVisitedCount === totalCount,
-        progressText: `${scopedVisitedCount}/${Math.max(1, totalCount)}`,
+        description: 'Besøg alle stadions i grundpakken.',
+        isUnlocked: coreVisibleStadiums.length > 0 && coreVisitedCount === coreVisibleStadiums.length,
+        progressText: `${coreVisitedCount}/${Math.max(1, coreVisibleStadiums.length)}`,
       },
     ].sort((left, right) => {
       if (left.isUnlocked !== right.isUnlocked) {
@@ -442,16 +561,60 @@ export default function MyPage() {
     });
   }, [
     completeLeagues,
-    scopedNotesCount,
-    scopedPhotosCount,
-    scopedReviewsCount,
+    coreVisibleStadiums.length,
+    coreVisitedCount,
+    notesCount,
+    photosCount,
+    reviewsCount,
     stadiumsWithPhotosCount,
-    scopedVisitedCount,
-    totalCount,
+    visitedCount,
     visitedCitiesCount,
     visitedLeaguesCount,
   ]);
 
+  const premiumAchievements = useMemo<Achievement[]>(() => {
+    if (!hasPremiumCountries) {
+      return [];
+    }
+
+    return [
+      {
+        id: 'premium_first_visit',
+        title: 'Udebanestart',
+        description: 'Besøg dit første premium-stadion.',
+        isUnlocked: premiumVisitedCount >= 1,
+        progressText: clampProgress(premiumVisitedCount, 1),
+      },
+      {
+        id: 'premium_explorer',
+        title: 'International groundhopper',
+        description: 'Besøg 5 premium-stadions.',
+        isUnlocked: premiumVisitedCount >= 5,
+        progressText: clampProgress(premiumVisitedCount, 5),
+      },
+      {
+        id: 'cross_border',
+        title: 'På tværs af grænser',
+        description: 'Besøg stadions i mindst 2 aktive lande.',
+        isUnlocked: crossBorderTarget <= 1 || visitedCountriesCount >= crossBorderTarget,
+        progressText: `${Math.min(visitedCountriesCount, Math.max(crossBorderTarget, 1))}/${Math.max(crossBorderTarget, 1)}`,
+      },
+      {
+        id: 'premium_league_complete',
+        title: 'Premium-specialist',
+        description: 'Fuldfør alle stadions i én premium-række.',
+        isUnlocked: completePremiumLeagues >= 1,
+        progressText: clampProgress(completePremiumLeagues, 1),
+      },
+    ].sort((left, right) => {
+      if (left.isUnlocked !== right.isUnlocked) {
+        return left.isUnlocked ? -1 : 1;
+      }
+      return left.title.localeCompare(right.title, 'da');
+    });
+  }, [completePremiumLeagues, crossBorderTarget, hasPremiumCountries, premiumVisitedCount, visitedCountriesCount]);
+
+  const achievements = [...baseAchievements, ...premiumAchievements];
   const unlockedAchievementsCount = achievements.filter((achievement) => achievement.isUnlocked).length;
 
   const list = useMemo(() => {
@@ -474,7 +637,7 @@ export default function MyPage() {
           <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[28rem]">
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Besøgte</div>
-              <div className="mt-2 text-2xl font-semibold">{scopedVisitedCount}</div>
+              <div className="mt-2 text-2xl font-semibold">{visitedCount}</div>
             </div>
             <div className="stat-chip">
               <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Tilbage</div>
@@ -501,30 +664,81 @@ export default function MyPage() {
       </section>
 
       <section className="site-card p-5 md:p-6">
-        {countries.length > 2 && (
-          <div className="mb-5 border-b border-white/5 pb-5">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Landescope</div>
-            <div className="grid grid-cols-3 gap-2 md:flex md:flex-wrap">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="label-eyebrow">Hjemland og scope</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Lås samme scope-logik som i appen</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Dit hjemland bliver udgangspunktet, når du åbner Tribunetour. Herfra kan du skifte mellem hjemland og alle aktive lande uden at miste overblikket.
+            </p>
+          </div>
+          <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4 lg:min-w-[18rem]">
+            <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Aktivt scope</div>
+            <div className="mt-2 text-2xl font-semibold">{currentScopeLabel}</div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Hjemland: {countryLabel(preferredHomeCountryCode)}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Hjemland</div>
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
               {countries.map((countryCode) => (
                 <button
-                  key={countryCode}
+                  key={`home-${countryCode}`}
+                  type="button"
+                  onClick={() => {
+                    setPreferredHomeCountryCode(countryCode);
+                    setCountryFilter(countryCode);
+                    if (typeof window !== 'undefined') {
+                      window.localStorage.setItem(homeCountryStorageKey, countryCode);
+                    }
+                  }}
+                  className="pill-nav justify-center text-center"
+                  data-active={preferredHomeCountryCode === countryCode ? 'true' : 'false'}
+                >
+                  {countryLabel(countryCode)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Viser nu</div>
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+              <button
+                type="button"
+                onClick={() => setCountryFilter('Alle')}
+                className="pill-nav justify-center text-center"
+                data-active={countryFilter === 'Alle' ? 'true' : 'false'}
+              >
+                Alle aktive lande
+              </button>
+              {countries.map((countryCode) => (
+                <button
+                  key={`scope-${countryCode}`}
                   type="button"
                   onClick={() => setCountryFilter(countryCode)}
                   className="pill-nav justify-center text-center"
                   data-active={countryFilter === countryCode ? 'true' : 'false'}
                 >
-                  {countryCode === 'Alle' ? 'Alle' : countryLabel(countryCode)}
+                  {countryLabel(countryCode)}
                 </button>
               ))}
             </div>
           </div>
-        )}
+        </div>
+      </section>
+
+      <section className="site-card p-5 md:p-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <div className="label-eyebrow">Progression</div>
-            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Din konto begynder at ligne appen</h3>
+            <div className="label-eyebrow">Achievements</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Samme progression, uanset platform</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Web beregner nu achievements ud fra de samme shared data som appen: besøg, anmeldelser, noter og billeder.
+              Basis-achievements følger din danske grundpakke, mens premium-achievements bliver synlige, når du har ekstra lande aktive. På den måde kan nye pyramider føjes til uden at ændre selve modellen.
             </p>
           </div>
           <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4">
@@ -536,16 +750,16 @@ export default function MyPage() {
         <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <div className="stat-chip">
             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Noter</div>
-            <div className="mt-2 text-2xl font-semibold">{scopedNotesCount}</div>
+            <div className="mt-2 text-2xl font-semibold">{notesCount}</div>
           </div>
           <div className="stat-chip">
             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Anmeldelser</div>
-            <div className="mt-2 text-2xl font-semibold">{scopedReviewsCount}</div>
+            <div className="mt-2 text-2xl font-semibold">{reviewsCount}</div>
             {averageReviewScoreText && <p className="mt-2 text-xs text-[var(--muted)]">Snit: {averageReviewScoreText}</p>}
           </div>
           <div className="stat-chip">
             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Billeder</div>
-            <div className="mt-2 text-2xl font-semibold">{scopedPhotosCount}</div>
+            <div className="mt-2 text-2xl font-semibold">{photosCount}</div>
             <p className="mt-2 text-xs text-[var(--muted)]">{stadiumsWithPhotosCount} stadions med billeder</p>
           </div>
           <div className="stat-chip">
@@ -555,201 +769,278 @@ export default function MyPage() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-3 lg:grid-cols-2">
-          {achievements.map((achievement) => (
-            <article
-              key={achievement.id}
-              className={`rounded-[28px] border p-4 transition ${
-                achievement.isUnlocked
-                  ? 'border-[rgba(184,255,106,0.26)] bg-[rgba(184,255,106,0.08)]'
-                  : 'border-white/8 bg-white/4'
-              }`}
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className={`grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border text-lg ${
-                    achievement.isUnlocked
-                      ? 'border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-[var(--accent)]'
-                      : 'border-white/10 bg-white/5 text-[var(--muted)]'
-                  }`}
-                >
-                  <span aria-hidden="true">{achievement.isUnlocked ? '✓' : '○'}</span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h4 className="font-semibold tracking-tight">{achievement.title}</h4>
-                      <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{achievement.description}</p>
-                    </div>
-                    <div className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-[var(--muted)]">
-                      {achievement.progressText}
+        <div className="mt-6">
+          <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Basis-achievements</div>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {baseAchievements.map((achievement) => (
+              <article
+                key={achievement.id}
+                className={`rounded-[28px] border p-4 transition ${
+                  achievement.isUnlocked
+                    ? 'border-[rgba(184,255,106,0.26)] bg-[rgba(184,255,106,0.08)]'
+                    : 'border-white/8 bg-white/4'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className={`grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border text-lg ${
+                      achievement.isUnlocked
+                        ? 'border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-[var(--accent)]'
+                        : 'border-white/10 bg-white/5 text-[var(--muted)]'
+                    }`}
+                  >
+                    <span aria-hidden="true">{achievement.isUnlocked ? '✓' : '○'}</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h4 className="font-semibold tracking-tight">{achievement.title}</h4>
+                        <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{achievement.description}</p>
+                      </div>
+                      <div className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                        {achievement.progressText}
+                      </div>
                     </div>
                   </div>
                 </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {premiumAchievements.length > 0 && (
+          <div className="mt-6">
+            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Premium achievements</div>
+            <div className="mb-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
+              Grundachievements kan stadig fuldføres uanset hvor mange lande du har aktive. Premium-achievements gør det tydeligt, når du bruger flere landepakker og bevæger dig på tværs af pyramider.
+            </div>
+            <div className="grid gap-3 lg:grid-cols-2">
+              {premiumAchievements.map((achievement) => (
+                <article
+                  key={achievement.id}
+                  className={`rounded-[28px] border p-4 transition ${
+                    achievement.isUnlocked
+                      ? 'border-[rgba(184,255,106,0.26)] bg-[rgba(184,255,106,0.08)]'
+                      : 'border-white/8 bg-white/4'
+                  }`}
+                >
+                  <div className="flex items-start gap-4">
+                    <div
+                      className={`grid h-12 w-12 shrink-0 place-items-center rounded-[18px] border text-lg ${
+                        achievement.isUnlocked
+                          ? 'border-[rgba(184,255,106,0.35)] bg-[rgba(184,255,106,0.12)] text-[var(--accent)]'
+                          : 'border-white/10 bg-white/5 text-[var(--muted)]'
+                      }`}
+                    >
+                      <span aria-hidden="true">{achievement.isUnlocked ? '✓' : '○'}</span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h4 className="font-semibold tracking-tight">{achievement.title}</h4>
+                          <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{achievement.description}</p>
+                        </div>
+                        <div className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                          {achievement.progressText}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="site-card-soft p-5 md:p-6">
+        <div className="label-eyebrow">Konto og sync</div>
+        {!hasSupabaseEnv && (
+          <>
+            <h3 className="mt-2 text-xl font-semibold tracking-tight">Login klargøres</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Web kan allerede vise data og progression, men personlig sync er ikke slået helt til i dette miljø endnu.
+            </p>
+          </>
+        )}
+
+        {hasSupabaseEnv && !isLoggedIn && (
+          <>
+            <h3 className="mt-2 text-xl font-semibold tracking-tight">Gør Min tur personlig</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Log ind øverst på siden for at gemme dine stadionbesøg, synkronisere med appen og få adgang til premium-landepakker.
+            </p>
+            {hiddenLeaguePackStadiumCount > 0 && (
+              <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
+                Ekstra ligaer bliver synlige efter login, hvis din konto har adgang til de relevante premium-pakker.
+              </div>
+            )}
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a href="/" className="cta-primary">
+                Gå til stadions
+              </a>
+              <a href="/matches" className="cta-secondary">
+                Se kommende kampe
+              </a>
+            </div>
+          </>
+        )}
+
+        {hasSupabaseEnv && isLoggedIn && (
+          <>
+            <h3 className="mt-2 text-xl font-semibold tracking-tight">Logget ind</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Kontoen {userEmail ?? ''} er aktiv. Din besøgsstatus og dine premium-adgange følger nu samme konto på tværs af web og app.
+            </p>
+
+            {leaguePackAccessError && (
+              <div className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                {leaguePackAccessError}
+              </div>
+            )}
+
+            {isLoadingVisits && (
+              <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+                Henter din besøgsstatus…
+              </div>
+            )}
+
+            {isLoadingProgression && (
+              <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+                Opdaterer din progression…
+              </div>
+            )}
+
+            {!isLoadingVisits && visitedCount === 0 && (
+              <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
+                Kontoen er klar. Start med at markere de stadions du allerede har besøgt, eller brug kampsiden til at planlægge de næste.
+              </div>
+            )}
+
+            <div className="mt-6">
+              <div className="text-sm font-medium text-white">Premium-adgang</div>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                Anmod om adgang til ligaer i andre lande. Vi behandler anmodningen manuelt og åbner den rigtige pakke på din konto.
+              </p>
+
+              {isLoadingPremiumRequestRows && (
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  Henter dine premium-anmodninger…
+                </p>
+              )}
+
+              {!isLoadingPremiumRequestRows && selectedPackOpenRequest && (
+                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+                  Du har allerede en åben anmodning om {premiumRequestOptions.find((option) => option.key === selectedPackOpenRequest.pack_key)?.label ?? selectedPackOpenRequest.pack_key}.
+                  <div className="mt-1 text-xs text-[var(--muted)]">
+                    Sendt {new Date(selectedPackOpenRequest.created_at).toLocaleString('da-DK')}.
+                  </div>
+                </div>
+              )}
+
+              {!isLoadingPremiumRequestRows && !selectedPackOpenRequest && openPremiumRequestRows.length > 0 && (
+                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
+                  Du har allerede åbne anmodninger om {openPremiumRequestRows.map((row) => premiumRequestOptions.find((option) => option.key === row.pack_key)?.label ?? row.pack_key).join(', ')}.
+                </div>
+              )}
+
+              <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                <div>
+                  <label className="text-sm font-medium text-white" htmlFor="premium-request-pack">
+                    Premium-pakke
+                  </label>
+                  <select
+                    id="premium-request-pack"
+                    className="field-input mt-2"
+                    value={premiumRequestPackKey}
+                    onChange={(event) => setPremiumRequestPackKey(event.target.value as PremiumRequestPackKey)}
+                  >
+                    {premiumRequestOptions.map((option) => (
+                      <option key={option.key} value={option.key}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    {premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.description}
+                  </p>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium text-white" htmlFor="premium-request-message">
+                    Besked, valgfri
+                  </label>
+                  <textarea
+                    id="premium-request-message"
+                    className="field-input mt-2 min-h-24"
+                    value={premiumRequestMessage}
+                    onChange={(event) => setPremiumRequestMessage(event.target.value)}
+                    placeholder="Fx hvilken pakke du gerne vil teste først."
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="cta-primary mt-4"
+                disabled={isSubmittingPremiumRequest || Boolean(selectedPackOpenRequest)}
+                onClick={submitPremiumRequest}
+              >
+                {isSubmittingPremiumRequest ? 'Sender…' : selectedPackOpenRequest ? 'Anmodning allerede sendt' : 'Anmod om premium-adgang'}
+              </button>
+
+              {premiumRequestStatus && (
+                <div className="mt-4 rounded-2xl border border-[rgba(184,255,106,0.25)] bg-[rgba(184,255,106,0.08)] px-4 py-3 text-sm text-[var(--accent)]">
+                  {premiumRequestStatus}
+                </div>
+              )}
+
+              {premiumRequestError && (
+                <div className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                  {premiumRequestError}
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </section>
+
+      <section className="site-card p-5 md:p-6">
+        <div className="label-eyebrow">Fordelt på liga</div>
+        <h3 className="mt-2 text-2xl font-semibold tracking-tight">Din progression følger pyramiderne</h3>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+          Ligaerne er sorteret efter pyramiden i hvert land, så nye pakker kan falde ind i samme mønster uden ekstra UI-arbejde.
+        </p>
+
+        <div className="mt-6 grid gap-3">
+          {visitedByLeague.map((row) => (
+            <article key={`${row.countryCode}-${row.league}`} className="rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="font-semibold tracking-tight">{countryLabel(row.countryCode)} - {row.league}</div>
+                </div>
+                <div className="text-sm text-[var(--muted)]">{row.visited}/{row.total}</div>
+              </div>
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/8">
+                <div
+                  className="h-full rounded-full bg-[linear-gradient(90deg,rgba(184,255,106,0.95),rgba(241,255,214,0.95))]"
+                  style={{ width: `${row.total > 0 ? (row.visited / row.total) * 100 : 0}%` }}
+                />
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      {!hasSupabaseEnv && (
-        <section className="site-card-soft p-5 md:p-6">
-          <div className="label-eyebrow">Min tur</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Besøgsstatus kommer senere på web</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Du kan allerede udforske stadions og kampe her, men personlig besøgsstatus er ikke slået fuldt til på web endnu.
-          </p>
-        </section>
-      )}
-
-      {hasSupabaseEnv && !isLoggedIn && (
-        <section className="site-card-soft p-5 md:p-6">
-          <div className="label-eyebrow">Log ind</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Gør Min tur personlig</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Log ind øverst på siden for at gemme dine stadionbesøg og få din egen status på tværs af Tribunetour.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <a href="/" className="cta-primary">
-              Gå til stadions
-            </a>
-            <a href="/matches" className="cta-secondary">
-              Se kommende kampe
-            </a>
-          </div>
-        </section>
-      )}
-
-      {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
-        <section className="site-card-soft p-5 md:p-6">
-          <div className="label-eyebrow">League pack</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Ekstra ligaer låses op efter login</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Dine progressionstal viser Danmark, indtil du er logget ind. Derefter kan ekstra lande og ligaer indgå som premium-pakker.
-          </p>
-        </section>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
-        <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
-          Henter din besøgsstatus…
-        </section>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && isLoadingProgression && (
-        <section className="site-card-soft p-5 md:p-6 text-sm text-[var(--muted)]">
-          Opdaterer din progression…
-        </section>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && (
-        <section className="site-card-soft p-5 md:p-6">
-          <div className="label-eyebrow">Premium</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Anmod om adgang til flere ligaer</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Send en anmodning, så vi kan åbne den rigtige landepakke for din konto.
-          </p>
-
-          {isLoadingPremiumRequestRows && (
-            <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-              Henter dine premium-anmodninger…
-            </p>
-          )}
-
-          {!isLoadingPremiumRequestRows && selectedPackOpenRequest && (
-            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
-              Du har allerede en åben anmodning om {premiumRequestOptions.find((option) => option.key === selectedPackOpenRequest.pack_key)?.label ?? selectedPackOpenRequest.pack_key}.
-              <div className="mt-1 text-xs text-[var(--muted)]">
-                Sendt {new Date(selectedPackOpenRequest.created_at).toLocaleString('da-DK')}.
-              </div>
-            </div>
-          )}
-
-          {!isLoadingPremiumRequestRows && !selectedPackOpenRequest && openPremiumRequestRows.length > 0 && (
-            <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[var(--muted)]">
-              Du har allerede åbne anmodninger om {openPremiumRequestRows.map((row) => premiumRequestOptions.find((option) => option.key === row.pack_key)?.label ?? row.pack_key).join(', ')}.
-            </div>
-          )}
-
-          <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <div>
-              <label className="text-sm font-medium text-white" htmlFor="premium-request-pack">
-                Premium-pakke
-              </label>
-              <select
-                id="premium-request-pack"
-                className="field-input mt-2"
-                value={premiumRequestPackKey}
-                onChange={(event) => setPremiumRequestPackKey(event.target.value as PremiumRequestPackKey)}
-              >
-                {premiumRequestOptions.map((option) => (
-                  <option key={option.key} value={option.key}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                {premiumRequestOptions.find((option) => option.key === premiumRequestPackKey)?.description}
-              </p>
-            </div>
-
-            <div>
-              <label className="text-sm font-medium text-white" htmlFor="premium-request-message">
-                Besked, valgfri
-              </label>
-              <textarea
-                id="premium-request-message"
-                className="field-input mt-2 min-h-24"
-                value={premiumRequestMessage}
-                onChange={(event) => setPremiumRequestMessage(event.target.value)}
-                placeholder="Fx hvilken pakke du gerne vil teste først."
-              />
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="cta-primary mt-4"
-            disabled={isSubmittingPremiumRequest || Boolean(selectedPackOpenRequest)}
-            onClick={submitPremiumRequest}
-          >
-            {isSubmittingPremiumRequest ? 'Sender…' : selectedPackOpenRequest ? 'Anmodning allerede sendt' : 'Send anmodning'}
-          </button>
-
-          {premiumRequestStatus && (
-            <div className="mt-4 rounded-2xl border border-[rgba(184,255,106,0.25)] bg-[rgba(184,255,106,0.08)] px-4 py-3 text-sm text-[var(--accent)]">
-              {premiumRequestStatus}
-            </div>
-          )}
-
-          {premiumRequestError && (
-            <div className="mt-4 rounded-2xl border border-red-500/25 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-              {premiumRequestError}
-            </div>
-          )}
-        </section>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && scopedVisitedCount === 0 && (
-        <section className="site-card-soft p-5 md:p-6">
-          <div className="label-eyebrow">Klar til start</div>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight">Du har ikke markeret nogen stadioner endnu</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Kontoen {userEmail ?? ''} er klar. Start med at markere de stadions du allerede har besøgt, eller brug kampsiden til at planlægge de næste.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <a href="/" className="cta-primary">
-              Markér stadions
-            </a>
-            <a href="/matches" className="cta-secondary">
-              Se kampe
-            </a>
-          </div>
-        </section>
-      )}
-
       <section className="site-card overflow-hidden">
         <div className="border-b border-white/5 p-5 md:p-6">
+          <div className="mb-4">
+            <div className="label-eyebrow">Mine stadions</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Se stadions i dit aktuelle scope</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Listen nedenfor følger dit valgte scope. Skift mellem hjemland og alle aktive lande ovenfor for at tjekke hvordan samme model føles på tværs af produktet.
+            </p>
+          </div>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <input className="field-input md:max-w-md" placeholder="Søg stadion, klub, by…" value={filter} onChange={(e) => setFilter(e.target.value)} />
             <div className="grid w-full grid-cols-2 rounded-full border border-white/10 bg-white/5 p-1 md:w-auto md:min-w-[15rem]">
@@ -801,7 +1092,7 @@ export default function MyPage() {
           })}
           {list.length === 0 && (
             <li className="p-6 text-[var(--muted)]">
-              {showVisited ? 'Du har ingen besøgte stadions, der matcher søgningen lige nu.' : 'Ingen ubesøgte stadions matcher den valgte visning lige nu.'}
+              {showVisited ? `Du har ingen besøgte stadions i ${currentScopeLabel}, der matcher søgningen lige nu.` : `Ingen ubesøgte stadions i ${currentScopeLabel} matcher den valgte visning lige nu.`}
             </li>
           )}
         </ul>
