@@ -1,0 +1,198 @@
+{
+  "be-anderlecht": {
+    "lat": 50.83416667,
+    "lon": 4.29833333
+  },
+  "be-antwerp": {
+    "lat": 51.2325,
+    "lon": 4.47222222
+  },
+  "be-cercle-brugge": {
+    "lat": 51.19333333,
+    "lon": 3.18055556
+  },
+  "be-charleroi": {
+    "lat": 50.414609,
+    "lon": 4.453787
+  },
+  "be-club-brugge": {
+    "lat": 51.19333333,
+    "lon": 3.18055556
+  },
+  "be-dender": {
+    "lat": 50.883683,
+    "lon": 4.071185
+  },
+  "be-genk": {
+    "lat": 51.005,
+    "lon": 5.53333333
+  },
+  "be-gent": {
+    "lat": 51.01611111,
+    "lon": 3.73416667
+  },
+  "be-kv-mechelen": {
+    "lat": 51.037184,
+    "lon": 4.486397
+  },
+  "be-leuven": {
+    "lat": 50.86833333,
+    "lon": 4.69416667
+  },
+  "be-raal-la-louviere": {
+    "lat": 50.478278,
+    "lon": 4.201026
+  },
+  "be-royale-union-sg": {
+    "lat": 50.81777778,
+    "lon": 4.32916667
+  },
+  "be-st-liege": {
+    "lat": 50.61,
+    "lon": 5.54333333
+  },
+  "be-st-truiden": {
+    "lat": 50.813474,
+    "lon": 5.166256
+  },
+  "be-waregem": {
+    "lat": 50.88305556,
+    "lon": 3.42888889
+  },
+  "be-westerlo": {
+    "lat": 51.094817,
+    "lon": 4.928806
+  },
+  "be-beveren": {
+    "lat": 51.214139,
+    "lon": 4.243931
+  },
+  "be-club-nxt": {
+    "lat": 50.952087,
+    "lon": 3.105354
+  },
+  "be-eupen": {
+    "lat": 50.63333333,
+    "lon": 6.03333333
+  },
+  "be-jong-genk": {
+    "lat": 51.005,
+    "lon": 5.53333333
+  },
+  "be-jong-kaa-gent": {
+    "lat": 51.01611111,
+    "lon": 3.73416667
+  },
+  "be-kortrijk": {
+    "lat": 50.830432,
+    "lon": 3.248906
+  },
+  "be-lierse": {
+    "lat": 51.14416667,
+    "lon": 4.57361111
+  },
+  "be-lokeren": {
+    "lat": 51.11638889,
+    "lon": 3.98722222
+  },
+  "be-lommel-sk": {
+    "lat": 51.23333333,
+    "lon": 5.3
+  },
+  "be-olympic-charleroi": {
+    "lat": 50.40805556,
+    "lon": 4.4475
+  },
+  "be-patro-eisden": {
+    "lat": 50.96666667,
+    "lon": 5.7
+  },
+  "be-rfc-liege": {
+    "lat": 50.63972222,
+    "lon": 5.57055556
+  },
+  "be-rsca-futures": {
+    "lat": 50.83416667,
+    "lon": 4.29833333
+  },
+  "be-rwdm-brussels": {
+    "lat": 50.855,
+    "lon": 4.31111111
+  },
+  "be-seraing": {
+    "lat": 50.60055556,
+    "lon": 5.50361111
+  },
+  "be-crossing-schaerbeek": {
+    "lat": 50.8675,
+    "lon": 4.37361111
+  },
+  "be-habay-la-neuve": {
+    "lat": 49.73333333,
+    "lon": 5.61666667
+  },
+  "be-renaissance-mons": {
+    "lat": 50.461957,
+    "lon": 3.963822
+  },
+  "be-sl16-fc": {
+    "lat": 50.61,
+    "lon": 5.54333333
+  },
+  "be-union-sg-b": {
+    "lat": 53.6,
+    "lon": 9.53333333
+  },
+  "be-virton": {
+    "lat": 49.5625,
+    "lon": 5.5306
+  },
+  "be-zebra-elites": {
+    "lat": 50.414609,
+    "lon": 4.453787
+  },
+  "be-diegem": {
+    "lat": 50.894232,
+    "lon": 4.435623
+  },
+  "be-hasselt": {
+    "lat": 50.93,
+    "lon": 5.3375
+  },
+  "be-houtvenne": {
+    "lat": 51.08333333,
+    "lon": 4.78333333
+  },
+  "be-jong-cercle": {
+    "lat": 51.19333333,
+    "lon": 3.18055556
+  },
+  "be-knokke": {
+    "lat": 51.34638889,
+    "lon": 3.28777778
+  },
+  "be-merelbeke": {
+    "lat": 51.0,
+    "lon": 3.75
+  },
+  "be-ninove": {
+    "lat": 50.83333333,
+    "lon": 4.01666667
+  },
+  "be-oh-leuven-u-23": {
+    "lat": 50.86833333,
+    "lon": 4.69416667
+  },
+  "be-roeselare": {
+    "lat": 50.952087,
+    "lon": 3.105354
+  },
+  "be-thes-sport": {
+    "lat": 50.86092778,
+    "lon": 6.03870278
+  },
+  "be-zelzate": {
+    "lat": 51.2,
+    "lon": 3.81666667
+  }
+}

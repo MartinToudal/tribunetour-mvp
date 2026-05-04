@@ -7,6 +7,7 @@ export type LeaguePackId =
   | 'france_top_3'
   | 'portugal_top_3'
   | 'netherlands_top_3'
+  | 'belgium_top_3'
   | 'premium_full';
 
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
@@ -119,6 +120,18 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     includedByPremiumFull: true,
     requestDescription: 'Eredivisie, Eerste Divisie og Tweede Divisie',
     featureFlag: 'NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3',
+  },
+  {
+    id: 'belgium_top_3',
+    countryCode: 'be',
+    label: 'Belgien',
+    sortOrder: 80,
+    levels: 3,
+    isCore: false,
+    isPremium: true,
+    includedByPremiumFull: true,
+    requestDescription: 'Jupiler Pro League, Challenger Pro League og National Division 1 ACFF/VV',
+    featureFlag: 'NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3',
   },
   {
     id: 'premium_full',
