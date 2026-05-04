@@ -5,6 +5,7 @@ export type LeaguePackId =
   | 'italy_top_3'
   | 'spain_top_4'
   | 'france_top_3'
+  | 'portugal_top_3'
   | 'premium_full';
 
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
@@ -93,6 +94,18 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     includedByPremiumFull: true,
     requestDescription: 'Ligue 1, Ligue 2 og National',
     featureFlag: 'NEXT_PUBLIC_ENABLE_FRANCE_TOP_3',
+  },
+  {
+    id: 'portugal_top_3',
+    countryCode: 'pt',
+    label: 'Portugal',
+    sortOrder: 60,
+    levels: 3,
+    isCore: false,
+    isPremium: true,
+    includedByPremiumFull: true,
+    requestDescription: 'Liga Portugal, Liga Portugal 2 og Liga 3 - Oprykningsgruppe',
+    featureFlag: 'NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3',
   },
   {
     id: 'premium_full',

@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-04-30T10:15:26.962Z",
-    "generatedAt": "2026-04-30T10:15:26.962Z",
-    "checksum": "1989a097dd61c9ae78a5903130d8ce45bdf0625d20904d5fd217798894d9e846",
+    "version": "2026-05-04T07:41:54.252Z",
+    "generatedAt": "2026-05-04T07:41:54.252Z",
+    "checksum": "2764d14a64a968ee9c8eed27ceebcc8ad99d34c6cb69ebf0b1d395d0a30a66c7",
     "signature": null
   },
   "fixtures": [
@@ -7960,6 +7960,17 @@
       "awayScore": null
     },
     {
+      "id": "pt3-r13-trofense-guimaraes-b",
+      "kickoff": "2026-05-09T16:00:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 13. runde",
+      "homeTeamId": "pt-trofense",
+      "awayTeamId": "pt-guimaraes-b",
+      "venueClubId": "pt-trofense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r39-albacete-cultural-leonesa",
       "kickoff": "2026-05-09T16:15:00+02:00",
       "round": "Segunda División - 39. runde",
@@ -8323,6 +8334,17 @@
       "awayScore": null
     },
     {
+      "id": "pt3-r13-mafra-academica",
+      "kickoff": "2026-05-09T21:00:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 13. runde",
+      "homeTeamId": "pt-mafra",
+      "awayTeamId": "pt-academica",
+      "venueClubId": "pt-mafra",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r39-malaga-gijon",
       "kickoff": "2026-05-09T21:00:00+02:00",
       "round": "Segunda División - 39. runde",
@@ -8384,6 +8406,17 @@
       "homeTeamId": "de-preussen-munster",
       "awayTeamId": "de-sv-darmstadt-98",
       "venueClubId": "de-preussen-munster",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt3-r13-amarante-santarem",
+      "kickoff": "2026-05-10T12:00:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 13. runde",
+      "homeTeamId": "pt-amarante",
+      "awayTeamId": "pt-santarem",
+      "venueClubId": "pt-amarante",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8631,6 +8664,105 @@
       "awayScore": null
     },
     {
+      "id": "pt2-r33-benfica-b-academico-viseu",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-benfica-b",
+      "awayTeamId": "pt-academico-viseu",
+      "venueClubId": "pt-benfica-b",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-chaves-leixoes",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-chaves",
+      "awayTeamId": "pt-leixoes",
+      "venueClubId": "pt-chaves",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-farense-ferreira",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-farense",
+      "awayTeamId": "pt-ferreira",
+      "venueClubId": "pt-farense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-feirense-oliveirense",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-feirense",
+      "awayTeamId": "pt-oliveirense",
+      "venueClubId": "pt-feirense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-felgueiras-portimonense",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-felgueiras",
+      "awayTeamId": "pt-portimonense",
+      "venueClubId": "pt-felgueiras",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-lusitania-fc-torreense",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-lusitania-fc",
+      "awayTeamId": "pt-torreense",
+      "venueClubId": "pt-lusitania-fc",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-penafiel-maritimo",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-penafiel",
+      "awayTeamId": "pt-maritimo",
+      "venueClubId": "pt-penafiel",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-sporting-b-porto-b",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-sporting-b",
+      "awayTeamId": "pt-porto-b",
+      "venueClubId": "pt-sporting-b",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r33-vizela-leiria",
+      "kickoff": "2026-05-10T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 33. runde",
+      "homeTeamId": "pt-vizela",
+      "awayTeamId": "pt-leiria",
+      "venueClubId": "pt-vizela",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "epl-r36-west-ham-united-arsenal",
       "kickoff": "2026-05-10T17:30:00+01:00",
       "round": "Premier League - 36. runde",
@@ -8648,6 +8780,105 @@
       "homeTeamId": "de-mainz-05",
       "awayTeamId": "de-union-berlin",
       "venueClubId": "de-mainz-05",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-afs-porto",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-afs",
+      "awayTeamId": "pt-porto",
+      "venueClubId": "pt-afs",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-alverca-estoril-praia",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-alverca",
+      "awayTeamId": "pt-estoril-praia",
+      "venueClubId": "pt-alverca",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-benfica-braga",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-benfica",
+      "awayTeamId": "pt-braga",
+      "venueClubId": "pt-benfica",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-estrela-famalicao",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-estrela",
+      "awayTeamId": "pt-famalicao",
+      "venueClubId": "pt-estrela",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-gil-vicente-arouca",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-gil-vicente",
+      "awayTeamId": "pt-arouca",
+      "venueClubId": "pt-gil-vicente",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-guimaraes-casa-pia",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-guimaraes",
+      "awayTeamId": "pt-casa-pia",
+      "venueClubId": "pt-guimaraes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-rio-ave-sporting",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-rio-ave",
+      "awayTeamId": "pt-sporting",
+      "venueClubId": "pt-rio-ave",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-santa-clara-nacional",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-santa-clara",
+      "awayTeamId": "pt-nacional",
+      "venueClubId": "pt-santa-clara",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r33-tondela-moreirense",
+      "kickoff": "2026-05-10T18:00:00+01:00",
+      "round": "Liga Portugal - 33. runde",
+      "homeTeamId": "pt-tondela",
+      "awayTeamId": "pt-moreirense",
+      "venueClubId": "pt-tondela",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -8824,6 +9055,17 @@
       "homeTeamId": "de-tsg-hoffenheim-ii",
       "awayTeamId": "de-saarbrucken",
       "venueClubId": "de-tsg-hoffenheim-ii",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt3-r13-varzim-os-belenenses",
+      "kickoff": "2026-05-10T20:30:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 13. runde",
+      "homeTeamId": "pt-varzim",
+      "awayTeamId": "pt-os-belenenses",
+      "venueClubId": "pt-varzim",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
@@ -9676,6 +9918,50 @@
       "awayScore": null
     },
     {
+      "id": "pt3-r14-academica-trofense",
+      "kickoff": "2026-05-16T17:30:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 14. runde",
+      "homeTeamId": "pt-academica",
+      "awayTeamId": "pt-trofense",
+      "venueClubId": "pt-academica",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt3-r14-guimaraes-b-amarante",
+      "kickoff": "2026-05-16T17:30:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 14. runde",
+      "homeTeamId": "pt-guimaraes-b",
+      "awayTeamId": "pt-amarante",
+      "venueClubId": "pt-guimaraes-b",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt3-r14-os-belenenses-mafra",
+      "kickoff": "2026-05-16T17:30:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 14. runde",
+      "homeTeamId": "pt-os-belenenses",
+      "awayTeamId": "pt-mafra",
+      "venueClubId": "pt-os-belenenses",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt3-r14-santarem-varzim",
+      "kickoff": "2026-05-16T17:30:00+01:00",
+      "round": "Liga 3 - Oprykningsgruppe - 14. runde",
+      "homeTeamId": "pt-santarem",
+      "awayTeamId": "pt-varzim",
+      "venueClubId": "pt-santarem",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "es2-r40-almeria-las-palmas",
       "kickoff": "2026-05-16T18:30:00+02:00",
       "round": "Segunda División - 40. runde",
@@ -10023,6 +10309,204 @@
       "homeTeamId": "sje",
       "awayTeamId": "fcn",
       "venueClubId": "sje",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-academico-viseu-sporting-b",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-academico-viseu",
+      "awayTeamId": "pt-sporting-b",
+      "venueClubId": "pt-academico-viseu",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-ferreira-penafiel",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-ferreira",
+      "awayTeamId": "pt-penafiel",
+      "venueClubId": "pt-ferreira",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-leiria-feirense",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-leiria",
+      "awayTeamId": "pt-feirense",
+      "venueClubId": "pt-leiria",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-leixoes-lusitania-fc",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-leixoes",
+      "awayTeamId": "pt-lusitania-fc",
+      "venueClubId": "pt-leixoes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-maritimo-chaves",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-maritimo",
+      "awayTeamId": "pt-chaves",
+      "venueClubId": "pt-maritimo",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-oliveirense-felgueiras",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-oliveirense",
+      "awayTeamId": "pt-felgueiras",
+      "venueClubId": "pt-oliveirense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-portimonense-farense",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-portimonense",
+      "awayTeamId": "pt-farense",
+      "venueClubId": "pt-portimonense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-porto-b-benfica-b",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-porto-b",
+      "awayTeamId": "pt-benfica-b",
+      "venueClubId": "pt-porto-b",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt2-r34-torreense-vizela",
+      "kickoff": "2026-05-17T17:00:00+01:00",
+      "round": "Liga Portugal 2 - 34. runde",
+      "homeTeamId": "pt-torreense",
+      "awayTeamId": "pt-vizela",
+      "venueClubId": "pt-torreense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-arouca-tondela",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-arouca",
+      "awayTeamId": "pt-tondela",
+      "venueClubId": "pt-arouca",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-braga-estrela",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-braga",
+      "awayTeamId": "pt-estrela",
+      "venueClubId": "pt-braga",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-casa-pia-rio-ave",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-casa-pia",
+      "awayTeamId": "pt-rio-ave",
+      "venueClubId": "pt-casa-pia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-estoril-praia-benfica",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-estoril-praia",
+      "awayTeamId": "pt-benfica",
+      "venueClubId": "pt-estoril-praia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-famalicao-alverca",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-famalicao",
+      "awayTeamId": "pt-alverca",
+      "venueClubId": "pt-famalicao",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-moreirense-afs",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-moreirense",
+      "awayTeamId": "pt-afs",
+      "venueClubId": "pt-moreirense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-nacional-guimaraes",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-nacional",
+      "awayTeamId": "pt-guimaraes",
+      "venueClubId": "pt-nacional",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-porto-santa-clara",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-porto",
+      "awayTeamId": "pt-santa-clara",
+      "venueClubId": "pt-porto",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "pt1-r34-sporting-gil-vicente",
+      "kickoff": "2026-05-17T18:00:00+01:00",
+      "round": "Liga Portugal - 34. runde",
+      "homeTeamId": "pt-sporting",
+      "awayTeamId": "pt-gil-vicente",
+      "venueClubId": "pt-sporting",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
