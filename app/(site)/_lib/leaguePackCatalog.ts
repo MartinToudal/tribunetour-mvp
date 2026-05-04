@@ -6,6 +6,7 @@ export type LeaguePackId =
   | 'spain_top_4'
   | 'france_top_3'
   | 'portugal_top_3'
+  | 'netherlands_top_3'
   | 'premium_full';
 
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
@@ -106,6 +107,18 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     includedByPremiumFull: true,
     requestDescription: 'Liga Portugal, Liga Portugal 2 og Liga 3 - Oprykningsgruppe',
     featureFlag: 'NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3',
+  },
+  {
+    id: 'netherlands_top_3',
+    countryCode: 'nl',
+    label: 'Holland',
+    sortOrder: 70,
+    levels: 3,
+    isCore: false,
+    isPremium: true,
+    includedByPremiumFull: true,
+    requestDescription: 'Eredivisie, Eerste Divisie og Tweede Divisie',
+    featureFlag: 'NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3',
   },
   {
     id: 'premium_full',

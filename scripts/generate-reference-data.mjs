@@ -168,6 +168,8 @@ function parseFixtures() {
     status: row.status,
     homeScore: parseOptionalScore(row.homeScore),
     awayScore: parseOptionalScore(row.awayScore),
+    competitionId: row.competitionId || undefined,
+    seasonId: row.seasonId || undefined,
   }));
 }
 
