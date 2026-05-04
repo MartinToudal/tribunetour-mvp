@@ -57,11 +57,22 @@ export const competitionCatalog: CompetitionCatalogEntry[] = [
 ];
 
 const competitionById = new Map(competitionCatalog.map((entry) => [entry.id, entry]));
-const competitionByNormalizedAlias = new Map(
-  competitionCatalog.flatMap((entry) =>
-    [entry.name, ...entry.aliases].map((alias) => [normalizeCompetitionName(alias), entry] as const)
-  )
-);
+const competitionByNormalizedAlias = buildCompetitionAliasMap();
+
+function buildCompetitionAliasMap(): Map<string, CompetitionCatalogEntry> {
+  const mapping = new Map<string, CompetitionCatalogEntry>();
+
+  for (const entry of competitionCatalog) {
+    for (const alias of [entry.name, ...entry.aliases]) {
+      const normalizedAlias = normalizeCompetitionName(alias);
+      if (!mapping.has(normalizedAlias)) {
+        mapping.set(normalizedAlias, entry);
+      }
+    }
+  }
+
+  return mapping;
+}
 
 export function normalizeCompetitionName(value: string): string {
   return value
