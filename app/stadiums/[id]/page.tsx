@@ -10,6 +10,12 @@ import {
 } from '../../(site)/_lib/referenceData';
 import { canonicalClubId, isSameClubId } from '../../(site)/_lib/clubIdentityResolver';
 import { countryLabel } from '../../(site)/_lib/leaguePacks';
+import {
+    getCompetitionCatalogEntry,
+    getCompetitionDisplayName,
+    getCompetitionMembershipStatusLabel,
+    type CompetitionMembership,
+} from '../../(site)/_lib/competitionCatalog';
 import StadiumDetailClient from './StadiumDetailClient';
 
 type StadiumDetailPageProps = {
@@ -41,6 +47,22 @@ function mapsHref(stadium: Stadium) {
     }
 
     return `https://www.google.com/maps/search/?api=1&query=${stadium.lat},${stadium.lon}`;
+}
+
+function sortCompetitionMemberships(memberships: CompetitionMembership[]) {
+    return [...memberships].sort((left, right) => {
+        if (left.isPrimary !== right.isPrimary) {
+            return left.isPrimary ? -1 : 1;
+        }
+
+        const leftOrder = getCompetitionCatalogEntry(left.competitionId)?.sortOrder ?? Number.MAX_SAFE_INTEGER;
+        const rightOrder = getCompetitionCatalogEntry(right.competitionId)?.sortOrder ?? Number.MAX_SAFE_INTEGER;
+        if (leftOrder !== rightOrder) {
+            return leftOrder - rightOrder;
+        }
+
+        return left.competitionId.localeCompare(right.competitionId);
+    });
 }
 
 export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
@@ -81,6 +103,8 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
     const locationLabel = isExpandedLeaguePack
         ? `${countryLabel(stadium.countryCode)} · ${stadium.league}`
         : stadium.league;
+    const sortedCompetitionMemberships = sortCompetitionMemberships(stadium.competitionMemberships ?? []);
+    const stadiumStatusLabel = getCompetitionMembershipStatusLabel(stadium.membershipStatus);
     const quickStats = [
         { label: 'Klub', value: stadium.team },
         { label: 'By', value: stadium.city ?? 'Ukendt' },
@@ -172,6 +196,72 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                                 Se alle kampe
                             </a>
                         </div>
+                    </div>
+                </section>
+            )}
+
+            {(sortedCompetitionMemberships.length > 0 || stadiumStatusLabel) && (
+                <section className="site-card overflow-hidden">
+                    <div className="border-b border-white/5 p-5 md:p-6">
+                        <div className="label-eyebrow">Turneringer</div>
+                        <h2 className="mt-2 text-2xl font-semibold tracking-tight">Turneringer og status</h2>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                            Primær turnering bruges til aktuelt topsystem. Ekstra eller historiske spor bliver bevaret her, så klubben kan leve videre uden at forsvinde ud af produktet.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-4 p-5 md:p-6">
+                        {stadiumStatusLabel && (
+                            <div className="site-card-soft p-4">
+                                <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Klubstatus</div>
+                                <div className="mt-2 text-lg font-semibold">{stadiumStatusLabel}</div>
+                            </div>
+                        )}
+
+                        {sortedCompetitionMemberships.map((membership) => {
+                            const competition = getCompetitionCatalogEntry(membership.competitionId);
+                            const membershipStatusLabel = getCompetitionMembershipStatusLabel(membership.status);
+
+                            return (
+                                <div key={`${membership.competitionId}-${membership.seasonId ?? 'no-season'}-${membership.isPrimary ? 'primary' : 'secondary'}`} className="site-card-soft p-4">
+                                    <div className="flex flex-wrap items-start justify-between gap-3">
+                                        <div>
+                                            <div className="text-lg font-semibold">
+                                                {getCompetitionDisplayName(membership.competitionId, stadium.league)}
+                                            </div>
+                                            {membership.seasonId && (
+                                                <div className="mt-1 text-sm text-[var(--muted)]">{membership.seasonId}</div>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {membership.isPrimary && (
+                                                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white">Primær</span>
+                                            )}
+                                            {membershipStatusLabel && (
+                                                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[var(--muted)]">{membershipStatusLabel}</span>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {competition?.type === 'european_cup' && (
+                                        <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                                            Ekstra europæisk turneringsspor ved siden af klubbens hjemlige pyramide.
+                                        </p>
+                                    )}
+                                    {membership.status === 'relegated' && (
+                                        <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                                            Visningen bevares som nedrykket spor uden at tælle med i aktuel top-progression.
+                                        </p>
+                                    )}
+                                    {membership.status === 'historical' && (
+                                        <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                                            Visningen bevares som historisk spor, så tidligere placeringer ikke går tabt.
+                                        </p>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </section>
             )}

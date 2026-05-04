@@ -5,6 +5,10 @@ import {
     getStaticFixtureParams,
     type Stadium,
 } from '../../(site)/_lib/referenceData';
+import {
+    getCompetitionDisplayName,
+    getCompetitionMembershipStatusLabel,
+} from '../../(site)/_lib/competitionCatalog';
 import MatchDetailClient from './MatchDetailClient';
 
 type MatchDetailPageProps = {
@@ -63,6 +67,12 @@ export default function MatchDetailPage({ params }: MatchDetailPageProps) {
     const awayTeam = stadiumMap[fixture.awayTeamId];
     const venue = stadiumMap[fixture.venueClubId];
     const directionsHref = mapsHref(venue);
+    const competitionName = getCompetitionDisplayName(fixture.competitionId ?? venue?.primaryCompetitionId, venue?.league ?? fixture.round) ?? fixture.round;
+    const venueStatusLabel = venue ? getCompetitionMembershipStatusLabel(venue.membershipStatus) : null;
+    const secondaryCompetitionNames = (venue?.competitionMemberships ?? [])
+        .filter((membership) => !membership.isPrimary)
+        .map((membership) => getCompetitionDisplayName(membership.competitionId))
+        .filter((value): value is string => Boolean(value));
 
     return (
         <SiteShell title="Tribunetour · Kamp">
@@ -111,6 +121,10 @@ export default function MatchDetailPage({ params }: MatchDetailPageProps) {
                             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
                             <div className="mt-2 text-xl font-semibold">{venue?.league ?? 'Ukendt'}</div>
                         </div>
+                        <div className="stat-chip">
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Turnering</div>
+                            <div className="mt-2 text-xl font-semibold">{competitionName}</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -148,6 +162,28 @@ export default function MatchDetailPage({ params }: MatchDetailPageProps) {
                         <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Udehold</div>
                         <div className="mt-2 text-lg font-semibold">{awayTeam?.team ?? fixture.awayTeamId}</div>
                     </div>
+
+                    <div className="site-card-soft p-4">
+                        <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Turnering</div>
+                        <div className="mt-2 text-lg font-semibold">{competitionName}</div>
+                        {fixture.seasonId && (
+                            <div className="mt-2 text-sm text-[var(--muted)]">{fixture.seasonId}</div>
+                        )}
+                    </div>
+
+                    {(venueStatusLabel || secondaryCompetitionNames.length > 0) && (
+                        <div className="site-card-soft p-4">
+                            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Ekstra kontekst</div>
+                            {venueStatusLabel && (
+                                <div className="mt-2 text-lg font-semibold">{venueStatusLabel}</div>
+                            )}
+                            {secondaryCompetitionNames.length > 0 && (
+                                <div className="mt-2 text-sm text-[var(--muted)]">
+                                    Også aktiv i: {secondaryCompetitionNames.join(' · ')}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
 

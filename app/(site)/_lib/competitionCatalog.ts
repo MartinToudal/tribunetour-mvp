@@ -115,3 +115,23 @@ export function inferCompetitionId(
 ): string | undefined {
   return resolveCompetitionCatalogEntry(undefined, leagueCode, leagueName, countryCode)?.id;
 }
+
+export function getCompetitionDisplayName(
+  competitionId: string | null | undefined,
+  fallback?: string | null
+): string | undefined {
+  return getCompetitionCatalogEntry(competitionId)?.name ?? fallback ?? undefined;
+}
+
+export function getCompetitionMembershipStatusLabel(
+  status: CompetitionMembershipStatus | null | undefined
+): string | null {
+  switch (status) {
+    case 'relegated':
+      return 'Nedrykket';
+    case 'historical':
+      return 'Historisk';
+    default:
+      return null;
+  }
+}
