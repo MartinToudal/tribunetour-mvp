@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
+import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { getSeedStadiums, type Stadium } from '../_lib/referenceData';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 
@@ -12,21 +13,6 @@ const TileLayer = dynamic(() => import('react-leaflet').then((m) => m.TileLayer)
 const Marker = dynamic(() => import('react-leaflet').then((m) => m.Marker), { ssr: false });
 const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), { ssr: false });
 const homeCountryStorageKey = 'app.preferredHomeCountryCode';
-const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
-
-function compareCountryCodes(left: string, right: string) {
-    const leftRank = countryOrder.indexOf(left);
-    const rightRank = countryOrder.indexOf(right);
-    const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
-    const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
-
-    if (normalizedLeftRank !== normalizedRightRank) {
-        return normalizedLeftRank - normalizedRightRank;
-    }
-
-    return countryLabel(left).localeCompare(countryLabel(right), 'da');
-}
-
 export default function MapView() {
     const [stadiums, setStadiums] = useState<Stadium[]>([]);
     const [countryFilter, setCountryFilter] = useState<string>('dk');

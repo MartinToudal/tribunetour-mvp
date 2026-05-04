@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { packLabels, sendPremiumRequestPushNotifications } from '../_lib/adminNotificationDelivery';
+import { sendPremiumRequestPushNotifications } from '../_lib/adminNotificationDelivery';
+import { getLeaguePackCatalogEntry } from '../../(site)/_lib/leaguePackCatalog';
 
 export const runtime = 'nodejs';
 
@@ -91,7 +92,7 @@ export async function POST(request: NextRequest) {
 
   let emailNotified = false;
   if (resendApiKey && notificationTo) {
-    const packLabel = packLabels[targetPackKey] ?? targetPackKey;
+    const packLabel = getLeaguePackCatalogEntry(targetPackKey)?.label ?? targetPackKey;
     const adminUrl = new URL('/admin/premium', request.nextUrl.origin).toString();
     const userEmail = userData.user.email ?? 'Ukendt bruger';
     const createdAt = new Date(row.created_at ?? Date.now()).toLocaleString('da-DK', {

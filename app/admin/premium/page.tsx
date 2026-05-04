@@ -3,8 +3,7 @@
 import React, { FormEvent, useEffect, useMemo, useState } from 'react';
 import SiteShell from '../../(site)/_components/SiteShell';
 import { hasSupabaseEnv, supabase } from '../../(site)/_lib/supabaseClient';
-
-type PackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'spain_top_4' | 'france_top_3' | 'premium_full';
+import { requestableLeaguePackCatalog, type RequestableLeaguePackId as PackKey } from '../../(site)/_lib/leaguePackCatalog';
 
 type PremiumAccessRow = {
   email: string;
@@ -25,38 +24,11 @@ type PremiumAccessRequestRow = {
   updated_at: string;
 };
 
-const packOptions: Array<{ key: PackKey; label: string; description: string }> = [
-  {
-    key: 'germany_top_3',
-    label: 'Tyskland',
-    description: 'Bundesliga, 2. Bundesliga og 3. Liga',
-  },
-  {
-    key: 'england_top_4',
-    label: 'England',
-    description: 'Premier League, Championship, League One og League Two',
-  },
-  {
-    key: 'italy_top_3',
-    label: 'Italien',
-    description: 'Serie A, Serie B og Serie C',
-  },
-  {
-    key: 'spain_top_4',
-    label: 'Spanien',
-    description: 'La Liga, Segunda División og Primera Federación gruppe 1-2',
-  },
-  {
-    key: 'france_top_3',
-    label: 'Frankrig',
-    description: 'Ligue 1, Ligue 2 og National',
-  },
-  {
-    key: 'premium_full',
-    label: 'Alle premium-pakker',
-    description: 'Fremtidig adgang til alle premium-pakker',
-  },
-];
+const packOptions: Array<{ key: PackKey; label: string; description: string }> = requestableLeaguePackCatalog.map((entry) => ({
+  key: entry.id,
+  label: entry.label,
+  description: entry.requestDescription ?? entry.label,
+}));
 
 function packLabel(packKey: string) {
   return packOptions.find((option) => option.key === packKey)?.label ?? packKey;

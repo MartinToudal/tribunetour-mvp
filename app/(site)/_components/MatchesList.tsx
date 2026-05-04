@@ -4,6 +4,7 @@ import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess, stadiumLeaguePackId } from '../_lib/leaguePacks';
+import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getFixtures, getSeedStadiumMap, type Fixture, type Stadium } from '../_lib/referenceData';
 
@@ -22,20 +23,6 @@ const homeCountryStorageKey = 'app.preferredHomeCountryCode';
 const matchesTimeFilterStorageKey = 'matches.timeFilter';
 const matchesSortModeStorageKey = 'matches.sortMode';
 const matchesOnlyUnvisitedStorageKey = 'matches.onlyUnvisitedVenues';
-const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
-
-function compareCountryCodes(left: string, right: string) {
-  const leftRank = countryOrder.indexOf(left);
-  const rightRank = countryOrder.indexOf(right);
-  const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
-  const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
-
-  if (normalizedLeftRank !== normalizedRightRank) {
-    return normalizedLeftRank - normalizedRightRank;
-  }
-
-  return countryLabel(left).localeCompare(countryLabel(right), 'da');
-}
 
 function haversineDistanceInMeters(from: { latitude: number; longitude: number }, to: { latitude: number; longitude: number }) {
   const earthRadius = 6371000;

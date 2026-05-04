@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
 import { aliasMap, canonicalClubId, normalizeIncomingClubId } from './clubIdentityResolver';
+import { inferCompetitionId, type CompetitionMembership, type CompetitionMembershipStatus } from './competitionCatalog';
 import { getEnabledExperimentalLeaguePacks } from './leaguePacks';
 import { compareLeagues } from './leagueOrder';
 
@@ -19,6 +20,10 @@ export type Stadium = {
   leagueCode?: string;
   leaguePack?: string;
   shortCode?: string;
+  primaryCompetitionId?: string;
+  primarySeasonId?: string;
+  membershipStatus?: CompetitionMembershipStatus;
+  competitionMemberships?: CompetitionMembership[];
 };
 
 export type Fixture = {
@@ -31,7 +36,24 @@ export type Fixture = {
   status: string;
   homeScore?: number | null;
   awayScore?: number | null;
+  competitionId?: string;
+  seasonId?: string;
 };
+
+export function stadiumCountsTowardTopSystem(stadium: Stadium): boolean {
+  return (stadium.membershipStatus ?? 'active') === 'active';
+}
+
+export function stadiumMembershipStatusLabel(stadium: Stadium): string | null {
+  switch (stadium.membershipStatus) {
+    case 'relegated':
+      return 'Nedrykket';
+    case 'historical':
+      return 'Historisk';
+    default:
+      return null;
+  }
+}
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -99,6 +121,27 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
       id: canonicalId,
       countryCode,
       leaguePack: stadium.leaguePack ?? (countryCode === 'dk' ? 'core_denmark' : undefined),
+      primaryCompetitionId:
+        stadium.primaryCompetitionId ??
+        inferCompetitionId(stadium.leagueCode, stadium.league, countryCode),
+      membershipStatus: stadium.membershipStatus ?? 'active',
+      competitionMemberships:
+        stadium.competitionMemberships ??
+        ((
+          stadium.primaryCompetitionId ??
+          inferCompetitionId(stadium.leagueCode, stadium.league, countryCode)
+        )
+          ? [
+              {
+                competitionId:
+                  stadium.primaryCompetitionId ??
+                  inferCompetitionId(stadium.leagueCode, stadium.league, countryCode)!,
+                seasonId: stadium.primarySeasonId,
+                status: stadium.membershipStatus ?? 'active',
+                isPrimary: true,
+              },
+            ]
+          : []),
     });
   }
 

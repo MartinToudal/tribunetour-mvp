@@ -7,6 +7,7 @@ import { usePhotosModel } from '../(site)/_hooks/usePhotosModel';
 import { useReviewsModel } from '../(site)/_hooks/useReviewsModel';
 import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../(site)/_lib/leaguePacks';
+import { compareCountryCodes, requestableLeaguePackCatalog, type RequestableLeaguePackId as PremiumRequestPackKey } from '../(site)/_lib/leaguePackCatalog';
 import { compareLeagues } from '../(site)/_lib/leagueOrder';
 import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
 import { supabase } from '../(site)/_lib/supabaseClient';
@@ -19,7 +20,6 @@ type Achievement = {
   progressText: string;
 };
 
-type PremiumRequestPackKey = 'germany_top_3' | 'england_top_4' | 'italy_top_3' | 'spain_top_4' | 'france_top_3' | 'premium_full';
 type PremiumAccessRequestRow = {
   id: string;
   pack_key: PremiumRequestPackKey;
@@ -29,54 +29,12 @@ type PremiumAccessRequestRow = {
   updated_at: string;
 };
 
-const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = [
-  {
-    key: 'england_top_4',
-    label: 'England',
-    description: 'Premier League, Championship, League One og League Two',
-  },
-  {
-    key: 'germany_top_3',
-    label: 'Tyskland',
-    description: 'Bundesliga, 2. Bundesliga og 3. Liga',
-  },
-  {
-    key: 'italy_top_3',
-    label: 'Italien',
-    description: 'Serie A, Serie B og Serie C',
-  },
-  {
-    key: 'spain_top_4',
-    label: 'Spanien',
-    description: 'La Liga, Segunda División og Primera Federación gruppe 1-2',
-  },
-  {
-    key: 'france_top_3',
-    label: 'Frankrig',
-    description: 'Ligue 1, Ligue 2 og National',
-  },
-  {
-    key: 'premium_full',
-    label: 'Alle premium-pakker',
-    description: 'Adgang til alle nuværende og kommende premium-pakker',
-  },
-];
-
 const homeCountryStorageKey = 'app.preferredHomeCountryCode';
-const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
-
-function compareCountryCodes(left: string, right: string) {
-  const leftRank = countryOrder.indexOf(left);
-  const rightRank = countryOrder.indexOf(right);
-  const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
-  const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
-
-  if (normalizedLeftRank !== normalizedRightRank) {
-    return normalizedLeftRank - normalizedRightRank;
-  }
-
-  return countryLabel(left).localeCompare(countryLabel(right), 'da');
-}
+const premiumRequestOptions: Array<{ key: PremiumRequestPackKey; label: string; description: string }> = requestableLeaguePackCatalog.map((entry) => ({
+  key: entry.id,
+  label: entry.label,
+  description: entry.requestDescription ?? entry.label,
+}));
 
 function clampProgress(value: number, max: number) {
   return `${Math.min(value, max)}/${max}`;

@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { connect } from 'node:http2';
 import { createPrivateKey, createSign } from 'node:crypto';
+import { getLeaguePackCatalogEntry } from '../../(site)/_lib/leaguePackCatalog';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -27,15 +28,6 @@ type PushSummary = {
 type PushTarget = {
   device_token: string;
   user_id: string;
-};
-
-export const packLabels: Record<string, string> = {
-  germany_top_3: 'Tyskland',
-  england_top_4: 'England',
-  italy_top_3: 'Italien',
-  spain_top_4: 'Spanien',
-  france_top_3: 'Frankrig',
-  premium_full: 'Alle premium-pakker',
 };
 
 export async function sendPremiumRequestPushNotifications(params: {
@@ -105,7 +97,7 @@ export async function sendPremiumRequestPushNotifications(params: {
   }
 
   const pushJwt = createApnsJwt();
-  const packLabel = packLabels[params.targetPackKey] ?? params.targetPackKey;
+  const packLabel = getLeaguePackCatalogEntry(params.targetPackKey)?.label ?? params.targetPackKey;
   const title = 'Ny premium-anmodning';
   const body = `${params.requesterEmail} vil have adgang til ${packLabel}.`;
   const preferredEnvironment: ApnsEnvironment = useApnsSandbox ? 'sandbox' : 'production';

@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
+import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { sortLeagues } from '../_lib/leagueOrder';
 import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
 
@@ -10,20 +11,6 @@ type VisitFilter = 'all' | 'visited' | 'not-visited';
 
 const homeCountryStorageKey = 'app.preferredHomeCountryCode';
 const stadiumsCountryFilterStorageKey = 'stadiums.countryFilter';
-const countryOrder = ['dk', 'de', 'en', 'it', 'es', 'fr'];
-
-function compareCountryCodes(left: string, right: string) {
-  const leftRank = countryOrder.indexOf(left);
-  const rightRank = countryOrder.indexOf(right);
-  const normalizedLeftRank = leftRank === -1 ? Number.MAX_SAFE_INTEGER : leftRank;
-  const normalizedRightRank = rightRank === -1 ? Number.MAX_SAFE_INTEGER : rightRank;
-
-  if (normalizedLeftRank !== normalizedRightRank) {
-    return normalizedLeftRank - normalizedRightRank;
-  }
-
-  return countryLabel(left).localeCompare(countryLabel(right), 'da');
-}
 
 function StadiumsContextChip({ text }: { text: string }) {
   return <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-[var(--muted)]">{text}</span>;

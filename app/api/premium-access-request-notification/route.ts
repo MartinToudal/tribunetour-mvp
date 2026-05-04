@@ -1,20 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { getLeaguePackCatalogEntry } from '../../(site)/_lib/leaguePackCatalog';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const resendApiKey = process.env.RESEND_API_KEY;
 const notificationTo = process.env.PREMIUM_REQUEST_NOTIFY_TO;
 const notificationFrom = process.env.PREMIUM_REQUEST_NOTIFY_FROM ?? 'Tribunetour <onboarding@resend.dev>';
-
-const packLabels: Record<string, string> = {
-  germany_top_3: 'Tyskland',
-  england_top_4: 'England',
-  italy_top_3: 'Italien',
-  spain_top_4: 'Spanien',
-  france_top_3: 'Frankrig',
-  premium_full: 'Alle premium-pakker',
-};
 
 function json(status: number, body: Record<string, unknown>) {
   return NextResponse.json(body, { status });
@@ -82,7 +74,7 @@ export async function POST(request: NextRequest) {
     return json(200, { ok: true, skipped: 'email_not_configured' });
   }
 
-  const packLabel = packLabels[accessRequest.pack_key] ?? accessRequest.pack_key;
+  const packLabel = getLeaguePackCatalogEntry(accessRequest.pack_key)?.label ?? accessRequest.pack_key;
   const adminUrl = new URL('/admin/premium', request.nextUrl.origin).toString();
   const userEmail = userData.user.email ?? 'Ukendt bruger';
   const message = accessRequest.message?.trim();
