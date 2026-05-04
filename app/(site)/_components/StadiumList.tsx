@@ -4,8 +4,15 @@ import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { compareCountryCodes } from '../_lib/leaguePackCatalog';
-import { sortLeagues } from '../_lib/leagueOrder';
-import { getSeedStadiums, getStadiums, type Stadium } from '../_lib/referenceData';
+import { compareLeagues, sortLeagues } from '../_lib/leagueOrder';
+import {
+  getSeedStadiums,
+  getStadiums,
+  stadiumCountsTowardTopSystem,
+  stadiumMembershipStatusLabel,
+  stadiumShouldRemainVisibleOutsideTopSystem,
+  type Stadium,
+} from '../_lib/referenceData';
 
 type VisitFilter = 'all' | 'visited' | 'not-visited';
 
@@ -63,14 +70,22 @@ export default function StadiumList() {
     () => filterStadiumsForLeaguePackAccess(stadiums, enabledPackIds),
     [stadiums, enabledPackIds]
   );
+  const progressionVisibleStadiums = useMemo(
+    () => visibleStadiums.filter(stadiumCountsTowardTopSystem),
+    [visibleStadiums]
+  );
+  const visibleOutsideTopSystemStadiums = useMemo(
+    () => visibleStadiums.filter(stadiumShouldRemainVisibleOutsideTopSystem),
+    [visibleStadiums]
+  );
   const hiddenLeaguePackStadiumCount = stadiums.length - visibleStadiums.length;
   const visibleVisitedCount = useMemo(
-    () => visibleStadiums.filter((stadium) => visited[stadium.id]).length,
-    [visibleStadiums, visited]
+    () => progressionVisibleStadiums.filter((stadium) => visited[stadium.id]).length,
+    [progressionVisibleStadiums, visited]
   );
   const countries = useMemo(
-    () => Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
-    [visibleStadiums]
+    () => Array.from(new Set(progressionVisibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
+    [progressionVisibleStadiums]
   );
 
   useEffect(() => {
@@ -98,11 +113,11 @@ export default function StadiumList() {
 
   const leagues = useMemo(
     () => ['Alle', ...sortLeagues(Array.from(new Set(
-      visibleStadiums
+      progressionVisibleStadiums
         .filter((stadium) => countryFilter === 'all' || (stadium.countryCode ?? 'dk') === countryFilter)
         .map((stadium) => stadium.league)
     )))],
-    [countryFilter, visibleStadiums]
+    [countryFilter, progressionVisibleStadiums]
   );
 
   useEffect(() => {
@@ -121,7 +136,7 @@ export default function StadiumList() {
 
   const filtered = useMemo(() => {
     const search = filter.toLowerCase().trim();
-    return visibleStadiums.filter((stadium) => {
+    return progressionVisibleStadiums.filter((stadium) => {
       const matchesSearch = !search || `${stadium.name} ${stadium.team} ${stadium.city ?? ''} ${stadium.league}`.toLowerCase().includes(search);
       const matchesCountry = countryFilter === 'all' || (stadium.countryCode ?? 'dk') === countryFilter;
       const matchesLeague = leagueFilter === 'Alle' || stadium.league === leagueFilter;
@@ -129,7 +144,7 @@ export default function StadiumList() {
       const matchesVisit = visitFilter === 'all' || (visitFilter === 'visited' ? isVisited : !isVisited);
       return matchesSearch && matchesCountry && matchesLeague && matchesVisit;
     });
-  }, [visibleStadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
+  }, [progressionVisibleStadiums, filter, countryFilter, leagueFilter, visitFilter, visited]);
 
   const currentScopeLabel = countryFilter === 'all' ? 'Alle aktive lande' : countryLabel(countryFilter);
   const visitFilterLabel = visitFilter === 'all' ? 'Alle stadions' : visitFilter === 'visited' ? 'Kun besøgte' : 'Kun ubesøgte';
@@ -143,6 +158,23 @@ export default function StadiumList() {
     activeFilterCount === 0
       ? `${filtered.length} stadions i dit nuværende scope`
       : `${filtered.length} stadions med ${activeFilterCount} aktive filtre`;
+  const visibleOutsideTopSystemFiltered = useMemo(
+    () =>
+      visibleOutsideTopSystemStadiums
+        .filter((stadium) => countryFilter === 'all' || (stadium.countryCode ?? 'dk') === countryFilter)
+        .sort((left, right) => {
+          const countryCompare = compareCountryCodes(left.countryCode ?? 'dk', right.countryCode ?? 'dk');
+          if (countryCompare !== 0) {
+            return countryCompare;
+          }
+          const leagueCompare = compareLeagues(left.league, right.league);
+          if (leagueCompare !== 0) {
+            return leagueCompare;
+          }
+          return left.team.localeCompare(right.team, 'da');
+        }),
+    [countryFilter, visibleOutsideTopSystemStadiums]
+  );
 
   return (
     <section id="stadiums" className="site-card overflow-hidden">
@@ -361,6 +393,51 @@ export default function StadiumList() {
           </li>
         )}
       </ul>
+
+      <div className="border-t border-white/5 p-5 md:p-6">
+        <div className="flex flex-col gap-3">
+          <div>
+            <div className="label-eyebrow">Ekstra spor</div>
+            <h3 className="mt-2 text-xl font-semibold tracking-tight">Synlige uden for aktuelt topsystem</h3>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Her lander nedrykkede, historiske og ekstra turneringsspor. De tæller ikke med i det aktuelle topsystem, men de bliver bevaret som en del af klubbens historie.
+            </p>
+          </div>
+
+          {visibleOutsideTopSystemFiltered.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-white/10 px-4 py-5 text-sm text-[var(--muted)]">
+              Der er ingen klubber i dette spor endnu. Når de første `relegated` eller `historical` hold kommer i data, dukker de op her som et separat lag.
+            </div>
+          ) : (
+            <ul className="divide-y divide-white/5 rounded-3xl border border-white/8 bg-white/[0.03]">
+              {visibleOutsideTopSystemFiltered.map((stadium) => (
+                <li key={stadium.id} className="flex flex-col gap-3 p-4 md:flex-row md:items-start md:justify-between">
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-white">{stadium.team}</div>
+                    <div className="mt-1 text-sm text-[var(--muted)]">
+                      <a href={`/stadiums/${stadium.id}`} className="hover:text-white hover:underline">
+                        {stadium.name}
+                      </a>
+                      {stadium.city ? ` · ${stadium.city}` : ''}
+                    </div>
+                    <div className="mt-1 text-xs text-[var(--muted)]">{stadium.league}</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {stadiumMembershipStatusLabel(stadium) && (
+                      <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                        {stadiumMembershipStatusLabel(stadium)}
+                      </span>
+                    )}
+                    <a href={`/stadiums/${stadium.id}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2">
+                      Se stadion
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </section>
   );
 }

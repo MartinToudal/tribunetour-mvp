@@ -44,6 +44,14 @@ export function stadiumCountsTowardTopSystem(stadium: Stadium): boolean {
   return (stadium.membershipStatus ?? 'active') === 'active';
 }
 
+export function stadiumShouldRemainVisibleOutsideTopSystem(stadium: Stadium): boolean {
+  if ((stadium.membershipStatus ?? 'active') !== 'active') {
+    return true;
+  }
+
+  return (stadium.competitionMemberships ?? []).some((membership) => !membership.isPrimary);
+}
+
 export function stadiumMembershipStatusLabel(stadium: Stadium): string | null {
   switch (stadium.membershipStatus) {
     case 'relegated':

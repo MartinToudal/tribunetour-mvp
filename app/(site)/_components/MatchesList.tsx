@@ -6,7 +6,15 @@ import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess, stadiumLeaguePackId } from '../_lib/leaguePacks';
 import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { sortLeagues } from '../_lib/leagueOrder';
-import { getFixtures, getSeedStadiumMap, type Fixture, type Stadium } from '../_lib/referenceData';
+import {
+  getFixtures,
+  getSeedStadiumMap,
+  stadiumCountsTowardTopSystem,
+  stadiumMembershipStatusLabel,
+  stadiumShouldRemainVisibleOutsideTopSystem,
+  type Fixture,
+  type Stadium,
+} from '../_lib/referenceData';
 
 type TimeFilter = 'today' | 'next3Days' | 'week' | 'month';
 type VisitFilter = 'all' | 'not-visited';
@@ -112,13 +120,25 @@ export default function MatchesList() {
     () => filterStadiumsForLeaguePackAccess(Object.values(stadiumMap), enabledPackIds),
     [stadiumMap, enabledPackIds]
   );
-  const visibleStadiumIdSet = useMemo(
-    () => new Set(visibleStadiums.map((stadium) => stadium.id)),
+  const progressionVisibleStadiums = useMemo(
+    () => visibleStadiums.filter(stadiumCountsTowardTopSystem),
     [visibleStadiums]
   );
-  const countries = useMemo(
-    () => Array.from(new Set(visibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
+  const visibleOutsideTopSystemStadiums = useMemo(
+    () => visibleStadiums.filter(stadiumShouldRemainVisibleOutsideTopSystem),
     [visibleStadiums]
+  );
+  const visibleStadiumIdSet = useMemo(
+    () => new Set(progressionVisibleStadiums.map((stadium) => stadium.id)),
+    [progressionVisibleStadiums]
+  );
+  const visibleOutsideTopSystemIdSet = useMemo(
+    () => new Set(visibleOutsideTopSystemStadiums.map((stadium) => stadium.id)),
+    [visibleOutsideTopSystemStadiums]
+  );
+  const countries = useMemo(
+    () => Array.from(new Set(progressionVisibleStadiums.map((stadium) => stadium.countryCode ?? 'dk'))).sort(compareCountryCodes),
+    [progressionVisibleStadiums]
   );
 
   useEffect(() => {
@@ -157,13 +177,13 @@ export default function MatchesList() {
             if (countryFilter === 'all') {
               return true;
             }
-            return (visibleStadiums.find((stadium) => stadium.league === league)?.countryCode ?? 'dk') === countryFilter;
+            return (progressionVisibleStadiums.find((stadium) => stadium.league === league)?.countryCode ?? 'dk') === countryFilter;
           })
           .filter(Boolean)
       )
     ) as string[];
     return ['Alle', ...sortLeagues(values)];
-  }, [countryFilter, fixtures, stadiumMap, visibleStadiumIdSet, visibleStadiums]);
+  }, [countryFilter, fixtures, progressionVisibleStadiums, stadiumMap, visibleStadiumIdSet]);
 
   useEffect(() => {
     if (leagueFilter !== 'Alle' && !leagues.includes(leagueFilter)) {
@@ -232,6 +252,31 @@ export default function MatchesList() {
         return new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime();
       });
   }, [countryFilter, currentLocation, enabledPackIds, fixtures, leagueFilter, search, sortMode, stadiumMap, timeFilter, visitFilter, visited]);
+  const nonTopSystemFixtures = useMemo(() => {
+    const now = new Date();
+    const todayStart = new Date(now);
+    todayStart.setHours(0, 0, 0, 0);
+
+    return fixtures
+      .filter((fixture) => new Date(fixture.kickoff).getTime() >= todayStart.getTime())
+      .filter((fixture) => {
+        const venue = stadiumMap[fixture.venueClubId];
+        return venue ? enabledPackIds.includes(stadiumLeaguePackId(venue)) : false;
+      })
+      .filter((fixture) => {
+        const venue = stadiumMap[fixture.venueClubId];
+        if (!venue) {
+          return false;
+        }
+
+        if (!visibleOutsideTopSystemIdSet.has(venue.id)) {
+          return false;
+        }
+
+        return countryFilter === 'all' || (venue.countryCode ?? 'dk') === countryFilter;
+      })
+      .sort((left, right) => new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime());
+  }, [countryFilter, enabledPackIds, fixtures, stadiumMap, visibleOutsideTopSystemIdSet]);
 
   const hasActiveFilters =
     search.trim().length > 0 ||
@@ -625,6 +670,54 @@ export default function MatchesList() {
           </li>
         )}
       </ul>
+
+      <div className="border-t border-white/5 p-5 md:p-6">
+        <div className="flex flex-col gap-3">
+          <div>
+            <div className="label-eyebrow">Ekstra spor</div>
+            <h3 className="mt-2 text-xl font-semibold tracking-tight">Kampe uden for aktuelt topsystem</h3>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Her samler vi kommende kampe for klubber, der er nedrykkede, historiske eller med i et ekstra turneringsspor. De tæller ikke med i det normale topsystem-feed.
+            </p>
+          </div>
+
+          {nonTopSystemFixtures.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-white/10 px-4 py-5 text-sm text-[var(--muted)]">
+              Der er ingen kommende kampe i dette spor endnu. Når de første ikke-topsystem-klubber får kampe i data, dukker de op her.
+            </div>
+          ) : (
+            <ul className="divide-y divide-white/5 rounded-3xl border border-white/8 bg-white/[0.03]">
+              {nonTopSystemFixtures.slice(0, 20).map((fixture) => {
+                const venue = stadiumMap[fixture.venueClubId];
+                return (
+                  <li key={fixture.id} className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between">
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
+                      <div className="mt-2 text-sm font-semibold text-white">
+                        {teamName(fixture.homeTeamId)} – {teamName(fixture.awayTeamId)}
+                      </div>
+                      <div className="mt-1 text-sm text-[var(--muted)]">
+                        {venue?.name ?? fixture.venueClubId}
+                        {venue?.city ? ` · ${venue.city}` : ''}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {venue && stadiumMembershipStatusLabel(venue) && (
+                        <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-[var(--muted)]">
+                          {stadiumMembershipStatusLabel(venue)}
+                        </span>
+                      )}
+                      <a href={`/matches/${fixture.id}`} className="text-sm font-medium text-[var(--accent)] underline underline-offset-2">
+                        Se kamp
+                      </a>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </div>
 
       {hasSupabaseEnv && isLoggedIn && !isLoadingVisits && (
         <div className="border-t border-white/5 p-5 md:p-6">
