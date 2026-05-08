@@ -13,19 +13,6 @@ export type LeaguePackId =
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
 export type RequestableLeaguePackId = Exclude<LeaguePackId, 'core_denmark'>;
 
-const buildFeatureFlags = {
-  NEXT_PUBLIC_ENABLE_GERMANY_TOP_3: process.env.NEXT_PUBLIC_ENABLE_GERMANY_TOP_3 === 'true',
-  NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4: process.env.NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4 === 'true',
-  NEXT_PUBLIC_ENABLE_ITALY_TOP_3: process.env.NEXT_PUBLIC_ENABLE_ITALY_TOP_3 === 'true',
-  NEXT_PUBLIC_ENABLE_SPAIN_TOP_4: process.env.NEXT_PUBLIC_ENABLE_SPAIN_TOP_4 === 'true',
-  NEXT_PUBLIC_ENABLE_FRANCE_TOP_3: process.env.NEXT_PUBLIC_ENABLE_FRANCE_TOP_3 === 'true',
-  NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3: process.env.NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3 === 'true',
-  NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3: process.env.NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3 === 'true',
-  NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3: process.env.NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3 === 'true',
-} as const;
-
-type BuildFeatureFlag = keyof typeof buildFeatureFlags;
-
 export type LeaguePackCatalogEntry = {
   id: LeaguePackId;
   countryCode: string | null;
@@ -36,7 +23,6 @@ export type LeaguePackCatalogEntry = {
   isPremium: boolean;
   includedByPremiumFull: boolean;
   requestDescription?: string;
-  featureFlag?: BuildFeatureFlag;
 };
 
 export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
@@ -60,7 +46,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Bundesliga, 2. Bundesliga og 3. Liga',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_GERMANY_TOP_3',
   },
   {
     id: 'england_top_4',
@@ -72,7 +57,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Premier League, Championship, League One og League Two',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4',
   },
   {
     id: 'italy_top_3',
@@ -84,7 +68,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Serie A, Serie B og Serie C',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_ITALY_TOP_3',
   },
   {
     id: 'spain_top_4',
@@ -96,7 +79,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'La Liga, Segunda División og Primera Federación gruppe 1-2',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_SPAIN_TOP_4',
   },
   {
     id: 'france_top_3',
@@ -108,7 +90,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Ligue 1, Ligue 2 og National',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_FRANCE_TOP_3',
   },
   {
     id: 'portugal_top_3',
@@ -120,7 +101,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Liga Portugal, Liga Portugal 2 og Liga 3 - Oprykningsgruppe',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3',
   },
   {
     id: 'netherlands_top_3',
@@ -132,7 +112,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Eredivisie, Eerste Divisie og Tweede Divisie',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3',
   },
   {
     id: 'belgium_top_3',
@@ -144,7 +123,6 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Jupiler Pro League, Challenger Pro League og National Division 1 ACFF/VV',
-    featureFlag: 'NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3',
   },
   {
     id: 'premium_full',
@@ -186,17 +164,7 @@ export function isKnownLeaguePackId(id: string): id is LeaguePackId {
 }
 
 export function getBuildEnabledVisibleLeaguePacks(): Array<LeaguePackCatalogEntry & { id: VisibleLeaguePackId }> {
-  return visibleLeaguePackCatalog.filter((entry) => {
-    if (entry.isCore) {
-      return true;
-    }
-
-    if (!entry.featureFlag) {
-      return true;
-    }
-
-    return buildFeatureFlags[entry.featureFlag];
-  });
+  return visibleLeaguePackCatalog;
 }
 
 export function getBuildEnabledVisibleLeaguePackIds(): VisibleLeaguePackId[] {
