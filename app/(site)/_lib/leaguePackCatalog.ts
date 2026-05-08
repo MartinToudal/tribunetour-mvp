@@ -13,6 +13,19 @@ export type LeaguePackId =
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
 export type RequestableLeaguePackId = Exclude<LeaguePackId, 'core_denmark'>;
 
+const buildFeatureFlags = {
+  NEXT_PUBLIC_ENABLE_GERMANY_TOP_3: process.env.NEXT_PUBLIC_ENABLE_GERMANY_TOP_3 === 'true',
+  NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4: process.env.NEXT_PUBLIC_ENABLE_ENGLAND_TOP_4 === 'true',
+  NEXT_PUBLIC_ENABLE_ITALY_TOP_3: process.env.NEXT_PUBLIC_ENABLE_ITALY_TOP_3 === 'true',
+  NEXT_PUBLIC_ENABLE_SPAIN_TOP_4: process.env.NEXT_PUBLIC_ENABLE_SPAIN_TOP_4 === 'true',
+  NEXT_PUBLIC_ENABLE_FRANCE_TOP_3: process.env.NEXT_PUBLIC_ENABLE_FRANCE_TOP_3 === 'true',
+  NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3: process.env.NEXT_PUBLIC_ENABLE_PORTUGAL_TOP_3 === 'true',
+  NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3: process.env.NEXT_PUBLIC_ENABLE_NETHERLANDS_TOP_3 === 'true',
+  NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3: process.env.NEXT_PUBLIC_ENABLE_BELGIUM_TOP_3 === 'true',
+} as const;
+
+type BuildFeatureFlag = keyof typeof buildFeatureFlags;
+
 export type LeaguePackCatalogEntry = {
   id: LeaguePackId;
   countryCode: string | null;
@@ -23,7 +36,7 @@ export type LeaguePackCatalogEntry = {
   isPremium: boolean;
   includedByPremiumFull: boolean;
   requestDescription?: string;
-  featureFlag?: string;
+  featureFlag?: BuildFeatureFlag;
 };
 
 export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
@@ -182,7 +195,7 @@ export function getBuildEnabledVisibleLeaguePacks(): Array<LeaguePackCatalogEntr
       return true;
     }
 
-    return process.env[entry.featureFlag] === 'true';
+    return buildFeatureFlags[entry.featureFlag];
   });
 }
 
