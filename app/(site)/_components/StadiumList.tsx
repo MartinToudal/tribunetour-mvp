@@ -148,6 +148,7 @@ export default function StadiumList() {
 
   const currentScopeLabel = countryFilter === 'all' ? 'Alle aktive lande' : countryLabel(countryFilter);
   const visitFilterLabel = visitFilter === 'all' ? 'Alle stadions' : visitFilter === 'visited' ? 'Kun besøgte' : 'Kun ubesøgte';
+  const useCompactLeaguePicker = countryFilter === 'all' && leagues.length > 8;
   const hasActiveFilters = filter.trim().length > 0 || countryFilter !== 'all' || leagueFilter !== 'Alle' || visitFilter !== 'all';
   const activeFilterCount = [
     countryFilter !== 'all',
@@ -184,9 +185,6 @@ export default function StadiumList() {
             <div>
               <div className="label-eyebrow">Stadions</div>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find dit næste stadion</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-                Brug samme scope-logik som i appen og skift mellem liste, divisioner og besøgsstatus uden at miste overblikket.
-              </p>
             </div>
             <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4 lg:min-w-[18rem]">
               <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Stadions i visning</div>
@@ -255,19 +253,35 @@ export default function StadiumList() {
             <input className="field-input" placeholder="Søg klub, stadion, by eller liga…" value={filter} onChange={(e) => setFilter(e.target.value)} />
             <div>
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Division</div>
-              <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
-                {leagues.map((league) => (
-                  <button
-                    key={league}
-                    type="button"
-                    onClick={() => setLeagueFilter(league)}
-                    className="pill-nav min-w-0 justify-center text-center"
-                    data-active={leagueFilter === league ? 'true' : 'false'}
+              {useCompactLeaguePicker ? (
+                <div className="lg:min-w-[20rem]">
+                  <select
+                    className="field-input"
+                    value={leagueFilter}
+                    onChange={(e) => setLeagueFilter(e.target.value)}
                   >
-                    {league}
-                  </button>
-                ))}
-              </div>
+                    {leagues.map((league) => (
+                      <option key={league} value={league}>
+                        {league === 'Alle' ? 'Alle divisioner' : league}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
+                  {leagues.map((league) => (
+                    <button
+                      key={league}
+                      type="button"
+                      onClick={() => setLeagueFilter(league)}
+                      className="pill-nav min-w-0 justify-center text-center"
+                      data-active={leagueFilter === league ? 'true' : 'false'}
+                    >
+                      {league}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

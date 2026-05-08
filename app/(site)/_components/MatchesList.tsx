@@ -362,6 +362,7 @@ export default function MatchesList() {
   const currentScopeLabel = countryFilter === 'all' ? 'Alle aktive lande' : countryLabel(countryFilter);
   const venueFilterLabel = visitFilter === 'all' ? 'Alle stadions' : 'Kun ubesøgte';
   const sortModeLabel = sortMode === 'date' ? 'Dato' : 'Afstand';
+  const useCompactLeaguePicker = countryFilter === 'all' && leagues.length > 8;
 
   function teamName(teamId: string) {
     return stadiumMap[teamId]?.team ?? teamId;
@@ -434,9 +435,6 @@ export default function MatchesList() {
             <div>
               <div className="label-eyebrow">Kampe</div>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight">Find næste gode kamp</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-                Brug samme scope-logik som i appen og filtrér ned til de kampe, der bedst passer til din næste stadiontur.
-              </p>
             </div>
             <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4 lg:min-w-[18rem]">
               <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Matchende kampe</div>
@@ -534,19 +532,35 @@ export default function MatchesList() {
             <input className="field-input" placeholder="Søg klub, stadion, by eller runde…" value={search} onChange={(e) => setSearch(e.target.value)} />
             <div>
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Liga</div>
-              <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
-                {leagues.map((league) => (
-                  <button
-                    key={league}
-                    type="button"
-                    onClick={() => setLeagueFilter(league)}
-                    className="pill-nav min-w-0 justify-center text-center"
-                    data-active={leagueFilter === league ? 'true' : 'false'}
+              {useCompactLeaguePicker ? (
+                <div className="lg:min-w-[20rem]">
+                  <select
+                    className="field-input"
+                    value={leagueFilter}
+                    onChange={(e) => setLeagueFilter(e.target.value)}
                   >
-                    {league}
-                  </button>
-                ))}
-              </div>
+                    {leagues.map((league) => (
+                      <option key={league} value={league}>
+                        {league === 'Alle' ? 'Alle ligaer' : league}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-end">
+                  {leagues.map((league) => (
+                    <button
+                      key={league}
+                      type="button"
+                      onClick={() => setLeagueFilter(league)}
+                      className="pill-nav min-w-0 justify-center text-center"
+                      data-active={leagueFilter === league ? 'true' : 'false'}
+                    >
+                      {league}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
