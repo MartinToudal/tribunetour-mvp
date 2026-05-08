@@ -3,6 +3,9 @@ import englandTop4Stadiums from '../../../data/league-packs/england_top_4/stadiu
 import italyTop3Stadiums from '../../../data/league-packs/italy_top_3/stadiums.json';
 import spainTop4Stadiums from '../../../data/league-packs/spain_top_4/stadiums.json';
 import franceTop3Stadiums from '../../../data/league-packs/france_top_3/stadiums.json';
+import portugalTop3Stadiums from '../../../data/league-packs/portugal_top_3/stadiums.json';
+import netherlandsTop3Stadiums from '../../../data/league-packs/netherlands_top_3/stadiums.json';
+import belgiumTop3Stadiums from '../../../data/league-packs/belgium_top_3/stadiums.json';
 import type { Stadium } from './referenceData';
 import {
   coreLeaguePackId,
@@ -65,6 +68,27 @@ export const experimentalLeaguePacks: LeaguePackDefinition[] = [
     countryCode: 'fr',
     isCore: false,
     stadiums: franceTop3Stadiums as Stadium[],
+  },
+  {
+    id: 'portugal_top_3',
+    label: 'Portugal',
+    countryCode: 'pt',
+    isCore: false,
+    stadiums: portugalTop3Stadiums as Stadium[],
+  },
+  {
+    id: 'netherlands_top_3',
+    label: 'Holland',
+    countryCode: 'nl',
+    isCore: false,
+    stadiums: netherlandsTop3Stadiums as Stadium[],
+  },
+  {
+    id: 'belgium_top_3',
+    label: 'Belgien',
+    countryCode: 'be',
+    isCore: false,
+    stadiums: belgiumTop3Stadiums as Stadium[],
   },
 ];
 
