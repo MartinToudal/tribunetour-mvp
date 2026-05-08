@@ -163,12 +163,12 @@ export function isKnownLeaguePackId(id: string): id is LeaguePackId {
   return catalogById.has(id as LeaguePackId);
 }
 
-export function getBuildEnabledVisibleLeaguePacks(): Array<LeaguePackCatalogEntry & { id: VisibleLeaguePackId }> {
+export function getVisibleLeaguePacks(): Array<LeaguePackCatalogEntry & { id: VisibleLeaguePackId }> {
   return visibleLeaguePackCatalog;
 }
 
-export function getBuildEnabledVisibleLeaguePackIds(): VisibleLeaguePackId[] {
-  return getBuildEnabledVisibleLeaguePacks().map((entry) => entry.id);
+export function getVisibleLeaguePackIds(): VisibleLeaguePackId[] {
+  return getVisibleLeaguePacks().map((entry) => entry.id);
 }
 
 export function getPremiumFullIncludedPackIds(): VisibleLeaguePackId[] {

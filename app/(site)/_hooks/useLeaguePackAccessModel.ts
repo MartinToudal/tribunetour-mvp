@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { getEnabledLeaguePacksForUser } from '../_lib/leaguePackAccessRepository';
-import type { LeaguePackId } from '../_lib/leaguePacks';
+import { getSelectableLeaguePackIds, type LeaguePackId } from '../_lib/leaguePacks';
 import { supabase } from '../_lib/supabaseClient';
 
 export function useLeaguePackAccessModel() {
@@ -48,7 +48,8 @@ export function useLeaguePackAccessModel() {
           return;
         }
 
-        setEnabledPackIds(packIds);
+        const selectablePackIds = new Set(getSelectableLeaguePackIds());
+        setEnabledPackIds(packIds.filter((packId) => selectablePackIds.has(packId)));
         setIsLoadingLeaguePackAccess(false);
       })
       .catch((error) => {

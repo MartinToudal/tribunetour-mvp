@@ -10,7 +10,7 @@ import type { Stadium } from './referenceData';
 import {
   coreLeaguePackId,
   countryLabel,
-  getBuildEnabledVisibleLeaguePacks,
+  getVisibleLeaguePacks,
   type VisibleLeaguePackId as LeaguePackId,
 } from './leaguePackCatalog';
 
@@ -94,7 +94,7 @@ export const experimentalLeaguePacks: LeaguePackDefinition[] = [
 
 export function getEnabledExperimentalLeaguePacks(): LeaguePackDefinition[] {
   const enabledIds = new Set(
-    getBuildEnabledVisibleLeaguePacks()
+    getVisibleLeaguePacks()
       .filter((entry) => !entry.isCore)
       .map((entry) => entry.id)
   );
@@ -108,7 +108,7 @@ export function getEnabledLeaguePackIds(): LeaguePackId[] {
   ];
 }
 
-export function getBuildAvailableLeaguePackIds(): LeaguePackId[] {
+export function getSelectableLeaguePackIds(): LeaguePackId[] {
   return getEnabledLeaguePackIds();
 }
 
