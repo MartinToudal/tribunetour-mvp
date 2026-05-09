@@ -8,6 +8,7 @@ export type LeaguePackId =
   | 'portugal_top_3'
   | 'netherlands_top_3'
   | 'belgium_top_3'
+  | 'turkey_top_3'
   | 'premium_full';
 
 export type VisibleLeaguePackId = Exclude<LeaguePackId, 'premium_full'>;
@@ -123,6 +124,17 @@ export const leaguePackCatalog: LeaguePackCatalogEntry[] = [
     isPremium: true,
     includedByPremiumFull: true,
     requestDescription: 'Jupiler Pro League, Challenger Pro League og National Division 1 ACFF/VV',
+  },
+  {
+    id: 'turkey_top_3',
+    countryCode: 'tr',
+    label: 'Tyrkiet',
+    sortOrder: 90,
+    levels: 3,
+    isCore: false,
+    isPremium: true,
+    includedByPremiumFull: true,
+    requestDescription: 'Süper Lig, 1. Lig og 2. Lig',
   },
   {
     id: 'premium_full',

@@ -14,6 +14,7 @@ const fixturesCsvPath = path.join(appDir, 'fixtures.csv');
 const stadiumsJsonPath = path.join(websiteRootDir, 'data', 'stadiums.json');
 const fixturesJsonPath = path.join(websiteRootDir, 'data', 'fixtures.json');
 const remoteFixturesJsonPath = path.join(websiteRootDir, 'public', 'reference-data', 'fixtures.remote.json');
+const leaguePacksDir = path.join(websiteRootDir, 'data', 'league-packs');
 
 const canonicalToLegacyClubId = {
   'dk-aab': 'aab',
@@ -155,6 +156,19 @@ function parseStadiums() {
   }));
 }
 
+function loadExperimentalLeaguePackStadiums() {
+  if (!fs.existsSync(leaguePacksDir)) {
+    return [];
+  }
+
+  const packs = fs.readdirSync(leaguePacksDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => path.join(leaguePacksDir, entry.name, 'stadiums.json'))
+    .filter((filePath) => fs.existsSync(filePath));
+
+  return packs.flatMap((filePath) => readExistingJson(filePath));
+}
+
 function parseFixtures() {
   const rows = parseCsv(readCsv(fixturesCsvPath));
 
@@ -229,7 +243,11 @@ function buildRemoteFixturesEnvelope(fixtures, previousEnvelope) {
 const hasCanonicalCsvInputs = fs.existsSync(stadiumsCsvPath) && fs.existsSync(fixturesCsvPath);
 
 const stadiums = hasCanonicalCsvInputs
-  ? parseStadiums()
+  ? (() => {
+      const combined = [...parseStadiums(), ...loadExperimentalLeaguePackStadiums()];
+      const byId = new Map(combined.map((stadium) => [stadium.id, stadium]));
+      return [...byId.values()];
+    })()
   : readExistingJson(stadiumsJsonPath);
 const fixtures = hasCanonicalCsvInputs
   ? parseFixtures()

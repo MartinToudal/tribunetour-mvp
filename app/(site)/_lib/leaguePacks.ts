@@ -6,6 +6,7 @@ import franceTop3Stadiums from '../../../data/league-packs/france_top_3/stadiums
 import portugalTop3Stadiums from '../../../data/league-packs/portugal_top_3/stadiums.json';
 import netherlandsTop3Stadiums from '../../../data/league-packs/netherlands_top_3/stadiums.json';
 import belgiumTop3Stadiums from '../../../data/league-packs/belgium_top_3/stadiums.json';
+import turkeyTop3Stadiums from '../../../data/league-packs/turkey_top_3/stadiums.json';
 import type { Stadium } from './referenceData';
 import {
   coreLeaguePackId,
@@ -89,6 +90,13 @@ export const experimentalLeaguePacks: LeaguePackDefinition[] = [
     countryCode: 'be',
     isCore: false,
     stadiums: belgiumTop3Stadiums as Stadium[],
+  },
+  {
+    id: 'turkey_top_3',
+    label: 'Tyrkiet',
+    countryCode: 'tr',
+    isCore: false,
+    stadiums: turkeyTop3Stadiums as Stadium[],
   },
 ];
 
