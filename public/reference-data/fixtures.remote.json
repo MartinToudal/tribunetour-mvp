@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-11T17:32:57.528Z",
-    "generatedAt": "2026-05-11T17:32:57.528Z",
-    "checksum": "876ef18a496e3adee4728eb23c67d8dda208be434627c44d4ee78ceb1119beff",
+    "version": "2026-05-11T18:12:07.758Z",
+    "generatedAt": "2026-05-11T18:12:07.758Z",
+    "checksum": "188109464493a9d97e4d2a67ebe81c3c9651f7a62baeb2736afb55656633c330",
     "signature": null
   },
   "fixtures": [
@@ -4804,7 +4804,7 @@
     },
     {
       "id": "3d-r25-vej-odd",
-      "kickoff": "2026-04-26T13:00:00+02:00",
+      "kickoff": "2026-04-26T16:00:00+02:00",
       "round": "3. division - Spillerunde 25",
       "homeTeamId": "vej",
       "awayTeamId": "odd",
@@ -9446,7 +9446,7 @@
     },
     {
       "id": "3d-r28-nyk-hør",
-      "kickoff": "2026-05-15T19:00:00+02:00",
+      "kickoff": "2026-05-17T14:00:00+02:00",
       "round": "3. division - Spillerunde 28",
       "homeTeamId": "nyk",
       "awayTeamId": "hør",
@@ -10029,7 +10029,7 @@
     },
     {
       "id": "3d-r28-hol-odd",
-      "kickoff": "2026-05-17T13:00:00+02:00",
+      "kickoff": "2026-05-16T13:00:00+02:00",
       "round": "3. division - Spillerunde 28",
       "homeTeamId": "hol",
       "awayTeamId": "odd",
@@ -11151,7 +11151,7 @@
     },
     {
       "id": "3d-r29-odd-vej",
-      "kickoff": "2026-05-23T13:00:00+02:00",
+      "kickoff": "2026-05-22T19:00:00+02:00",
       "round": "3. division - Spillerunde 29",
       "homeTeamId": "odd",
       "awayTeamId": "vej",
@@ -11217,7 +11217,7 @@
     },
     {
       "id": "2d-r30-ven-ros",
-      "kickoff": "2026-05-24T13:00:00+02:00",
+      "kickoff": "2026-05-24T14:00:00+02:00",
       "round": "2. division - Spillerunde 30",
       "homeTeamId": "ven",
       "awayTeamId": "ros",
@@ -12262,7 +12262,7 @@
     },
     {
       "id": "2d-r31-hel-bra",
-      "kickoff": "2026-05-31T19:00:00+02:00",
+      "kickoff": "2026-05-30T13:00:00+02:00",
       "round": "2. division - Spillerunde 31",
       "homeTeamId": "hel",
       "awayTeamId": "bra",

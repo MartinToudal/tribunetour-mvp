@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T18:03:34.791323+00:00
+Generated at: 2026-05-11T18:11:49.693848+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -104,37 +104,24 @@ exact: 84
 ```
 
 ## Danmark - 1. division (`dk-1-division`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: 1d-
 Season: 2025-26
 Fixtures audited: 84
 
-missing: 14
-  - 27.02 19:00 Lyngby Boldklub vs Kolding IF [1d-r19-lyn-kol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.03 19:00 AC Horsens vs Lyngby Boldklub [1d-r20-ach-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 13.03 19:00 Lyngby Boldklub vs Middelfart [1d-r21-lyn-mid] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.03 13:00 HB Køge vs Lyngby Boldklub [1d-r22-hbk-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 04.04 15:00 AC Horsens vs Lyngby Boldklub [1d-r23-ach-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.04 14:30 Lyngby Boldklub vs Kolding IF [1d-r24-lyn-kol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:00 Lyngby Boldklub vs Hvidovre IF [1d-r25-lyn-hvi] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:00 Hillerød Fodbold vs Lyngby Boldklub [1d-r26-hil-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.04 19:00 Lyngby Boldklub vs Esbjerg fB [1d-r27-lyn-efb] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 03.05 16:00 Lyngby Boldklub vs Hillerød Fodbold [1d-r28-lyn-hil] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 13:00 Hvidovre IF vs Lyngby Boldklub [1d-r29-hvi-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 15.05 18:00 Kolding IF vs Lyngby Boldklub [1d-r30-kol-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.05 18:00 Lyngby Boldklub vs AC Horsens [1d-r31-lyn-ach] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 31.05 15:00 Esbjerg fB vs Lyngby Boldklub [1d-r32-efb-lyn] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 70
+exact: 84
   - 27.02 18:00 Hobro IK vs HB Køge [1d-r19-hob-hbk] -> Eksakt match på dato, tid og hold
   - 27.02 19:00 AaB vs Hillerød Fodbold [1d-r19-aab-hil] -> Eksakt match på dato, tid og hold
   - 27.02 19:00 B.93 vs Hvidovre IF [1d-r19-b93-hvi] -> Eksakt match på dato, tid og hold
+  - 27.02 19:00 Lyngby Boldklub vs Kolding IF [1d-r19-lyn-kol] -> Eksakt match på dato, tid og hold
   - 28.02 13:00 Esbjerg fB vs AC Horsens [1d-r19-efb-ach] -> Eksakt match på dato, tid og hold
   - 28.02 14:00 Aarhus Fremad vs Middelfart [1d-r19-aaf-mid] -> Eksakt match på dato, tid og hold
   - 06.03 18:30 HB Køge vs Esbjerg fB [1d-r20-hbk-efb] -> Eksakt match på dato, tid og hold
@@ -142,13 +129,16 @@ exact: 70
   - 06.03 19:00 Kolding IF vs Hobro IK [1d-r20-kol-hob] -> Eksakt match på dato, tid og hold
   - 07.03 14:00 Hillerød Fodbold vs B.93 [1d-r20-hil-b93] -> Eksakt match på dato, tid og hold
   - 07.03 14:00 Middelfart vs Hvidovre IF [1d-r20-mid-hvi] -> Eksakt match på dato, tid og hold
+  - 09.03 19:00 AC Horsens vs Lyngby Boldklub [1d-r20-ach-lyn] -> Eksakt match på dato, tid og hold
   - 13.03 19:00 B.93 vs HB Køge [1d-r21-b93-hbk] -> Eksakt match på dato, tid og hold
+  - 13.03 19:00 Lyngby Boldklub vs Middelfart [1d-r21-lyn-mid] -> Eksakt match på dato, tid og hold
   - 14.03 13:00 Hobro IK vs AaB [1d-r21-hob-aab] -> Eksakt match på dato, tid og hold
   - 14.03 14:00 Aarhus Fremad vs AC Horsens [1d-r21-aaf-ach] -> Eksakt match på dato, tid og hold
   - 15.03 14:00 Esbjerg fB vs Hillerød Fodbold [1d-r21-efb-hil] -> Eksakt match på dato, tid og hold
   - 15.03 16:00 Hvidovre IF vs Kolding IF [1d-r21-hvi-kol] -> Eksakt match på dato, tid og hold
   - 21.03 13:00 AaB vs Esbjerg fB [1d-r22-aab-efb] -> Eksakt match på dato, tid og hold
   - 21.03 13:00 AC Horsens vs Hvidovre IF [1d-r22-ach-hvi] -> Eksakt match på dato, tid og hold
+  - 21.03 13:00 HB Køge vs Lyngby Boldklub [1d-r22-hbk-lyn] -> Eksakt match på dato, tid og hold
   - 21.03 13:00 Hillerød Fodbold vs Aarhus Fremad [1d-r22-hil-aaf] -> Eksakt match på dato, tid og hold
   - 21.03 13:00 Kolding IF vs B.93 [1d-r22-kol-b93] -> Eksakt match på dato, tid og hold
   - 21.03 13:00 Middelfart vs Hobro IK [1d-r22-mid-hob] -> Eksakt match på dato, tid og hold
@@ -156,22 +146,27 @@ exact: 70
   - 03.04 14:00 B.93 vs Hobro IK [1d-r23-b93-hob] -> Eksakt match på dato, tid og hold
   - 03.04 15:30 Hvidovre IF vs Hillerød Fodbold [1d-r23-hvi-hil] -> Eksakt match på dato, tid og hold
   - 04.04 14:00 Middelfart vs AaB [1d-r23-mid-aab] -> Eksakt match på dato, tid og hold
+  - 04.04 15:00 AC Horsens vs Lyngby Boldklub [1d-r23-ach-lyn] -> Eksakt match på dato, tid og hold
   - 06.04 15:00 HB Køge vs Aarhus Fremad [1d-r23-hbk-aaf] -> Eksakt match på dato, tid og hold
   - 10.04 18:00 Hobro IK vs AaB [1d-r24-hob-aab] -> Eksakt match på dato, tid og hold
   - 10.04 18:30 HB Køge vs Middelfart [1d-r24-hbk-mid] -> Eksakt match på dato, tid og hold
   - 10.04 19:00 Esbjerg fB vs Hvidovre IF [1d-r24-efb-hvi] -> Eksakt match på dato, tid og hold
   - 11.04 12:30 Hillerød Fodbold vs AC Horsens [1d-r24-hil-ach] -> Eksakt match på dato, tid og hold
   - 11.04 14:00 Aarhus Fremad vs B.93 [1d-r24-aaf-b93] -> Eksakt match på dato, tid og hold
+  - 11.04 14:30 Lyngby Boldklub vs Kolding IF [1d-r24-lyn-kol] -> Eksakt match på dato, tid og hold
   - 17.04 18:30 Esbjerg fB vs Hillerød Fodbold [1d-r25-efb-hil] -> Eksakt match på dato, tid og hold
   - 17.04 19:00 B.93 vs HB Køge [1d-r25-b93-hbk] -> Eksakt match på dato, tid og hold
   - 17.04 19:00 Kolding IF vs AC Horsens [1d-r25-kol-ach] -> Eksakt match på dato, tid og hold
+  - 18.04 13:00 Lyngby Boldklub vs Hvidovre IF [1d-r25-lyn-hvi] -> Eksakt match på dato, tid og hold
   - 18.04 14:00 Middelfart vs Hobro IK [1d-r25-mid-hob] -> Eksakt match på dato, tid og hold
   - 18.04 18:30 AaB vs Aarhus Fremad [1d-r25-aab-aaf] -> Eksakt match på dato, tid og hold
   - 21.04 18:00 AC Horsens vs Esbjerg fB [1d-r26-ach-efb] -> Eksakt match på dato, tid og hold
   - 21.04 19:00 Hvidovre IF vs Kolding IF [1d-r26-hvi-kol] -> Eksakt match på dato, tid og hold
+  - 21.04 20:00 Hillerød Fodbold vs Lyngby Boldklub [1d-r26-hil-lyn] -> Eksakt match på dato, tid og hold
   - 22.04 18:00 Aarhus Fremad vs Middelfart [1d-r26-aaf-mid] -> Eksakt match på dato, tid og hold
   - 22.04 18:00 Hobro IK vs HB Køge [1d-r26-hob-hbk] -> Eksakt match på dato, tid og hold
   - 23.04 19:00 AaB vs B.93 [1d-r26-aab-b93] -> Eksakt match på dato, tid og hold
+  - 24.04 19:00 Lyngby Boldklub vs Esbjerg fB [1d-r27-lyn-efb] -> Eksakt match på dato, tid og hold
   - 25.04 13:00 Hvidovre IF vs AC Horsens [1d-r27-hvi-ach] -> Eksakt match på dato, tid og hold
   - 25.04 14:00 Hillerød Fodbold vs Kolding IF [1d-r27-hil-kol] -> Eksakt match på dato, tid og hold
   - 26.04 12:00 B.93 vs Middelfart [1d-r27-b93-mid] -> Eksakt match på dato, tid og hold
@@ -182,12 +177,15 @@ exact: 70
   - 01.05 18:30 HB Køge vs B.93 [1d-r28-hbk-b93] -> Eksakt match på dato, tid og hold
   - 01.05 19:00 AaB vs Hobro IK [1d-r28-aab-hob] -> Eksakt match på dato, tid og hold
   - 03.05 13:00 Kolding IF vs Hvidovre IF [1d-r28-kol-hvi] -> Eksakt match på dato, tid og hold
+  - 03.05 16:00 Lyngby Boldklub vs Hillerød Fodbold [1d-r28-lyn-hil] -> Eksakt match på dato, tid og hold
   - 08.05 18:00 Hobro IK vs B.93 [1d-r29-hob-b93] -> Eksakt match på dato, tid og hold
   - 08.05 19:00 AaB vs Middelfart [1d-r29-aab-mid] -> Eksakt match på dato, tid og hold
+  - 09.05 13:00 Hvidovre IF vs Lyngby Boldklub [1d-r29-hvi-lyn] -> Eksakt match på dato, tid og hold
   - 09.05 14:00 Aarhus Fremad vs HB Køge [1d-r29-aaf-hbk] -> Eksakt match på dato, tid og hold
   - 09.05 14:00 AC Horsens vs Hillerød Fodbold [1d-r29-ach-hil] -> Eksakt match på dato, tid og hold
   - 09.05 19:00 Esbjerg fB vs Kolding IF [1d-r29-efb-kol] -> Eksakt match på dato, tid og hold
   - 14.05 13:00 Hobro IK vs Aarhus Fremad [1d-r30-hob-aaf] -> Eksakt match på dato, tid og hold
+  - 15.05 18:00 Kolding IF vs Lyngby Boldklub [1d-r30-kol-lyn] -> Eksakt match på dato, tid og hold
   - 15.05 19:00 B.93 vs AaB [1d-r30-b93-aab] -> Eksakt match på dato, tid og hold
   - 16.05 13:00 Hillerød Fodbold vs Esbjerg fB [1d-r30-hil-efb] -> Eksakt match på dato, tid og hold
   - 16.05 14:00 Middelfart vs HB Køge [1d-r30-mid-hbk] -> Eksakt match på dato, tid og hold
@@ -197,15 +195,17 @@ exact: 70
   - 24.05 16:00 HB Køge vs Hobro IK [1d-r31-hbk-hob] -> Eksakt match på dato, tid og hold
   - 25.05 13:00 Kolding IF vs Hillerød Fodbold [1d-r31-kol-hil] -> Eksakt match på dato, tid og hold
   - 25.05 15:00 Hvidovre IF vs Esbjerg fB [1d-r31-hvi-efb] -> Eksakt match på dato, tid og hold
+  - 25.05 18:00 Lyngby Boldklub vs AC Horsens [1d-r31-lyn-ach] -> Eksakt match på dato, tid og hold
   - 30.05 15:00 AaB vs HB Køge [1d-r32-aab-hbk] -> Eksakt match på dato, tid og hold
   - 30.05 15:00 B.93 vs Aarhus Fremad [1d-r32-b93-aaf] -> Eksakt match på dato, tid og hold
   - 30.05 15:00 Hobro IK vs Middelfart [1d-r32-hob-mid] -> Eksakt match på dato, tid og hold
   - 31.05 15:00 AC Horsens vs Kolding IF [1d-r32-ach-kol] -> Eksakt match på dato, tid og hold
+  - 31.05 15:00 Esbjerg fB vs Lyngby Boldklub [1d-r32-efb-lyn] -> Eksakt match på dato, tid og hold
   - 31.05 15:00 Hillerød Fodbold vs Hvidovre IF [1d-r32-hil-hvi] -> Eksakt match på dato, tid og hold
 ```
 
 ## Danmark - 2. division (`dk-2-division`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: 2d-
@@ -214,13 +214,11 @@ Fixtures audited: 96
 
 missing: 0
 
-time-mismatch: 1
-  - 24.05 13:00 Vendsyssel FF vs FC Roskilde [2d-r30-ven-ros] -> Hold og dato matcher, men tiden 13:00 blev ikke fundet
+time-mismatch: 0
 
-date-mismatch: 1
-  - 31.05 19:00 FC Helsingør vs Brabrand IF [2d-r31-hel-bra] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
-exact: 94
+exact: 96
   - 06.03 19:00 Fremad Amager vs Næstved [2d-r17-faa-nas] -> Eksakt match på dato, tid og hold
   - 06.03 19:00 FC Roskilde vs Ishøj IF [2d-r17-ros-ish] -> Eksakt match på dato, tid og hold
   - 06.03 19:00 Skive vs FC Helsingør [2d-r17-ski-hel] -> Eksakt match på dato, tid og hold
@@ -304,11 +302,13 @@ exact: 94
   - 23.05 13:00 Ishøj IF vs FC Helsingør [2d-r30-ish-hel] -> Eksakt match på dato, tid og hold
   - 23.05 13:00 Næstved vs Thisted FC [2d-r30-nas-thi] -> Eksakt match på dato, tid og hold
   - 23.05 13:30 VSK Aarhus vs Fremad Amager [2d-r30-vsk-faa] -> Eksakt match på dato, tid og hold
+  - 24.05 14:00 Vendsyssel FF vs FC Roskilde [2d-r30-ven-ros] -> Eksakt match på dato, tid og hold
   - 29.05 18:00 Thisted FC vs FC Roskilde [2d-r31-thi-ros] -> Eksakt match på dato, tid og hold
   - 29.05 19:00 Fremad Amager vs Skive [2d-r31-faa-ski] -> Eksakt match på dato, tid og hold
   - 29.05 19:00 Næstved vs AB [2d-r31-nas-ab] -> Eksakt match på dato, tid og hold
   - 30.05 13:00 Ishøj IF vs VSK Aarhus [2d-r31-ish-vsk] -> Eksakt match på dato, tid og hold
   - 30.05 14:00 HIK vs Vendsyssel FF [2d-r31-hik-ven] -> Eksakt match på dato, tid og hold
+  - 30.05 13:00 FC Helsingør vs Brabrand IF [2d-r31-hel-bra] -> Eksakt match på dato, tid og hold
   - 06.06 14:00 AB vs Thisted FC [2d-r32-ab-thi] -> Eksakt match på dato, tid og hold
   - 06.06 14:00 Brabrand IF vs Fremad Amager [2d-r32-bra-faa] -> Eksakt match på dato, tid og hold
   - 06.06 14:00 FC Roskilde vs HIK [2d-r32-ros-hik] -> Eksakt match på dato, tid og hold
@@ -318,115 +318,115 @@ exact: 94
 ```
 
 ## Danmark - 3. division (`dk-3-division`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: 3d-
 Season: 2025-26
 Fixtures audited: 96
 
-missing: 51
-  - 07.03 13:00 Holbæk B&I vs Næsby BK [3d-r17-hol-næs] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 07.03 13:00 Hørsholm-Usserød IK vs Vanløse [3d-r17-hør-van] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 07.03 13:00 Odder Fodbold vs Vejgaard B [3d-r17-odd-vej] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 14.03 13:30 IF Lyseng vs Holbæk B&I [3d-r18-lys-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 14.03 14:00 Næsby BK vs Odder Fodbold [3d-r18-næs-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 14.03 14:00 Sundby BK vs Hørsholm-Usserød IK [3d-r18-sun-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.03 13:00 Holbæk B&I vs Sundby BK [3d-r19-hol-sun] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.03 13:00 Hørsholm-Usserød IK vs IF Lyseng [3d-r19-hør-lys] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.03 13:00 Odder Fodbold vs Nykøbing FC [3d-r19-odd-nyk] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.03 13:00 Vejgaard B vs Næsby BK [3d-r19-vej-næs] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.03 14:00 Brønshøj vs Odder Fodbold [3d-r20-brø-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.03 14:00 FA 2000 vs Holbæk B&I [3d-r20-fa2-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.03 14:00 Næsby BK vs Hørsholm-Usserød IK [3d-r20-næs-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 01.04 18:30 Hørsholm-Usserød IK vs Brønshøj [3d-r21-hør-brø] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.04 13:00 Holbæk B&I vs Nykøbing FC [3d-r21-hol-nyk] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.04 13:00 Vejgaard B vs IF Lyseng [3d-r21-vej-lys] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.04 14:00 Odder Fodbold vs Sundby BK [3d-r21-odd-sun] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.04 14:00 Brønshøj vs Holbæk B&I [3d-r22-brø-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.04 14:00 FA 2000 vs Hørsholm-Usserød IK [3d-r22-fa2-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.04 14:00 IF Lyseng vs Odder Fodbold [3d-r22-lys-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.04 14:00 Hørsholm-Usserød IK vs Nykøbing FC [3d-r23-hør-nyk] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.04 14:00 Odder Fodbold vs Holbæk B&I [3d-r23-odd-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:00 Odder Fodbold vs Sundby BK [3d-r24-odd-sun] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 IF Lyseng vs Holbæk B&I [3d-r24-lys-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 14:00 FA 2000 vs Hørsholm-Usserød IK [3d-r24-fa2-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:00 Holbæk B&I vs Frem [3d-r25-hol-fre] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 14:00 Brønshøj vs Hørsholm-Usserød IK [3d-r25-brø-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 13:00 Vejgaard B vs Odder Fodbold [3d-r25-vej-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:00 Holbæk B&I vs Sundby BK [3d-r26-hol-sun] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:00 Hørsholm-Usserød IK vs Vanløse [3d-r26-hør-van] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 14:00 Frem vs Odder Fodbold [3d-r26-fre-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 08.05 18:45 Odder Fodbold vs IF Lyseng [3d-r27-odd-lys] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 13:00 Vejgaard B vs Holbæk B&I [3d-r27-vej-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 14:00 Næsby BK vs Hørsholm-Usserød IK [3d-r27-næs-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 15.05 19:00 Nykøbing FC vs Hørsholm-Usserød IK [3d-r28-nyk-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 16.05 13:00 Vejgaard B vs Sundby BK [3d-r28-vej-sun] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 13:00 Holbæk B&I vs Odder Fodbold [3d-r28-hol-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.05 19:00 Hørsholm-Usserød IK vs Brønshøj [3d-r29-hør-brø] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 23.05 13:00 Odder Fodbold vs Vejgaard B [3d-r29-odd-vej] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 23.05 14:00 Frem vs Holbæk B&I [3d-r29-fre-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 29.05 19:00 Hørsholm-Usserød IK vs FA 2000 [3d-r30-hør-fa2] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 30.05 13:00 Holbæk B&I vs IF Lyseng [3d-r30-hol-lys] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 30.05 13:00 Sundby BK vs Odder Fodbold [3d-r30-sun-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 30.05 13:00 Vejgaard B vs Frem [3d-r30-vej-fre] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 05.06 19:00 Sundby BK vs Holbæk B&I [3d-r31-sun-hol] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.06 13:00 Odder Fodbold vs Frem [3d-r31-odd-fre] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.06 13:00 Vejgaard B vs IF Lyseng [3d-r31-vej-lys] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.06 14:00 Vanløse vs Hørsholm-Usserød IK [3d-r31-van-hør] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 13.06 14:00 Holbæk B&I vs Vejgaard B [3d-r32-hol-vej] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 13.06 14:00 Hørsholm-Usserød IK vs Næsby BK [3d-r32-hør-næs] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 13.06 14:00 IF Lyseng vs Odder Fodbold [3d-r32-lys-odd] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
-date-mismatch: 10
-  - 28.03 14:00 Sundby BK vs Vejgaard B [3d-r20-sun-vej] -> Hold matcher, men dato/tid ser anderledes ud
-  - 11.04 14:00 Brønshøj vs Næsby BK [3d-r23-brø-næs] -> Hold matcher, men dato/tid ser anderledes ud
-  - 18.04 14:00 Næsby BK vs Nykøbing FC [3d-r24-næs-nyk] -> Hold matcher, men dato/tid ser anderledes ud
-  - 25.04 13:00 Sundby BK vs IF Lyseng [3d-r25-sun-lys] -> Hold matcher, men dato/tid ser anderledes ud
-  - 25.04 14:00 Næsby BK vs Vanløse [3d-r25-næs-van] -> Hold matcher, men dato/tid ser anderledes ud
-  - 16.05 14:00 Næsby BK vs Brønshøj [3d-r28-næs-brø] -> Hold matcher, men dato/tid ser anderledes ud
-  - 23.05 13:30 IF Lyseng vs Sundby BK [3d-r29-lys-sun] -> Hold matcher, men dato/tid ser anderledes ud
-  - 25.05 14:00 Vanløse vs Næsby BK [3d-r29-van-næs] -> Hold matcher, men dato/tid ser anderledes ud
-  - 31.05 14:00 Nykøbing FC vs Næsby BK [3d-r30-nyk-næs] -> Hold matcher, men dato/tid ser anderledes ud
-  - 06.06 14:00 Næsby BK vs FA 2000 [3d-r31-næs-fa2] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
-exact: 35
+exact: 96
+  - 07.03 13:00 Holbæk B&I vs Næsby BK [3d-r17-hol-næs] -> Eksakt match på dato, tid og hold
+  - 07.03 13:00 Hørsholm-Usserød IK vs Vanløse [3d-r17-hør-van] -> Eksakt match på dato, tid og hold
+  - 07.03 13:00 Odder Fodbold vs Vejgaard B [3d-r17-odd-vej] -> Eksakt match på dato, tid og hold
   - 07.03 14:00 Brønshøj vs Sundby BK [3d-r17-brø-sun] -> Eksakt match på dato, tid og hold
   - 07.03 14:00 FA 2000 vs IF Lyseng [3d-r17-fa2-lys] -> Eksakt match på dato, tid og hold
   - 07.03 14:00 Frem vs Nykøbing FC [3d-r17-fre-nyk] -> Eksakt match på dato, tid og hold
+  - 14.03 13:30 IF Lyseng vs Holbæk B&I [3d-r18-lys-hol] -> Eksakt match på dato, tid og hold
   - 14.03 14:00 Brønshøj vs Frem [3d-r18-brø-fre] -> Eksakt match på dato, tid og hold
+  - 14.03 14:00 Næsby BK vs Odder Fodbold [3d-r18-næs-odd] -> Eksakt match på dato, tid og hold
+  - 14.03 14:00 Sundby BK vs Hørsholm-Usserød IK [3d-r18-sun-hør] -> Eksakt match på dato, tid og hold
   - 14.03 14:00 Vanløse vs Vejgaard B [3d-r18-van-vej] -> Eksakt match på dato, tid og hold
   - 14.03 15:00 Nykøbing FC vs FA 2000 [3d-r18-nyk-fa2] -> Eksakt match på dato, tid og hold
+  - 21.03 13:00 Holbæk B&I vs Sundby BK [3d-r19-hol-sun] -> Eksakt match på dato, tid og hold
+  - 21.03 13:00 Hørsholm-Usserød IK vs IF Lyseng [3d-r19-hør-lys] -> Eksakt match på dato, tid og hold
+  - 21.03 13:00 Odder Fodbold vs Nykøbing FC [3d-r19-odd-nyk] -> Eksakt match på dato, tid og hold
+  - 21.03 13:00 Vejgaard B vs Næsby BK [3d-r19-vej-næs] -> Eksakt match på dato, tid og hold
   - 21.03 14:00 FA 2000 vs Brønshøj [3d-r19-fa2-brø] -> Eksakt match på dato, tid og hold
   - 21.03 14:00 Frem vs Vanløse [3d-r19-fre-van] -> Eksakt match på dato, tid og hold
   - 28.03 13:30 IF Lyseng vs Frem [3d-r20-lys-fre] -> Eksakt match på dato, tid og hold
+  - 28.03 14:00 Brønshøj vs Odder Fodbold [3d-r20-brø-odd] -> Eksakt match på dato, tid og hold
+  - 28.03 14:00 FA 2000 vs Holbæk B&I [3d-r20-fa2-hol] -> Eksakt match på dato, tid og hold
+  - 28.03 14:00 Næsby BK vs Hørsholm-Usserød IK [3d-r20-næs-hør] -> Eksakt match på dato, tid og hold
+  - 28.03 14:00 Sundby BK vs Vejgaard B [3d-r20-sun-vej] -> Eksakt match på dato, tid og hold
   - 28.03 15:00 Nykøbing FC vs Vanløse [3d-r20-nyk-van] -> Eksakt match på dato, tid og hold
+  - 01.04 18:30 Hørsholm-Usserød IK vs Brønshøj [3d-r21-hør-brø] -> Eksakt match på dato, tid og hold
+  - 02.04 13:00 Holbæk B&I vs Nykøbing FC [3d-r21-hol-nyk] -> Eksakt match på dato, tid og hold
+  - 02.04 13:00 Vejgaard B vs IF Lyseng [3d-r21-vej-lys] -> Eksakt match på dato, tid og hold
   - 02.04 14:00 Frem vs FA 2000 [3d-r21-fre-fa2] -> Eksakt match på dato, tid og hold
+  - 02.04 14:00 Odder Fodbold vs Sundby BK [3d-r21-odd-sun] -> Eksakt match på dato, tid og hold
   - 02.04 14:00 Vanløse vs Næsby BK [3d-r21-van-næs] -> Eksakt match på dato, tid og hold
+  - 06.04 14:00 Brønshøj vs Holbæk B&I [3d-r22-brø-hol] -> Eksakt match på dato, tid og hold
+  - 06.04 14:00 FA 2000 vs Hørsholm-Usserød IK [3d-r22-fa2-hør] -> Eksakt match på dato, tid og hold
+  - 06.04 14:00 IF Lyseng vs Odder Fodbold [3d-r22-lys-odd] -> Eksakt match på dato, tid og hold
   - 06.04 14:00 Nykøbing FC vs Vejgaard B [3d-r22-nyk-vej] -> Eksakt match på dato, tid og hold
   - 06.04 14:00 Næsby BK vs Frem [3d-r22-næs-fre] -> Eksakt match på dato, tid og hold
   - 06.04 14:00 Sundby BK vs Vanløse [3d-r22-sun-van] -> Eksakt match på dato, tid og hold
+  - 11.04 14:00 Brønshøj vs Næsby BK [3d-r23-brø-næs] -> Eksakt match på dato, tid og hold
+  - 11.04 14:00 Hørsholm-Usserød IK vs Nykøbing FC [3d-r23-hør-nyk] -> Eksakt match på dato, tid og hold
   - 11.04 14:00 IF Lyseng vs Frem [3d-r23-lys-fre] -> Eksakt match på dato, tid og hold
+  - 11.04 14:00 Odder Fodbold vs Holbæk B&I [3d-r23-odd-hol] -> Eksakt match på dato, tid og hold
   - 11.04 14:00 Sundby BK vs Vejgaard B [3d-r23-sun-vej] -> Eksakt match på dato, tid og hold
   - 11.04 14:00 Vanløse vs FA 2000 [3d-r23-van-fa2] -> Eksakt match på dato, tid og hold
+  - 18.04 13:00 Odder Fodbold vs Sundby BK [3d-r24-odd-sun] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 IF Lyseng vs Holbæk B&I [3d-r24-lys-hol] -> Eksakt match på dato, tid og hold
+  - 18.04 14:00 FA 2000 vs Hørsholm-Usserød IK [3d-r24-fa2-hør] -> Eksakt match på dato, tid og hold
   - 18.04 14:00 Frem vs Vejgaard B [3d-r24-fre-vej] -> Eksakt match på dato, tid og hold
+  - 18.04 14:00 Næsby BK vs Nykøbing FC [3d-r24-næs-nyk] -> Eksakt match på dato, tid og hold
   - 18.04 14:00 Vanløse vs Brønshøj [3d-r24-van-brø] -> Eksakt match på dato, tid og hold
+  - 25.04 13:00 Holbæk B&I vs Frem [3d-r25-hol-fre] -> Eksakt match på dato, tid og hold
+  - 25.04 13:00 Sundby BK vs IF Lyseng [3d-r25-sun-lys] -> Eksakt match på dato, tid og hold
+  - 25.04 14:00 Brønshøj vs Hørsholm-Usserød IK [3d-r25-brø-hør] -> Eksakt match på dato, tid og hold
+  - 25.04 14:00 Næsby BK vs Vanløse [3d-r25-næs-van] -> Eksakt match på dato, tid og hold
+  - 26.04 16:00 Vejgaard B vs Odder Fodbold [3d-r25-vej-odd] -> Eksakt match på dato, tid og hold
   - 26.04 14:00 Nykøbing FC vs FA 2000 [3d-r25-nyk-fa2] -> Eksakt match på dato, tid og hold
+  - 02.05 13:00 Holbæk B&I vs Sundby BK [3d-r26-hol-sun] -> Eksakt match på dato, tid og hold
+  - 02.05 13:00 Hørsholm-Usserød IK vs Vanløse [3d-r26-hør-van] -> Eksakt match på dato, tid og hold
   - 02.05 13:30 IF Lyseng vs Vejgaard B [3d-r26-lys-vej] -> Eksakt match på dato, tid og hold
   - 02.05 14:00 FA 2000 vs Næsby BK [3d-r26-fa2-næs] -> Eksakt match på dato, tid og hold
+  - 02.05 14:00 Frem vs Odder Fodbold [3d-r26-fre-odd] -> Eksakt match på dato, tid og hold
   - 03.05 14:00 Nykøbing FC vs Brønshøj [3d-r26-nyk-brø] -> Eksakt match på dato, tid og hold
   - 08.05 18:30 Brønshøj vs FA 2000 [3d-r27-brø-fa2] -> Eksakt match på dato, tid og hold
+  - 08.05 18:45 Odder Fodbold vs IF Lyseng [3d-r27-odd-lys] -> Eksakt match på dato, tid og hold
   - 08.05 19:00 Sundby BK vs Frem [3d-r27-sun-fre] -> Eksakt match på dato, tid og hold
+  - 09.05 13:00 Vejgaard B vs Holbæk B&I [3d-r27-vej-hol] -> Eksakt match på dato, tid og hold
+  - 09.05 14:00 Næsby BK vs Hørsholm-Usserød IK [3d-r27-næs-hør] -> Eksakt match på dato, tid og hold
   - 09.05 14:00 Vanløse vs Nykøbing FC [3d-r27-van-nyk] -> Eksakt match på dato, tid og hold
+  - 17.05 14:00 Nykøbing FC vs Hørsholm-Usserød IK [3d-r28-nyk-hør] -> Eksakt match på dato, tid og hold
+  - 16.05 13:00 Vejgaard B vs Sundby BK [3d-r28-vej-sun] -> Eksakt match på dato, tid og hold
   - 16.05 14:00 FA 2000 vs Vanløse [3d-r28-fa2-van] -> Eksakt match på dato, tid og hold
   - 16.05 14:00 Frem vs IF Lyseng [3d-r28-fre-lys] -> Eksakt match på dato, tid og hold
+  - 16.05 14:00 Næsby BK vs Brønshøj [3d-r28-næs-brø] -> Eksakt match på dato, tid og hold
+  - 16.05 13:00 Holbæk B&I vs Odder Fodbold [3d-r28-hol-odd] -> Eksakt match på dato, tid og hold
+  - 22.05 19:00 Hørsholm-Usserød IK vs Brønshøj [3d-r29-hør-brø] -> Eksakt match på dato, tid og hold
+  - 22.05 19:00 Odder Fodbold vs Vejgaard B [3d-r29-odd-vej] -> Eksakt match på dato, tid og hold
+  - 23.05 13:30 IF Lyseng vs Sundby BK [3d-r29-lys-sun] -> Eksakt match på dato, tid og hold
   - 23.05 14:00 FA 2000 vs Nykøbing FC [3d-r29-fa2-nyk] -> Eksakt match på dato, tid og hold
+  - 23.05 14:00 Frem vs Holbæk B&I [3d-r29-fre-hol] -> Eksakt match på dato, tid og hold
+  - 25.05 14:00 Vanløse vs Næsby BK [3d-r29-van-næs] -> Eksakt match på dato, tid og hold
   - 29.05 18:30 Brønshøj vs Vanløse [3d-r30-brø-van] -> Eksakt match på dato, tid og hold
+  - 29.05 19:00 Hørsholm-Usserød IK vs FA 2000 [3d-r30-hør-fa2] -> Eksakt match på dato, tid og hold
+  - 30.05 13:00 Holbæk B&I vs IF Lyseng [3d-r30-hol-lys] -> Eksakt match på dato, tid og hold
+  - 30.05 13:00 Sundby BK vs Odder Fodbold [3d-r30-sun-odd] -> Eksakt match på dato, tid og hold
+  - 30.05 13:00 Vejgaard B vs Frem [3d-r30-vej-fre] -> Eksakt match på dato, tid og hold
+  - 31.05 14:00 Nykøbing FC vs Næsby BK [3d-r30-nyk-næs] -> Eksakt match på dato, tid og hold
+  - 05.06 19:00 Sundby BK vs Holbæk B&I [3d-r31-sun-hol] -> Eksakt match på dato, tid og hold
+  - 06.06 13:00 Odder Fodbold vs Frem [3d-r31-odd-fre] -> Eksakt match på dato, tid og hold
+  - 06.06 13:00 Vejgaard B vs IF Lyseng [3d-r31-vej-lys] -> Eksakt match på dato, tid og hold
   - 06.06 14:00 Brønshøj vs Nykøbing FC [3d-r31-brø-nyk] -> Eksakt match på dato, tid og hold
+  - 06.06 14:00 Næsby BK vs FA 2000 [3d-r31-næs-fa2] -> Eksakt match på dato, tid og hold
+  - 06.06 14:00 Vanløse vs Hørsholm-Usserød IK [3d-r31-van-hør] -> Eksakt match på dato, tid og hold
   - 13.06 14:00 FA 2000 vs Brønshøj [3d-r32-fa2-brø] -> Eksakt match på dato, tid og hold
   - 13.06 14:00 Frem vs Sundby BK [3d-r32-fre-sun] -> Eksakt match på dato, tid og hold
+  - 13.06 14:00 Holbæk B&I vs Vejgaard B [3d-r32-hol-vej] -> Eksakt match på dato, tid og hold
+  - 13.06 14:00 Hørsholm-Usserød IK vs Næsby BK [3d-r32-hør-næs] -> Eksakt match på dato, tid og hold
+  - 13.06 14:00 IF Lyseng vs Odder Fodbold [3d-r32-lys-odd] -> Eksakt match på dato, tid og hold
   - 13.06 14:00 Nykøbing FC vs Vanløse [3d-r32-nyk-van] -> Eksakt match på dato, tid og hold
 ```
 
