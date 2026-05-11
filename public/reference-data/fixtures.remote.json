@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-09T06:09:45.825Z",
-    "generatedAt": "2026-05-09T06:09:45.825Z",
-    "checksum": "0168bfd409e243a2da8212fe8fe03d9e9856baf6b5d4fe8c6b0f3094385b2764",
+    "version": "2026-05-11T15:35:21.763Z",
+    "generatedAt": "2026-05-11T15:35:21.763Z",
+    "checksum": "c37442160ac679df4ed0c884b2b19c6a8845e48236b6dbf88d2e7e3c2873dcc4",
     "signature": null
   },
   "fixtures": [
@@ -10249,7 +10249,7 @@
     },
     {
       "id": "sl-r32-agf-vff",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T18:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "agf",
       "awayTeamId": "vff",
@@ -10260,7 +10260,7 @@
     },
     {
       "id": "sl-r32-fcf-sif",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T14:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "fcf",
       "awayTeamId": "sif",
@@ -10271,7 +10271,7 @@
     },
     {
       "id": "sl-r32-fck-ran",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T14:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "fck",
       "awayTeamId": "ran",
@@ -10282,7 +10282,7 @@
     },
     {
       "id": "sl-r32-fcm-bif",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T18:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "fcm",
       "awayTeamId": "bif",
@@ -10293,7 +10293,7 @@
     },
     {
       "id": "sl-r32-ob-vb",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T14:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "ob",
       "awayTeamId": "vb",
@@ -10304,7 +10304,7 @@
     },
     {
       "id": "sl-r32-sje-fcn",
-      "kickoff": "2026-05-17T16:00:00+02:00",
+      "kickoff": "2026-05-17T18:00:00+02:00",
       "round": "Superliga - Spillerunde 32",
       "homeTeamId": "sje",
       "awayTeamId": "fcn",

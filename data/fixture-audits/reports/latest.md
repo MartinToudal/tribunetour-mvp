@@ -1,9 +1,9 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T15:28:10.665730+00:00
+Generated at: 2026-05-11T15:35:22.186743+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: sl-
@@ -12,17 +12,11 @@ Fixtures audited: 84
 
 missing: 0
 
-time-mismatch: 6
-  - 17.05 16:00 AGF vs Viborg FF [sl-r32-agf-vff] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
-  - 17.05 16:00 FC Fredericia vs Silkeborg IF [sl-r32-fcf-sif] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
-  - 17.05 16:00 F.C. København vs Randers FC [sl-r32-fck-ran] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
-  - 17.05 16:00 FC Midtjylland vs Brøndby IF [sl-r32-fcm-bif] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
-  - 17.05 16:00 OB vs Vejle Boldklub [sl-r32-ob-vb] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
-  - 17.05 16:00 Sønderjyske Fodbold vs FC Nordsjælland [sl-r32-sje-fcn] -> Hold og dato matcher, men tiden 16:00 blev ikke fundet
+time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 78
+exact: 84
   - 08.02 14:00 FC Nordsjælland vs Sønderjyske Fodbold [sl-r19-fcn-sje] -> Eksakt match på dato, tid og hold
   - 08.02 14:00 Silkeborg IF vs Viborg FF [sl-r19-sif-vff] -> Eksakt match på dato, tid og hold
   - 08.02 16:00 FC Midtjylland vs F.C. København [sl-r19-fcm-fck] -> Eksakt match på dato, tid og hold
@@ -101,4 +95,10 @@ exact: 78
   - 10.05 16:00 Silkeborg IF vs F.C. København [sl-r31-sif-fck] -> Eksakt match på dato, tid og hold
   - 10.05 16:00 Vejle Boldklub vs FC Fredericia [sl-r31-vb-fcf] -> Eksakt match på dato, tid og hold
   - 10.05 16:00 Viborg FF vs Sønderjyske Fodbold [sl-r31-vff-sje] -> Eksakt match på dato, tid og hold
+  - 17.05 18:00 AGF vs Viborg FF [sl-r32-agf-vff] -> Eksakt match på dato, tid og hold
+  - 17.05 14:00 FC Fredericia vs Silkeborg IF [sl-r32-fcf-sif] -> Eksakt match på dato, tid og hold
+  - 17.05 14:00 F.C. København vs Randers FC [sl-r32-fck-ran] -> Eksakt match på dato, tid og hold
+  - 17.05 18:00 FC Midtjylland vs Brøndby IF [sl-r32-fcm-bif] -> Eksakt match på dato, tid og hold
+  - 17.05 14:00 OB vs Vejle Boldklub [sl-r32-ob-vb] -> Eksakt match på dato, tid og hold
+  - 17.05 18:00 Sønderjyske Fodbold vs FC Nordsjælland [sl-r32-sje-fcn] -> Eksakt match på dato, tid og hold
 ```

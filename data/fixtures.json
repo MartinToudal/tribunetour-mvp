@@ -10242,7 +10242,7 @@
   },
   {
     "id": "sl-r32-agf-vff",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T18:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-agf",
     "awayTeamId": "dk-viborg-ff",
@@ -10253,7 +10253,7 @@
   },
   {
     "id": "sl-r32-fcf-sif",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T14:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-fc-fredericia",
     "awayTeamId": "dk-silkeborg-if",
@@ -10264,7 +10264,7 @@
   },
   {
     "id": "sl-r32-fck-ran",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T14:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-fc-kobenhavn",
     "awayTeamId": "dk-randers-fc",
@@ -10275,7 +10275,7 @@
   },
   {
     "id": "sl-r32-fcm-bif",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T18:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-fc-midtjylland",
     "awayTeamId": "dk-brondby-if",
@@ -10286,7 +10286,7 @@
   },
   {
     "id": "sl-r32-ob-vb",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T14:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-ob",
     "awayTeamId": "dk-vejle-boldklub",
@@ -10297,7 +10297,7 @@
   },
   {
     "id": "sl-r32-sje-fcn",
-    "kickoff": "2026-05-17T16:00:00+02:00",
+    "kickoff": "2026-05-17T18:00:00+02:00",
     "round": "Superliga - Spillerunde 32",
     "homeTeamId": "dk-sonderjyske",
     "awayTeamId": "dk-fc-nordsjaelland",
