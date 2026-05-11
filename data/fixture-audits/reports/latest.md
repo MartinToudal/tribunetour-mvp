@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T18:19:05.087263+00:00
+Generated at: 2026-05-11T18:45:23.948305+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -650,285 +650,285 @@ exact: 0
 ```
 
 ## England - Premier League (`en-premier-league`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: epl-
 Season: 2025-26
 Fixtures audited: 60
 
-missing: 39
-  - 18.04 16:00 Leeds United vs Wolverhampton Wanderers [epl-r33-leeds-united-wolverhampton-wanderers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Newcastle United vs AFC Bournemouth [epl-r33-newcastle-united-afc-bournemouth] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 18:30 Tottenham Hotspur vs Brighton & Hove Albion [epl-r33-tottenham-hotspur-brighton-and-hove-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 21:00 Chelsea vs Manchester United [epl-r33-chelsea-manchester-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 19.04 15:00 Nottingham Forest vs Burnley [epl-r33-nottingham-forest-burnley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 20.04 21:00 Crystal Palace vs West Ham United [epl-r33-crystal-palace-west-ham-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 21:00 Brighton & Hove Albion vs Chelsea [epl-r34-brighton-and-hove-albion-chelsea] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 21:00 AFC Bournemouth vs Leeds United [epl-r34-afc-bournemouth-leeds-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.04 21:00 Sunderland vs Nottingham Forest [epl-r34-sunderland-nottingham-forest] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 West Ham United vs Everton [epl-r34-west-ham-united-everton] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Wolverhampton Wanderers vs Tottenham Hotspur [epl-r34-wolverhampton-wanderers-tottenham-hotspur] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 18:30 Arsenal vs Newcastle United [epl-r34-arsenal-newcastle-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 27.04 21:00 Manchester United vs Brentford [epl-r34-manchester-united-brentford] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 01.05 21:00 Leeds United vs Burnley [epl-r35-leeds-united-burnley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Aston Villa vs Tottenham Hotspur [epl-r35-aston-villa-tottenham-hotspur] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 AFC Bournemouth vs Crystal Palace [epl-r35-afc-bournemouth-crystal-palace] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Brentford vs West Ham United [epl-r35-brentford-west-ham-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Newcastle United vs Brighton & Hove Albion [epl-r35-newcastle-united-brighton-and-hove-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Wolverhampton Wanderers vs Sunderland [epl-r35-wolverhampton-wanderers-sunderland] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 03.05 16:30 Manchester United vs Liverpool [epl-r35-manchester-united-liverpool] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 04.05 16:00 Chelsea vs Nottingham Forest [epl-r35-chelsea-nottingham-forest] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 16:00 Brighton & Hove Albion vs Wolverhampton Wanderers [epl-r36-brighton-and-hove-albion-wolverhampton-wanderers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 16:00 Fulham vs AFC Bournemouth [epl-r36-fulham-afc-bournemouth] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 16:00 Sunderland vs Manchester United [epl-r36-sunderland-manchester-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 10.05 15:00 Nottingham Forest vs Newcastle United [epl-r36-nottingham-forest-newcastle-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 10.05 17:30 West Ham United vs Arsenal [epl-r36-west-ham-united-arsenal] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.05 21:00 Tottenham Hotspur vs Leeds United [epl-r36-tottenham-hotspur-leeds-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 AFC Bournemouth vs Manchester City [epl-r37-afc-bournemouth-manchester-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 Chelsea vs Tottenham Hotspur [epl-r37-chelsea-tottenham-hotspur] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 Leeds United vs Brighton & Hove Albion [epl-r37-leeds-united-brighton-and-hove-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 Manchester United vs Nottingham Forest [epl-r37-manchester-united-nottingham-forest] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 Newcastle United vs West Ham United [epl-r37-newcastle-united-west-ham-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 16:00 Wolverhampton Wanderers vs Fulham [epl-r37-wolverhampton-wanderers-fulham] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 Brighton & Hove Albion vs Manchester United [epl-r38-brighton-and-hove-albion-manchester-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 Burnley vs Wolverhampton Wanderers [epl-r38-burnley-wolverhampton-wanderers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 Fulham vs Newcastle United [epl-r38-fulham-newcastle-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 Nottingham Forest vs AFC Bournemouth [epl-r38-nottingham-forest-afc-bournemouth] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 Tottenham Hotspur vs Everton [epl-r38-tottenham-hotspur-everton] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 17:00 West Ham United vs Leeds United [epl-r38-west-ham-united-leeds-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 21
+exact: 60
   - 18.04 13:30 Brentford vs Fulham [epl-r33-brentford-fulham] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Leeds United vs Wolverhampton Wanderers [epl-r33-leeds-united-wolverhampton-wanderers] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Newcastle United vs AFC Bournemouth [epl-r33-newcastle-united-afc-bournemouth] -> Eksakt match på dato, tid og hold
+  - 18.04 18:30 Tottenham Hotspur vs Brighton & Hove Albion [epl-r33-tottenham-hotspur-brighton-and-hove-albion] -> Eksakt match på dato, tid og hold
+  - 18.04 21:00 Chelsea vs Manchester United [epl-r33-chelsea-manchester-united] -> Eksakt match på dato, tid og hold
   - 19.04 15:00 Aston Villa vs Sunderland [epl-r33-aston-villa-sunderland] -> Eksakt match på dato, tid og hold
   - 19.04 15:00 Everton vs Liverpool [epl-r33-everton-liverpool] -> Eksakt match på dato, tid og hold
+  - 19.04 15:00 Nottingham Forest vs Burnley [epl-r33-nottingham-forest-burnley] -> Eksakt match på dato, tid og hold
   - 19.04 17:30 Manchester City vs Arsenal [epl-r33-manchester-city-arsenal] -> Eksakt match på dato, tid og hold
+  - 20.04 21:00 Crystal Palace vs West Ham United [epl-r33-crystal-palace-west-ham-united] -> Eksakt match på dato, tid og hold
+  - 21.04 21:00 Brighton & Hove Albion vs Chelsea [epl-r34-brighton-and-hove-albion-chelsea] -> Eksakt match på dato, tid og hold
+  - 22.04 21:00 AFC Bournemouth vs Leeds United [epl-r34-afc-bournemouth-leeds-united] -> Eksakt match på dato, tid og hold
   - 22.04 21:00 Burnley vs Manchester City [epl-r34-burnley-manchester-city] -> Eksakt match på dato, tid og hold
+  - 24.04 21:00 Sunderland vs Nottingham Forest [epl-r34-sunderland-nottingham-forest] -> Eksakt match på dato, tid og hold
   - 25.04 13:30 Fulham vs Aston Villa [epl-r34-fulham-aston-villa] -> Eksakt match på dato, tid og hold
   - 25.04 16:00 Liverpool vs Crystal Palace [epl-r34-liverpool-crystal-palace] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 West Ham United vs Everton [epl-r34-west-ham-united-everton] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Wolverhampton Wanderers vs Tottenham Hotspur [epl-r34-wolverhampton-wanderers-tottenham-hotspur] -> Eksakt match på dato, tid og hold
+  - 25.04 18:30 Arsenal vs Newcastle United [epl-r34-arsenal-newcastle-united] -> Eksakt match på dato, tid og hold
+  - 27.04 21:00 Manchester United vs Brentford [epl-r34-manchester-united-brentford] -> Eksakt match på dato, tid og hold
+  - 01.05 21:00 Leeds United vs Burnley [epl-r35-leeds-united-burnley] -> Eksakt match på dato, tid og hold
+  - 03.05 20:00 Aston Villa vs Tottenham Hotspur [epl-r35-aston-villa-tottenham-hotspur] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 AFC Bournemouth vs Crystal Palace [epl-r35-afc-bournemouth-crystal-palace] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Brentford vs West Ham United [epl-r35-brentford-west-ham-united] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Newcastle United vs Brighton & Hove Albion [epl-r35-newcastle-united-brighton-and-hove-albion] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Wolverhampton Wanderers vs Sunderland [epl-r35-wolverhampton-wanderers-sunderland] -> Eksakt match på dato, tid og hold
   - 02.05 18:30 Arsenal vs Fulham [epl-r35-arsenal-fulham] -> Eksakt match på dato, tid og hold
+  - 03.05 16:30 Manchester United vs Liverpool [epl-r35-manchester-united-liverpool] -> Eksakt match på dato, tid og hold
+  - 04.05 16:00 Chelsea vs Nottingham Forest [epl-r35-chelsea-nottingham-forest] -> Eksakt match på dato, tid og hold
   - 04.05 21:00 Everton vs Manchester City [epl-r35-everton-manchester-city] -> Eksakt match på dato, tid og hold
   - 09.05 13:30 Liverpool vs Chelsea [epl-r36-liverpool-chelsea] -> Eksakt match på dato, tid og hold
+  - 09.05 16:00 Brighton & Hove Albion vs Wolverhampton Wanderers [epl-r36-brighton-and-hove-albion-wolverhampton-wanderers] -> Eksakt match på dato, tid og hold
   - 09.05 16:00 Burnley vs Aston Villa [epl-r36-burnley-aston-villa] -> Eksakt match på dato, tid og hold
   - 09.05 16:00 Crystal Palace vs Everton [epl-r36-crystal-palace-everton] -> Eksakt match på dato, tid og hold
+  - 09.05 16:00 Fulham vs AFC Bournemouth [epl-r36-fulham-afc-bournemouth] -> Eksakt match på dato, tid og hold
+  - 09.05 16:00 Sunderland vs Manchester United [epl-r36-sunderland-manchester-united] -> Eksakt match på dato, tid og hold
   - 09.05 18:30 Manchester City vs Brentford [epl-r36-manchester-city-brentford] -> Eksakt match på dato, tid og hold
+  - 10.05 15:00 Nottingham Forest vs Newcastle United [epl-r36-nottingham-forest-newcastle-united] -> Eksakt match på dato, tid og hold
+  - 10.05 17:30 West Ham United vs Arsenal [epl-r36-west-ham-united-arsenal] -> Eksakt match på dato, tid og hold
+  - 11.05 21:00 Tottenham Hotspur vs Leeds United [epl-r36-tottenham-hotspur-leeds-united] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 AFC Bournemouth vs Manchester City [epl-r37-afc-bournemouth-manchester-city] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Arsenal vs Burnley [epl-r37-arsenal-burnley] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Aston Villa vs Liverpool [epl-r37-aston-villa-liverpool] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Brentford vs Crystal Palace [epl-r37-brentford-crystal-palace] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 Chelsea vs Tottenham Hotspur [epl-r37-chelsea-tottenham-hotspur] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Everton vs Sunderland [epl-r37-everton-sunderland] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 Leeds United vs Brighton & Hove Albion [epl-r37-leeds-united-brighton-and-hove-albion] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 Manchester United vs Nottingham Forest [epl-r37-manchester-united-nottingham-forest] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 Newcastle United vs West Ham United [epl-r37-newcastle-united-west-ham-united] -> Eksakt match på dato, tid og hold
+  - 17.05 16:00 Wolverhampton Wanderers vs Fulham [epl-r37-wolverhampton-wanderers-fulham] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 Brighton & Hove Albion vs Manchester United [epl-r38-brighton-and-hove-albion-manchester-united] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 Burnley vs Wolverhampton Wanderers [epl-r38-burnley-wolverhampton-wanderers] -> Eksakt match på dato, tid og hold
   - 24.05 17:00 Crystal Palace vs Arsenal [epl-r38-crystal-palace-arsenal] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 Fulham vs Newcastle United [epl-r38-fulham-newcastle-united] -> Eksakt match på dato, tid og hold
   - 24.05 17:00 Liverpool vs Brentford [epl-r38-liverpool-brentford] -> Eksakt match på dato, tid og hold
   - 24.05 17:00 Manchester City vs Aston Villa [epl-r38-manchester-city-aston-villa] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 Nottingham Forest vs AFC Bournemouth [epl-r38-nottingham-forest-afc-bournemouth] -> Eksakt match på dato, tid og hold
   - 24.05 17:00 Sunderland vs Chelsea [epl-r38-sunderland-chelsea] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 Tottenham Hotspur vs Everton [epl-r38-tottenham-hotspur-everton] -> Eksakt match på dato, tid og hold
+  - 24.05 17:00 West Ham United vs Leeds United [epl-r38-west-ham-united-leeds-united] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - Championship (`en-championship`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: ech-
 Season: 2025-26
 Fixtures audited: 50
 
-missing: 47
-  - 14.04 20:00 Southampton vs Blackburn Rovers [ech-r45-southampton-blackburn-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.04 21:00 Blackburn Rovers vs Coventry City [ech-r43-blackburn-rovers-coventry-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 Derby County vs Oxford United [ech-r43-derby-county-oxford-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 Millwall vs Queens Park Rangers [ech-r43-millwall-queens-park-rangers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 Portsmouth vs Leicester City [ech-r43-portsmouth-leicester-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Bristol City vs Norwich City [ech-r43-bristol-city-norwich-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Hull City vs Birmingham City [ech-r43-hull-city-birmingham-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Preston North End vs West Bromwich Albion [ech-r43-preston-north-end-west-bromwich-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Sheffield Wednesday vs Charlton Athletic [ech-r43-sheffield-wednesday-charlton-athletic] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Swansea City vs Southampton [ech-r43-swansea-city-southampton] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Watford vs Sheffield United [ech-r43-watford-sheffield-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Wrexham vs Stoke City [ech-r43-wrexham-stoke-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 19.04 13:00 Ipswich Town vs Middlesbrough [ech-r43-ipswich-town-middlesbrough] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Coventry City vs Portsmouth [ech-r44-coventry-city-portsmouth] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Leicester City vs Hull City [ech-r44-leicester-city-hull-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Norwich City vs Derby County [ech-r44-norwich-city-derby-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Oxford United vs Wrexham [ech-r44-oxford-united-wrexham] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Queens Park Rangers vs Swansea City [ech-r44-queens-park-rangers-swansea-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Stoke City vs Millwall [ech-r44-stoke-city-millwall] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 West Bromwich Albion vs Watford [ech-r44-west-bromwich-albion-watford] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 20:45 Birmingham City vs Preston North End [ech-r44-birmingham-city-preston-north-end] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 20:45 Charlton Athletic vs Ipswich Town [ech-r44-charlton-athletic-ipswich-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 20:45 Middlesbrough vs Sheffield Wednesday [ech-r44-middlesbrough-sheffield-wednesday] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 20:45 Sheffield United vs Blackburn Rovers [ech-r44-sheffield-united-blackburn-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.04 21:00 Leicester City vs Millwall [ech-r45-leicester-city-millwall] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 Charlton Athletic vs Hull City [ech-r45-charlton-athletic-hull-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 West Bromwich Albion vs Ipswich Town [ech-r45-west-bromwich-albion-ipswich-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Birmingham City vs Bristol City [ech-r45-birmingham-city-bristol-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Norwich City vs Swansea City [ech-r45-norwich-city-swansea-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Oxford United vs Sheffield Wednesday [ech-r45-oxford-united-sheffield-wednesday] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Queens Park Rangers vs Derby County [ech-r45-queens-park-rangers-derby-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Sheffield United vs Preston North End [ech-r45-sheffield-united-preston-north-end] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Stoke City vs Portsmouth [ech-r45-stoke-city-portsmouth] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 13:00 Coventry City vs Wrexham [ech-r45-coventry-city-wrexham] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.04 20:45 Southampton vs Ipswich Town [ech-r40-southampton-ipswich-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Blackburn Rovers vs Leicester City [ech-r46-blackburn-rovers-leicester-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Bristol City vs Stoke City [ech-r46-bristol-city-stoke-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Derby County vs Sheffield United [ech-r46-derby-county-sheffield-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Hull City vs Norwich City [ech-r46-hull-city-norwich-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Ipswich Town vs Queens Park Rangers [ech-r46-ipswich-town-queens-park-rangers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Millwall vs Oxford United [ech-r46-millwall-oxford-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Portsmouth vs Birmingham City [ech-r46-portsmouth-birmingham-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Preston North End vs Southampton [ech-r46-preston-north-end-southampton] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Sheffield Wednesday vs West Bromwich Albion [ech-r46-sheffield-wednesday-west-bromwich-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Swansea City vs Charlton Athletic [ech-r46-swansea-city-charlton-athletic] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 13:30 Watford vs Coventry City [ech-r46-watford-coventry-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 3
+exact: 50
+  - 14.04 21:00 Southampton vs Blackburn Rovers [ech-r45-southampton-blackburn-rovers] -> Eksakt match på dato, tid og hold
+  - 17.04 21:00 Blackburn Rovers vs Coventry City [ech-r43-blackburn-rovers-coventry-city] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 Derby County vs Oxford United [ech-r43-derby-county-oxford-united] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 Millwall vs Queens Park Rangers [ech-r43-millwall-queens-park-rangers] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 Portsmouth vs Leicester City [ech-r43-portsmouth-leicester-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Bristol City vs Norwich City [ech-r43-bristol-city-norwich-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Hull City vs Birmingham City [ech-r43-hull-city-birmingham-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Preston North End vs West Bromwich Albion [ech-r43-preston-north-end-west-bromwich-albion] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Sheffield Wednesday vs Charlton Athletic [ech-r43-sheffield-wednesday-charlton-athletic] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Swansea City vs Southampton [ech-r43-swansea-city-southampton] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Watford vs Sheffield United [ech-r43-watford-sheffield-united] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Wrexham vs Stoke City [ech-r43-wrexham-stoke-city] -> Eksakt match på dato, tid og hold
+  - 19.04 13:00 Ipswich Town vs Middlesbrough [ech-r43-ipswich-town-middlesbrough] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Coventry City vs Portsmouth [ech-r44-coventry-city-portsmouth] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Leicester City vs Hull City [ech-r44-leicester-city-hull-city] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Norwich City vs Derby County [ech-r44-norwich-city-derby-county] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Oxford United vs Wrexham [ech-r44-oxford-united-wrexham] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Queens Park Rangers vs Swansea City [ech-r44-queens-park-rangers-swansea-city] -> Eksakt match på dato, tid og hold
   - 21.04 20:45 Southampton vs Bristol City [ech-r44-southampton-bristol-city] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Stoke City vs Millwall [ech-r44-stoke-city-millwall] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 West Bromwich Albion vs Watford [ech-r44-west-bromwich-albion-watford] -> Eksakt match på dato, tid og hold
+  - 22.04 20:45 Birmingham City vs Preston North End [ech-r44-birmingham-city-preston-north-end] -> Eksakt match på dato, tid og hold
+  - 22.04 20:45 Charlton Athletic vs Ipswich Town [ech-r44-charlton-athletic-ipswich-town] -> Eksakt match på dato, tid og hold
+  - 22.04 20:45 Middlesbrough vs Sheffield Wednesday [ech-r44-middlesbrough-sheffield-wednesday] -> Eksakt match på dato, tid og hold
+  - 22.04 20:45 Sheffield United vs Blackburn Rovers [ech-r44-sheffield-united-blackburn-rovers] -> Eksakt match på dato, tid og hold
+  - 24.04 21:00 Leicester City vs Millwall [ech-r45-leicester-city-millwall] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 Charlton Athletic vs Hull City [ech-r45-charlton-athletic-hull-city] -> Eksakt match på dato, tid og hold
   - 25.04 13:30 Middlesbrough vs Watford [ech-r45-middlesbrough-watford] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 West Bromwich Albion vs Ipswich Town [ech-r45-west-bromwich-albion-ipswich-town] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Birmingham City vs Bristol City [ech-r45-birmingham-city-bristol-city] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Norwich City vs Swansea City [ech-r45-norwich-city-swansea-city] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Oxford United vs Sheffield Wednesday [ech-r45-oxford-united-sheffield-wednesday] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Queens Park Rangers vs Derby County [ech-r45-queens-park-rangers-derby-county] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Sheffield United vs Preston North End [ech-r45-sheffield-united-preston-north-end] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Stoke City vs Portsmouth [ech-r45-stoke-city-portsmouth] -> Eksakt match på dato, tid og hold
+  - 26.04 13:00 Coventry City vs Wrexham [ech-r45-coventry-city-wrexham] -> Eksakt match på dato, tid og hold
+  - 28.04 20:45 Southampton vs Ipswich Town [ech-r40-southampton-ipswich-town] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Blackburn Rovers vs Leicester City [ech-r46-blackburn-rovers-leicester-city] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Bristol City vs Stoke City [ech-r46-bristol-city-stoke-city] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Derby County vs Sheffield United [ech-r46-derby-county-sheffield-united] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Hull City vs Norwich City [ech-r46-hull-city-norwich-city] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Ipswich Town vs Queens Park Rangers [ech-r46-ipswich-town-queens-park-rangers] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Millwall vs Oxford United [ech-r46-millwall-oxford-united] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Portsmouth vs Birmingham City [ech-r46-portsmouth-birmingham-city] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Preston North End vs Southampton [ech-r46-preston-north-end-southampton] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Sheffield Wednesday vs West Bromwich Albion [ech-r46-sheffield-wednesday-west-bromwich-albion] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Swansea City vs Charlton Athletic [ech-r46-swansea-city-charlton-athletic] -> Eksakt match på dato, tid og hold
+  - 02.05 13:30 Watford vs Coventry City [ech-r46-watford-coventry-city] -> Eksakt match på dato, tid og hold
   - 02.05 13:30 Wrexham vs Middlesbrough [ech-r46-wrexham-middlesbrough] -> Eksakt match på dato, tid og hold
+  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - Championship Playoffs (`en-championship-playoffs`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: echp-
 Season: 2025-26
 Fixtures audited: 1
 
-missing: 1
-  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 0
+exact: 1
+  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - League One (`en-league-one`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: el1-
 Season: 2025-26
 Fixtures audited: 48
 
-missing: 44
-  - 15.04 20:45 AFC Wimbledon vs Stockport County [el1-r16-afc-wimbledon-stockport-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 15.04 20:45 Luton Town vs Northampton Town [el1-r43-luton-town-northampton-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 16.04 20:45 Peterborough United vs Port Vale [el1-r36-peterborough-united-port-vale] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 Bolton Wanderers vs Huddersfield Town [el1-r44-bolton-wanderers-huddersfield-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 AFC Wimbledon vs Plymouth Argyle [el1-r44-afc-wimbledon-plymouth-argyle] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Exeter City vs Stockport County [el1-r44-exeter-city-stockport-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Leyton Orient vs Rotherham United [el1-r44-leyton-orient-rotherham-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Mansfield Town vs Luton Town [el1-r44-mansfield-town-luton-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Northampton Town vs Doncaster Rovers [el1-r44-northampton-town-doncaster-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Reading vs Cardiff City [el1-r44-reading-cardiff-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Stevenage vs Lincoln City [el1-r44-stevenage-lincoln-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Wycombe Wanderers vs Blackpool [el1-r44-wycombe-wanderers-blackpool] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 19.04 14:00 Peterborough United vs Burton Albion [el1-r44-peterborough-united-burton-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 19.04 16:00 Port Vale vs Wigan Athletic [el1-r44-port-vale-wigan-athletic] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Stockport County vs Mansfield Town [el1-r36-stockport-county-mansfield-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Bradford City vs Plymouth Argyle [el1-r40-bradford-city-plymouth-argyle] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Doncaster Rovers vs Lincoln City [el1-r40-doncaster-rovers-lincoln-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Rotherham United vs Luton Town [el1-r40-rotherham-united-luton-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 22.04 20:45 Cardiff City vs Port Vale [el1-r41-cardiff-city-port-vale] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 Doncaster Rovers vs Stevenage [el1-r45-doncaster-rovers-stevenage] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 Stockport County vs Peterborough United [el1-r45-stockport-county-peterborough-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Bradford City vs Bolton Wanderers [el1-r45-bradford-city-bolton-wanderers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Burton Albion vs Exeter City [el1-r45-burton-albion-exeter-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Cardiff City vs Northampton Town [el1-r45-cardiff-city-northampton-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Huddersfield Town vs Mansfield Town [el1-r45-huddersfield-town-mansfield-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Lincoln City vs Wycombe Wanderers [el1-r45-lincoln-city-wycombe-wanderers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Luton Town vs Barnsley [el1-r45-luton-town-barnsley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Plymouth Argyle vs Port Vale [el1-r45-plymouth-argyle-port-vale] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Rotherham United vs Reading [el1-r45-rotherham-united-reading] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Wigan Athletic vs AFC Wimbledon [el1-r45-wigan-athletic-afc-wimbledon] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.04 20:45 Northampton Town vs Barnsley [el1-r40-northampton-town-barnsley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.04 20:45 Peterborough United vs Mansfield Town [el1-r40-peterborough-united-mansfield-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 28.04 20:45 Stockport County vs Port Vale [el1-r43-stockport-county-port-vale] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 AFC Wimbledon vs Huddersfield Town [el1-r46-afc-wimbledon-huddersfield-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Barnsley vs Stockport County [el1-r46-barnsley-stockport-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Bolton Wanderers vs Luton Town [el1-r46-bolton-wanderers-luton-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Exeter City vs Bradford City [el1-r46-exeter-city-bradford-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Leyton Orient vs Burton Albion [el1-r46-leyton-orient-burton-albion] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Mansfield Town vs Cardiff City [el1-r46-mansfield-town-cardiff-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Northampton Town vs Plymouth Argyle [el1-r46-northampton-town-plymouth-argyle] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Peterborough United vs Doncaster Rovers [el1-r46-peterborough-united-doncaster-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Port Vale vs Lincoln City [el1-r46-port-vale-lincoln-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Stevenage vs Wigan Athletic [el1-r46-stevenage-wigan-athletic] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Wycombe Wanderers vs Rotherham United [el1-r46-wycombe-wanderers-rotherham-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 4
+exact: 48
+  - 15.04 20:45 AFC Wimbledon vs Stockport County [el1-r16-afc-wimbledon-stockport-county] -> Eksakt match på dato, tid og hold
+  - 15.04 20:45 Luton Town vs Northampton Town [el1-r43-luton-town-northampton-town] -> Eksakt match på dato, tid og hold
+  - 16.04 20:45 Peterborough United vs Port Vale [el1-r36-peterborough-united-port-vale] -> Eksakt match på dato, tid og hold
   - 18.04 13:30 Barnsley vs Bradford City [el1-r44-barnsley-bradford-city] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 Bolton Wanderers vs Huddersfield Town [el1-r44-bolton-wanderers-huddersfield-town] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 AFC Wimbledon vs Plymouth Argyle [el1-r44-afc-wimbledon-plymouth-argyle] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Exeter City vs Stockport County [el1-r44-exeter-city-stockport-county] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Leyton Orient vs Rotherham United [el1-r44-leyton-orient-rotherham-united] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Mansfield Town vs Luton Town [el1-r44-mansfield-town-luton-town] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Northampton Town vs Doncaster Rovers [el1-r44-northampton-town-doncaster-rovers] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Reading vs Cardiff City [el1-r44-reading-cardiff-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Stevenage vs Lincoln City [el1-r44-stevenage-lincoln-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Wycombe Wanderers vs Blackpool [el1-r44-wycombe-wanderers-blackpool] -> Eksakt match på dato, tid og hold
+  - 19.04 14:00 Peterborough United vs Burton Albion [el1-r44-peterborough-united-burton-albion] -> Eksakt match på dato, tid og hold
+  - 19.04 16:00 Port Vale vs Wigan Athletic [el1-r44-port-vale-wigan-athletic] -> Eksakt match på dato, tid og hold
   - 21.04 20:45 Stevenage vs Barnsley [el1-r07-stevenage-barnsley] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Stockport County vs Mansfield Town [el1-r36-stockport-county-mansfield-town] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Bradford City vs Plymouth Argyle [el1-r40-bradford-city-plymouth-argyle] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Doncaster Rovers vs Lincoln City [el1-r40-doncaster-rovers-lincoln-city] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Rotherham United vs Luton Town [el1-r40-rotherham-united-luton-town] -> Eksakt match på dato, tid og hold
+  - 22.04 20:45 Cardiff City vs Port Vale [el1-r41-cardiff-city-port-vale] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 Doncaster Rovers vs Stevenage [el1-r45-doncaster-rovers-stevenage] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 Stockport County vs Peterborough United [el1-r45-stockport-county-peterborough-united] -> Eksakt match på dato, tid og hold
   - 25.04 16:00 Blackpool vs Leyton Orient [el1-r45-blackpool-leyton-orient] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Bradford City vs Bolton Wanderers [el1-r45-bradford-city-bolton-wanderers] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Burton Albion vs Exeter City [el1-r45-burton-albion-exeter-city] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Cardiff City vs Northampton Town [el1-r45-cardiff-city-northampton-town] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Huddersfield Town vs Mansfield Town [el1-r45-huddersfield-town-mansfield-town] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Lincoln City vs Wycombe Wanderers [el1-r45-lincoln-city-wycombe-wanderers] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Luton Town vs Barnsley [el1-r45-luton-town-barnsley] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Plymouth Argyle vs Port Vale [el1-r45-plymouth-argyle-port-vale] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Rotherham United vs Reading [el1-r45-rotherham-united-reading] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Wigan Athletic vs AFC Wimbledon [el1-r45-wigan-athletic-afc-wimbledon] -> Eksakt match på dato, tid og hold
+  - 28.04 20:45 Northampton Town vs Barnsley [el1-r40-northampton-town-barnsley] -> Eksakt match på dato, tid og hold
+  - 28.04 20:45 Peterborough United vs Mansfield Town [el1-r40-peterborough-united-mansfield-town] -> Eksakt match på dato, tid og hold
+  - 28.04 20:45 Stockport County vs Port Vale [el1-r43-stockport-county-port-vale] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 AFC Wimbledon vs Huddersfield Town [el1-r46-afc-wimbledon-huddersfield-town] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Barnsley vs Stockport County [el1-r46-barnsley-stockport-county] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Bolton Wanderers vs Luton Town [el1-r46-bolton-wanderers-luton-town] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Exeter City vs Bradford City [el1-r46-exeter-city-bradford-city] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Leyton Orient vs Burton Albion [el1-r46-leyton-orient-burton-albion] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Mansfield Town vs Cardiff City [el1-r46-mansfield-town-cardiff-city] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Northampton Town vs Plymouth Argyle [el1-r46-northampton-town-plymouth-argyle] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Peterborough United vs Doncaster Rovers [el1-r46-peterborough-united-doncaster-rovers] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Port Vale vs Lincoln City [el1-r46-port-vale-lincoln-city] -> Eksakt match på dato, tid og hold
   - 02.05 16:00 Reading vs Blackpool [el1-r46-reading-blackpool] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Stevenage vs Wigan Athletic [el1-r46-stevenage-wigan-athletic] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Wycombe Wanderers vs Rotherham United [el1-r46-wycombe-wanderers-rotherham-united] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - League Two (`en-league-two`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: el2-
 Season: 2025-26
 Fixtures audited: 38
 
-missing: 33
-  - 16.04 21:00 Bromley vs Cambridge United [el2-r44-bromley-cambridge-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 13:30 Swindon Town vs Accrington Stanley [el2-r44-swindon-town-accrington-stanley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Cheltenham Town vs Newport County [el2-r44-cheltenham-town-newport-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Crawley Town vs Shrewsbury Town [el2-r44-crawley-town-shrewsbury-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Crewe Alexandra vs Milton Keynes Dons [el2-r44-crewe-alexandra-milton-keynes-dons] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Fleetwood Town vs Chesterfield [el2-r44-fleetwood-town-chesterfield] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Gillingham vs Grimsby Town [el2-r44-gillingham-grimsby-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Harrogate Town vs Colchester United [el2-r44-harrogate-town-colchester-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Oldham Athletic vs Salford City [el2-r44-oldham-athletic-salford-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 18.04 16:00 Tranmere Rovers vs Bristol Rovers [el2-r44-tranmere-rovers-bristol-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Cambridge United vs Grimsby Town [el2-r25-cambridge-united-grimsby-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 21.04 20:45 Cheltenham Town vs Tranmere Rovers [el2-r40-cheltenham-town-tranmere-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 23.04 21:00 Salford City vs Bromley [el2-r45-salford-city-bromley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 Grimsby Town vs Swindon Town [el2-r45-grimsby-town-swindon-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 13:30 Milton Keynes Dons vs Tranmere Rovers [el2-r45-milton-keynes-dons-tranmere-rovers] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Accrington Stanley vs Crawley Town [el2-r45-accrington-stanley-crawley-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Bristol Rovers vs Cheltenham Town [el2-r45-bristol-rovers-cheltenham-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Cambridge United vs Barrow [el2-r45-cambridge-united-barrow] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Chesterfield vs Crewe Alexandra [el2-r45-chesterfield-crewe-alexandra] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Colchester United vs Notts County [el2-r45-colchester-united-notts-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Newport County vs Oldham Athletic [el2-r45-newport-county-oldham-athletic] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Shrewsbury Town vs Fleetwood Town [el2-r45-shrewsbury-town-fleetwood-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 16:00 Walsall vs Harrogate Town [el2-r45-walsall-harrogate-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Barrow vs Newport County [el2-r46-barrow-newport-county] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Cheltenham Town vs Colchester United [el2-r46-cheltenham-town-colchester-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Crawley Town vs Salford City [el2-r46-crawley-town-salford-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Crewe Alexandra vs Cambridge United [el2-r46-crewe-alexandra-cambridge-united] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Fleetwood Town vs Milton Keynes Dons [el2-r46-fleetwood-town-milton-keynes-dons] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Gillingham vs Shrewsbury Town [el2-r46-gillingham-shrewsbury-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Harrogate Town vs Barnet [el2-r46-harrogate-town-barnet] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Oldham Athletic vs Accrington Stanley [el2-r46-oldham-athletic-accrington-stanley] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Swindon Town vs Chesterfield [el2-r46-swindon-town-chesterfield] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 16:00 Tranmere Rovers vs Grimsby Town [el2-r46-tranmere-rovers-grimsby-town] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 5
+exact: 38
+  - 16.04 21:00 Bromley vs Cambridge United [el2-r44-bromley-cambridge-united] -> Eksakt match på dato, tid og hold
   - 18.04 13:30 Barrow vs Walsall [el2-r44-barrow-walsall] -> Eksakt match på dato, tid og hold
+  - 18.04 13:30 Swindon Town vs Accrington Stanley [el2-r44-swindon-town-accrington-stanley] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Cheltenham Town vs Newport County [el2-r44-cheltenham-town-newport-county] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Crawley Town vs Shrewsbury Town [el2-r44-crawley-town-shrewsbury-town] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Crewe Alexandra vs Milton Keynes Dons [el2-r44-crewe-alexandra-milton-keynes-dons] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Fleetwood Town vs Chesterfield [el2-r44-fleetwood-town-chesterfield] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Gillingham vs Grimsby Town [el2-r44-gillingham-grimsby-town] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Harrogate Town vs Colchester United [el2-r44-harrogate-town-colchester-united] -> Eksakt match på dato, tid og hold
   - 18.04 16:00 Notts County vs Barnet [el2-r44-notts-county-barnet] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Oldham Athletic vs Salford City [el2-r44-oldham-athletic-salford-city] -> Eksakt match på dato, tid og hold
+  - 18.04 16:00 Tranmere Rovers vs Bristol Rovers [el2-r44-tranmere-rovers-bristol-rovers] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Cambridge United vs Grimsby Town [el2-r25-cambridge-united-grimsby-town] -> Eksakt match på dato, tid og hold
+  - 21.04 20:45 Cheltenham Town vs Tranmere Rovers [el2-r40-cheltenham-town-tranmere-rovers] -> Eksakt match på dato, tid og hold
+  - 23.04 21:00 Salford City vs Bromley [el2-r45-salford-city-bromley] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 Grimsby Town vs Swindon Town [el2-r45-grimsby-town-swindon-town] -> Eksakt match på dato, tid og hold
+  - 25.04 13:30 Milton Keynes Dons vs Tranmere Rovers [el2-r45-milton-keynes-dons-tranmere-rovers] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Accrington Stanley vs Crawley Town [el2-r45-accrington-stanley-crawley-town] -> Eksakt match på dato, tid og hold
   - 25.04 16:00 Barnet vs Gillingham [el2-r45-barnet-gillingham] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Bristol Rovers vs Cheltenham Town [el2-r45-bristol-rovers-cheltenham-town] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Cambridge United vs Barrow [el2-r45-cambridge-united-barrow] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Chesterfield vs Crewe Alexandra [el2-r45-chesterfield-crewe-alexandra] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Colchester United vs Notts County [el2-r45-colchester-united-notts-county] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Newport County vs Oldham Athletic [el2-r45-newport-county-oldham-athletic] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Shrewsbury Town vs Fleetwood Town [el2-r45-shrewsbury-town-fleetwood-town] -> Eksakt match på dato, tid og hold
+  - 25.04 16:00 Walsall vs Harrogate Town [el2-r45-walsall-harrogate-town] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Barrow vs Newport County [el2-r46-barrow-newport-county] -> Eksakt match på dato, tid og hold
   - 02.05 16:00 Bromley vs Walsall [el2-r46-bromley-walsall] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Cheltenham Town vs Colchester United [el2-r46-cheltenham-town-colchester-united] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Crawley Town vs Salford City [el2-r46-crawley-town-salford-city] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Crewe Alexandra vs Cambridge United [el2-r46-crewe-alexandra-cambridge-united] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Fleetwood Town vs Milton Keynes Dons [el2-r46-fleetwood-town-milton-keynes-dons] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Gillingham vs Shrewsbury Town [el2-r46-gillingham-shrewsbury-town] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Harrogate Town vs Barnet [el2-r46-harrogate-town-barnet] -> Eksakt match på dato, tid og hold
   - 02.05 16:00 Notts County vs Bristol Rovers [el2-r46-notts-county-bristol-rovers] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Oldham Athletic vs Accrington Stanley [el2-r46-oldham-athletic-accrington-stanley] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Swindon Town vs Chesterfield [el2-r46-swindon-town-chesterfield] -> Eksakt match på dato, tid og hold
+  - 02.05 16:00 Tranmere Rovers vs Grimsby Town [el2-r46-tranmere-rovers-grimsby-town] -> Eksakt match på dato, tid og hold
 ```
 
 ## Spanien - La Liga (`es-laliga`)
@@ -1021,9 +1021,10 @@ time-mismatch: 11
   - 24.05 18:00 Mirandes vs Granada [es2-r41-mirandes-granada] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
   - 24.05 18:00 Valladolid vs La Coruna [es2-r41-valladolid-la-coruna] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
 
-date-mismatch: 0
+date-mismatch: 1
+  - 11.05 20:30 Huesca vs Real Sociedad B [es2-r39-huesca-real-sociedad-b] -> Hold matcher, men dato/tid ser anderledes ud
 
-exact: 44
+exact: 43
   - 01.05 16:15 Andorra vs Albacete [es2-r38-andorra-albacete] -> Eksakt match på dato, tid og hold
   - 01.05 18:30 La Coruna vs Leganes [es2-r38-la-coruna-leganes] -> Eksakt match på dato, tid og hold
   - 01.05 21:00 Zaragoza vs Granada [es2-r38-zaragoza-granada] -> Eksakt match på dato, tid og hold
@@ -1045,7 +1046,6 @@ exact: 44
   - 10.05 16:15 Leganes vs Racing Santander [es2-r39-leganes-racing-santander] -> Eksakt match på dato, tid og hold
   - 10.05 18:30 Cordoba vs Granada [es2-r39-cordoba-granada] -> Eksakt match på dato, tid og hold
   - 10.05 18:30 Mirandes vs Eibar [es2-r39-mirandes-eibar] -> Eksakt match på dato, tid og hold
-  - 11.05 20:30 Huesca vs Real Sociedad B [es2-r39-huesca-real-sociedad-b] -> Eksakt match på dato, tid og hold
   - 15.05 20:30 Castellon vs Cadiz [es2-r40-castellon-cadiz] -> Eksakt match på dato, tid og hold
   - 15.05 21:00 Cordoba vs Albacete [es2-r40-cordoba-albacete] -> Eksakt match på dato, tid og hold
   - 16.05 14:00 Real Sociedad B vs Mirandes [es2-r40-real-sociedad-b-mirandes] -> Eksakt match på dato, tid og hold
