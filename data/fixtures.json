@@ -13880,19 +13880,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "tr1p-01-bodrumspor-corum",
-    "kickoff": "2026-05-11T19:00:00+03:00",
-    "round": "1. Lig - Slutspil - Semifinale",
-    "homeTeamId": "tr-bodrumspor",
-    "awayTeamId": "tr-corum",
-    "venueClubId": "tr-bodrumspor",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "competitionId": "tr-1-lig-playoffs",
-    "seasonId": "2025-26"
-  },
-  {
     "id": "tr1p-02-corum-bodrumspor",
     "kickoff": "2026-05-15T19:00:00+03:00",
     "round": "1. Lig - Slutspil - Semifinale",

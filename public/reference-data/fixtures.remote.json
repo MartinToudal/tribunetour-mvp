@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-11T18:45:33.644Z",
-    "generatedAt": "2026-05-11T18:45:33.644Z",
-    "checksum": "02c62a34e7f76f345d6b5bb6f8a44243822e07c8fc17b239d36a71a8fcebbbef",
+    "version": "2026-05-11T18:58:56.673Z",
+    "generatedAt": "2026-05-11T18:58:56.673Z",
+    "checksum": "d920919f44705023cbad93dc8ba76e62c305b438854700fcb8f351d6b0b8b39f",
     "signature": null
   },
   "fixtures": [
@@ -13884,19 +13884,6 @@
       "homeScore": null,
       "awayScore": null,
       "competitionId": "tr-super-lig",
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "tr1p-01-bodrumspor-corum",
-      "kickoff": "2026-05-11T19:00:00+03:00",
-      "round": "1. Lig - Slutspil - Semifinale",
-      "homeTeamId": "tr-bodrumspor",
-      "awayTeamId": "tr-corum",
-      "venueClubId": "tr-bodrumspor",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "tr-1-lig-playoffs",
       "seasonId": "2025-26"
     },
     {

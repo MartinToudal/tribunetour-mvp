@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T18:45:23.948305+00:00
+Generated at: 2026-05-11T18:59:34.238273+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -1387,7 +1387,7 @@ exact: 24
 ```
 
 ## Italien - Serie A (`it-serie-a`)
-Status: **passed**
+Status: **needs-attention**
 
 ```text
 Competition: ita-
@@ -1398,9 +1398,10 @@ missing: 0
 
 time-mismatch: 0
 
-date-mismatch: 0
+date-mismatch: 1
+  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Hold matcher, men dato/tid ser anderledes ud
 
-exact: 50
+exact: 49
   - 24.04 20:45 SSC Napoli vs Cremonese [ita-r34-ssc-napoli-cremonese] -> Eksakt match på dato, tid og hold
   - 25.04 15:00 Parma Calcio 1913 vs Pisa [ita-r34-parma-calcio-1913-pisa] -> Eksakt match på dato, tid og hold
   - 25.04 18:00 Bologna vs Roma [ita-r34-bologna-roma] -> Eksakt match på dato, tid og hold
@@ -1428,7 +1429,6 @@ exact: 50
   - 10.05 18:00 Lazio vs Inter [ita-r36-lazio-inter] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Lecce vs Juventus [ita-r36-lecce-juventus] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Parma Calcio 1913 vs Roma [ita-r36-parma-calcio-1913-roma] -> Eksakt match på dato, tid og hold
-  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Torino vs Sassuolo [ita-r36-torino-sassuolo] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Verona vs Como [ita-r36-verona-como] -> Eksakt match på dato, tid og hold
   - 17.05 15:00 Atalanta vs Bologna [ita-r37-atalanta-bologna] -> Eksakt match på dato, tid og hold
@@ -1880,23 +1880,23 @@ exact: 1
 ```
 
 ## Belgien - National Division 1 ACFF (`be-national-division-1-acff`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: be-national-division-1-acff
 Season: 2025-26
 Fixtures audited: 3
 
-missing: 3
-  - 10.05 15:00 Union Namur vs Zébra Élites [be3a-01-union-namur-zebra-elites] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 10.05 15:00 Union SG B vs Stockay-Warfusee [be3a-02-union-sg-b-stockay-warfusee] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 10.05 15:00 SL16 FC vs Crossing Schaerbeek [be3a-03-sl16-fc-crossing-schaerbeek] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 0
+exact: 3
+  - 10.05 15:00 Union Namur vs Zébra Élites [be3a-01-union-namur-zebra-elites] -> Eksakt match på dato, tid og hold
+  - 10.05 15:00 Union SG B vs Stockay-Warfusee [be3a-02-union-sg-b-stockay-warfusee] -> Eksakt match på dato, tid og hold
+  - 10.05 15:00 SL16 FC vs Crossing Schaerbeek [be3a-03-sl16-fc-crossing-schaerbeek] -> Eksakt match på dato, tid og hold
 ```
 
 ## Belgien - National Division 1 ACFF oprykningsgruppe (`be-national-division-1-acff-promotion`)
@@ -1955,19 +1955,18 @@ exact: 18
 ```
 
 ## Tyrkiet - 1. Lig slutspil (`tr-1-lig-playoffs`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: tr-1-lig-playoffs
 Season: 2025-26
-Fixtures audited: 2
+Fixtures audited: 1
 
 missing: 0
 
 time-mismatch: 0
 
-date-mismatch: 1
-  - 11.05 19:00 Bodrumspor vs Çorum [tr1p-01-bodrumspor-corum] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
 exact: 1
   - 15.05 19:00 Çorum vs Bodrumspor [tr1p-02-corum-bodrumspor] -> Eksakt match på dato, tid og hold
