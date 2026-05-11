@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T18:11:49.693848+00:00
+Generated at: 2026-05-11T18:19:05.087263+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -1387,46 +1387,22 @@ exact: 24
 ```
 
 ## Italien - Serie A (`it-serie-a`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: ita-
 Season: 2025-26
 Fixtures audited: 50
 
-missing: 10
-  - 24.04 20:45 SSC Napoli vs Cremonese [ita-r34-ssc-napoli-cremonese] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 15:00 Parma Calcio 1913 vs Pisa [ita-r34-parma-calcio-1913-pisa] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 02.05 18:00 Como vs SSC Napoli [ita-r35-como-ssc-napoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 03.05 20:45 Inter vs Parma Calcio 1913 [ita-r35-inter-parma-calcio-1913] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 10.05 18:00 Parma Calcio 1913 vs Roma [ita-r36-parma-calcio-1913-roma] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 18:00 Como vs Parma Calcio 1913 [ita-r37-como-parma-calcio-1913] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 18:00 Pisa vs SSC Napoli [ita-r37-pisa-ssc-napoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 18:00 Parma Calcio 1913 vs Sassuolo [ita-r38-parma-calcio-1913-sassuolo] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 24.05 18:00 SSC Napoli vs Udinese [ita-r38-ssc-napoli-udinese] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
-time-mismatch: 16
-  - 17.05 18:00 Atalanta vs Bologna [ita-r37-atalanta-bologna] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Cagliari vs Torino [ita-r37-cagliari-torino] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Genoa vs AC Milan [ita-r37-genoa-ac-milan] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Inter vs Verona [ita-r37-inter-verona] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Juventus vs Fiorentina [ita-r37-juventus-fiorentina] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Roma vs Lazio [ita-r37-roma-lazio] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Sassuolo vs Lecce [ita-r37-sassuolo-lecce] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 17.05 18:00 Udinese vs Cremonese [ita-r37-udinese-cremonese] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 AC Milan vs Cagliari [ita-r38-ac-milan-cagliari] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Bologna vs Inter [ita-r38-bologna-inter] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Cremonese vs Como [ita-r38-cremonese-como] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Fiorentina vs Atalanta [ita-r38-fiorentina-atalanta] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Lazio vs Pisa [ita-r38-lazio-pisa] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Lecce vs Genoa [ita-r38-lecce-genoa] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Torino vs Juventus [ita-r38-torino-juventus] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 24.05 18:00 Verona vs Roma [ita-r38-verona-roma] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
+time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 24
+exact: 50
+  - 24.04 20:45 SSC Napoli vs Cremonese [ita-r34-ssc-napoli-cremonese] -> Eksakt match på dato, tid og hold
+  - 25.04 15:00 Parma Calcio 1913 vs Pisa [ita-r34-parma-calcio-1913-pisa] -> Eksakt match på dato, tid og hold
   - 25.04 18:00 Bologna vs Roma [ita-r34-bologna-roma] -> Eksakt match på dato, tid og hold
   - 25.04 20:45 Verona vs Lecce [ita-r34-verona-lecce] -> Eksakt match på dato, tid og hold
   - 26.04 12:30 Fiorentina vs Sassuolo [ita-r34-fiorentina-sassuolo] -> Eksakt match på dato, tid og hold
@@ -1437,10 +1413,12 @@ exact: 24
   - 27.04 20:45 Lazio vs Udinese [ita-r34-lazio-udinese] -> Eksakt match på dato, tid og hold
   - 01.05 20:45 Pisa vs Lecce [ita-r35-pisa-lecce] -> Eksakt match på dato, tid og hold
   - 02.05 15:00 Udinese vs Torino [ita-r35-udinese-torino] -> Eksakt match på dato, tid og hold
+  - 02.05 18:00 Como vs SSC Napoli [ita-r35-como-ssc-napoli] -> Eksakt match på dato, tid og hold
   - 02.05 20:45 Atalanta vs Genoa [ita-r35-atalanta-genoa] -> Eksakt match på dato, tid og hold
   - 03.05 12:30 Bologna vs Cagliari [ita-r35-bologna-cagliari] -> Eksakt match på dato, tid og hold
   - 03.05 15:00 Sassuolo vs AC Milan [ita-r35-sassuolo-ac-milan] -> Eksakt match på dato, tid og hold
   - 03.05 18:00 Juventus vs Verona [ita-r35-juventus-verona] -> Eksakt match på dato, tid og hold
+  - 03.05 20:45 Inter vs Parma Calcio 1913 [ita-r35-inter-parma-calcio-1913] -> Eksakt match på dato, tid og hold
   - 04.05 18:30 Cremonese vs Lazio [ita-r35-cremonese-lazio] -> Eksakt match på dato, tid og hold
   - 04.05 20:45 Roma vs Fiorentina [ita-r35-roma-fiorentina] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 AC Milan vs Atalanta [ita-r36-ac-milan-atalanta] -> Eksakt match på dato, tid og hold
@@ -1449,85 +1427,88 @@ exact: 24
   - 10.05 18:00 Fiorentina vs Genoa [ita-r36-fiorentina-genoa] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Lazio vs Inter [ita-r36-lazio-inter] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Lecce vs Juventus [ita-r36-lecce-juventus] -> Eksakt match på dato, tid og hold
+  - 10.05 18:00 Parma Calcio 1913 vs Roma [ita-r36-parma-calcio-1913-roma] -> Eksakt match på dato, tid og hold
+  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Torino vs Sassuolo [ita-r36-torino-sassuolo] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Verona vs Como [ita-r36-verona-como] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Atalanta vs Bologna [ita-r37-atalanta-bologna] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Cagliari vs Torino [ita-r37-cagliari-torino] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Como vs Parma Calcio 1913 [ita-r37-como-parma-calcio-1913] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Genoa vs AC Milan [ita-r37-genoa-ac-milan] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Inter vs Verona [ita-r37-inter-verona] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Juventus vs Fiorentina [ita-r37-juventus-fiorentina] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Pisa vs SSC Napoli [ita-r37-pisa-ssc-napoli] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Roma vs Lazio [ita-r37-roma-lazio] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Sassuolo vs Lecce [ita-r37-sassuolo-lecce] -> Eksakt match på dato, tid og hold
+  - 17.05 15:00 Udinese vs Cremonese [ita-r37-udinese-cremonese] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 AC Milan vs Cagliari [ita-r38-ac-milan-cagliari] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Bologna vs Inter [ita-r38-bologna-inter] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Cremonese vs Como [ita-r38-cremonese-como] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Fiorentina vs Atalanta [ita-r38-fiorentina-atalanta] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Lazio vs Pisa [ita-r38-lazio-pisa] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Lecce vs Genoa [ita-r38-lecce-genoa] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Parma Calcio 1913 vs Sassuolo [ita-r38-parma-calcio-1913-sassuolo] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 SSC Napoli vs Udinese [ita-r38-ssc-napoli-udinese] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Torino vs Juventus [ita-r38-torino-juventus] -> Eksakt match på dato, tid og hold
+  - 24.05 15:00 Verona vs Roma [ita-r38-verona-roma] -> Eksakt match på dato, tid og hold
 ```
 
 ## Italien - Serie B (`it-serie-b`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: itb-
 Season: 2025-26
 Fixtures audited: 30
 
-missing: 8
-  - 25.04 15:00 AC Reggiana 1919 vs Palermo [itb-r36-ac-reggiana-1919-palermo] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 15:00 Virtus Entella vs Calcio Padova [itb-r36-virtus-entella-calcio-padova] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 01.05 15:00 Bari vs Virtus Entella [itb-r37-bari-virtus-entella] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 01.05 15:00 Calcio Padova vs Pescara [itb-r37-calcio-padova-pescara] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 01.05 15:00 Modena vs AC Reggiana 1919 [itb-r37-modena-ac-reggiana-1919] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 08.05 20:30 AC Reggiana 1919 vs Sampdoria [itb-r38-ac-reggiana-1919-sampdoria] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 08.05 20:30 Cesena vs Calcio Padova [itb-r38-cesena-calcio-padova] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 08.05 20:30 Virtus Entella vs Carrarese [itb-r38-virtus-entella-carrarese] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 22
+exact: 30
   - 24.04 19:00 Monza vs Modena [itb-r36-monza-modena] -> Eksakt match på dato, tid og hold
   - 24.04 21:00 Avellino vs Bari [itb-r36-avellino-bari] -> Eksakt match på dato, tid og hold
   - 25.04 12:30 Catanzaro vs Spezia [itb-r36-catanzaro-spezia] -> Eksakt match på dato, tid og hold
+  - 25.04 15:00 AC Reggiana 1919 vs Palermo [itb-r36-ac-reggiana-1919-palermo] -> Eksakt match på dato, tid og hold
   - 25.04 15:00 Frosinone vs Carrarese [itb-r36-frosinone-carrarese] -> Eksakt match på dato, tid og hold
   - 25.04 15:00 Pescara vs Juve Stabia [itb-r36-pescara-juve-stabia] -> Eksakt match på dato, tid og hold
   - 25.04 15:00 Sudtirol vs Mantova [itb-r36-sudtirol-mantova] -> Eksakt match på dato, tid og hold
+  - 25.04 15:00 Virtus Entella vs Calcio Padova [itb-r36-virtus-entella-calcio-padova] -> Eksakt match på dato, tid og hold
   - 25.04 17:15 Venezia vs Empoli [itb-r36-venezia-empoli] -> Eksakt match på dato, tid og hold
   - 25.04 19:30 Cesena vs Sampdoria [itb-r36-cesena-sampdoria] -> Eksakt match på dato, tid og hold
+  - 01.05 15:00 Bari vs Virtus Entella [itb-r37-bari-virtus-entella] -> Eksakt match på dato, tid og hold
+  - 01.05 15:00 Calcio Padova vs Pescara [itb-r37-calcio-padova-pescara] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Carrarese vs Cesena [itb-r37-carrarese-cesena] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Empoli vs Avellino [itb-r37-empoli-avellino] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Juve Stabia vs Frosinone [itb-r37-juve-stabia-frosinone] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Mantova vs Monza [itb-r37-mantova-monza] -> Eksakt match på dato, tid og hold
+  - 01.05 15:00 Modena vs AC Reggiana 1919 [itb-r37-modena-ac-reggiana-1919] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Palermo vs Catanzaro [itb-r37-palermo-catanzaro] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Sampdoria vs Sudtirol [itb-r37-sampdoria-sudtirol] -> Eksakt match på dato, tid og hold
   - 01.05 15:00 Spezia vs Venezia [itb-r37-spezia-venezia] -> Eksakt match på dato, tid og hold
+  - 08.05 20:30 AC Reggiana 1919 vs Sampdoria [itb-r38-ac-reggiana-1919-sampdoria] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Avellino vs Modena [itb-r38-avellino-modena] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Catanzaro vs Bari [itb-r38-catanzaro-bari] -> Eksakt match på dato, tid og hold
+  - 08.05 20:30 Cesena vs Calcio Padova [itb-r38-cesena-calcio-padova] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Frosinone vs Mantova [itb-r38-frosinone-mantova] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Monza vs Empoli [itb-r38-monza-empoli] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Pescara vs Spezia [itb-r38-pescara-spezia] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Sudtirol vs Juve Stabia [itb-r38-sudtirol-juve-stabia] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Venezia vs Palermo [itb-r38-venezia-palermo] -> Eksakt match på dato, tid og hold
+  - 08.05 20:30 Virtus Entella vs Carrarese [itb-r38-virtus-entella-carrarese] -> Eksakt match på dato, tid og hold
 ```
 
 ## Italien - Serie C Gruppe A (`it-serie-c-gA`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
-Competition: itc-
+Competition: itc-a-
 Season: 2025-26
-Fixtures audited: 29
+Fixtures audited: 10
 
-missing: 19
-  - 26.04 14:30 Arezzo vs Torres [itc-b-r38-arezzo-torres] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Campobasso vs Ascoli [itc-b-r38-campobasso-ascoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Forli vs Perugia [itc-b-r38-forli-perugia] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Gubbio vs Pineto [itc-b-r38-gubbio-pineto] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Guidonia vs Carpi [itc-b-r38-guidonia-carpi] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Juventus U23 vs Bra [itc-b-r38-juventus-u23-bra] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Pontedera vs Livorno [itc-b-r38-pontedera-livorno] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Ternana vs Pianese [itc-b-r38-ternana-pianese] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Vis Pesaro vs Sambenedettese [itc-b-r38-vis-pesaro-sambenedettese] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Altamura vs Casarano [itc-c-r38-altamura-casarano] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Atalanta U23 vs Catania [itc-c-r38-atalanta-u23-catania] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Benevento vs Audace Cerignola [itc-c-r38-benevento-audace-cerignola] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Casertana vs Giugliano [itc-c-r38-casertana-giugliano] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Cavese vs Cosenza [itc-c-r38-cavese-cosenza] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Crotone vs Latina [itc-c-r38-crotone-latina] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Foggia vs Salernitana [itc-c-r38-foggia-salernitana] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Picerno vs Sorrento [itc-c-r38-picerno-sorrento] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Potenza vs Monopoli [itc-c-r38-potenza-monopoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Trapani vs Siracusa [itc-c-r38-trapani-siracusa] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
@@ -1547,34 +1528,14 @@ exact: 10
 ```
 
 ## Italien - Serie C Gruppe B (`it-serie-c-gB`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
-Competition: itc-
+Competition: itc-b-
 Season: 2025-26
-Fixtures audited: 29
+Fixtures audited: 9
 
-missing: 20
-  - 25.04 20:30 Alcione Milano vs AlbinoLeffe [itc-a-r38-alcione-milano-albinoleffe] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Arzignano vs Pro Vercelli [itc-a-r38-arzignano-pro-vercelli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Cittadella vs Giana Erminio [itc-a-r38-cittadella-giana-erminio] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Dolomiti Bellunesi vs Trento [itc-a-r38-dolomiti-bellunesi-trento] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Inter U23 vs Brescia [itc-a-r38-inter-u23-brescia] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Lumezzane vs Virtus Verona [itc-a-r38-lumezzane-virtus-verona] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Ospitaletto vs Novara [itc-a-r38-ospitaletto-novara] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Pergolettese vs Lecco [itc-a-r38-pergolettese-lecco] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Renate vs Pro Patria [itc-a-r38-renate-pro-patria] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Triestina vs L.R. Vicenza [itc-a-r38-triestina-l-r-vicenza] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Altamura vs Casarano [itc-c-r38-altamura-casarano] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Atalanta U23 vs Catania [itc-c-r38-atalanta-u23-catania] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Benevento vs Audace Cerignola [itc-c-r38-benevento-audace-cerignola] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Casertana vs Giugliano [itc-c-r38-casertana-giugliano] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Cavese vs Cosenza [itc-c-r38-cavese-cosenza] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Crotone vs Latina [itc-c-r38-crotone-latina] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Foggia vs Salernitana [itc-c-r38-foggia-salernitana] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Picerno vs Sorrento [itc-c-r38-picerno-sorrento] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Potenza vs Monopoli [itc-c-r38-potenza-monopoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 18:00 Trapani vs Siracusa [itc-c-r38-trapani-siracusa] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
@@ -1593,33 +1554,14 @@ exact: 9
 ```
 
 ## Italien - Serie C Gruppe C (`it-serie-c-gC`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
-Competition: itc-
+Competition: itc-c-
 Season: 2025-26
-Fixtures audited: 29
+Fixtures audited: 10
 
-missing: 19
-  - 25.04 20:30 Alcione Milano vs AlbinoLeffe [itc-a-r38-alcione-milano-albinoleffe] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Arzignano vs Pro Vercelli [itc-a-r38-arzignano-pro-vercelli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Cittadella vs Giana Erminio [itc-a-r38-cittadella-giana-erminio] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Dolomiti Bellunesi vs Trento [itc-a-r38-dolomiti-bellunesi-trento] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Inter U23 vs Brescia [itc-a-r38-inter-u23-brescia] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Lumezzane vs Virtus Verona [itc-a-r38-lumezzane-virtus-verona] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Ospitaletto vs Novara [itc-a-r38-ospitaletto-novara] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Pergolettese vs Lecco [itc-a-r38-pergolettese-lecco] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Renate vs Pro Patria [itc-a-r38-renate-pro-patria] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 25.04 20:30 Triestina vs L.R. Vicenza [itc-a-r38-triestina-l-r-vicenza] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Arezzo vs Torres [itc-b-r38-arezzo-torres] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Campobasso vs Ascoli [itc-b-r38-campobasso-ascoli] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Forli vs Perugia [itc-b-r38-forli-perugia] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Gubbio vs Pineto [itc-b-r38-gubbio-pineto] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Guidonia vs Carpi [itc-b-r38-guidonia-carpi] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Juventus U23 vs Bra [itc-b-r38-juventus-u23-bra] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Pontedera vs Livorno [itc-b-r38-pontedera-livorno] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Ternana vs Pianese [itc-b-r38-ternana-pianese] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 26.04 14:30 Vis Pesaro vs Sambenedettese [itc-b-r38-vis-pesaro-sambenedettese] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
@@ -1639,33 +1581,33 @@ exact: 10
 ```
 
 ## Portugal - Liga Portugal (`pt-liga-portugal`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: pt1-
 Season: 2025-26
 Fixtures audited: 18
 
-missing: 2
-  - 10.05 18:00 Alverca vs Estoril Praia [pt1-r33-alverca-estoril-praia] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 17.05 18:00 Estoril Praia vs Benfica [pt1-r34-estoril-praia-benfica] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
-time-mismatch: 8
-  - 10.05 18:00 AFS vs Porto [pt1-r33-afs-porto] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Benfica vs Braga [pt1-r33-benfica-braga] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Estrela vs Famalicao [pt1-r33-estrela-famalicao] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Gil Vicente vs Arouca [pt1-r33-gil-vicente-arouca] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Guimaraes vs Casa Pia [pt1-r33-guimaraes-casa-pia] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Rio Ave vs Sporting [pt1-r33-rio-ave-sporting] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Santa Clara vs Nacional [pt1-r33-santa-clara-nacional] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
-  - 10.05 18:00 Tondela vs Moreirense [pt1-r33-tondela-moreirense] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
+time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 8
+exact: 18
+  - 10.05 19:00 AFS vs Porto [pt1-r33-afs-porto] -> Eksakt match på dato, tid og hold
+  - 10.05 21:30 Alverca vs Estoril Praia [pt1-r33-alverca-estoril-praia] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Benfica vs Braga [pt1-r33-benfica-braga] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Estrela vs Famalicao [pt1-r33-estrela-famalicao] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Gil Vicente vs Arouca [pt1-r33-gil-vicente-arouca] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Guimaraes vs Casa Pia [pt1-r33-guimaraes-casa-pia] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Rio Ave vs Sporting [pt1-r33-rio-ave-sporting] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Santa Clara vs Nacional [pt1-r33-santa-clara-nacional] -> Eksakt match på dato, tid og hold
+  - 11.05 21:15 Tondela vs Moreirense [pt1-r33-tondela-moreirense] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Arouca vs Tondela [pt1-r34-arouca-tondela] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Braga vs Estrela [pt1-r34-braga-estrela] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Casa Pia vs Rio Ave [pt1-r34-casa-pia-rio-ave] -> Eksakt match på dato, tid og hold
+  - 17.05 18:00 Estoril Praia vs Benfica [pt1-r34-estoril-praia-benfica] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Famalicao vs Alverca [pt1-r34-famalicao-alverca] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Moreirense vs AFS [pt1-r34-moreirense-afs] -> Eksakt match på dato, tid og hold
   - 17.05 18:00 Nacional vs Guimaraes [pt1-r34-nacional-guimaraes] -> Eksakt match på dato, tid og hold
@@ -1674,7 +1616,7 @@ exact: 8
 ```
 
 ## Portugal - Liga Portugal 2 (`pt-liga-portugal-2`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: pt2-
@@ -1685,18 +1627,18 @@ missing: 0
 
 time-mismatch: 0
 
-date-mismatch: 9
-  - 10.05 17:00 Benfica B vs Academico Viseu [pt2-r33-benfica-b-academico-viseu] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Chaves vs Leixoes [pt2-r33-chaves-leixoes] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Farense vs Ferreira [pt2-r33-farense-ferreira] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Feirense vs Oliveirense [pt2-r33-feirense-oliveirense] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Felgueiras vs Portimonense [pt2-r33-felgueiras-portimonense] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Lusitania FC vs Torreense [pt2-r33-lusitania-fc-torreense] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Penafiel vs Maritimo [pt2-r33-penafiel-maritimo] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Sporting B vs Porto B [pt2-r33-sporting-b-porto-b] -> Hold matcher, men dato/tid ser anderledes ud
-  - 10.05 17:00 Vizela vs Leiria [pt2-r33-vizela-leiria] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
-exact: 9
+exact: 18
+  - 09.05 21:30 Benfica B vs Academico Viseu [pt2-r33-benfica-b-academico-viseu] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Chaves vs Leixoes [pt2-r33-chaves-leixoes] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Farense vs Ferreira [pt2-r33-farense-ferreira] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Feirense vs Oliveirense [pt2-r33-feirense-oliveirense] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Felgueiras vs Portimonense [pt2-r33-felgueiras-portimonense] -> Eksakt match på dato, tid og hold
+  - 09.05 21:30 Lusitania FC vs Torreense [pt2-r33-lusitania-fc-torreense] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Penafiel vs Maritimo [pt2-r33-penafiel-maritimo] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Sporting B vs Porto B [pt2-r33-sporting-b-porto-b] -> Eksakt match på dato, tid og hold
+  - 09.05 21:30 Vizela vs Leiria [pt2-r33-vizela-leiria] -> Eksakt match på dato, tid og hold
   - 17.05 17:00 Academico Viseu vs Sporting B [pt2-r34-academico-viseu-sporting-b] -> Eksakt match på dato, tid og hold
   - 17.05 17:00 Ferreira vs Penafiel [pt2-r34-ferreira-penafiel] -> Eksakt match på dato, tid og hold
   - 17.05 17:00 Leiria vs Feirense [pt2-r34-leiria-feirense] -> Eksakt match på dato, tid og hold
@@ -1709,7 +1651,7 @@ exact: 9
 ```
 
 ## Portugal - Liga 3 Oprykningsgruppe (`pt-liga-3-promotion`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: pt3-
@@ -1718,14 +1660,14 @@ Fixtures audited: 8
 
 missing: 0
 
-time-mismatch: 1
-  - 10.05 12:00 Amarante vs Santarem [pt3-r13-amarante-santarem] -> Hold og dato matcher, men tiden 12:00 blev ikke fundet
+time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 7
+exact: 8
   - 09.05 16:00 Trofense vs Guimaraes B [pt3-r13-trofense-guimaraes-b] -> Eksakt match på dato, tid og hold
   - 09.05 21:00 Mafra vs Academica [pt3-r13-mafra-academica] -> Eksakt match på dato, tid og hold
+  - 10.05 15:45 Amarante vs Santarem [pt3-r13-amarante-santarem] -> Eksakt match på dato, tid og hold
   - 10.05 20:30 Varzim vs Os Belenenses [pt3-r13-varzim-os-belenenses] -> Eksakt match på dato, tid og hold
   - 16.05 17:30 Academica vs Trofense [pt3-r14-academica-trofense] -> Eksakt match på dato, tid og hold
   - 16.05 17:30 Guimaraes B vs Amarante [pt3-r14-guimaraes-b-amarante] -> Eksakt match på dato, tid og hold

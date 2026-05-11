@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-11T18:12:07.758Z",
-    "generatedAt": "2026-05-11T18:12:07.758Z",
-    "checksum": "188109464493a9d97e4d2a67ebe81c3c9651f7a62baeb2736afb55656633c330",
+    "version": "2026-05-11T18:19:15.289Z",
+    "generatedAt": "2026-05-11T18:19:15.289Z",
+    "checksum": "466c831795116ef03131cd3672430438b4519dc6f67416f39c5ad93bba7e218d",
     "signature": null
   },
   "fixtures": [
@@ -8423,7 +8423,7 @@
     },
     {
       "id": "pt3-r13-amarante-santarem",
-      "kickoff": "2026-05-10T12:00:00+01:00",
+      "kickoff": "2026-05-10T15:45:00+01:00",
       "round": "Liga 3 - Oprykningsgruppe - 13. runde",
       "homeTeamId": "pt-amarante",
       "awayTeamId": "pt-santarem",
@@ -8676,7 +8676,7 @@
     },
     {
       "id": "pt2-r33-benfica-b-academico-viseu",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T21:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-benfica-b",
       "awayTeamId": "pt-academico-viseu",
@@ -8687,7 +8687,7 @@
     },
     {
       "id": "pt2-r33-chaves-leixoes",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-chaves",
       "awayTeamId": "pt-leixoes",
@@ -8698,7 +8698,7 @@
     },
     {
       "id": "pt2-r33-farense-ferreira",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-farense",
       "awayTeamId": "pt-ferreira",
@@ -8709,7 +8709,7 @@
     },
     {
       "id": "pt2-r33-feirense-oliveirense",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-feirense",
       "awayTeamId": "pt-oliveirense",
@@ -8720,7 +8720,7 @@
     },
     {
       "id": "pt2-r33-felgueiras-portimonense",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-felgueiras",
       "awayTeamId": "pt-portimonense",
@@ -8731,7 +8731,7 @@
     },
     {
       "id": "pt2-r33-lusitania-fc-torreense",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T21:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-lusitania-fc",
       "awayTeamId": "pt-torreense",
@@ -8742,7 +8742,7 @@
     },
     {
       "id": "pt2-r33-penafiel-maritimo",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-penafiel",
       "awayTeamId": "pt-maritimo",
@@ -8753,7 +8753,7 @@
     },
     {
       "id": "pt2-r33-sporting-b-porto-b",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T16:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-sporting-b",
       "awayTeamId": "pt-porto-b",
@@ -8764,7 +8764,7 @@
     },
     {
       "id": "pt2-r33-vizela-leiria",
-      "kickoff": "2026-05-10T17:00:00+01:00",
+      "kickoff": "2026-05-09T21:30:00+01:00",
       "round": "Liga Portugal 2 - 33. runde",
       "homeTeamId": "pt-vizela",
       "awayTeamId": "pt-leiria",
@@ -8797,7 +8797,7 @@
     },
     {
       "id": "pt1-r33-afs-porto",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-10T19:00:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-afs",
       "awayTeamId": "pt-porto",
@@ -8808,7 +8808,7 @@
     },
     {
       "id": "pt1-r33-alverca-estoril-praia",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-10T21:30:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-alverca",
       "awayTeamId": "pt-estoril-praia",
@@ -8819,7 +8819,7 @@
     },
     {
       "id": "pt1-r33-benfica-braga",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-benfica",
       "awayTeamId": "pt-braga",
@@ -8830,7 +8830,7 @@
     },
     {
       "id": "pt1-r33-estrela-famalicao",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-estrela",
       "awayTeamId": "pt-famalicao",
@@ -8841,7 +8841,7 @@
     },
     {
       "id": "pt1-r33-gil-vicente-arouca",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-gil-vicente",
       "awayTeamId": "pt-arouca",
@@ -8852,7 +8852,7 @@
     },
     {
       "id": "pt1-r33-guimaraes-casa-pia",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-guimaraes",
       "awayTeamId": "pt-casa-pia",
@@ -8863,7 +8863,7 @@
     },
     {
       "id": "pt1-r33-rio-ave-sporting",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-rio-ave",
       "awayTeamId": "pt-sporting",
@@ -8874,7 +8874,7 @@
     },
     {
       "id": "pt1-r33-santa-clara-nacional",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-santa-clara",
       "awayTeamId": "pt-nacional",
@@ -8885,7 +8885,7 @@
     },
     {
       "id": "pt1-r33-tondela-moreirense",
-      "kickoff": "2026-05-10T18:00:00+01:00",
+      "kickoff": "2026-05-11T21:15:00+01:00",
       "round": "Liga Portugal - 33. runde",
       "homeTeamId": "pt-tondela",
       "awayTeamId": "pt-moreirense",
@@ -10854,7 +10854,7 @@
     },
     {
       "id": "ita-r37-atalanta-bologna",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-atalanta",
       "awayTeamId": "it-bologna",
@@ -10865,7 +10865,7 @@
     },
     {
       "id": "ita-r37-cagliari-torino",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-cagliari",
       "awayTeamId": "it-torino",
@@ -10876,7 +10876,7 @@
     },
     {
       "id": "ita-r37-como-parma-calcio-1913",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-como",
       "awayTeamId": "it-parma",
@@ -10887,7 +10887,7 @@
     },
     {
       "id": "ita-r37-genoa-ac-milan",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-genoa",
       "awayTeamId": "it-ac-milan",
@@ -10898,7 +10898,7 @@
     },
     {
       "id": "ita-r37-inter-verona",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-inter",
       "awayTeamId": "it-verona",
@@ -10909,7 +10909,7 @@
     },
     {
       "id": "ita-r37-juventus-fiorentina",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-juventus",
       "awayTeamId": "it-fiorentina",
@@ -10920,7 +10920,7 @@
     },
     {
       "id": "ita-r37-pisa-ssc-napoli",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-pisa",
       "awayTeamId": "it-ssc-napoli",
@@ -10931,7 +10931,7 @@
     },
     {
       "id": "ita-r37-roma-lazio",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-roma",
       "awayTeamId": "it-lazio",
@@ -10942,7 +10942,7 @@
     },
     {
       "id": "ita-r37-sassuolo-lecce",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-sassuolo",
       "awayTeamId": "it-lecce",
@@ -10953,7 +10953,7 @@
     },
     {
       "id": "ita-r37-udinese-cremonese",
-      "kickoff": "2026-05-17T18:00:00+02:00",
+      "kickoff": "2026-05-17T15:00:00+02:00",
       "round": "Serie A - 37. runde",
       "homeTeamId": "it-udinese",
       "awayTeamId": "it-cremonese",
@@ -11800,7 +11800,7 @@
     },
     {
       "id": "ita-r38-ac-milan-cagliari",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-ac-milan",
       "awayTeamId": "it-cagliari",
@@ -11811,7 +11811,7 @@
     },
     {
       "id": "ita-r38-bologna-inter",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-bologna",
       "awayTeamId": "it-inter",
@@ -11822,7 +11822,7 @@
     },
     {
       "id": "ita-r38-cremonese-como",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-cremonese",
       "awayTeamId": "it-como",
@@ -11833,7 +11833,7 @@
     },
     {
       "id": "ita-r38-fiorentina-atalanta",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-fiorentina",
       "awayTeamId": "it-atalanta",
@@ -11844,7 +11844,7 @@
     },
     {
       "id": "ita-r38-lazio-pisa",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-lazio",
       "awayTeamId": "it-pisa",
@@ -11855,7 +11855,7 @@
     },
     {
       "id": "ita-r38-lecce-genoa",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-lecce",
       "awayTeamId": "it-genoa",
@@ -11866,7 +11866,7 @@
     },
     {
       "id": "ita-r38-parma-calcio-1913-sassuolo",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-parma",
       "awayTeamId": "it-sassuolo",
@@ -11877,7 +11877,7 @@
     },
     {
       "id": "ita-r38-ssc-napoli-udinese",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-ssc-napoli",
       "awayTeamId": "it-udinese",
@@ -11888,7 +11888,7 @@
     },
     {
       "id": "ita-r38-torino-juventus",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-torino",
       "awayTeamId": "it-juventus",
@@ -11899,7 +11899,7 @@
     },
     {
       "id": "ita-r38-verona-roma",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T15:00:00+02:00",
       "round": "Serie A - 38. runde",
       "homeTeamId": "it-verona",
       "awayTeamId": "it-roma",

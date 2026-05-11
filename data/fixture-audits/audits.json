@@ -299,7 +299,7 @@
       "id": "it-serie-c-gA",
       "label": "Italien - Serie C Gruppe A",
       "season": "2025-26",
-      "fixturePrefix": "itc-",
+      "fixturePrefix": "itc-a-",
       "roundPrefix": "Serie C - Gruppe A - ",
       "source": "data/fixture-audits/raw/it-serie-c-gA.txt",
       "fetch": {
@@ -313,7 +313,7 @@
       "id": "it-serie-c-gB",
       "label": "Italien - Serie C Gruppe B",
       "season": "2025-26",
-      "fixturePrefix": "itc-",
+      "fixturePrefix": "itc-b-",
       "roundPrefix": "Serie C - Gruppe B - ",
       "source": "data/fixture-audits/raw/it-serie-c-gB.txt",
       "fetch": {
@@ -327,7 +327,7 @@
       "id": "it-serie-c-gC",
       "label": "Italien - Serie C Gruppe C",
       "season": "2025-26",
-      "fixturePrefix": "itc-",
+      "fixturePrefix": "itc-c-",
       "roundPrefix": "Serie C - Gruppe C - ",
       "source": "data/fixture-audits/raw/it-serie-c-gC.txt",
       "fetch": {
