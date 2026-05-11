@@ -1,0 +1,14 @@
+{
+  "audits": [
+    {
+      "id": "dk-superliga",
+      "label": "Danmark - Superliga",
+      "season": "2025-26",
+      "fixturePrefix": "sl-",
+      "roundPrefix": "Superliga - ",
+      "source": "data/fixture-audits/raw/dk-superliga.txt",
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    }
+  ]
+}
