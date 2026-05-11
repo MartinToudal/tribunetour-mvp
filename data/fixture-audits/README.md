@@ -1,11 +1,13 @@
 ## Flashscore fixture audit
 
-Denne mappe bruges til at sanity-tjekke `fixtures.csv` mod et råt tekstudtræk fra Flashscore.
+Denne mappe bruges til at sanity-tjekke `fixtures.csv` mod et råt eller automatisk hentet kontroludtræk fra Flashscore.
 
 ### Workflow
 
 1. Åbn den relevante liga på Flashscore, helst siden `.../kommende/`.
-2. Kopiér den synlige tekst for én liga eller playoff-gruppe til en lokal `.txt`-fil.
+2. Enten:
+   - kopier den synlige tekst for én liga eller playoff-gruppe til en lokal `.txt`-fil
+   - eller brug den automatiske fetcher, hvis auditten er sat op til det
 3. Kør audit-scriptet:
 
 ```bash
@@ -54,6 +56,16 @@ Kør alle eller kun de audits, der er due i dag:
 ```bash
 python3 scripts/run-fixture-audits.py --all
 python3 scripts/run-fixture-audits.py --due
+```
+
+Hvis du vil hente en kildefil manuelt via fetcheren, kan du også køre:
+
+```bash
+python3 scripts/fetch-flashscore-fixtures.py \
+  --url "https://www.flashscore.dk/fodbold/danmark/superliga/kommende/" \
+  --output data/fixture-audits/raw/dk-superliga.txt \
+  --timezone Europe/Copenhagen \
+  --competition-filter Superliga
 ```
 
 Rapporter skrives til:

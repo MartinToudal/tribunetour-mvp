@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 import argparse
 import json
 import subprocess
@@ -12,6 +14,7 @@ WEBSITE_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 AUDIT_SCRIPT = WEBSITE_ROOT / "scripts" / "audit-flashscore-fixtures.py"
+FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
 
 
 @dataclass
@@ -73,8 +76,44 @@ def write_report(results: list[AuditResult]) -> None:
     markdown_path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def refresh_source(audit: dict, source: Path) -> str | None:
+    fetch = audit.get("fetch")
+    if not fetch:
+        return None
+
+    cmd = [
+        sys.executable,
+        str(FETCH_SCRIPT),
+        "--url",
+        fetch["url"],
+        "--output",
+        str(source),
+        "--timezone",
+        fetch.get("timezone", "Europe/Copenhagen"),
+    ]
+
+    if fetch.get("competitionFilter"):
+        cmd.extend(["--competition-filter", fetch["competitionFilter"]])
+
+    completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
+    if completed.returncode == 0:
+        return None
+
+    output = completed.stdout.strip() or completed.stderr.strip() or "(no output)"
+    return f"Automatic source refresh failed: {output}"
+
+
 def run_single_audit(audit: dict) -> AuditResult:
     source = WEBSITE_ROOT / audit["source"]
+    refresh_error = refresh_source(audit, source)
+    if refresh_error:
+        return AuditResult(
+            audit_id=audit["id"],
+            label=audit["label"],
+            status="fetch-failed",
+            details=refresh_error,
+        )
+
     if not source.exists():
         return AuditResult(
             audit_id=audit["id"],

@@ -10,6 +10,7 @@
     "lint": "next lint",
     "validate:data": "npm run generate:data && node scripts/validate-reference-data.mjs",
     "audit:fixtures": "python3 scripts/audit-flashscore-fixtures.py --help",
+    "audit:fixtures:fetch": "python3 scripts/fetch-flashscore-fixtures.py --help",
     "audit:fixtures:run": "python3 scripts/run-fixture-audits.py --all",
     "test:e2e": "playwright test"
   },

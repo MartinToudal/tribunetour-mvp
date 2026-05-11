@@ -7,6 +7,11 @@
       "fixturePrefix": "sl-",
       "roundPrefix": "Superliga - ",
       "source": "data/fixture-audits/raw/dk-superliga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/danmark/superliga/kommende/",
+        "timezone": "Europe/Copenhagen",
+        "competitionFilter": "Superliga"
+      },
       "intervalDays": 14,
       "anchorDate": "2026-05-11"
     }
