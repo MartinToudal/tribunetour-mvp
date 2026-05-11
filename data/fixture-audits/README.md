@@ -47,9 +47,12 @@ Konfigurationen for faste audits ligger i:
 
 - [audits.json](/Users/martintoudal/Documents/Tribunetour/Tribunetour/Website repo/data/fixture-audits/audits.json)
 
-Den første faste rutine er:
+Konfigurationen kan nu dække alle de fixture-rækker, vi aktuelt har i systemet.
+Hver audit beskriver:
 
-- `dk-superliga`
+- hvilken fixture-række den matcher
+- hvilken Flashscore-side der bruges som kontrolkilde
+- om vi matcher via `competitionId` eller legacy `fixturePrefix`/`roundPrefix`
 
 Kør alle eller kun de audits, der er due i dag:
 

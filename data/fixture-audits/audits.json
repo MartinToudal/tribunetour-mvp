@@ -14,6 +14,513 @@
       },
       "intervalDays": 14,
       "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "dk-1-division",
+      "label": "Danmark - 1. division",
+      "season": "2025-26",
+      "fixturePrefix": "1d-",
+      "roundPrefix": "1. division - ",
+      "source": "data/fixture-audits/raw/dk-1-division.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/danmark/1-division/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "dk-2-division",
+      "label": "Danmark - 2. division",
+      "season": "2025-26",
+      "fixturePrefix": "2d-",
+      "roundPrefix": "2. division - ",
+      "source": "data/fixture-audits/raw/dk-2-division.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/danmark/2-division/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "dk-3-division",
+      "label": "Danmark - 3. division",
+      "season": "2025-26",
+      "fixturePrefix": "3d-",
+      "roundPrefix": "3. division - ",
+      "source": "data/fixture-audits/raw/dk-3-division.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/danmark/3-division/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "de-bundesliga",
+      "label": "Tyskland - Bundesliga",
+      "season": "2025-26",
+      "fixturePrefix": "bl-",
+      "roundPrefix": "Bundesliga - ",
+      "source": "data/fixture-audits/raw/de-bundesliga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tyskland/bundesliga/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "de-2-bundesliga",
+      "label": "Tyskland - 2. Bundesliga",
+      "season": "2025-26",
+      "fixturePrefix": "b2-",
+      "roundPrefix": "2. Bundesliga - ",
+      "source": "data/fixture-audits/raw/de-2-bundesliga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tyskland/2-bundesliga/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "de-3-liga",
+      "label": "Tyskland - 3. Liga",
+      "season": "2025-26",
+      "fixturePrefix": "b3-",
+      "roundPrefix": "3. Liga - ",
+      "source": "data/fixture-audits/raw/de-3-liga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tyskland/3-liga/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-premier-league",
+      "label": "England - Premier League",
+      "season": "2025-26",
+      "fixturePrefix": "epl-",
+      "roundPrefix": "Premier League - ",
+      "source": "data/fixture-audits/raw/en-premier-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/premier-league/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-championship",
+      "label": "England - Championship",
+      "season": "2025-26",
+      "fixturePrefix": "ech-",
+      "roundPrefix": "Championship - ",
+      "source": "data/fixture-audits/raw/en-championship.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/championship/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-championship-playoffs",
+      "label": "England - Championship Playoffs",
+      "season": "2025-26",
+      "fixturePrefix": "echp-",
+      "roundPrefix": "Championship - Play Offs - ",
+      "source": "data/fixture-audits/raw/en-championship.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/championship/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-league-one",
+      "label": "England - League One",
+      "season": "2025-26",
+      "fixturePrefix": "el1-",
+      "roundPrefix": "League One - ",
+      "source": "data/fixture-audits/raw/en-league-one.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/league-one/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-league-two",
+      "label": "England - League Two",
+      "season": "2025-26",
+      "fixturePrefix": "el2-",
+      "roundPrefix": "League Two - ",
+      "source": "data/fixture-audits/raw/en-league-two.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/league-two/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "es-laliga",
+      "label": "Spanien - La Liga",
+      "season": "2025-26",
+      "fixturePrefix": "esl-",
+      "roundPrefix": "La Liga - ",
+      "source": "data/fixture-audits/raw/es-laliga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/spanien/laliga/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "es-laliga2",
+      "label": "Spanien - Segunda División",
+      "season": "2025-26",
+      "fixturePrefix": "es2-",
+      "roundPrefix": "Segunda División - ",
+      "source": "data/fixture-audits/raw/es-laliga2.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/spanien/laliga2/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "es-primera-federacion-g1",
+      "label": "Spanien - Primera Federación Gruppe 1",
+      "season": "2025-26",
+      "fixturePrefix": "esf1-",
+      "roundPrefix": "Primera Federación - Gruppe 1 - ",
+      "source": "data/fixture-audits/raw/es-primera-federacion-g1.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/spanien/primera-rfef-group-1/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "es-primera-federacion-g2",
+      "label": "Spanien - Primera Federación Gruppe 2",
+      "season": "2025-26",
+      "fixturePrefix": "esf1-",
+      "roundPrefix": "Primera Federación - Gruppe 2 - ",
+      "source": "data/fixture-audits/raw/es-primera-federacion-g2.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/spanien/primera-rfef-group-2/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "fr-ligue-1",
+      "label": "Frankrig - Ligue 1",
+      "season": "2025-26",
+      "fixturePrefix": "fr1-",
+      "roundPrefix": "Ligue 1 - ",
+      "source": "data/fixture-audits/raw/fr-ligue-1.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/frankrig/ligue-1/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "fr-ligue-2",
+      "label": "Frankrig - Ligue 2",
+      "season": "2025-26",
+      "fixturePrefix": "fr2-",
+      "roundPrefix": "Ligue 2 - ",
+      "source": "data/fixture-audits/raw/fr-ligue-2.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/frankrig/ligue-2/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "fr-national",
+      "label": "Frankrig - National",
+      "season": "2025-26",
+      "fixturePrefix": "fr3-",
+      "roundPrefix": "National - ",
+      "source": "data/fixture-audits/raw/fr-national.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/frankrig/national/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-a",
+      "label": "Italien - Serie A",
+      "season": "2025-26",
+      "fixturePrefix": "ita-",
+      "roundPrefix": "Serie A - ",
+      "source": "data/fixture-audits/raw/it-serie-a.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-a/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-b",
+      "label": "Italien - Serie B",
+      "season": "2025-26",
+      "fixturePrefix": "itb-",
+      "roundPrefix": "Serie B - ",
+      "source": "data/fixture-audits/raw/it-serie-b.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-c-gA",
+      "label": "Italien - Serie C Gruppe A",
+      "season": "2025-26",
+      "fixturePrefix": "itc-",
+      "roundPrefix": "Serie C - Gruppe A - ",
+      "source": "data/fixture-audits/raw/it-serie-c-gA.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-c-group-a/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-c-gB",
+      "label": "Italien - Serie C Gruppe B",
+      "season": "2025-26",
+      "fixturePrefix": "itc-",
+      "roundPrefix": "Serie C - Gruppe B - ",
+      "source": "data/fixture-audits/raw/it-serie-c-gB.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-c-group-b/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-c-gC",
+      "label": "Italien - Serie C Gruppe C",
+      "season": "2025-26",
+      "fixturePrefix": "itc-",
+      "roundPrefix": "Serie C - Gruppe C - ",
+      "source": "data/fixture-audits/raw/it-serie-c-gC.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-c-group-c/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "pt-liga-portugal",
+      "label": "Portugal - Liga Portugal",
+      "season": "2025-26",
+      "fixturePrefix": "pt1-",
+      "roundPrefix": "Liga Portugal - ",
+      "source": "data/fixture-audits/raw/pt-liga-portugal.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/portugal/liga-portugal/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "pt-liga-portugal-2",
+      "label": "Portugal - Liga Portugal 2",
+      "season": "2025-26",
+      "fixturePrefix": "pt2-",
+      "roundPrefix": "Liga Portugal 2 - ",
+      "source": "data/fixture-audits/raw/pt-liga-portugal-2.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/portugal/liga-portugal-2/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "pt-liga-3-promotion",
+      "label": "Portugal - Liga 3 Oprykningsgruppe",
+      "season": "2025-26",
+      "fixturePrefix": "pt3-",
+      "roundPrefix": "Liga 3 - Oprykningsgruppe - ",
+      "source": "data/fixture-audits/raw/pt-liga-3.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/portugal/liga-3/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "nl-eredivisie",
+      "label": "Holland - Eredivisie",
+      "season": "2025-26",
+      "competitionId": "nl-eredivisie",
+      "source": "data/fixture-audits/raw/nl-eredivisie.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/holland/eredivisie/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "nl-eredivisie-playoffs",
+      "label": "Holland - Eredivisie Playoffs",
+      "season": "2025-26",
+      "competitionId": "nl-promotion-relegation-playoffs",
+      "source": "data/fixture-audits/raw/nl-eredivisie.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/holland/eredivisie/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "nl-tweede-divisie",
+      "label": "Holland - Tweede Divisie",
+      "season": "2025-26",
+      "competitionId": "nl-tweede-divisie",
+      "source": "data/fixture-audits/raw/nl-tweede-divisie.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/holland/tweede-divisie/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-jupiler-champions-playoffs",
+      "label": "Belgien - Jupiler mesterskabsspil",
+      "season": "2025-26",
+      "competitionId": "be-pro-league-champions-playoffs",
+      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-jupiler-europe-playoffs",
+      "label": "Belgien - Jupiler Conference League gruppe",
+      "season": "2025-26",
+      "competitionId": "be-pro-league-europe-playoffs",
+      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-jupiler-relegation-playoffs",
+      "label": "Belgien - Jupiler nedrykningsgruppe",
+      "season": "2025-26",
+      "competitionId": "be-pro-league-relegation-playoffs",
+      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-promotion-relegation-playoff",
+      "label": "Belgien - Promotion/relegation playoff",
+      "season": "2025-26",
+      "competitionId": "be-promotion-relegation-playoffs",
+      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-national-division-1-acff",
+      "label": "Belgien - National Division 1 ACFF",
+      "season": "2025-26",
+      "competitionId": "be-national-division-1-acff",
+      "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "be-national-division-1-acff-promotion",
+      "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
+      "season": "2025-26",
+      "competitionId": "be-national-division-1-acff-promotion-group",
+      "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "tr-super-lig",
+      "label": "Tyrkiet - Süper Lig",
+      "season": "2025-26",
+      "competitionId": "tr-super-lig",
+      "source": "data/fixture-audits/raw/tr-super-lig.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tyrkiet/super-lig/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "tr-1-lig-playoffs",
+      "label": "Tyrkiet - 1. Lig slutspil",
+      "season": "2025-26",
+      "competitionId": "tr-1-lig-playoffs",
+      "source": "data/fixture-audits/raw/tr-1-lig.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tyrkiet/1-lig/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
     }
   ]
 }

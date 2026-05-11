@@ -103,9 +103,9 @@ def refresh_source(audit: dict, source: Path) -> str | None:
     return f"Automatic source refresh failed: {output}"
 
 
-def run_single_audit(audit: dict) -> AuditResult:
+def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> AuditResult:
     source = WEBSITE_ROOT / audit["source"]
-    refresh_error = refresh_source(audit, source)
+    refresh_error = refreshed_sources.get(source)
     if refresh_error:
         return AuditResult(
             audit_id=audit["id"],
@@ -166,7 +166,14 @@ def main() -> int:
         print("No audits due today")
         return 0
 
-    results = [run_single_audit(audit) for audit in selected]
+    refreshed_sources: dict[Path, str | None] = {}
+    for audit in selected:
+        source = WEBSITE_ROOT / audit["source"]
+        if source in refreshed_sources:
+            continue
+        refreshed_sources[source] = refresh_source(audit, source)
+
+    results = [run_single_audit(audit, refreshed_sources) for audit in selected]
     write_report(results)
 
     for result in results:
