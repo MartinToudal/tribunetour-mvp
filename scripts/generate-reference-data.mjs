@@ -169,6 +169,20 @@ function loadExperimentalLeaguePackStadiums() {
   return packs.flatMap((filePath) => readExistingJson(filePath));
 }
 
+function mergeStadiums(stadiums) {
+  const byId = new Map();
+
+  for (const stadium of stadiums) {
+    if (!stadium?.id) {
+      continue;
+    }
+
+    byId.set(stadium.id, stadium);
+  }
+
+  return [...byId.values()];
+}
+
 function parseFixtures() {
   const rows = parseCsv(readCsv(fixturesCsvPath));
 
@@ -242,13 +256,10 @@ function buildRemoteFixturesEnvelope(fixtures, previousEnvelope) {
 
 const hasCanonicalCsvInputs = fs.existsSync(stadiumsCsvPath) && fs.existsSync(fixturesCsvPath);
 
+const experimentalLeaguePackStadiums = loadExperimentalLeaguePackStadiums();
 const stadiums = hasCanonicalCsvInputs
-  ? (() => {
-      const combined = [...parseStadiums(), ...loadExperimentalLeaguePackStadiums()];
-      const byId = new Map(combined.map((stadium) => [stadium.id, stadium]));
-      return [...byId.values()];
-    })()
-  : readExistingJson(stadiumsJsonPath);
+  ? mergeStadiums([...parseStadiums(), ...experimentalLeaguePackStadiums])
+  : mergeStadiums([...readExistingJson(stadiumsJsonPath), ...experimentalLeaguePackStadiums]);
 const fixtures = hasCanonicalCsvInputs
   ? parseFixtures()
   : readExistingJson(fixturesJsonPath);
@@ -265,9 +276,9 @@ writeFileEnsured(fixturesJsonPath, stableJson(fixtures));
 writeFileEnsured(remoteFixturesJsonPath, stableJson(remoteFixturesEnvelope));
 
 if (hasCanonicalCsvInputs) {
-  console.log('Source: app CSV files');
+  console.log('Source: app CSV files + league-pack sidecars');
 } else {
-  console.log('Source: checked-in web JSON fallback');
+  console.log('Source: checked-in web JSON aggregate + league-pack sidecars');
 }
 console.log(`Generated stadiums: ${stadiums.length}`);
 console.log(`Generated fixtures: ${fixtures.length}`);

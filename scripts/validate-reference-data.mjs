@@ -5,16 +5,30 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+const leaguePacksDir = path.join(rootDir, 'data', 'league-packs');
 
 function readJson(relativePath) {
   const fullPath = path.join(rootDir, relativePath);
   return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
 }
 
+function loadLeaguePackStadiums() {
+  if (!fs.existsSync(leaguePacksDir)) {
+    return [];
+  }
+
+  const files = fs.readdirSync(leaguePacksDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => path.join(leaguePacksDir, entry.name, 'stadiums.json'))
+    .filter((filePath) => fs.existsSync(filePath));
+
+  return files.flatMap((filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8')));
+}
+
 const stadiums = readJson('data/stadiums.json');
 const fixtures = readJson('data/fixtures.json');
+const sidecarStadiums = loadLeaguePackStadiums();
 
-const allowedLeagues = ['Superliga', '1. division', '2. division', '3. division'];
 const stadiumIds = new Set(stadiums.map((stadium) => stadium.id));
 const fixtureIds = new Set();
 const stadiumNames = new Set();
@@ -28,8 +42,8 @@ for (const stadium of stadiums) {
   }
   if (!stadium.name) errors.push(`Stadium ${stadium.id ?? '<ukendt>'} mangler name`);
   if (!stadium.team) errors.push(`Stadium ${stadium.id ?? '<ukendt>'} mangler team`);
-  if (!allowedLeagues.includes(stadium.league)) {
-    errors.push(`Stadium ${stadium.id} har ugyldig league: ${stadium.league}`);
+  if (!stadium.league || typeof stadium.league !== 'string') {
+    errors.push(`Stadium ${stadium.id} mangler gyldig league`);
   }
   if (typeof stadium.id === 'string') {
     if (stadium.id !== stadium.id.trim()) {
@@ -56,6 +70,17 @@ for (const stadium of stadiums) {
     if (stadium.lon < -180 || stadium.lon > 180) {
       errors.push(`Stadium ${stadium.id} har ugyldig lon: ${stadium.lon}`);
     }
+  }
+}
+
+for (const sidecarStadium of sidecarStadiums) {
+  if (!sidecarStadium?.id) {
+    errors.push('League-pack stadium mangler id');
+    continue;
+  }
+
+  if (!stadiumIds.has(sidecarStadium.id)) {
+    errors.push(`Aggregate stadiums.json mangler league-pack stadium: ${sidecarStadium.id}`);
   }
 }
 
@@ -127,7 +152,7 @@ for (const fixture of fixtures) {
 
 console.log(`Stadiums: ${stadiums.length}`);
 console.log(`Fixtures: ${fixtures.length}`);
-console.log(`Allowed leagues: ${allowedLeagues.join(', ')}`);
+console.log(`League-pack stadiums: ${sidecarStadiums.length}`);
 
 if (warnings.length > 0) {
   console.log(`Warnings: ${warnings.length}`);
