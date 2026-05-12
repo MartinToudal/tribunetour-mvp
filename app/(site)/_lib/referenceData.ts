@@ -3,6 +3,7 @@ import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
 import { aliasMap, canonicalClubId, normalizeIncomingClubId } from './clubIdentityResolver';
 import {
+  getQualifyingCompetitionIds,
   inferCompetitionId,
   isTrackedDomesticCompetition,
   type CompetitionMembership,
@@ -113,6 +114,7 @@ export function fixtureCountsTowardTopSystem(
 ): boolean {
   if (isTrackedDomesticCompetition(fixture.competitionId)) {
     const competitionId = fixture.competitionId!;
+    const qualifyingCompetitionIds = getQualifyingCompetitionIds(competitionId);
     const involvedStadiums = [
       stadiumMap[normalizeIncomingClubId(fixture.venueClubId)],
       stadiumMap[normalizeIncomingClubId(fixture.homeTeamId)],
@@ -124,8 +126,8 @@ export function fixtureCountsTowardTopSystem(
         return false;
       }
 
-      return (stadium.competitionMemberships ?? []).some((membership) =>
-        membership.competitionId === competitionId && membership.status === 'active'
+      return (stadium.competitionMemberships ?? []).some(
+        (membership) => qualifyingCompetitionIds.has(membership.competitionId) && membership.status === 'active'
       );
     });
   }

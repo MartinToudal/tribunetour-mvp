@@ -5830,7 +5830,33 @@
     "awayScore": null
   },
   {
-    "id": "echp-sf1-millwall-hull-city",
+    "id": "echp-sf1-hull-city-millwall",
+    "kickoff": "2026-05-08T21:00:00+02:00",
+    "round": "Championship - Play Offs - Semifinale",
+    "homeTeamId": "en-hull-city",
+    "awayTeamId": "en-millwall",
+    "venueClubId": "en-hull-city",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-championship-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "echp-sf2-middlesbrough-southampton",
+    "kickoff": "2026-05-09T13:30:00+02:00",
+    "round": "Championship - Play Offs - Semifinale",
+    "homeTeamId": "en-middlesbrough",
+    "awayTeamId": "en-southampton",
+    "venueClubId": "en-middlesbrough",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-championship-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "echp-sf3-millwall-hull-city",
     "kickoff": "2026-05-11T21:00:00+02:00",
     "round": "Championship - Play Offs - Semifinale",
     "homeTeamId": "en-millwall",
@@ -5838,7 +5864,22 @@
     "venueClubId": "en-millwall",
     "status": "scheduled",
     "homeScore": null,
-    "awayScore": null
+    "awayScore": null,
+    "competitionId": "en-championship-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "echp-sf4-southampton-middlesbrough",
+    "kickoff": "2026-05-12T21:00:00+02:00",
+    "round": "Championship - Play Offs - Semifinale",
+    "homeTeamId": "en-southampton",
+    "awayTeamId": "en-middlesbrough",
+    "venueClubId": "en-southampton",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-championship-playoffs",
+    "seasonId": "2025-26"
   },
   {
     "id": "epl-r35-aston-villa-tottenham-hotspur",
@@ -6191,6 +6232,58 @@
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null
+  },
+  {
+    "id": "el1p-sf1-stevenage-stockport-county",
+    "kickoff": "2026-05-09T16:00:00+02:00",
+    "round": "League One - Play Offs - Semifinale",
+    "homeTeamId": "en-stevenage",
+    "awayTeamId": "en-stockport-county",
+    "venueClubId": "en-stevenage",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-league-one-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "el1p-sf2-bolton-wanderers-bradford-city",
+    "kickoff": "2026-05-09T21:00:00+02:00",
+    "round": "League One - Play Offs - Semifinale",
+    "homeTeamId": "en-bolton-wanderers",
+    "awayTeamId": "en-bradford-city",
+    "venueClubId": "en-bolton-wanderers",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-league-one-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "el1p-sf3-stockport-county-stevenage",
+    "kickoff": "2026-05-13T21:00:00+02:00",
+    "round": "League One - Play Offs - Semifinale",
+    "homeTeamId": "en-stockport-county",
+    "awayTeamId": "en-stevenage",
+    "venueClubId": "en-stockport-county",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-league-one-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "el1p-sf4-bradford-city-bolton-wanderers",
+    "kickoff": "2026-05-14T21:00:00+02:00",
+    "round": "League One - Play Offs - Semifinale",
+    "homeTeamId": "en-bradford-city",
+    "awayTeamId": "en-bolton-wanderers",
+    "venueClubId": "en-bradford-city",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "en-league-one-playoffs",
+    "seasonId": "2025-26"
   },
   {
     "id": "el2-r46-barrow-newport-county",
@@ -7599,6 +7692,58 @@
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null
+  },
+  {
+    "id": "itbp-qf1-modena-juve-stabia",
+    "kickoff": "2026-05-12T18:45:00+02:00",
+    "round": "Serie B - Play Offs - Kvartfinale",
+    "homeTeamId": "it-modena",
+    "awayTeamId": "it-juve-stabia",
+    "venueClubId": "it-modena",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "it-serie-b-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "itbp-qf2-catanzaro-avellino",
+    "kickoff": "2026-05-12T21:00:00+02:00",
+    "round": "Serie B - Play Offs - Kvartfinale",
+    "homeTeamId": "it-catanzaro",
+    "awayTeamId": "it-avellino",
+    "venueClubId": "it-catanzaro",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "it-serie-b-playoffs",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "itbo-f1-bari-sudtirol",
+    "kickoff": "2026-05-15T20:00:00+02:00",
+    "round": "Serie B - Play Out - Finale",
+    "homeTeamId": "it-bari",
+    "awayTeamId": "it-sudtirol",
+    "venueClubId": "it-bari",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "it-serie-b-playouts",
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "itbo-f2-sudtirol-bari",
+    "kickoff": "2026-05-22T20:00:00+02:00",
+    "round": "Serie B - Play Out - Finale",
+    "homeTeamId": "it-sudtirol",
+    "awayTeamId": "it-bari",
+    "venueClubId": "it-sudtirol",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "it-serie-b-playouts",
+    "seasonId": "2025-26"
   },
   {
     "id": "fr1-r33-lens-nantes",

@@ -131,11 +131,27 @@
       "id": "en-championship-playoffs",
       "label": "England - Championship Playoffs",
       "season": "2025-26",
+      "competitionId": "en-championship-playoffs",
       "fixturePrefix": "echp-",
       "roundPrefix": "Championship - Play Offs - ",
       "source": "data/fixture-audits/raw/en-championship.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/england/championship/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "en-league-one-playoffs",
+      "label": "England - League One Playoffs",
+      "season": "2025-26",
+      "competitionId": "en-league-one-playoffs",
+      "fixturePrefix": "el1p-",
+      "roundPrefix": "League One - Play Offs - ",
+      "source": "data/fixture-audits/raw/en-league-one.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/england/league-one/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
@@ -287,6 +303,36 @@
       "season": "2025-26",
       "fixturePrefix": "itb-",
       "roundPrefix": "Serie B - ",
+      "source": "data/fixture-audits/raw/it-serie-b.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-b-playoffs",
+      "label": "Italien - Serie B Playoffs",
+      "season": "2025-26",
+      "competitionId": "it-serie-b-playoffs",
+      "fixturePrefix": "itbp-",
+      "roundPrefix": "Serie B - Play Offs - ",
+      "source": "data/fixture-audits/raw/it-serie-b.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "it-serie-b-playouts",
+      "label": "Italien - Serie B Play Out",
+      "season": "2025-26",
+      "competitionId": "it-serie-b-playouts",
+      "fixturePrefix": "itbo-",
+      "roundPrefix": "Serie B - Play Out - ",
       "source": "data/fixture-audits/raw/it-serie-b.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
