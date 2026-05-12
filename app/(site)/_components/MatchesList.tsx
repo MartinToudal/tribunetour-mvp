@@ -6,6 +6,7 @@ import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess, stadiumLeaguePackId } from '../_lib/leaguePacks';
 import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { sortLeagues } from '../_lib/leagueOrder';
+import { getCompetitionDisplayName, isSupplementalDomesticCompetition } from '../_lib/competitionCatalog';
 import {
   fixtureCountsTowardTopSystem,
   getFixtures,
@@ -32,6 +33,15 @@ const homeCountryStorageKey = 'app.preferredHomeCountryCode';
 const matchesTimeFilterStorageKey = 'matches.timeFilter';
 const matchesSortModeStorageKey = 'matches.sortMode';
 const matchesOnlyUnvisitedStorageKey = 'matches.onlyUnvisitedVenues';
+
+function fixtureLeagueLabel(fixture: Fixture, stadiumMap: Record<string, Stadium>) {
+  const venue = stadiumMap[fixture.venueClubId];
+  if (isSupplementalDomesticCompetition(fixture.competitionId)) {
+    return getCompetitionDisplayName(fixture.competitionId, venue?.league) ?? venue?.league;
+  }
+
+  return venue?.league;
+}
 
 function haversineDistanceInMeters(from: { latitude: number; longitude: number }, to: { latitude: number; longitude: number }) {
   const earthRadius = 6371000;
@@ -170,7 +180,7 @@ export default function MatchesList() {
       new Set(
         fixtures
           .filter((fixture) => visibleStadiumIdSet.has(fixture.venueClubId) || visibleStadiumIdSet.has(stadiumMap[fixture.venueClubId]?.id ?? ''))
-          .map((fixture) => stadiumMap[fixture.venueClubId]?.league)
+          .map((fixture) => fixtureLeagueLabel(fixture, stadiumMap))
           .filter((league) => {
             if (!league) {
               return false;
@@ -178,7 +188,9 @@ export default function MatchesList() {
             if (countryFilter === 'all') {
               return true;
             }
-            return (progressionVisibleStadiums.find((stadium) => stadium.league === league)?.countryCode ?? 'dk') === countryFilter;
+            const fixture = fixtures.find((candidate) => fixtureLeagueLabel(candidate, stadiumMap) === league);
+            const venue = fixture ? stadiumMap[fixture.venueClubId] : undefined;
+            return (venue?.countryCode ?? 'dk') === countryFilter;
           })
           .filter(Boolean)
       )
@@ -227,8 +239,9 @@ export default function MatchesList() {
       })
       .filter((fixture) => {
         const venue = stadiumMap[fixture.venueClubId];
+        const leagueLabel = fixtureLeagueLabel(fixture, stadiumMap);
         const matchesCountry = countryFilter === 'all' || (venue?.countryCode ?? 'dk') === countryFilter;
-        const matchesLeague = leagueFilter === 'Alle' || venue?.league === leagueFilter;
+        const matchesLeague = leagueFilter === 'Alle' || leagueLabel === leagueFilter;
         const matchesVisit = visitFilter === 'all' || !visited[fixture.venueClubId];
         const haystack = `${fixture.round} ${venue?.team ?? fixture.homeTeamId} ${venue?.name ?? fixture.venueClubId} ${venue?.city ?? ''}`.toLowerCase();
         const matchesSearch = !needle || haystack.includes(needle);
@@ -636,10 +649,16 @@ export default function MatchesList() {
           const homeTeam = teamName(fixture.homeTeamId);
           const awayTeam = teamName(fixture.awayTeamId);
           const fixtureDistance = distanceText(fixture);
+          const competitionLabel = isSupplementalDomesticCompetition(fixture.competitionId)
+            ? getCompetitionDisplayName(fixture.competitionId, venue?.league)
+            : null;
 
           return (
             <li key={fixture.id} className="flex flex-col gap-4 p-5 md:flex-row md:items-center">
               <div className="min-w-0 flex-1">
+                {competitionLabel && (
+                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{competitionLabel}</div>
+                )}
                 <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">{fixture.round}</div>
                 <div className="mt-2 text-lg font-semibold text-white">
                   {homeTeam} – {awayTeam}
@@ -695,7 +714,7 @@ export default function MatchesList() {
             <div className="label-eyebrow">Ekstra spor</div>
             <h3 className="mt-2 text-xl font-semibold tracking-tight">Kampe uden for aktuelt topsystem</h3>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-              Her samler vi kommende kampe for klubber, der er nedrykkede, historiske eller med i et ekstra turneringsspor. De tæller ikke med i det normale topsystem-feed.
+              Her samler vi kommende kampe for klubber, der er nedrykkede eller kun ligger som historiske spor. De tæller ikke med i det normale topsystem-feed.
             </p>
           </div>
 

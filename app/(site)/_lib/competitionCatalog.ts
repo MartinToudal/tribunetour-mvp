@@ -160,6 +160,11 @@ export function isTrackedDomesticCompetition(competitionId: string | null | unde
   return Boolean(entry && entry.type === 'domestic_league' && entry.leaguePackId);
 }
 
+export function isSupplementalDomesticCompetition(competitionId: string | null | undefined): boolean {
+  const entry = getCompetitionCatalogEntry(competitionId);
+  return Boolean(entry && entry.type === 'domestic_league' && entry.leaguePackId && !entry.isPrimaryDomestic);
+}
+
 export function getCompetitionMembershipStatusLabel(
   status: CompetitionMembershipStatus | null | undefined
 ): string | null {
