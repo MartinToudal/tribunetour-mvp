@@ -16,57 +16,6 @@ const fixturesJsonPath = path.join(websiteRootDir, 'data', 'fixtures.json');
 const remoteFixturesJsonPath = path.join(websiteRootDir, 'public', 'reference-data', 'fixtures.remote.json');
 const leaguePacksDir = path.join(websiteRootDir, 'data', 'league-packs');
 
-const canonicalToLegacyClubId = {
-  'dk-aab': 'aab',
-  'dk-aarhus-fremad': 'aaf',
-  'dk-ab': 'ab',
-  'dk-ac-horsens': 'ach',
-  'dk-agf': 'agf',
-  'dk-b-93': 'b93',
-  'dk-brondby-if': 'bif',
-  'dk-brabrand-if': 'bra',
-  'dk-bronshoj': 'brø',
-  'dk-esbjerg-fb': 'efb',
-  'dk-fa-2000': 'fa2',
-  'dk-fremad-amager': 'faa',
-  'dk-fc-fredericia': 'fcf',
-  'dk-fc-kobenhavn': 'fck',
-  'dk-fc-midtjylland': 'fcm',
-  'dk-fc-nordsjaelland': 'fcn',
-  'dk-frem': 'fre',
-  'dk-hb-koge': 'hbk',
-  'dk-fc-helsingor': 'hel',
-  'dk-hik': 'hik',
-  'dk-hillerod-fodbold': 'hil',
-  'dk-hobro-ik': 'hob',
-  'dk-holbaek-bi': 'hol',
-  'dk-horsholm-usserod-ik': 'hør',
-  'dk-hvidovre-if': 'hvi',
-  'dk-ishoj-if': 'ish',
-  'dk-kolding-if': 'kol',
-  'dk-lyngby-boldklub': 'lyn',
-  'dk-if-lyseng': 'lys',
-  'dk-middelfart': 'mid',
-  'dk-naesby-bk': 'næs',
-  'dk-naestved': 'nas',
-  'dk-nykobing-fc': 'nyk',
-  'dk-ob': 'ob',
-  'dk-odder-fodbold': 'odd',
-  'dk-randers-fc': 'ran',
-  'dk-fc-roskilde': 'ros',
-  'dk-silkeborg-if': 'sif',
-  'dk-sonderjyske': 'sje',
-  'dk-skive': 'ski',
-  'dk-sundby-bk': 'sun',
-  'dk-thisted-fc': 'thi',
-  'dk-vanlose': 'van',
-  'dk-vejle-boldklub': 'vb',
-  'dk-vejgaard-b': 'vej',
-  'dk-vendsyssel-ff': 'ven',
-  'dk-viborg-ff': 'vff',
-  'dk-vsk-aarhus': 'vsk',
-};
-
 function splitCsvLine(line) {
   const result = [];
   let current = '';
@@ -201,15 +150,6 @@ function parseFixtures() {
   }));
 }
 
-function toLegacyAppFixtures(fixtures) {
-  return fixtures.map((fixture) => ({
-    ...fixture,
-    homeTeamId: canonicalToLegacyClubId[fixture.homeTeamId] ?? fixture.homeTeamId,
-    awayTeamId: canonicalToLegacyClubId[fixture.awayTeamId] ?? fixture.awayTeamId,
-    venueClubId: canonicalToLegacyClubId[fixture.venueClubId] ?? fixture.venueClubId,
-  }));
-}
-
 function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -267,7 +207,7 @@ const previousRemoteFixturesEnvelope = fs.existsSync(remoteFixturesJsonPath)
   ? readExistingJson(remoteFixturesJsonPath)
   : null;
 const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(
-  toLegacyAppFixtures(fixtures),
+  fixtures,
   previousRemoteFixturesEnvelope
 );
 
