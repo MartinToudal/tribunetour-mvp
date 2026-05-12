@@ -2,7 +2,12 @@ import { createClient } from '@supabase/supabase-js';
 import fixturesSeed from '../../../data/fixtures.json';
 import stadiumSeed from '../../../data/stadiums.json';
 import { aliasMap, canonicalClubId, normalizeIncomingClubId } from './clubIdentityResolver';
-import { inferCompetitionId, type CompetitionMembership, type CompetitionMembershipStatus } from './competitionCatalog';
+import {
+  inferCompetitionId,
+  isTrackedDomesticCompetition,
+  type CompetitionMembership,
+  type CompetitionMembershipStatus,
+} from './competitionCatalog';
 import { getEnabledExperimentalLeaguePacks } from './leaguePacks';
 import { compareLeagues } from './leagueOrder';
 
@@ -45,11 +50,7 @@ export function stadiumCountsTowardTopSystem(stadium: Stadium): boolean {
 }
 
 export function stadiumShouldRemainVisibleOutsideTopSystem(stadium: Stadium): boolean {
-  if ((stadium.membershipStatus ?? 'active') !== 'active') {
-    return true;
-  }
-
-  return (stadium.competitionMemberships ?? []).some((membership) => !membership.isPrimary);
+  return (stadium.membershipStatus ?? 'active') !== 'active';
 }
 
 export function stadiumMembershipStatusLabel(stadium: Stadium): string | null {
@@ -104,6 +105,35 @@ export function getSeedStadiumById(id: string): Stadium | undefined {
 
 export function getSeedFixtureById(id: string): Fixture | undefined {
   return seedFixtures.find((fixture) => fixture.id === id);
+}
+
+export function fixtureCountsTowardTopSystem(
+  fixture: Fixture,
+  stadiumMap: Record<string, Stadium>
+): boolean {
+  if (isTrackedDomesticCompetition(fixture.competitionId)) {
+    const competitionId = fixture.competitionId!;
+    const involvedStadiums = [
+      stadiumMap[normalizeIncomingClubId(fixture.venueClubId)],
+      stadiumMap[normalizeIncomingClubId(fixture.homeTeamId)],
+      stadiumMap[normalizeIncomingClubId(fixture.awayTeamId)],
+    ];
+
+    return involvedStadiums.every((stadium) => {
+      if (!stadium || (stadium.membershipStatus ?? 'active') !== 'active') {
+        return false;
+      }
+
+      return (stadium.competitionMemberships ?? []).some((membership) =>
+        membership.competitionId === competitionId && membership.status === 'active'
+      );
+    });
+  }
+
+  return [fixture.venueClubId, fixture.homeTeamId, fixture.awayTeamId].every((clubId) => {
+    const stadium = stadiumMap[normalizeIncomingClubId(clubId)];
+    return Boolean(stadium) && stadiumCountsTowardTopSystem(stadium);
+  });
 }
 
 export function getStaticStadiumParams() {

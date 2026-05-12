@@ -7,6 +7,7 @@ import { countryLabel, filterStadiumsForLeaguePackAccess, stadiumLeaguePackId } 
 import { compareCountryCodes } from '../_lib/leaguePackCatalog';
 import { sortLeagues } from '../_lib/leagueOrder';
 import {
+  fixtureCountsTowardTopSystem,
   getFixtures,
   getSeedStadiumMap,
   stadiumCountsTowardTopSystem,
@@ -269,11 +270,14 @@ export default function MatchesList() {
           return false;
         }
 
-        if (!visibleOutsideTopSystemIdSet.has(venue.id)) {
+        if (fixtureCountsTowardTopSystem(fixture, stadiumMap)) {
           return false;
         }
 
-        return countryFilter === 'all' || (venue.countryCode ?? 'dk') === countryFilter;
+        return (
+          visibleOutsideTopSystemIdSet.has(venue.id) &&
+          (countryFilter === 'all' || (venue.countryCode ?? 'dk') === countryFilter)
+        );
       })
       .sort((left, right) => new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime());
   }, [countryFilter, enabledPackIds, fixtures, stadiumMap, visibleOutsideTopSystemIdSet]);

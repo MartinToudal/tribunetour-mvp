@@ -155,6 +155,11 @@ export function getCompetitionDisplayName(
   return getCompetitionCatalogEntry(competitionId)?.name ?? fallback ?? undefined;
 }
 
+export function isTrackedDomesticCompetition(competitionId: string | null | undefined): boolean {
+  const entry = getCompetitionCatalogEntry(competitionId);
+  return Boolean(entry && entry.type === 'domestic_league' && entry.leaguePackId);
+}
+
 export function getCompetitionMembershipStatusLabel(
   status: CompetitionMembershipStatus | null | undefined
 ): string | null {
