@@ -55,12 +55,16 @@ jobs:
           REPORT_PATH: data/fixture-audits/reports/latest.json
           ISSUE_TITLE: Fixture audit failures
           ISSUE_LABEL: fixture-audit
+          ISSUE_EXTRA_LABEL: data-quality
+          ISSUE_ASSIGNEE: MartinToudal
         with:
           script: |
             const fs = require('fs');
             const reportPath = process.env.REPORT_PATH;
             const issueTitle = process.env.ISSUE_TITLE;
             const issueLabel = process.env.ISSUE_LABEL;
+            const issueExtraLabel = process.env.ISSUE_EXTRA_LABEL;
+            const issueAssignee = process.env.ISSUE_ASSIGNEE;
 
             if (!fs.existsSync(reportPath)) {
               core.setFailed(`Missing report file: ${reportPath}`);
@@ -73,17 +77,17 @@ jobs:
 
             const { owner, repo } = context.repo;
 
-            async function ensureLabel() {
+            async function ensureLabel(name, color, description) {
               try {
-                await github.rest.issues.getLabel({ owner, repo, name: issueLabel });
+                await github.rest.issues.getLabel({ owner, repo, name });
               } catch (error) {
                 if (error.status !== 404) throw error;
                 await github.rest.issues.createLabel({
                   owner,
                   repo,
-                  name: issueLabel,
-                  color: 'B60205',
-                  description: 'Automated fixture audit failures',
+                  name,
+                  color,
+                  description,
                 });
               }
             }
@@ -123,7 +127,8 @@ jobs:
               return;
             }
 
-            await ensureLabel();
+            await ensureLabel(issueLabel, 'B60205', 'Automated fixture audit failures');
+            await ensureLabel(issueExtraLabel, '1D76DB', 'Data quality and fixture validation work');
 
             const sections = failing.map((result) => {
               const trimmed = (result.details || '').trim();
@@ -146,6 +151,8 @@ jobs:
                 repo,
                 issue_number: existingIssue.number,
                 body,
+                labels: [issueLabel, issueExtraLabel],
+                assignees: issueAssignee ? [issueAssignee] : undefined,
               });
               core.info(`Updated existing fixture audit issue #${existingIssue.number}.`);
             } else {
@@ -154,7 +161,8 @@ jobs:
                 repo,
                 title: issueTitle,
                 body,
-                labels: [issueLabel],
+                labels: [issueLabel, issueExtraLabel],
+                assignees: issueAssignee ? [issueAssignee] : undefined,
               });
               core.info(`Created fixture audit issue #${created.data.number}.`);
             }
