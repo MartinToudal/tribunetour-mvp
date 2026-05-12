@@ -1585,7 +1585,7 @@
   },
   {
     "id": "b2-r29-f95-ksv",
-    "kickoff": "2026-04-10T16:30:00+02:00",
+    "kickoff": "2026-04-10T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-fortuna-dusseldorf",
     "awayTeamId": "de-holstein-kiel",
@@ -1596,7 +1596,7 @@
   },
   {
     "id": "b2-r29-ksc-dsc",
-    "kickoff": "2026-04-10T16:30:00+02:00",
+    "kickoff": "2026-04-10T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-karlsruher-sc",
     "awayTeamId": "de-arminia-bielefeld",
@@ -1629,7 +1629,7 @@
   },
   {
     "id": "bl-r29-fca-tsg",
-    "kickoff": "2026-04-10T18:30:00+02:00",
+    "kickoff": "2026-04-10T20:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-fc-augsburg",
     "awayTeamId": "de-tsg-hoffenheim",
@@ -1684,7 +1684,7 @@
   },
   {
     "id": "b2-r29-bsc-fckl",
-    "kickoff": "2026-04-11T11:00:00+02:00",
+    "kickoff": "2026-04-11T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-hertha-bsc",
     "awayTeamId": "de-kaiserslautern",
@@ -1695,7 +1695,7 @@
   },
   {
     "id": "b2-r29-fcn-sgd",
-    "kickoff": "2026-04-11T11:00:00+02:00",
+    "kickoff": "2026-04-11T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-nurnberg",
     "awayTeamId": "de-dynamo-dresden",
@@ -1706,7 +1706,7 @@
   },
   {
     "id": "b2-r29-scpm-sgf",
-    "kickoff": "2026-04-11T11:00:00+02:00",
+    "kickoff": "2026-04-11T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-preussen-munster",
     "awayTeamId": "de-greuther-furth",
@@ -1728,7 +1728,7 @@
   },
   {
     "id": "bl-r29-bvb-b04",
-    "kickoff": "2026-04-11T13:30:00+02:00",
+    "kickoff": "2026-04-11T15:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-borussia-dortmund",
     "awayTeamId": "de-bayer-leverkusen",
@@ -1739,7 +1739,7 @@
   },
   {
     "id": "bl-r29-fch-fcu",
-    "kickoff": "2026-04-11T13:30:00+02:00",
+    "kickoff": "2026-04-11T15:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-heidenheim",
     "awayTeamId": "de-union-berlin",
@@ -1750,7 +1750,7 @@
   },
   {
     "id": "bl-r29-rbl-bmg",
-    "kickoff": "2026-04-11T13:30:00+02:00",
+    "kickoff": "2026-04-11T15:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-rb-leipzig",
     "awayTeamId": "de-borussia-monchengladbach",
@@ -1761,7 +1761,7 @@
   },
   {
     "id": "bl-r29-wob-sge",
-    "kickoff": "2026-04-11T13:30:00+02:00",
+    "kickoff": "2026-04-11T15:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-vfl-wolfsburg",
     "awayTeamId": "de-eintracht-frankfurt",
@@ -1981,7 +1981,7 @@
   },
   {
     "id": "bl-r29-fcp-fcb",
-    "kickoff": "2026-04-11T16:30:00+02:00",
+    "kickoff": "2026-04-11T18:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-fc-st-pauli",
     "awayTeamId": "de-bayern-munchen",
@@ -1992,7 +1992,7 @@
   },
   {
     "id": "b2-r29-d98-h96",
-    "kickoff": "2026-04-11T18:30:00+02:00",
+    "kickoff": "2026-04-11T20:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-sv-darmstadt-98",
     "awayTeamId": "de-hannover-96",
@@ -2003,7 +2003,7 @@
   },
   {
     "id": "b2-r29-boc-ebs",
-    "kickoff": "2026-04-12T11:30:00+02:00",
+    "kickoff": "2026-04-12T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-vfl-bochum",
     "awayTeamId": "de-eintracht-braunschweig",
@@ -2014,7 +2014,7 @@
   },
   {
     "id": "b2-r29-scp-fcm",
-    "kickoff": "2026-04-12T11:30:00+02:00",
+    "kickoff": "2026-04-12T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-sc-paderborn-07",
     "awayTeamId": "de-magdeburg",
@@ -2025,7 +2025,7 @@
   },
   {
     "id": "b2-r29-sve-s04",
-    "kickoff": "2026-04-12T11:30:00+02:00",
+    "kickoff": "2026-04-12T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 29",
     "homeTeamId": "de-sv-elversberg",
     "awayTeamId": "de-schalke-04",
@@ -2047,7 +2047,7 @@
   },
   {
     "id": "bl-r29-koe-svw",
-    "kickoff": "2026-04-12T13:30:00+02:00",
+    "kickoff": "2026-04-12T15:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-fc-koln",
     "awayTeamId": "de-werder-bremen",
@@ -2080,7 +2080,7 @@
   },
   {
     "id": "bl-r29-vfb-hsv",
-    "kickoff": "2026-04-12T15:30:00+02:00",
+    "kickoff": "2026-04-12T17:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-vfb-stuttgart",
     "awayTeamId": "de-hamburger-sv",
@@ -2113,7 +2113,7 @@
   },
   {
     "id": "bl-r29-m05-scf",
-    "kickoff": "2026-04-12T17:30:00+02:00",
+    "kickoff": "2026-04-12T19:30:00+02:00",
     "round": "Bundesliga - Runde 29",
     "homeTeamId": "de-mainz-05",
     "awayTeamId": "de-sc-freiburg",
@@ -2212,7 +2212,7 @@
   },
   {
     "id": "b2-r30-ksv-fckl",
-    "kickoff": "2026-04-17T16:30:00+02:00",
+    "kickoff": "2026-04-17T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-holstein-kiel",
     "awayTeamId": "de-kaiserslautern",
@@ -2223,7 +2223,7 @@
   },
   {
     "id": "b2-r30-sve-ksc",
-    "kickoff": "2026-04-17T16:30:00+02:00",
+    "kickoff": "2026-04-17T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-sv-elversberg",
     "awayTeamId": "de-karlsruher-sc",
@@ -2245,7 +2245,7 @@
   },
   {
     "id": "bl-r30-fcp-koe",
-    "kickoff": "2026-04-17T18:30:00+02:00",
+    "kickoff": "2026-04-17T20:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-fc-st-pauli",
     "awayTeamId": "de-fc-koln",
@@ -2322,7 +2322,7 @@
   },
   {
     "id": "b2-r30-dsc-fcn",
-    "kickoff": "2026-04-18T11:00:00+02:00",
+    "kickoff": "2026-04-18T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-arminia-bielefeld",
     "awayTeamId": "de-nurnberg",
@@ -2333,7 +2333,7 @@
   },
   {
     "id": "b2-r30-fcm-f95",
-    "kickoff": "2026-04-18T11:00:00+02:00",
+    "kickoff": "2026-04-18T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-magdeburg",
     "awayTeamId": "de-fortuna-dusseldorf",
@@ -2344,7 +2344,7 @@
   },
   {
     "id": "b2-r30-sgd-boc",
-    "kickoff": "2026-04-18T11:00:00+02:00",
+    "kickoff": "2026-04-18T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-dynamo-dresden",
     "awayTeamId": "de-vfl-bochum",
@@ -2498,7 +2498,7 @@
   },
   {
     "id": "bl-r30-b04-fca",
-    "kickoff": "2026-04-18T13:30:00+02:00",
+    "kickoff": "2026-04-18T15:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-bayer-leverkusen",
     "awayTeamId": "de-fc-augsburg",
@@ -2509,7 +2509,7 @@
   },
   {
     "id": "bl-r30-fcu-wob",
-    "kickoff": "2026-04-18T13:30:00+02:00",
+    "kickoff": "2026-04-18T15:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-union-berlin",
     "awayTeamId": "de-vfl-wolfsburg",
@@ -2520,7 +2520,7 @@
   },
   {
     "id": "bl-r30-svw-hsv",
-    "kickoff": "2026-04-18T13:30:00+02:00",
+    "kickoff": "2026-04-18T15:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-werder-bremen",
     "awayTeamId": "de-hamburger-sv",
@@ -2531,7 +2531,7 @@
   },
   {
     "id": "bl-r30-tsg-bvb",
-    "kickoff": "2026-04-18T13:30:00+02:00",
+    "kickoff": "2026-04-18T15:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-tsg-hoffenheim",
     "awayTeamId": "de-borussia-dortmund",
@@ -2960,7 +2960,7 @@
   },
   {
     "id": "bl-r30-sge-rbl",
-    "kickoff": "2026-04-18T16:30:00+02:00",
+    "kickoff": "2026-04-18T18:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-eintracht-frankfurt",
     "awayTeamId": "de-rb-leipzig",
@@ -3004,7 +3004,7 @@
   },
   {
     "id": "b2-r30-h96-scp",
-    "kickoff": "2026-04-18T18:30:00+02:00",
+    "kickoff": "2026-04-18T20:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-hannover-96",
     "awayTeamId": "de-sc-paderborn-07",
@@ -3026,7 +3026,7 @@
   },
   {
     "id": "b2-r30-ebs-bsc",
-    "kickoff": "2026-04-19T11:30:00+02:00",
+    "kickoff": "2026-04-19T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-eintracht-braunschweig",
     "awayTeamId": "de-hertha-bsc",
@@ -3037,7 +3037,7 @@
   },
   {
     "id": "b2-r30-s04-scpm",
-    "kickoff": "2026-04-19T11:30:00+02:00",
+    "kickoff": "2026-04-19T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-schalke-04",
     "awayTeamId": "de-preussen-munster",
@@ -3048,7 +3048,7 @@
   },
   {
     "id": "b2-r30-sgf-d98",
-    "kickoff": "2026-04-19T11:30:00+02:00",
+    "kickoff": "2026-04-19T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 30",
     "homeTeamId": "de-greuther-furth",
     "awayTeamId": "de-sv-darmstadt-98",
@@ -3081,7 +3081,7 @@
   },
   {
     "id": "bl-r30-scf-fch",
-    "kickoff": "2026-04-19T13:30:00+02:00",
+    "kickoff": "2026-04-19T15:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-sc-freiburg",
     "awayTeamId": "de-heidenheim",
@@ -3169,7 +3169,7 @@
   },
   {
     "id": "bl-r30-fcb-vfb",
-    "kickoff": "2026-04-19T15:30:00+02:00",
+    "kickoff": "2026-04-19T17:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-bayern-munchen",
     "awayTeamId": "de-vfb-stuttgart",
@@ -3224,7 +3224,7 @@
   },
   {
     "id": "bl-r30-bmg-m05",
-    "kickoff": "2026-04-19T17:30:00+02:00",
+    "kickoff": "2026-04-19T19:30:00+02:00",
     "round": "Bundesliga - Runde 30",
     "homeTeamId": "de-borussia-monchengladbach",
     "awayTeamId": "de-mainz-05",
@@ -3675,7 +3675,7 @@
   },
   {
     "id": "b2-r31-f95-sgd",
-    "kickoff": "2026-04-24T16:30:00+02:00",
+    "kickoff": "2026-04-24T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-fortuna-dusseldorf",
     "awayTeamId": "de-dynamo-dresden",
@@ -3686,7 +3686,7 @@
   },
   {
     "id": "b2-r31-fckl-ebs",
-    "kickoff": "2026-04-24T16:30:00+02:00",
+    "kickoff": "2026-04-24T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-kaiserslautern",
     "awayTeamId": "de-eintracht-braunschweig",
@@ -3708,7 +3708,7 @@
   },
   {
     "id": "bl-r31-rbl-fcu",
-    "kickoff": "2026-04-24T18:30:00+02:00",
+    "kickoff": "2026-04-24T20:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-rb-leipzig",
     "awayTeamId": "de-union-berlin",
@@ -3818,7 +3818,7 @@
   },
   {
     "id": "b2-r31-bsc-ksv",
-    "kickoff": "2026-04-25T11:00:00+02:00",
+    "kickoff": "2026-04-25T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-hertha-bsc",
     "awayTeamId": "de-holstein-kiel",
@@ -3829,7 +3829,7 @@
   },
   {
     "id": "b2-r31-ksc-h96",
-    "kickoff": "2026-04-25T11:00:00+02:00",
+    "kickoff": "2026-04-25T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-karlsruher-sc",
     "awayTeamId": "de-hannover-96",
@@ -3840,7 +3840,7 @@
   },
   {
     "id": "b2-r31-scpm-dsc",
-    "kickoff": "2026-04-25T11:00:00+02:00",
+    "kickoff": "2026-04-25T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-preussen-munster",
     "awayTeamId": "de-arminia-bielefeld",
@@ -3994,7 +3994,7 @@
   },
   {
     "id": "bl-r31-fca-sge",
-    "kickoff": "2026-04-25T13:30:00+02:00",
+    "kickoff": "2026-04-25T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-fc-augsburg",
     "awayTeamId": "de-eintracht-frankfurt",
@@ -4005,7 +4005,7 @@
   },
   {
     "id": "bl-r31-fch-fcp",
-    "kickoff": "2026-04-25T13:30:00+02:00",
+    "kickoff": "2026-04-25T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-heidenheim",
     "awayTeamId": "de-fc-st-pauli",
@@ -4016,7 +4016,7 @@
   },
   {
     "id": "bl-r31-koe-b04",
-    "kickoff": "2026-04-25T13:30:00+02:00",
+    "kickoff": "2026-04-25T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-fc-koln",
     "awayTeamId": "de-bayer-leverkusen",
@@ -4027,7 +4027,7 @@
   },
   {
     "id": "bl-r31-m05-fcb",
-    "kickoff": "2026-04-25T13:30:00+02:00",
+    "kickoff": "2026-04-25T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-mainz-05",
     "awayTeamId": "de-bayern-munchen",
@@ -4038,7 +4038,7 @@
   },
   {
     "id": "bl-r31-wob-bmg",
-    "kickoff": "2026-04-25T13:30:00+02:00",
+    "kickoff": "2026-04-25T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-vfl-wolfsburg",
     "awayTeamId": "de-borussia-monchengladbach",
@@ -4533,7 +4533,7 @@
   },
   {
     "id": "bl-r31-hsv-tsg",
-    "kickoff": "2026-04-25T16:30:00+02:00",
+    "kickoff": "2026-04-25T18:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-hamburger-sv",
     "awayTeamId": "de-tsg-hoffenheim",
@@ -4577,7 +4577,7 @@
   },
   {
     "id": "b2-r31-d98-sve",
-    "kickoff": "2026-04-25T18:30:00+02:00",
+    "kickoff": "2026-04-25T20:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-sv-darmstadt-98",
     "awayTeamId": "de-sv-elversberg",
@@ -4720,7 +4720,7 @@
   },
   {
     "id": "b2-r31-boc-sgf",
-    "kickoff": "2026-04-26T11:30:00+02:00",
+    "kickoff": "2026-04-26T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-vfl-bochum",
     "awayTeamId": "de-greuther-furth",
@@ -4731,7 +4731,7 @@
   },
   {
     "id": "b2-r31-fcn-fcm",
-    "kickoff": "2026-04-26T11:30:00+02:00",
+    "kickoff": "2026-04-26T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-nurnberg",
     "awayTeamId": "de-magdeburg",
@@ -4742,7 +4742,7 @@
   },
   {
     "id": "b2-r31-scp-s04",
-    "kickoff": "2026-04-26T11:30:00+02:00",
+    "kickoff": "2026-04-26T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 31",
     "homeTeamId": "de-sc-paderborn-07",
     "awayTeamId": "de-schalke-04",
@@ -4819,7 +4819,7 @@
   },
   {
     "id": "bl-r31-vfb-svw",
-    "kickoff": "2026-04-26T13:30:00+02:00",
+    "kickoff": "2026-04-26T15:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-vfb-stuttgart",
     "awayTeamId": "de-werder-bremen",
@@ -4984,7 +4984,7 @@
   },
   {
     "id": "bl-r31-bvb-scf",
-    "kickoff": "2026-04-26T15:30:00+02:00",
+    "kickoff": "2026-04-26T17:30:00+02:00",
     "round": "Bundesliga - Runde 31",
     "homeTeamId": "de-borussia-dortmund",
     "awayTeamId": "de-sc-freiburg",
@@ -5633,7 +5633,7 @@
   },
   {
     "id": "b2-r32-dsc-boc",
-    "kickoff": "2026-05-02T11:00:00+02:00",
+    "kickoff": "2026-05-02T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-arminia-bielefeld",
     "awayTeamId": "de-vfl-bochum",
@@ -5644,7 +5644,7 @@
   },
   {
     "id": "b2-r32-ksv-ebs",
-    "kickoff": "2026-05-02T11:00:00+02:00",
+    "kickoff": "2026-05-02T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-holstein-kiel",
     "awayTeamId": "de-eintracht-braunschweig",
@@ -5655,7 +5655,7 @@
   },
   {
     "id": "b2-r32-sgd-fckl",
-    "kickoff": "2026-05-02T11:00:00+02:00",
+    "kickoff": "2026-05-02T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-dynamo-dresden",
     "awayTeamId": "de-kaiserslautern",
@@ -5864,7 +5864,7 @@
   },
   {
     "id": "bl-r32-fcb-fch",
-    "kickoff": "2026-05-02T13:30:00+02:00",
+    "kickoff": "2026-05-02T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-bayern-munchen",
     "awayTeamId": "de-heidenheim",
@@ -5875,7 +5875,7 @@
   },
   {
     "id": "bl-r32-fcu-koe",
-    "kickoff": "2026-05-02T13:30:00+02:00",
+    "kickoff": "2026-05-02T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-union-berlin",
     "awayTeamId": "de-fc-koln",
@@ -5886,7 +5886,7 @@
   },
   {
     "id": "bl-r32-sge-hsv",
-    "kickoff": "2026-05-02T13:30:00+02:00",
+    "kickoff": "2026-05-02T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-eintracht-frankfurt",
     "awayTeamId": "de-hamburger-sv",
@@ -5897,7 +5897,7 @@
   },
   {
     "id": "bl-r32-svw-fca",
-    "kickoff": "2026-05-02T13:30:00+02:00",
+    "kickoff": "2026-05-02T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-werder-bremen",
     "awayTeamId": "de-fc-augsburg",
@@ -5908,7 +5908,7 @@
   },
   {
     "id": "bl-r32-tsg-vfb",
-    "kickoff": "2026-05-02T13:30:00+02:00",
+    "kickoff": "2026-05-02T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-tsg-hoffenheim",
     "awayTeamId": "de-vfb-stuttgart",
@@ -6436,7 +6436,7 @@
   },
   {
     "id": "bl-r32-b04-rbl",
-    "kickoff": "2026-05-02T16:30:00+02:00",
+    "kickoff": "2026-05-02T18:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-bayer-leverkusen",
     "awayTeamId": "de-rb-leipzig",
@@ -6491,7 +6491,7 @@
   },
   {
     "id": "b2-r32-s04-f95",
-    "kickoff": "2026-05-02T18:30:00+02:00",
+    "kickoff": "2026-05-02T20:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-schalke-04",
     "awayTeamId": "de-fortuna-dusseldorf",
@@ -6755,7 +6755,7 @@
   },
   {
     "id": "b2-r32-fcm-bsc",
-    "kickoff": "2026-05-03T11:30:00+02:00",
+    "kickoff": "2026-05-03T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-magdeburg",
     "awayTeamId": "de-hertha-bsc",
@@ -6766,7 +6766,7 @@
   },
   {
     "id": "b2-r32-h96-scpm",
-    "kickoff": "2026-05-03T11:30:00+02:00",
+    "kickoff": "2026-05-03T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-hannover-96",
     "awayTeamId": "de-preussen-munster",
@@ -6777,7 +6777,7 @@
   },
   {
     "id": "b2-r32-ksc-d98",
-    "kickoff": "2026-05-03T11:30:00+02:00",
+    "kickoff": "2026-05-03T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-karlsruher-sc",
     "awayTeamId": "de-sv-darmstadt-98",
@@ -6788,7 +6788,7 @@
   },
   {
     "id": "b2-r32-sgf-fcn",
-    "kickoff": "2026-05-03T11:30:00+02:00",
+    "kickoff": "2026-05-03T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-greuther-furth",
     "awayTeamId": "de-nurnberg",
@@ -6799,7 +6799,7 @@
   },
   {
     "id": "b2-r32-sve-scp",
-    "kickoff": "2026-05-03T11:30:00+02:00",
+    "kickoff": "2026-05-03T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 32",
     "homeTeamId": "de-sv-elversberg",
     "awayTeamId": "de-sc-paderborn-07",
@@ -6887,7 +6887,7 @@
   },
   {
     "id": "bl-r32-fcp-m05",
-    "kickoff": "2026-05-03T13:30:00+02:00",
+    "kickoff": "2026-05-03T15:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-fc-st-pauli",
     "awayTeamId": "de-mainz-05",
@@ -6975,7 +6975,7 @@
   },
   {
     "id": "bl-r32-bmg-bvb",
-    "kickoff": "2026-05-03T15:30:00+02:00",
+    "kickoff": "2026-05-03T17:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-borussia-monchengladbach",
     "awayTeamId": "de-borussia-dortmund",
@@ -7107,7 +7107,7 @@
   },
   {
     "id": "bl-r32-scf-wob",
-    "kickoff": "2026-05-03T17:30:00+02:00",
+    "kickoff": "2026-05-03T19:30:00+02:00",
     "round": "Bundesliga - Runde 32",
     "homeTeamId": "de-sc-freiburg",
     "awayTeamId": "de-vfl-wolfsburg",
@@ -7327,7 +7327,7 @@
   },
   {
     "id": "b2-r33-fckl-dsc",
-    "kickoff": "2026-05-08T16:30:00+02:00",
+    "kickoff": "2026-05-08T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-kaiserslautern",
     "awayTeamId": "de-arminia-bielefeld",
@@ -7338,7 +7338,7 @@
   },
   {
     "id": "b2-r33-scp-ksc",
-    "kickoff": "2026-05-08T16:30:00+02:00",
+    "kickoff": "2026-05-08T18:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-sc-paderborn-07",
     "awayTeamId": "de-karlsruher-sc",
@@ -7382,7 +7382,7 @@
   },
   {
     "id": "bl-r33-bvb-sge",
-    "kickoff": "2026-05-08T18:30:00+02:00",
+    "kickoff": "2026-05-08T20:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-borussia-dortmund",
     "awayTeamId": "de-eintracht-frankfurt",
@@ -7635,7 +7635,7 @@
   },
   {
     "id": "b2-r33-boc-h96",
-    "kickoff": "2026-05-09T11:00:00+02:00",
+    "kickoff": "2026-05-09T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-vfl-bochum",
     "awayTeamId": "de-hannover-96",
@@ -7646,7 +7646,7 @@
   },
   {
     "id": "b2-r33-ebs-sgd",
-    "kickoff": "2026-05-09T11:00:00+02:00",
+    "kickoff": "2026-05-09T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-eintracht-braunschweig",
     "awayTeamId": "de-dynamo-dresden",
@@ -7657,7 +7657,7 @@
   },
   {
     "id": "b2-r33-ksv-fcm",
-    "kickoff": "2026-05-09T11:00:00+02:00",
+    "kickoff": "2026-05-09T13:00:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-holstein-kiel",
     "awayTeamId": "de-magdeburg",
@@ -7723,7 +7723,7 @@
   },
   {
     "id": "bl-r33-fca-bmg",
-    "kickoff": "2026-05-09T13:30:00+02:00",
+    "kickoff": "2026-05-09T15:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-fc-augsburg",
     "awayTeamId": "de-borussia-monchengladbach",
@@ -7734,7 +7734,7 @@
   },
   {
     "id": "bl-r33-rbl-fcp",
-    "kickoff": "2026-05-09T13:30:00+02:00",
+    "kickoff": "2026-05-09T15:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-rb-leipzig",
     "awayTeamId": "de-fc-st-pauli",
@@ -7745,7 +7745,7 @@
   },
   {
     "id": "bl-r33-tsg-svw",
-    "kickoff": "2026-05-09T13:30:00+02:00",
+    "kickoff": "2026-05-09T15:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-tsg-hoffenheim",
     "awayTeamId": "de-werder-bremen",
@@ -7756,7 +7756,7 @@
   },
   {
     "id": "bl-r33-vfb-b04",
-    "kickoff": "2026-05-09T13:30:00+02:00",
+    "kickoff": "2026-05-09T15:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-vfb-stuttgart",
     "awayTeamId": "de-bayer-leverkusen",
@@ -8042,7 +8042,7 @@
   },
   {
     "id": "bl-r33-wob-fcb",
-    "kickoff": "2026-05-09T16:30:00+02:00",
+    "kickoff": "2026-05-09T18:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-vfl-wolfsburg",
     "awayTeamId": "de-bayern-munchen",
@@ -8064,7 +8064,7 @@
   },
   {
     "id": "b2-r33-fcn-s04",
-    "kickoff": "2026-05-09T18:30:00+02:00",
+    "kickoff": "2026-05-09T20:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-nurnberg",
     "awayTeamId": "de-schalke-04",
@@ -8383,7 +8383,7 @@
   },
   {
     "id": "b2-r33-bsc-sgf",
-    "kickoff": "2026-05-10T11:30:00+02:00",
+    "kickoff": "2026-05-10T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-hertha-bsc",
     "awayTeamId": "de-greuther-furth",
@@ -8394,7 +8394,7 @@
   },
   {
     "id": "b2-r33-f95-sve",
-    "kickoff": "2026-05-10T11:30:00+02:00",
+    "kickoff": "2026-05-10T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-fortuna-dusseldorf",
     "awayTeamId": "de-sv-elversberg",
@@ -8405,7 +8405,7 @@
   },
   {
     "id": "b2-r33-scpm-d98",
-    "kickoff": "2026-05-10T11:30:00+02:00",
+    "kickoff": "2026-05-10T13:30:00+02:00",
     "round": "2. Bundesliga - Runde 33",
     "homeTeamId": "de-preussen-munster",
     "awayTeamId": "de-sv-darmstadt-98",
@@ -8471,7 +8471,7 @@
   },
   {
     "id": "bl-r33-hsv-scf",
-    "kickoff": "2026-05-10T13:30:00+02:00",
+    "kickoff": "2026-05-10T15:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-hamburger-sv",
     "awayTeamId": "de-sc-freiburg",
@@ -8526,7 +8526,7 @@
   },
   {
     "id": "bl-r33-koe-fch",
-    "kickoff": "2026-05-10T15:30:00+02:00",
+    "kickoff": "2026-05-10T17:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-fc-koln",
     "awayTeamId": "de-heidenheim",
@@ -8779,7 +8779,7 @@
   },
   {
     "id": "bl-r33-m05-fcu",
-    "kickoff": "2026-05-10T17:30:00+02:00",
+    "kickoff": "2026-05-10T19:30:00+02:00",
     "round": "Bundesliga - Runde 33",
     "homeTeamId": "de-mainz-05",
     "awayTeamId": "de-union-berlin",
@@ -9692,7 +9692,7 @@
   },
   {
     "id": "bl-r34-b04-hsv",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-bayer-leverkusen",
     "awayTeamId": "de-hamburger-sv",
@@ -9703,7 +9703,7 @@
   },
   {
     "id": "bl-r34-bmg-tsg",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-borussia-monchengladbach",
     "awayTeamId": "de-tsg-hoffenheim",
@@ -9714,7 +9714,7 @@
   },
   {
     "id": "bl-r34-fcb-koe",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-bayern-munchen",
     "awayTeamId": "de-fc-koln",
@@ -9725,7 +9725,7 @@
   },
   {
     "id": "bl-r34-fch-m05",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-heidenheim",
     "awayTeamId": "de-mainz-05",
@@ -9736,7 +9736,7 @@
   },
   {
     "id": "bl-r34-fcp-wob",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-fc-st-pauli",
     "awayTeamId": "de-vfl-wolfsburg",
@@ -9747,7 +9747,7 @@
   },
   {
     "id": "bl-r34-fcu-fca",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-union-berlin",
     "awayTeamId": "de-fc-augsburg",
@@ -9758,7 +9758,7 @@
   },
   {
     "id": "bl-r34-scf-rbl",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-sc-freiburg",
     "awayTeamId": "de-rb-leipzig",
@@ -9769,7 +9769,7 @@
   },
   {
     "id": "bl-r34-sge-vfb",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-eintracht-frankfurt",
     "awayTeamId": "de-vfb-stuttgart",
@@ -9780,7 +9780,7 @@
   },
   {
     "id": "bl-r34-svw-bvb",
-    "kickoff": "2026-05-16T13:30:00+02:00",
+    "kickoff": "2026-05-16T15:30:00+02:00",
     "round": "Bundesliga - Runde 34",
     "homeTeamId": "de-werder-bremen",
     "awayTeamId": "de-borussia-dortmund",
@@ -10033,7 +10033,7 @@
   },
   {
     "id": "b2-r34-d98-scp",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-sv-darmstadt-98",
     "awayTeamId": "de-sc-paderborn-07",
@@ -10044,7 +10044,7 @@
   },
   {
     "id": "b2-r34-dsc-bsc",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-arminia-bielefeld",
     "awayTeamId": "de-hertha-bsc",
@@ -10055,7 +10055,7 @@
   },
   {
     "id": "b2-r34-fcm-fckl",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-magdeburg",
     "awayTeamId": "de-kaiserslautern",
@@ -10066,7 +10066,7 @@
   },
   {
     "id": "b2-r34-h96-fcn",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-hannover-96",
     "awayTeamId": "de-nurnberg",
@@ -10077,7 +10077,7 @@
   },
   {
     "id": "b2-r34-ksc-boc",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-karlsruher-sc",
     "awayTeamId": "de-vfl-bochum",
@@ -10088,7 +10088,7 @@
   },
   {
     "id": "b2-r34-s04-ebs",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-schalke-04",
     "awayTeamId": "de-eintracht-braunschweig",
@@ -10099,7 +10099,7 @@
   },
   {
     "id": "b2-r34-sgd-ksv",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-dynamo-dresden",
     "awayTeamId": "de-holstein-kiel",
@@ -10110,7 +10110,7 @@
   },
   {
     "id": "b2-r34-sgf-f95",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-greuther-furth",
     "awayTeamId": "de-fortuna-dusseldorf",
@@ -10121,7 +10121,7 @@
   },
   {
     "id": "b2-r34-sve-scpm",
-    "kickoff": "2026-05-17T13:30:00+02:00",
+    "kickoff": "2026-05-17T15:30:00+02:00",
     "round": "2. Bundesliga - Runde 34",
     "homeTeamId": "de-sv-elversberg",
     "awayTeamId": "de-preussen-munster",
@@ -10517,7 +10517,7 @@
   },
   {
     "id": "esf1-a-r37-ad-merida-unionistas",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-ad-merida",
     "awayTeamId": "es-unionistas",
@@ -10528,7 +10528,7 @@
   },
   {
     "id": "esf1-a-r37-arenteiro-ponferradina",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-arenteiro",
     "awayTeamId": "es-ponferradina",
@@ -10539,7 +10539,7 @@
   },
   {
     "id": "esf1-a-r37-ath-bilbao-b-guadalajara",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-ath-bilbao-b",
     "awayTeamId": "es-guadalajara",
@@ -10550,7 +10550,7 @@
   },
   {
     "id": "esf1-a-r37-celta-vigo-b-lugo",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-celta-vigo-b",
     "awayTeamId": "es-lugo",
@@ -10561,7 +10561,7 @@
   },
   {
     "id": "esf1-a-r37-cf-talavera-ourense-cf",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-cf-talavera",
     "awayTeamId": "es-ourense-cf",
@@ -10572,7 +10572,7 @@
   },
   {
     "id": "esf1-a-r37-ferrol-osasuna-b",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-ferrol",
     "awayTeamId": "es-osasuna-b",
@@ -10583,7 +10583,7 @@
   },
   {
     "id": "esf1-a-r37-real-aviles-barakaldo",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-real-aviles",
     "awayTeamId": "es-barakaldo",
@@ -10594,7 +10594,7 @@
   },
   {
     "id": "esf1-a-r37-real-madrid-b-arenas-getxo",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-real-madrid-b",
     "awayTeamId": "es-arenas-getxo",
@@ -10616,7 +10616,7 @@
   },
   {
     "id": "esf1-a-r37-zamora-cacereno",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T17:00:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 37. runde",
     "homeTeamId": "es-zamora",
     "awayTeamId": "es-cacereno",
@@ -10627,7 +10627,7 @@
   },
   {
     "id": "esf1-b-r37-alcorcon-ud-marbella",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-alcorcon",
     "awayTeamId": "es-ud-marbella",
@@ -10638,7 +10638,7 @@
   },
   {
     "id": "esf1-b-r37-algeciras-cf-hercules",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-algeciras-cf",
     "awayTeamId": "es-hercules",
@@ -10649,7 +10649,7 @@
   },
   {
     "id": "esf1-b-r37-betis-b-tarazona",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-betis-b",
     "awayTeamId": "es-tarazona",
@@ -10660,7 +10660,7 @@
   },
   {
     "id": "esf1-b-r37-eldense-atl-madrid-b",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-eldense",
     "awayTeamId": "es-atl-madrid-b",
@@ -10671,7 +10671,7 @@
   },
   {
     "id": "esf1-b-r37-gimnastic-ce-europa",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-gimnastic",
     "awayTeamId": "es-ce-europa",
@@ -10682,7 +10682,7 @@
   },
   {
     "id": "esf1-b-r37-sabadell-antequera",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-sabadell",
     "awayTeamId": "es-antequera",
@@ -10693,7 +10693,7 @@
   },
   {
     "id": "esf1-b-r37-teruel-sanluqueno",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-teruel",
     "awayTeamId": "es-sanluqueno",
@@ -10704,7 +10704,7 @@
   },
   {
     "id": "esf1-b-r37-torremolinos-murcia",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-torremolinos",
     "awayTeamId": "es-murcia",
@@ -10715,7 +10715,7 @@
   },
   {
     "id": "esf1-b-r37-ud-ibiza-cartagena",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-ud-ibiza",
     "awayTeamId": "es-cartagena",
@@ -10726,7 +10726,7 @@
   },
   {
     "id": "esf1-b-r37-villarreal-b-sevilla-b",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-16T21:00:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 37. runde",
     "homeTeamId": "es-villarreal-b",
     "awayTeamId": "es-sevilla-b",
@@ -10737,7 +10737,7 @@
   },
   {
     "id": "esl-r37-ath-bilbao-celta-vigo",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-ath-bilbao",
     "awayTeamId": "es-celta-vigo",
@@ -10748,7 +10748,7 @@
   },
   {
     "id": "esl-r37-atl-madrid-girona",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-atl-madrid",
     "awayTeamId": "es-girona",
@@ -10759,7 +10759,7 @@
   },
   {
     "id": "esl-r37-barcelona-betis",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-barcelona",
     "awayTeamId": "es-betis",
@@ -10770,7 +10770,7 @@
   },
   {
     "id": "esl-r37-elche-getafe",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-elche",
     "awayTeamId": "es-getafe",
@@ -10781,7 +10781,7 @@
   },
   {
     "id": "esl-r37-levante-mallorca",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-levante",
     "awayTeamId": "es-mallorca",
@@ -10792,7 +10792,7 @@
   },
   {
     "id": "esl-r37-osasuna-espanyol",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-osasuna",
     "awayTeamId": "es-espanyol",
@@ -10803,7 +10803,7 @@
   },
   {
     "id": "esl-r37-oviedo-alaves",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-oviedo",
     "awayTeamId": "es-alaves",
@@ -10814,7 +10814,7 @@
   },
   {
     "id": "esl-r37-real-sociedad-valencia",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-real-sociedad",
     "awayTeamId": "es-valencia",
@@ -10825,7 +10825,7 @@
   },
   {
     "id": "esl-r37-sevilla-real-madrid",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-sevilla",
     "awayTeamId": "es-real-madrid",
@@ -10836,7 +10836,7 @@
   },
   {
     "id": "esl-r37-vallecano-villarreal",
-    "kickoff": "2026-05-17T18:00:00+02:00",
+    "kickoff": "2026-05-17T19:00:00+02:00",
     "round": "La Liga - 37. runde",
     "homeTeamId": "es-vallecano",
     "awayTeamId": "es-villarreal",
@@ -11342,7 +11342,7 @@
   },
   {
     "id": "es2-r41-albacete-real-sociedad-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-albacete",
     "awayTeamId": "es-real-sociedad-b",
@@ -11353,7 +11353,7 @@
   },
   {
     "id": "es2-r41-andorra-ceuta",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-andorra",
     "awayTeamId": "es-ceuta",
@@ -11364,7 +11364,7 @@
   },
   {
     "id": "es2-r41-cadiz-leganes",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-cadiz",
     "awayTeamId": "es-leganes",
@@ -11375,7 +11375,7 @@
   },
   {
     "id": "es2-r41-cultural-leonesa-burgos-cf",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-cultural-leonesa",
     "awayTeamId": "es-burgos-cf",
@@ -11386,7 +11386,7 @@
   },
   {
     "id": "es2-r41-eibar-cordoba",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-eibar",
     "awayTeamId": "es-cordoba",
@@ -11397,7 +11397,7 @@
   },
   {
     "id": "es2-r41-gijon-almeria",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-gijon",
     "awayTeamId": "es-almeria",
@@ -11408,7 +11408,7 @@
   },
   {
     "id": "es2-r41-huesca-castellon",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-huesca",
     "awayTeamId": "es-castellon",
@@ -11419,7 +11419,7 @@
   },
   {
     "id": "es2-r41-las-palmas-zaragoza",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-las-palmas",
     "awayTeamId": "es-zaragoza",
@@ -11430,7 +11430,7 @@
   },
   {
     "id": "es2-r41-malaga-racing-santander",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-malaga",
     "awayTeamId": "es-racing-santander",
@@ -11441,7 +11441,7 @@
   },
   {
     "id": "es2-r41-mirandes-granada",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-mirandes",
     "awayTeamId": "es-granada",
@@ -11452,7 +11452,7 @@
   },
   {
     "id": "es2-r41-valladolid-la-coruna",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T18:30:00+02:00",
     "round": "Segunda División - 41. runde",
     "homeTeamId": "es-valladolid",
     "awayTeamId": "es-la-coruna",
@@ -11463,7 +11463,7 @@
   },
   {
     "id": "esf1-a-r38-arenas-getxo-zamora",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-arenas-getxo",
     "awayTeamId": "es-zamora",
@@ -11474,7 +11474,7 @@
   },
   {
     "id": "esf1-a-r38-barakaldo-celta-vigo-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-barakaldo",
     "awayTeamId": "es-celta-vigo-b",
@@ -11485,7 +11485,7 @@
   },
   {
     "id": "esf1-a-r38-cacereno-cf-talavera",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-cacereno",
     "awayTeamId": "es-cf-talavera",
@@ -11496,7 +11496,7 @@
   },
   {
     "id": "esf1-a-r38-guadalajara-real-madrid-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-guadalajara",
     "awayTeamId": "es-real-madrid-b",
@@ -11507,7 +11507,7 @@
   },
   {
     "id": "esf1-a-r38-lugo-arenteiro",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-lugo",
     "awayTeamId": "es-arenteiro",
@@ -11518,7 +11518,7 @@
   },
   {
     "id": "esf1-a-r38-osasuna-b-ad-merida",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-osasuna-b",
     "awayTeamId": "es-ad-merida",
@@ -11529,7 +11529,7 @@
   },
   {
     "id": "esf1-a-r38-ourense-cf-tenerife",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-ourense-cf",
     "awayTeamId": "es-tenerife",
@@ -11540,7 +11540,7 @@
   },
   {
     "id": "esf1-a-r38-ponferradina-ath-bilbao-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-ponferradina",
     "awayTeamId": "es-ath-bilbao-b",
@@ -11551,7 +11551,7 @@
   },
   {
     "id": "esf1-a-r38-pontevedra-real-aviles",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-pontevedra",
     "awayTeamId": "es-real-aviles",
@@ -11562,7 +11562,7 @@
   },
   {
     "id": "esf1-a-r38-unionistas-ferrol",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 1 - 38. runde",
     "homeTeamId": "es-unionistas",
     "awayTeamId": "es-ferrol",
@@ -11573,7 +11573,7 @@
   },
   {
     "id": "esf1-b-r38-antequera-torremolinos",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-antequera",
     "awayTeamId": "es-torremolinos",
@@ -11584,7 +11584,7 @@
   },
   {
     "id": "esf1-b-r38-atl-madrid-b-algeciras-cf",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-atl-madrid-b",
     "awayTeamId": "es-algeciras-cf",
@@ -11595,7 +11595,7 @@
   },
   {
     "id": "esf1-b-r38-cartagena-betis-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-cartagena",
     "awayTeamId": "es-betis-b",
@@ -11606,7 +11606,7 @@
   },
   {
     "id": "esf1-b-r38-ce-europa-ud-ibiza",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-ce-europa",
     "awayTeamId": "es-ud-ibiza",
@@ -11617,7 +11617,7 @@
   },
   {
     "id": "esf1-b-r38-hercules-gimnastic",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-hercules",
     "awayTeamId": "es-gimnastic",
@@ -11628,7 +11628,7 @@
   },
   {
     "id": "esf1-b-r38-murcia-eldense",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-murcia",
     "awayTeamId": "es-eldense",
@@ -11639,7 +11639,7 @@
   },
   {
     "id": "esf1-b-r38-sanluqueno-villarreal-b",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-sanluqueno",
     "awayTeamId": "es-villarreal-b",
@@ -11650,7 +11650,7 @@
   },
   {
     "id": "esf1-b-r38-sevilla-b-alcorcon",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-sevilla-b",
     "awayTeamId": "es-alcorcon",
@@ -11661,7 +11661,7 @@
   },
   {
     "id": "esf1-b-r38-tarazona-sabadell",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-tarazona",
     "awayTeamId": "es-sabadell",
@@ -11672,7 +11672,7 @@
   },
   {
     "id": "esf1-b-r38-ud-marbella-teruel",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T18:30:00+02:00",
     "round": "Primera Federación - Gruppe 2 - 38. runde",
     "homeTeamId": "es-ud-marbella",
     "awayTeamId": "es-teruel",
@@ -11683,7 +11683,7 @@
   },
   {
     "id": "esl-r38-alaves-vallecano",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-alaves",
     "awayTeamId": "es-vallecano",
@@ -11694,7 +11694,7 @@
   },
   {
     "id": "esl-r38-betis-levante",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-betis",
     "awayTeamId": "es-levante",
@@ -11705,7 +11705,7 @@
   },
   {
     "id": "esl-r38-celta-vigo-sevilla",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-celta-vigo",
     "awayTeamId": "es-sevilla",
@@ -11716,7 +11716,7 @@
   },
   {
     "id": "esl-r38-espanyol-real-sociedad",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-espanyol",
     "awayTeamId": "es-real-sociedad",
@@ -11727,7 +11727,7 @@
   },
   {
     "id": "esl-r38-getafe-osasuna",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-getafe",
     "awayTeamId": "es-osasuna",
@@ -11738,7 +11738,7 @@
   },
   {
     "id": "esl-r38-girona-elche",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-girona",
     "awayTeamId": "es-elche",
@@ -11749,7 +11749,7 @@
   },
   {
     "id": "esl-r38-mallorca-oviedo",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-mallorca",
     "awayTeamId": "es-oviedo",
@@ -11760,7 +11760,7 @@
   },
   {
     "id": "esl-r38-real-madrid-ath-bilbao",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-real-madrid",
     "awayTeamId": "es-ath-bilbao",
@@ -11771,7 +11771,7 @@
   },
   {
     "id": "esl-r38-valencia-barcelona",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-23T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-valencia",
     "awayTeamId": "es-barcelona",
@@ -11782,7 +11782,7 @@
   },
   {
     "id": "esl-r38-villarreal-atl-madrid",
-    "kickoff": "2026-05-24T18:00:00+02:00",
+    "kickoff": "2026-05-24T21:00:00+02:00",
     "round": "La Liga - 38. runde",
     "homeTeamId": "es-villarreal",
     "awayTeamId": "es-atl-madrid",

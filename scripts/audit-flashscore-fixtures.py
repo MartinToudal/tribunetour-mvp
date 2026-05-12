@@ -18,6 +18,7 @@ WORKSPACE_ROOT = WEBSITE_ROOT.parent
 APP_DIR = WORKSPACE_ROOT / "Tribunetour"
 APP_FIXTURES_CSV = APP_DIR / "fixtures.csv"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
+LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
 ALIASES_JSON = WEBSITE_ROOT / "data" / "fixture-audits" / "flashscore-team-aliases.json"
 
 
@@ -83,13 +84,22 @@ def load_aliases() -> dict[str, list[str]]:
 
 
 def load_club_names() -> dict[str, str]:
-    stadiums = load_json(AGGREGATE_STADIUMS_JSON)
     names: dict[str, str] = {}
-    for stadium in stadiums:
-        club_id = stadium.get("id")
-        team = stadium.get("team")
-        if club_id and team and club_id not in names:
-            names[club_id] = team
+
+    def merge_stadium_entries(stadiums: list[dict]) -> None:
+        for stadium in stadiums:
+            club_id = stadium.get("id")
+            team = stadium.get("team")
+            if club_id and team and club_id not in names:
+                names[club_id] = team
+
+    if AGGREGATE_STADIUMS_JSON.exists():
+        merge_stadium_entries(load_json(AGGREGATE_STADIUMS_JSON))
+
+    if LEAGUE_PACKS_DIR.exists():
+        for sidecar in sorted(LEAGUE_PACKS_DIR.glob("*/stadiums.json")):
+            merge_stadium_entries(load_json(sidecar))
+
     return names
 
 

@@ -201,7 +201,7 @@
       "id": "es-primera-federacion-g1",
       "label": "Spanien - Primera Federación Gruppe 1",
       "season": "2025-26",
-      "fixturePrefix": "esf1-",
+    "fixturePrefix": "esf1-a-",
       "roundPrefix": "Primera Federación - Gruppe 1 - ",
       "source": "data/fixture-audits/raw/es-primera-federacion-g1.txt",
       "fetch": {
@@ -215,7 +215,7 @@
       "id": "es-primera-federacion-g2",
       "label": "Spanien - Primera Federación Gruppe 2",
       "season": "2025-26",
-      "fixturePrefix": "esf1-",
+    "fixturePrefix": "esf1-b-",
       "roundPrefix": "Primera Federación - Gruppe 2 - ",
       "source": "data/fixture-audits/raw/es-primera-federacion-g2.txt",
       "fetch": {
