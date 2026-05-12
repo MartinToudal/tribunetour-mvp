@@ -18,6 +18,7 @@ WORKSPACE_ROOT = WEBSITE_ROOT.parent
 APP_DIR = WORKSPACE_ROOT / "Tribunetour"
 APP_FIXTURES_CSV = APP_DIR / "fixtures.csv"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
+WEB_FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
 ALIASES_JSON = WEBSITE_ROOT / "data" / "fixture-audits" / "flashscore-team-aliases.json"
 
@@ -111,36 +112,41 @@ def load_fixtures(
     round_prefix: str | None,
 ) -> list[FixtureRow]:
     rows: list[FixtureRow] = []
-    with APP_FIXTURES_CSV.open(encoding="utf-8", newline="") as handle:
-        reader = csv.DictReader(handle)
-        for row in reader:
-            row_competition = (row.get("competitionId") or "").strip()
-            row_season = (row.get("seasonId") or season_id).strip() or season_id
-            row_id = row["id"]
-            row_round = row.get("round") or ""
+    if APP_FIXTURES_CSV.exists():
+        with APP_FIXTURES_CSV.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            source_rows = list(reader)
+    else:
+        source_rows = load_json(WEB_FIXTURES_JSON)
 
-            matches_competition = bool(competition_id and row_competition == competition_id)
-            matches_fixture_prefix = bool(fixture_prefix and row_id.startswith(fixture_prefix))
-            matches_round_prefix = bool(round_prefix and row_round.startswith(round_prefix))
+    for row in source_rows:
+        row_competition = (row.get("competitionId") or "").strip()
+        row_season = (row.get("seasonId") or season_id).strip() or season_id
+        row_id = row["id"]
+        row_round = row.get("round") or ""
 
-            if not any([matches_competition, matches_fixture_prefix, matches_round_prefix]):
-                continue
-            if row_season != season_id:
-                continue
-            home_team_id = row["homeTeamId"]
-            away_team_id = row["awayTeamId"]
-            rows.append(
-                FixtureRow(
-                    fixture_id=row["id"],
-                    kickoff=row["kickoff"],
-                    competition_id=row_competition or (competition_id or fixture_prefix or round_prefix or "legacy"),
-                    season_id=row_season,
-                    home_team_id=home_team_id,
-                    away_team_id=away_team_id,
-                    home_name=club_names.get(home_team_id, home_team_id),
-                    away_name=club_names.get(away_team_id, away_team_id),
-                )
+        matches_competition = bool(competition_id and row_competition == competition_id)
+        matches_fixture_prefix = bool(fixture_prefix and row_id.startswith(fixture_prefix))
+        matches_round_prefix = bool(round_prefix and row_round.startswith(round_prefix))
+
+        if not any([matches_competition, matches_fixture_prefix, matches_round_prefix]):
+            continue
+        if row_season != season_id:
+            continue
+        home_team_id = row["homeTeamId"]
+        away_team_id = row["awayTeamId"]
+        rows.append(
+            FixtureRow(
+                fixture_id=row["id"],
+                kickoff=row["kickoff"],
+                competition_id=row_competition or (competition_id or fixture_prefix or round_prefix or "legacy"),
+                season_id=row_season,
+                home_team_id=home_team_id,
+                away_team_id=away_team_id,
+                home_name=club_names.get(home_team_id, home_team_id),
+                away_name=club_names.get(away_team_id, away_team_id),
             )
+        )
     return rows
 
 

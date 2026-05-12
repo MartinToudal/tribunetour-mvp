@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-12T05:50:37.995195+00:00
+Generated at: 2026-05-12T15:18:38.314623+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**

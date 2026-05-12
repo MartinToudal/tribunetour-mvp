@@ -1,0 +1,4361 @@
+{
+  "generatedAt": "2026-05-12T15:18:34.545158+00:00",
+  "totalUpdated": 36,
+  "totalSkipped": 215,
+  "results": [
+    {
+      "id": "dk-superliga",
+      "label": "Danmark - Superliga",
+      "updatedCount": 5,
+      "updates": [
+        {
+          "fixtureId": "sl-r23-fcf-fck",
+          "home": "FC Fredericia",
+          "away": "F.C. København",
+          "oldKickoff": "2026-03-13T19:00:00+01:00",
+          "newKickoff": "2026-05-03T16:00:00+01:00"
+        },
+        {
+          "fixtureId": "sl-r23-ob-fcm",
+          "home": "OB",
+          "away": "FC Midtjylland",
+          "oldKickoff": "2026-03-15T14:00:00+01:00",
+          "newKickoff": "2026-02-15T16:00:00+01:00"
+        },
+        {
+          "fixtureId": "sl-r31-bif-agf",
+          "home": "Brøndby IF",
+          "away": "AGF",
+          "oldKickoff": "2026-05-10T16:00:00+02:00",
+          "newKickoff": "2026-05-10T18:00:00+02:00"
+        },
+        {
+          "fixtureId": "sl-r31-fcn-fcm",
+          "home": "FC Nordsjælland",
+          "away": "FC Midtjylland",
+          "oldKickoff": "2026-05-10T16:00:00+02:00",
+          "newKickoff": "2026-05-10T14:00:00+02:00"
+        },
+        {
+          "fixtureId": "sl-r31-vff-sje",
+          "home": "Viborg FF",
+          "away": "Sønderjyske Fodbold",
+          "oldKickoff": "2026-05-10T16:00:00+02:00",
+          "newKickoff": "2026-05-08T19:00:00+02:00"
+        }
+      ],
+      "skippedCount": 36,
+      "skipped": [
+        {
+          "fixtureId": "sl-r19-fcn-sje",
+          "reason": "ambiguous-source-match",
+          "home": "FC Nordsjælland",
+          "away": "Sønderjyske Fodbold",
+          "candidates": [
+            "2026-02-08T14:00:00",
+            "2026-03-22T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r19-vb-fcf",
+          "reason": "ambiguous-source-match",
+          "home": "Vejle Boldklub",
+          "away": "FC Fredericia",
+          "candidates": [
+            "2026-02-09T19:00:00",
+            "2026-05-10T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r20-ran-vb",
+          "reason": "ambiguous-source-match",
+          "home": "Randers FC",
+          "away": "Vejle Boldklub",
+          "candidates": [
+            "2026-02-13T19:00:00",
+            "2026-05-03T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r20-vff-bif",
+          "reason": "ambiguous-source-match",
+          "home": "Viborg FF",
+          "away": "Brøndby IF",
+          "candidates": [
+            "2026-02-15T18:00:00",
+            "2026-04-22T20:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r21-ob-fck",
+          "reason": "ambiguous-source-match",
+          "home": "OB",
+          "away": "F.C. København",
+          "candidates": [
+            "2026-02-21T14:00:00",
+            "2026-03-15T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r21-ran-fcf",
+          "reason": "ambiguous-source-match",
+          "home": "Randers FC",
+          "away": "FC Fredericia",
+          "candidates": [
+            "2026-02-22T14:00:00",
+            "2026-04-23T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r21-agf-vff",
+          "reason": "ambiguous-source-match",
+          "home": "AGF",
+          "away": "Viborg FF",
+          "candidates": [
+            "2026-02-22T18:00:00",
+            "2026-05-17T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r21-bif-sje",
+          "reason": "ambiguous-source-match",
+          "home": "Brøndby IF",
+          "away": "Sønderjyske Fodbold",
+          "candidates": [
+            "2026-02-23T19:00:00",
+            "2026-04-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r22-fcf-sif",
+          "reason": "ambiguous-source-match",
+          "home": "FC Fredericia",
+          "away": "Silkeborg IF",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r22-fck-ran",
+          "reason": "ambiguous-source-match",
+          "home": "F.C. København",
+          "away": "Randers FC",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r22-fcm-bif",
+          "reason": "ambiguous-source-match",
+          "home": "FC Midtjylland",
+          "away": "Brøndby IF",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r22-vff-fcn",
+          "reason": "ambiguous-source-match",
+          "home": "Viborg FF",
+          "away": "FC Nordsjælland",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-04-26T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r23-fcm-fcn",
+          "reason": "ambiguous-source-match",
+          "home": "FC Midtjylland",
+          "away": "FC Nordsjælland",
+          "candidates": [
+            "2026-03-15T14:00:00",
+            "2026-11-30T16:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r24-fcn-sje",
+          "reason": "ambiguous-source-match",
+          "home": "FC Nordsjælland",
+          "away": "Sønderjyske Fodbold",
+          "candidates": [
+            "2026-02-08T14:00:00",
+            "2026-03-22T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r24-vff-fcm",
+          "reason": "ambiguous-source-match",
+          "home": "Viborg FF",
+          "away": "FC Midtjylland",
+          "candidates": [
+            "2026-03-22T20:00:00",
+            "2026-12-07T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r26-sje-vff",
+          "reason": "ambiguous-source-match",
+          "home": "Sønderjyske Fodbold",
+          "away": "Viborg FF",
+          "candidates": [
+            "2026-04-12T14:00:00",
+            "2026-11-28T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r27-bif-sje",
+          "reason": "ambiguous-source-match",
+          "home": "Brøndby IF",
+          "away": "Sønderjyske Fodbold",
+          "candidates": [
+            "2026-02-23T19:00:00",
+            "2026-04-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r27-vb-fck",
+          "reason": "ambiguous-source-match",
+          "home": "Vejle Boldklub",
+          "away": "F.C. København",
+          "candidates": [
+            "2026-04-19T18:00:00",
+            "2026-11-09T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r27-fcm-agf",
+          "reason": "ambiguous-source-match",
+          "home": "FC Midtjylland",
+          "away": "AGF",
+          "candidates": [
+            "2026-04-20T19:00:00",
+            "2026-11-03T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r28-vff-bif",
+          "reason": "ambiguous-source-match",
+          "home": "Viborg FF",
+          "away": "Brøndby IF",
+          "candidates": [
+            "2026-02-15T18:00:00",
+            "2026-04-22T20:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r28-ran-fcf",
+          "reason": "ambiguous-source-match",
+          "home": "Randers FC",
+          "away": "FC Fredericia",
+          "candidates": [
+            "2026-02-22T14:00:00",
+            "2026-04-23T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r28-sje-fcm",
+          "reason": "ambiguous-source-match",
+          "home": "Sønderjyske Fodbold",
+          "away": "FC Midtjylland",
+          "candidates": [
+            "2026-04-23T20:00:00",
+            "2026-11-23T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r29-fcf-ob",
+          "reason": "ambiguous-source-match",
+          "home": "FC Fredericia",
+          "away": "OB",
+          "candidates": [
+            "2026-04-26T14:00:00",
+            "2026-12-05T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r29-sif-ran",
+          "reason": "ambiguous-source-match",
+          "home": "Silkeborg IF",
+          "away": "Randers FC",
+          "candidates": [
+            "2026-04-26T14:00:00",
+            "2026-11-30T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r29-vff-fcn",
+          "reason": "ambiguous-source-match",
+          "home": "Viborg FF",
+          "away": "FC Nordsjælland",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-04-26T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r30-bif-fcn",
+          "reason": "ambiguous-source-match",
+          "home": "Brøndby IF",
+          "away": "FC Nordsjælland",
+          "candidates": [
+            "2026-05-01T19:00:00",
+            "2026-11-09T20:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r30-ob-sif",
+          "reason": "ambiguous-source-match",
+          "home": "OB",
+          "away": "Silkeborg IF",
+          "candidates": [
+            "2026-05-03T14:00:00",
+            "2026-11-07T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r30-ran-vb",
+          "reason": "ambiguous-source-match",
+          "home": "Randers FC",
+          "away": "Vejle Boldklub",
+          "candidates": [
+            "2026-02-13T19:00:00",
+            "2026-05-03T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r30-agf-sje",
+          "reason": "ambiguous-source-match",
+          "home": "AGF",
+          "away": "Sønderjyske Fodbold",
+          "candidates": [
+            "2026-05-03T18:00:00",
+            "2026-11-09T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r31-ran-ob",
+          "reason": "ambiguous-source-match",
+          "home": "Randers FC",
+          "away": "OB",
+          "candidates": [
+            "2026-05-11T19:00:00",
+            "2026-11-24T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r31-vb-fcf",
+          "reason": "ambiguous-source-match",
+          "home": "Vejle Boldklub",
+          "away": "FC Fredericia",
+          "candidates": [
+            "2026-02-09T19:00:00",
+            "2026-05-10T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r32-agf-vff",
+          "reason": "ambiguous-source-match",
+          "home": "AGF",
+          "away": "Viborg FF",
+          "candidates": [
+            "2026-02-22T18:00:00",
+            "2026-05-17T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r32-fcf-sif",
+          "reason": "ambiguous-source-match",
+          "home": "FC Fredericia",
+          "away": "Silkeborg IF",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r32-fck-ran",
+          "reason": "ambiguous-source-match",
+          "home": "F.C. København",
+          "away": "Randers FC",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r32-fcm-bif",
+          "reason": "ambiguous-source-match",
+          "home": "FC Midtjylland",
+          "away": "Brøndby IF",
+          "candidates": [
+            "2026-03-01T17:00:00",
+            "2026-05-17T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "sl-r32-ob-vb",
+          "reason": "ambiguous-source-match",
+          "home": "OB",
+          "away": "Vejle Boldklub",
+          "candidates": [
+            "2026-05-17T14:00:00",
+            "2026-11-30T18:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "dk-1-division",
+      "label": "Danmark - 1. division",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 39,
+      "skipped": [
+        {
+          "fixtureId": "1d-r19-hob-hbk",
+          "reason": "ambiguous-source-match",
+          "home": "Hobro IK",
+          "away": "HB Køge",
+          "candidates": [
+            "2026-02-27T18:00:00",
+            "2026-04-22T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r19-lyn-kol",
+          "reason": "ambiguous-source-match",
+          "home": "Lyngby Boldklub",
+          "away": "Kolding IF",
+          "candidates": [
+            "2026-02-27T19:00:00",
+            "2026-04-11T14:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r19-efb-ach",
+          "reason": "ambiguous-source-match",
+          "home": "Esbjerg fB",
+          "away": "AC Horsens",
+          "candidates": [
+            "2026-02-28T13:00:00",
+            "2026-04-30T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r19-aaf-mid",
+          "reason": "ambiguous-source-match",
+          "home": "Aarhus Fremad",
+          "away": "Middelfart",
+          "candidates": [
+            "2026-02-28T14:00:00",
+            "2026-04-22T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r20-aab-aaf",
+          "reason": "ambiguous-source-match",
+          "home": "AaB",
+          "away": "Aarhus Fremad",
+          "candidates": [
+            "2026-03-06T19:00:00",
+            "2026-04-18T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r20-ach-lyn",
+          "reason": "ambiguous-source-match",
+          "home": "AC Horsens",
+          "away": "Lyngby Boldklub",
+          "candidates": [
+            "2026-03-09T19:00:00",
+            "2026-04-04T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r21-b93-hbk",
+          "reason": "ambiguous-source-match",
+          "home": "B.93",
+          "away": "HB Køge",
+          "candidates": [
+            "2026-03-13T19:00:00",
+            "2026-04-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r21-hob-aab",
+          "reason": "ambiguous-source-match",
+          "home": "Hobro IK",
+          "away": "AaB",
+          "candidates": [
+            "2026-03-14T13:00:00",
+            "2026-04-10T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r21-efb-hil",
+          "reason": "ambiguous-source-match",
+          "home": "Esbjerg fB",
+          "away": "Hillerød Fodbold",
+          "candidates": [
+            "2026-03-15T14:00:00",
+            "2026-04-17T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r21-hvi-kol",
+          "reason": "ambiguous-source-match",
+          "home": "Hvidovre IF",
+          "away": "Kolding IF",
+          "candidates": [
+            "2026-03-15T16:00:00",
+            "2026-04-21T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r22-ach-hvi",
+          "reason": "ambiguous-source-match",
+          "home": "AC Horsens",
+          "away": "Hvidovre IF",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-05-16T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r22-mid-hob",
+          "reason": "ambiguous-source-match",
+          "home": "Middelfart",
+          "away": "Hobro IK",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-04-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r23-b93-hob",
+          "reason": "ambiguous-source-match",
+          "home": "B.93",
+          "away": "Hobro IK",
+          "candidates": [
+            "2026-04-03T14:00:00",
+            "2026-11-28T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r23-mid-aab",
+          "reason": "ambiguous-source-match",
+          "home": "Middelfart",
+          "away": "AaB",
+          "candidates": [
+            "2026-04-04T14:00:00",
+            "2026-11-01T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r23-ach-lyn",
+          "reason": "ambiguous-source-match",
+          "home": "AC Horsens",
+          "away": "Lyngby Boldklub",
+          "candidates": [
+            "2026-03-09T19:00:00",
+            "2026-04-04T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r24-hob-aab",
+          "reason": "ambiguous-source-match",
+          "home": "Hobro IK",
+          "away": "AaB",
+          "candidates": [
+            "2026-03-14T13:00:00",
+            "2026-04-10T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r24-hbk-mid",
+          "reason": "ambiguous-source-match",
+          "home": "HB Køge",
+          "away": "Middelfart",
+          "candidates": [
+            "2026-04-10T18:30:00",
+            "2026-11-29T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r24-lyn-kol",
+          "reason": "ambiguous-source-match",
+          "home": "Lyngby Boldklub",
+          "away": "Kolding IF",
+          "candidates": [
+            "2026-02-27T19:00:00",
+            "2026-04-11T14:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r25-efb-hil",
+          "reason": "ambiguous-source-match",
+          "home": "Esbjerg fB",
+          "away": "Hillerød Fodbold",
+          "candidates": [
+            "2026-03-15T14:00:00",
+            "2026-04-17T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r25-b93-hbk",
+          "reason": "ambiguous-source-match",
+          "home": "B.93",
+          "away": "HB Køge",
+          "candidates": [
+            "2026-03-13T19:00:00",
+            "2026-04-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r25-kol-ach",
+          "reason": "ambiguous-source-match",
+          "home": "Kolding IF",
+          "away": "AC Horsens",
+          "candidates": [
+            "2026-04-17T19:00:00",
+            "2026-11-07T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r25-mid-hob",
+          "reason": "ambiguous-source-match",
+          "home": "Middelfart",
+          "away": "Hobro IK",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-04-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r25-aab-aaf",
+          "reason": "ambiguous-source-match",
+          "home": "AaB",
+          "away": "Aarhus Fremad",
+          "candidates": [
+            "2026-03-06T19:00:00",
+            "2026-04-18T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r26-hvi-kol",
+          "reason": "ambiguous-source-match",
+          "home": "Hvidovre IF",
+          "away": "Kolding IF",
+          "candidates": [
+            "2026-03-15T16:00:00",
+            "2026-04-21T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r26-hil-lyn",
+          "reason": "ambiguous-source-match",
+          "home": "Hillerød Fodbold",
+          "away": "Lyngby Boldklub",
+          "candidates": [
+            "2026-04-21T20:00:00",
+            "2026-11-28T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r26-aaf-mid",
+          "reason": "ambiguous-source-match",
+          "home": "Aarhus Fremad",
+          "away": "Middelfart",
+          "candidates": [
+            "2026-02-28T14:00:00",
+            "2026-04-22T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r26-hob-hbk",
+          "reason": "ambiguous-source-match",
+          "home": "Hobro IK",
+          "away": "HB Køge",
+          "candidates": [
+            "2026-02-27T18:00:00",
+            "2026-04-22T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r27-lyn-efb",
+          "reason": "ambiguous-source-match",
+          "home": "Lyngby Boldklub",
+          "away": "Esbjerg fB",
+          "candidates": [
+            "2026-04-24T19:00:00",
+            "2026-11-21T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r27-hil-kol",
+          "reason": "ambiguous-source-match",
+          "home": "Hillerød Fodbold",
+          "away": "Kolding IF",
+          "candidates": [
+            "2026-04-25T14:00:00",
+            "2026-11-01T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r28-efb-ach",
+          "reason": "ambiguous-source-match",
+          "home": "Esbjerg fB",
+          "away": "AC Horsens",
+          "candidates": [
+            "2026-02-28T13:00:00",
+            "2026-04-30T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r29-hvi-lyn",
+          "reason": "ambiguous-source-match",
+          "home": "Hvidovre IF",
+          "away": "Lyngby Boldklub",
+          "candidates": [
+            "2026-05-09T13:00:00",
+            "2026-10-06T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r29-aaf-hbk",
+          "reason": "ambiguous-source-match",
+          "home": "Aarhus Fremad",
+          "away": "HB Køge",
+          "candidates": [
+            "2026-05-09T14:00:00",
+            "2026-11-23T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r29-ach-hil",
+          "reason": "ambiguous-source-match",
+          "home": "AC Horsens",
+          "away": "Hillerød Fodbold",
+          "candidates": [
+            "2026-05-09T14:00:00",
+            "2026-11-23T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r30-hob-aaf",
+          "reason": "ambiguous-source-match",
+          "home": "Hobro IK",
+          "away": "Aarhus Fremad",
+          "candidates": [
+            "2026-05-14T13:00:00",
+            "2026-11-07T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r30-b93-aab",
+          "reason": "ambiguous-source-match",
+          "home": "B.93",
+          "away": "AaB",
+          "candidates": [
+            "2026-05-15T19:00:00",
+            "2026-10-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r30-ach-hvi",
+          "reason": "ambiguous-source-match",
+          "home": "AC Horsens",
+          "away": "Hvidovre IF",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-05-16T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r31-mid-b93",
+          "reason": "ambiguous-source-match",
+          "home": "Middelfart",
+          "away": "B.93",
+          "candidates": [
+            "2026-05-23T14:00:00",
+            "2026-11-22T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r31-hvi-efb",
+          "reason": "ambiguous-source-match",
+          "home": "Hvidovre IF",
+          "away": "Esbjerg fB",
+          "candidates": [
+            "2026-05-25T15:00:00",
+            "2026-11-29T13:30:00"
+          ]
+        },
+        {
+          "fixtureId": "1d-r32-hil-hvi",
+          "reason": "ambiguous-source-match",
+          "home": "Hillerød Fodbold",
+          "away": "Hvidovre IF",
+          "candidates": [
+            "2026-05-31T15:00:00",
+            "2026-10-18T14:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "dk-2-division",
+      "label": "Danmark - 2. division",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 58,
+      "skipped": [
+        {
+          "fixtureId": "2d-r17-faa-nas",
+          "reason": "missing-source-match",
+          "home": "Fremad Amager",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r17-ski-hel",
+          "reason": "ambiguous-source-match",
+          "home": "Skive",
+          "away": "FC Helsingør",
+          "candidates": [
+            "2026-03-06T19:00:00",
+            "2026-05-08T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r17-ab-hik",
+          "reason": "ambiguous-source-match",
+          "home": "AB",
+          "away": "HIK",
+          "candidates": [
+            "2026-03-07T16:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r18-hik-ros",
+          "reason": "ambiguous-source-match",
+          "home": "HIK",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-03-13T19:00:00",
+            "2026-05-08T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r18-ish-faa",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "Fremad Amager",
+          "candidates": [
+            "2026-03-14T13:00:00",
+            "2026-04-11T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r18-bra-ski",
+          "reason": "ambiguous-source-match",
+          "home": "Brabrand IF",
+          "away": "Skive",
+          "candidates": [
+            "2026-03-14T14:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r18-hel-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "FC Helsingør",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-03-15T13:00:00",
+            "2026-04-11T16:30:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r18-nas-ven",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "Vendsyssel FF"
+        },
+        {
+          "fixtureId": "2d-r18-thi-ab",
+          "reason": "ambiguous-source-match",
+          "home": "Thisted FC",
+          "away": "AB",
+          "candidates": [
+            "2026-03-15T15:00:00",
+            "2026-05-08T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r19-ven-thi",
+          "reason": "ambiguous-source-match",
+          "home": "Vendsyssel FF",
+          "away": "Thisted FC",
+          "candidates": [
+            "2026-03-20T19:00:00",
+            "2026-05-01T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r19-faa-bra",
+          "reason": "ambiguous-source-match",
+          "home": "Fremad Amager",
+          "away": "Brabrand IF",
+          "candidates": [
+            "2026-03-21T14:00:00",
+            "2026-05-09T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r19-ski-nas",
+          "reason": "missing-source-match",
+          "home": "Skive",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r20-ab-ros",
+          "reason": "ambiguous-source-match",
+          "home": "AB",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-03-27T19:00:00",
+            "2026-05-13T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r20-ish-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-03-28T13:00:00",
+            "2026-05-30T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r20-nas-bra",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "Brabrand IF"
+        },
+        {
+          "fixtureId": "2d-r21-bra-hel",
+          "reason": "ambiguous-source-match",
+          "home": "Brabrand IF",
+          "away": "FC Helsingør",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-05-02T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r21-ros-nas",
+          "reason": "missing-source-match",
+          "home": "FC Roskilde",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r22-hel-faa",
+          "reason": "ambiguous-source-match",
+          "home": "FC Helsingør",
+          "away": "Fremad Amager",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-13T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r22-ish-ski",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "Skive",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r22-nas-hik",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "HIK"
+        },
+        {
+          "fixtureId": "2d-r22-ven-ros",
+          "reason": "ambiguous-source-match",
+          "home": "Vendsyssel FF",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-24T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r23-ish-faa",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "Fremad Amager",
+          "candidates": [
+            "2026-03-14T13:00:00",
+            "2026-04-11T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r23-thi-nas",
+          "reason": "missing-source-match",
+          "home": "Thisted FC",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r23-hel-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "FC Helsingør",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-03-15T13:00:00",
+            "2026-04-11T16:30:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r24-nas-ros",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "FC Roskilde"
+        },
+        {
+          "fixtureId": "2d-r24-ab-ven",
+          "reason": "ambiguous-source-match",
+          "home": "AB",
+          "away": "Vendsyssel FF",
+          "candidates": [
+            "2026-04-18T13:00:00",
+            "2026-11-08T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r24-faa-hel",
+          "reason": "ambiguous-source-match",
+          "home": "Fremad Amager",
+          "away": "FC Helsingør",
+          "candidates": [
+            "2026-04-18T18:30:00",
+            "2026-10-10T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r24-thi-hik",
+          "reason": "ambiguous-source-match",
+          "home": "Thisted FC",
+          "away": "HIK",
+          "candidates": [
+            "2026-04-19T14:00:00",
+            "2026-10-19T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r25-hel-ish",
+          "reason": "ambiguous-source-match",
+          "home": "FC Helsingør",
+          "away": "Ishøj IF",
+          "candidates": [
+            "2026-04-24T18:30:00",
+            "2026-10-17T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r25-ab-nas",
+          "reason": "missing-source-match",
+          "home": "AB",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r25-ros-thi",
+          "reason": "ambiguous-source-match",
+          "home": "FC Roskilde",
+          "away": "Thisted FC",
+          "candidates": [
+            "2026-04-25T14:00:00",
+            "2026-11-01T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r26-ven-thi",
+          "reason": "ambiguous-source-match",
+          "home": "Vendsyssel FF",
+          "away": "Thisted FC",
+          "candidates": [
+            "2026-03-20T19:00:00",
+            "2026-05-01T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r26-ish-ski",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "Skive",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r26-bra-hel",
+          "reason": "ambiguous-source-match",
+          "home": "Brabrand IF",
+          "away": "FC Helsingør",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-05-02T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r26-hik-nas",
+          "reason": "missing-source-match",
+          "home": "HIK",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r27-thi-ab",
+          "reason": "ambiguous-source-match",
+          "home": "Thisted FC",
+          "away": "AB",
+          "candidates": [
+            "2026-03-15T15:00:00",
+            "2026-05-08T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r27-hik-ros",
+          "reason": "ambiguous-source-match",
+          "home": "HIK",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-03-13T19:00:00",
+            "2026-05-08T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r27-ski-hel",
+          "reason": "ambiguous-source-match",
+          "home": "Skive",
+          "away": "FC Helsingør",
+          "candidates": [
+            "2026-03-06T19:00:00",
+            "2026-05-08T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r27-nas-ven",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "Vendsyssel FF"
+        },
+        {
+          "fixtureId": "2d-r27-faa-bra",
+          "reason": "ambiguous-source-match",
+          "home": "Fremad Amager",
+          "away": "Brabrand IF",
+          "candidates": [
+            "2026-03-21T14:00:00",
+            "2026-05-09T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r28-ab-ros",
+          "reason": "ambiguous-source-match",
+          "home": "AB",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-03-27T19:00:00",
+            "2026-05-13T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r28-hel-faa",
+          "reason": "ambiguous-source-match",
+          "home": "FC Helsingør",
+          "away": "Fremad Amager",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-13T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r28-ish-bra",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "Brabrand IF",
+          "candidates": [
+            "2026-05-13T19:00:00",
+            "2026-11-08T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r28-nas-hik",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "HIK"
+        },
+        {
+          "fixtureId": "2d-r28-ski-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "Skive",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-05-13T19:00:00",
+            "2026-11-01T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r29-bra-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "Brabrand IF",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-05-16T14:00:00",
+            "2026-10-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r29-ros-nas",
+          "reason": "missing-source-match",
+          "home": "FC Roskilde",
+          "away": "Næstved"
+        },
+        {
+          "fixtureId": "2d-r30-ab-hik",
+          "reason": "ambiguous-source-match",
+          "home": "AB",
+          "away": "HIK",
+          "candidates": [
+            "2026-03-07T16:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r30-bra-ski",
+          "reason": "ambiguous-source-match",
+          "home": "Brabrand IF",
+          "away": "Skive",
+          "candidates": [
+            "2026-03-14T14:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r30-nas-thi",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "Thisted FC"
+        },
+        {
+          "fixtureId": "2d-r30-vsk-faa",
+          "reason": "ambiguous-source-match",
+          "home": "VSK Aarhus",
+          "away": "Fremad Amager",
+          "candidates": [
+            "2026-05-23T13:30:00",
+            "2026-11-08T13:30:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r30-ven-ros",
+          "reason": "ambiguous-source-match",
+          "home": "Vendsyssel FF",
+          "away": "FC Roskilde",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-05-24T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r31-faa-ski",
+          "reason": "ambiguous-source-match",
+          "home": "Fremad Amager",
+          "away": "Skive",
+          "candidates": [
+            "2026-05-29T19:00:00",
+            "2026-11-14T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r31-nas-ab",
+          "reason": "missing-source-match",
+          "home": "Næstved",
+          "away": "AB"
+        },
+        {
+          "fixtureId": "2d-r31-ish-vsk",
+          "reason": "ambiguous-source-match",
+          "home": "Ishøj IF",
+          "away": "VSK Aarhus",
+          "candidates": [
+            "2026-03-28T13:00:00",
+            "2026-05-30T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r31-hik-ven",
+          "reason": "ambiguous-source-match",
+          "home": "HIK",
+          "away": "Vendsyssel FF",
+          "candidates": [
+            "2026-05-30T14:00:00",
+            "2026-11-14T18:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r32-ski-ish",
+          "reason": "ambiguous-source-match",
+          "home": "Skive",
+          "away": "Ishøj IF",
+          "candidates": [
+            "2026-06-06T14:00:00",
+            "2026-10-04T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "2d-r32-ven-nas",
+          "reason": "missing-source-match",
+          "home": "Vendsyssel FF",
+          "away": "Næstved"
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "HIK",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Roskilde",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "FC Helsingør",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Brabrand IF",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Fremad Amager",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "HIK",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Vendsyssel FF",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "Vendsyssel FF",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Thisted FC",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Vendsyssel FF",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Thisted FC",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "HIK",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Næstved BK",
+          "away": "Vendsyssel FF",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Roskilde",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "VSK Aarhus",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Næstved BK",
+          "away": "FC Roskilde",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Næstved BK",
+          "away": "AB",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Skive",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "Thisted FC",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "AB",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Ishøj IF",
+          "away": "Næstved BK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Næstved BK",
+          "away": "Brabrand IF",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Næstved BK",
+          "away": "AB",
+          "homeResolved": false,
+          "awayResolved": true
+        }
+      ]
+    },
+    {
+      "id": "dk-3-division",
+      "label": "Danmark - 3. division",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 60,
+      "skipped": [
+        {
+          "fixtureId": "3d-r17-hør-van",
+          "reason": "ambiguous-source-match",
+          "home": "Hørsholm-Usserød IK",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-03-07T13:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r17-odd-vej",
+          "reason": "ambiguous-source-match",
+          "home": "Odder Fodbold",
+          "away": "Vejgaard B",
+          "candidates": [
+            "2026-03-07T13:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r17-fre-nyk",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Nykøbing FC"
+        },
+        {
+          "fixtureId": "3d-r18-lys-hol",
+          "reason": "ambiguous-source-match",
+          "home": "IF Lyseng",
+          "away": "Holbæk B&I",
+          "candidates": [
+            "2026-03-14T13:30:00",
+            "2026-04-18T13:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r18-brø-fre",
+          "reason": "missing-source-match",
+          "home": "Brønshøj",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r18-nyk-fa2",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "FA 2000",
+          "candidates": [
+            "2026-03-14T15:00:00",
+            "2026-04-26T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r19-hol-sun",
+          "reason": "ambiguous-source-match",
+          "home": "Holbæk B&I",
+          "away": "Sundby BK",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r19-fa2-brø",
+          "reason": "ambiguous-source-match",
+          "home": "FA 2000",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-03-21T14:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r19-fre-van",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Vanløse"
+        },
+        {
+          "fixtureId": "3d-r20-lys-fre",
+          "reason": "missing-source-match",
+          "home": "IF Lyseng",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r20-næs-hør",
+          "reason": "ambiguous-source-match",
+          "home": "Næsby BK",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-03-28T14:00:00",
+            "2026-05-09T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r20-sun-vej",
+          "reason": "ambiguous-source-match",
+          "home": "Sundby BK",
+          "away": "Vejgaard B",
+          "candidates": [
+            "2026-03-28T14:00:00",
+            "2026-04-11T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r20-nyk-van",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-03-28T15:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r21-hør-brø",
+          "reason": "ambiguous-source-match",
+          "home": "Hørsholm-Usserød IK",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-04-01T18:30:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r21-vej-lys",
+          "reason": "ambiguous-source-match",
+          "home": "Vejgaard B",
+          "away": "IF Lyseng",
+          "candidates": [
+            "2026-04-02T13:00:00",
+            "2026-06-05T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r21-fre-fa2",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "FA 2000"
+        },
+        {
+          "fixtureId": "3d-r21-odd-sun",
+          "reason": "ambiguous-source-match",
+          "home": "Odder Fodbold",
+          "away": "Sundby BK",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-04-18T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r21-van-næs",
+          "reason": "ambiguous-source-match",
+          "home": "Vanløse",
+          "away": "Næsby BK",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-05-25T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r22-fa2-hør",
+          "reason": "ambiguous-source-match",
+          "home": "FA 2000",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-04-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r22-lys-odd",
+          "reason": "ambiguous-source-match",
+          "home": "IF Lyseng",
+          "away": "Odder Fodbold",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r22-næs-fre",
+          "reason": "missing-source-match",
+          "home": "Næsby BK",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r23-lys-fre",
+          "reason": "missing-source-match",
+          "home": "IF Lyseng",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r23-odd-hol",
+          "reason": "ambiguous-source-match",
+          "home": "Odder Fodbold",
+          "away": "Holbæk B&I",
+          "candidates": [
+            "2026-04-11T14:00:00",
+            "2026-10-18T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r23-sun-vej",
+          "reason": "ambiguous-source-match",
+          "home": "Sundby BK",
+          "away": "Vejgaard B",
+          "candidates": [
+            "2026-03-28T14:00:00",
+            "2026-04-11T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r24-odd-sun",
+          "reason": "ambiguous-source-match",
+          "home": "Odder Fodbold",
+          "away": "Sundby BK",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-04-18T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r24-lys-hol",
+          "reason": "ambiguous-source-match",
+          "home": "IF Lyseng",
+          "away": "Holbæk B&I",
+          "candidates": [
+            "2026-03-14T13:30:00",
+            "2026-04-18T13:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r24-fa2-hør",
+          "reason": "ambiguous-source-match",
+          "home": "FA 2000",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-04-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r24-fre-vej",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Vejgaard B"
+        },
+        {
+          "fixtureId": "3d-r24-van-brø",
+          "reason": "ambiguous-source-match",
+          "home": "Vanløse",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-04-18T14:00:00",
+            "2026-11-01T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r25-hol-fre",
+          "reason": "missing-source-match",
+          "home": "Holbæk B&I",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r25-vej-odd",
+          "reason": "ambiguous-source-match",
+          "home": "Vejgaard B",
+          "away": "Odder Fodbold",
+          "candidates": [
+            "2026-03-04T19:30:00",
+            "2026-04-26T16:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r25-nyk-fa2",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "FA 2000",
+          "candidates": [
+            "2026-03-14T15:00:00",
+            "2026-04-26T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r26-hol-sun",
+          "reason": "ambiguous-source-match",
+          "home": "Holbæk B&I",
+          "away": "Sundby BK",
+          "candidates": [
+            "2026-03-21T13:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r26-hør-van",
+          "reason": "ambiguous-source-match",
+          "home": "Hørsholm-Usserød IK",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-03-07T13:00:00",
+            "2026-05-02T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r26-fre-odd",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Odder Fodbold"
+        },
+        {
+          "fixtureId": "3d-r27-sun-fre",
+          "reason": "missing-source-match",
+          "home": "Sundby BK",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r27-vej-hol",
+          "reason": "ambiguous-source-match",
+          "home": "Vejgaard B",
+          "away": "Holbæk B&I",
+          "candidates": [
+            "2026-05-09T13:00:00",
+            "2026-11-15T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r27-næs-hør",
+          "reason": "ambiguous-source-match",
+          "home": "Næsby BK",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-03-28T14:00:00",
+            "2026-05-09T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r28-nyk-hør",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-05-17T14:00:00",
+            "2026-11-15T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r28-fa2-van",
+          "reason": "ambiguous-source-match",
+          "home": "FA 2000",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-05-16T14:00:00",
+            "2026-10-25T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r28-fre-lys",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "IF Lyseng"
+        },
+        {
+          "fixtureId": "3d-r28-næs-brø",
+          "reason": "ambiguous-source-match",
+          "home": "Næsby BK",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-05-16T14:00:00",
+            "2026-10-18T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r29-hør-brø",
+          "reason": "ambiguous-source-match",
+          "home": "Hørsholm-Usserød IK",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-04-01T18:30:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r29-odd-vej",
+          "reason": "ambiguous-source-match",
+          "home": "Odder Fodbold",
+          "away": "Vejgaard B",
+          "candidates": [
+            "2026-03-07T13:00:00",
+            "2026-05-22T19:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r29-lys-sun",
+          "reason": "ambiguous-source-match",
+          "home": "IF Lyseng",
+          "away": "Sundby BK",
+          "candidates": [
+            "2026-05-23T13:30:00",
+            "2026-10-25T13:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r29-fre-hol",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Holbæk B&I"
+        },
+        {
+          "fixtureId": "3d-r29-van-næs",
+          "reason": "ambiguous-source-match",
+          "home": "Vanløse",
+          "away": "Næsby BK",
+          "candidates": [
+            "2026-04-02T14:00:00",
+            "2026-05-25T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r30-brø-van",
+          "reason": "ambiguous-source-match",
+          "home": "Brønshøj",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-05-29T18:30:00",
+            "2026-10-10T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r30-vej-fre",
+          "reason": "missing-source-match",
+          "home": "Vejgaard B",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r30-nyk-næs",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "Næsby BK",
+          "candidates": [
+            "2026-05-31T14:00:00",
+            "2026-10-25T15:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r31-odd-fre",
+          "reason": "missing-source-match",
+          "home": "Odder Fodbold",
+          "away": "Frem"
+        },
+        {
+          "fixtureId": "3d-r31-vej-lys",
+          "reason": "ambiguous-source-match",
+          "home": "Vejgaard B",
+          "away": "IF Lyseng",
+          "candidates": [
+            "2026-04-02T13:00:00",
+            "2026-06-05T18:30:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r31-brø-nyk",
+          "reason": "ambiguous-source-match",
+          "home": "Brønshøj",
+          "away": "Nykøbing FC",
+          "candidates": [
+            "2026-06-06T14:00:00",
+            "2026-11-08T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r31-næs-fa2",
+          "reason": "ambiguous-source-match",
+          "home": "Næsby BK",
+          "away": "FA 2000",
+          "candidates": [
+            "2026-06-06T14:00:00",
+            "2026-11-15T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r31-van-hør",
+          "reason": "ambiguous-source-match",
+          "home": "Vanløse",
+          "away": "Hørsholm-Usserød IK",
+          "candidates": [
+            "2026-06-06T14:00:00",
+            "2026-10-04T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r32-fa2-brø",
+          "reason": "ambiguous-source-match",
+          "home": "FA 2000",
+          "away": "Brønshøj",
+          "candidates": [
+            "2026-03-21T14:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r32-fre-sun",
+          "reason": "missing-source-match",
+          "home": "Frem",
+          "away": "Sundby BK"
+        },
+        {
+          "fixtureId": "3d-r32-hol-vej",
+          "reason": "ambiguous-source-match",
+          "home": "Holbæk B&I",
+          "away": "Vejgaard B",
+          "candidates": [
+            "2026-06-13T14:00:00",
+            "2026-10-11T13:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r32-lys-odd",
+          "reason": "ambiguous-source-match",
+          "home": "IF Lyseng",
+          "away": "Odder Fodbold",
+          "candidates": [
+            "2026-04-06T14:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        },
+        {
+          "fixtureId": "3d-r32-nyk-van",
+          "reason": "ambiguous-source-match",
+          "home": "Nykøbing FC",
+          "away": "Vanløse",
+          "candidates": [
+            "2026-03-28T15:00:00",
+            "2026-06-13T14:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "Vejgaard",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "FA 2000",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "Odder",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "IF Lyseng",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Næsby",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Odder",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "Nykøbing FC",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Sundby",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "Odder",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "IF Lyseng",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Nykøbing FC",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Brønshøj",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "Sundby",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Sundby",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "IF Lyseng",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "Vejgaard",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "Hørsholm-Usserød",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "Vanløse",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "BK Frem",
+          "away": "Holbæk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Holbæk",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "BK Frem",
+          "away": "Holbæk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "IF Lyseng",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Vejgaard",
+          "away": "BK Frem",
+          "homeResolved": true,
+          "awayResolved": false
+        }
+      ]
+    },
+    {
+      "id": "de-bundesliga",
+      "label": "Tyskland - Bundesliga",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "de-2-bundesliga",
+      "label": "Tyskland - 2. Bundesliga",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "de-3-liga",
+      "label": "Tyskland - 3. Liga",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "en-premier-league",
+      "label": "England - Premier League",
+      "updatedCount": 9,
+      "updates": [
+        {
+          "fixtureId": "epl-r35-afc-bournemouth-crystal-palace",
+          "home": "AFC Bournemouth",
+          "away": "Crystal Palace",
+          "oldKickoff": "2026-05-02T16:00:00+01:00",
+          "newKickoff": "2026-05-03T15:00:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r36-burnley-aston-villa",
+          "home": "Burnley",
+          "away": "Aston Villa",
+          "oldKickoff": "2026-05-09T16:00:00+01:00",
+          "newKickoff": "2026-05-10T15:00:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r36-crystal-palace-everton",
+          "home": "Crystal Palace",
+          "away": "Everton",
+          "oldKickoff": "2026-05-09T16:00:00+01:00",
+          "newKickoff": "2026-05-10T15:00:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-afc-bournemouth-manchester-city",
+          "home": "AFC Bournemouth",
+          "away": "Manchester City",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-19T20:30:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-arsenal-burnley",
+          "home": "Arsenal",
+          "away": "Burnley",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-18T21:00:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-aston-villa-liverpool",
+          "home": "Aston Villa",
+          "away": "Liverpool",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-15T21:00:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-chelsea-tottenham-hotspur",
+          "home": "Chelsea",
+          "away": "Tottenham Hotspur",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-19T21:15:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-manchester-united-nottingham-forest",
+          "home": "Manchester United",
+          "away": "Nottingham Forest",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-17T13:30:00+01:00"
+        },
+        {
+          "fixtureId": "epl-r37-newcastle-united-west-ham-united",
+          "home": "Newcastle United",
+          "away": "West Ham United",
+          "oldKickoff": "2026-05-17T16:00:00+01:00",
+          "newKickoff": "2026-05-17T18:30:00+01:00"
+        }
+      ],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "en-championship",
+      "label": "England - Championship",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "en-championship-playoffs",
+      "label": "England - Championship Playoffs",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "en-league-one",
+      "label": "England - League One",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 1,
+      "skipped": [
+        {
+          "fixtureId": "el1-r45-bradford-city-bolton-wanderers",
+          "reason": "ambiguous-source-match",
+          "home": "Bradford City",
+          "away": "Bolton Wanderers",
+          "candidates": [
+            "2026-04-25T16:00:00",
+            "2026-05-14T21:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "en-league-two",
+      "label": "England - League Two",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "es-laliga",
+      "label": "Spanien - La Liga",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "es-laliga2",
+      "label": "Spanien - Segunda División",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "es-primera-federacion-g1",
+      "label": "Spanien - Primera Federación Gruppe 1",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "es-primera-federacion-g2",
+      "label": "Spanien - Primera Federación Gruppe 2",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "fr-ligue-1",
+      "label": "Frankrig - Ligue 1",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "fr-ligue-2",
+      "label": "Frankrig - Ligue 2",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "fr-national",
+      "label": "Frankrig - National",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 3,
+      "skipped": [
+        {
+          "fixtureId": "fr3-r32-fleury-merogis-le-puy",
+          "reason": "missing-source-match",
+          "home": "Fleury-Merogis",
+          "away": "Le Puy"
+        },
+        {
+          "fixtureId": "fr3-r33-le-puy-dijon",
+          "reason": "missing-source-match",
+          "home": "Le Puy",
+          "away": "Dijon"
+        },
+        {
+          "fixtureId": "fr3-r34-sochaux-le-puy",
+          "reason": "missing-source-match",
+          "home": "Sochaux",
+          "away": "Le Puy"
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "Fleury-Merogis",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Concarneau",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bourg en Bresse",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Paris 13 Atl.",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Dijon",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Aubagne",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Orleans",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Caen",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Sochaux",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Quevilly Rouen",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Rouen",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Villefranche",
+          "away": "Le Puy-en-Velay",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Versailles",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Le Puy-en-Velay",
+          "away": "Stade Briochin",
+          "homeResolved": false,
+          "awayResolved": true
+        }
+      ]
+    },
+    {
+      "id": "it-serie-a",
+      "label": "Italien - Serie A",
+      "updatedCount": 16,
+      "updates": [
+        {
+          "fixtureId": "ita-r36-ac-milan-atalanta",
+          "home": "AC Milan",
+          "away": "Atalanta",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-10T20:45:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-cagliari-udinese",
+          "home": "Cagliari",
+          "away": "Udinese",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-09T15:00:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-cremonese-pisa",
+          "home": "Cremonese",
+          "away": "Pisa",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-10T15:00:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-fiorentina-genoa",
+          "home": "Fiorentina",
+          "away": "Genoa",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-10T15:00:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-lazio-inter",
+          "home": "Lazio",
+          "away": "Inter",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-09T18:00:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-lecce-juventus",
+          "home": "Lecce",
+          "away": "Juventus",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-09T20:45:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-torino-sassuolo",
+          "home": "Torino",
+          "away": "Sassuolo",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-08T20:45:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r36-verona-como",
+          "home": "Verona",
+          "away": "Como",
+          "oldKickoff": "2026-05-10T18:00:00+02:00",
+          "newKickoff": "2026-05-10T12:30:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-atalanta-bologna",
+          "home": "Atalanta",
+          "away": "Bologna",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T18:00:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-cagliari-torino",
+          "home": "Cagliari",
+          "away": "Torino",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T20:45:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-como-parma-calcio-1913",
+          "home": "Como",
+          "away": "Parma Calcio 1913",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T12:30:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-genoa-ac-milan",
+          "home": "Genoa",
+          "away": "AC Milan",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T12:30:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-juventus-fiorentina",
+          "home": "Juventus",
+          "away": "Fiorentina",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T12:30:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-pisa-ssc-napoli",
+          "home": "Pisa",
+          "away": "SSC Napoli",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T12:30:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-sassuolo-lecce",
+          "home": "Sassuolo",
+          "away": "Lecce",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T20:45:00+02:00"
+        },
+        {
+          "fixtureId": "ita-r37-udinese-cremonese",
+          "home": "Udinese",
+          "away": "Cremonese",
+          "oldKickoff": "2026-05-17T15:00:00+02:00",
+          "newKickoff": "2026-05-17T20:45:00+02:00"
+        }
+      ],
+      "skippedCount": 5,
+      "skipped": [
+        {
+          "fixtureId": "ita-r34-bologna-roma",
+          "reason": "missing-source-match",
+          "home": "Bologna",
+          "away": "Roma"
+        },
+        {
+          "fixtureId": "ita-r35-roma-fiorentina",
+          "reason": "missing-source-match",
+          "home": "Roma",
+          "away": "Fiorentina"
+        },
+        {
+          "fixtureId": "ita-r36-parma-calcio-1913-roma",
+          "reason": "missing-source-match",
+          "home": "Parma Calcio 1913",
+          "away": "Roma"
+        },
+        {
+          "fixtureId": "ita-r37-roma-lazio",
+          "reason": "missing-source-match",
+          "home": "Roma",
+          "away": "Lazio"
+        },
+        {
+          "fixtureId": "ita-r38-verona-roma",
+          "reason": "missing-source-match",
+          "home": "Verona",
+          "away": "Roma"
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "AS Roma",
+          "away": "Juventus",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "AS Roma",
+          "away": "Fiorentina",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Inter",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Genoa",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "AS Roma",
+          "away": "Pisa",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Parma",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Como",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "AS Roma",
+          "away": "Lazio",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "AS Roma",
+          "away": "Atalanta",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "AS Roma",
+          "away": "Cremonese",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "AS Roma",
+          "away": "Lecce",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Verona",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bologna",
+          "away": "AS Roma",
+          "homeResolved": true,
+          "awayResolved": false
+        }
+      ]
+    },
+    {
+      "id": "it-serie-b",
+      "label": "Italien - Serie B",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "it-serie-c-gA",
+      "label": "Italien - Serie C Gruppe A",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "it-serie-c-gB",
+      "label": "Italien - Serie C Gruppe B",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "it-serie-c-gC",
+      "label": "Italien - Serie C Gruppe C",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "pt-liga-portugal",
+      "label": "Portugal - Liga Portugal",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 2,
+      "skipped": [
+        {
+          "fixtureId": "pt1-r33-afs-porto",
+          "reason": "missing-source-match",
+          "home": "AFS",
+          "away": "Porto"
+        },
+        {
+          "fixtureId": "pt1-r34-porto-santa-clara",
+          "reason": "missing-source-match",
+          "home": "Porto",
+          "away": "Santa Clara"
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "FC Porto",
+          "away": "Alverca",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto",
+          "away": "Famalicao",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Benfica",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "AFS",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Estoril",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Nacional",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Porto",
+          "away": "Moreirense",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto",
+          "away": "Santa Clara",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto",
+          "away": "Tondela",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto",
+          "away": "Rio Ave",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Braga",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Estrela",
+          "away": "FC Porto",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Porto",
+          "away": "Arouca",
+          "homeResolved": false,
+          "awayResolved": true
+        }
+      ]
+    },
+    {
+      "id": "pt-liga-portugal-2",
+      "label": "Portugal - Liga Portugal 2",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 2,
+      "skipped": [
+        {
+          "fixtureId": "pt2-r33-sporting-b-porto-b",
+          "reason": "missing-source-match",
+          "home": "Sporting B",
+          "away": "Porto B"
+        },
+        {
+          "fixtureId": "pt2-r34-porto-b-benfica-b",
+          "reason": "missing-source-match",
+          "home": "Porto B",
+          "away": "Benfica B"
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "FC Porto B",
+          "away": "Felgueiras",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto B",
+          "away": "Chaves",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Maritimo",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sporting B",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitania FC",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Leiria",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Porto B",
+          "away": "Oliveirense",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto B",
+          "away": "Benfica B",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Porto B",
+          "away": "Leixoes",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Portimonense",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Porto B",
+          "away": "Ferreira",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Penafiel",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Torreense",
+          "away": "FC Porto B",
+          "homeResolved": true,
+          "awayResolved": false
+        }
+      ]
+    },
+    {
+      "id": "pt-liga-3-promotion",
+      "label": "Portugal - Liga 3 Oprykningsgruppe",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": [
+        {
+          "home": "AD Marco 09",
+          "away": "S. Joao Ver",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Braga B",
+          "away": "Paredes",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Fafe",
+          "away": "Sanjoanense",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Covilha",
+          "away": "Amora",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "1º Dezembro",
+          "away": "Caldas",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitano GC",
+          "away": "Atletico",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Braga B",
+          "away": "Fafe",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Paredes",
+          "away": "AD Marco 09",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "S. Joao Ver",
+          "away": "Sanjoanense",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Amora",
+          "away": "Atletico",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Covilha",
+          "away": "1º Dezembro",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitano GC",
+          "away": "Caldas",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Paredes",
+          "away": "Fafe",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "S. Joao Ver",
+          "away": "Braga B",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sanjoanense",
+          "away": "AD Marco 09",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitano GC",
+          "away": "1º Dezembro",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sanjoanense",
+          "away": "Fafe",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Amora",
+          "away": "Caldas",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Covilha",
+          "away": "Atletico",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Paredes",
+          "away": "Braga B",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "S. Joao Ver",
+          "away": "AD Marco 09",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "AD Marco 09",
+          "away": "Paredes",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sanjoanense",
+          "away": "S. Joao Ver",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Amora",
+          "away": "1º Dezembro",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Caldas",
+          "away": "Atletico",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Covilha",
+          "away": "Lusitano GC",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Amora",
+          "away": "Covilha",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Atletico",
+          "away": "Lusitano GC",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Caldas",
+          "away": "1º Dezembro",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Fafe",
+          "away": "Braga B",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Fafe",
+          "away": "AD Marco 09",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "S. Joao Ver",
+          "away": "Paredes",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sanjoanense",
+          "away": "Braga B",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "AD Marco 09",
+          "away": "Fafe",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Paredes",
+          "away": "S. Joao Ver",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Atletico",
+          "away": "Caldas",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitano GC",
+          "away": "Covilha",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "1º Dezembro",
+          "away": "Amora",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Braga B",
+          "away": "Sanjoanense",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "S. Joao Ver",
+          "away": "Fafe",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "AD Marco 09",
+          "away": "Sanjoanense",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Braga B",
+          "away": "S. Joao Ver",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "1º Dezembro",
+          "away": "Covilha",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "1º Dezembro",
+          "away": "Atletico",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Braga B",
+          "away": "AD Marco 09",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Lusitano GC",
+          "away": "Amora",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Paredes",
+          "away": "Sanjoanense",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Covilha",
+          "away": "Caldas",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Atletico",
+          "away": "Amora",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Caldas",
+          "away": "Lusitano GC",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Fafe",
+          "away": "Paredes",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Amora",
+          "away": "Lusitano GC",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Atletico",
+          "away": "1º Dezembro",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Caldas",
+          "away": "Covilha",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "AD Marco 09",
+          "away": "Braga B",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sanjoanense",
+          "away": "Paredes",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "1º Dezembro",
+          "away": "Lusitano GC",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Atletico",
+          "away": "Covilha",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Caldas",
+          "away": "Amora",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Fafe",
+          "away": "S. Joao Ver",
+          "homeResolved": false,
+          "awayResolved": false
+        }
+      ]
+    },
+    {
+      "id": "nl-eredivisie",
+      "label": "Holland - Eredivisie",
+      "updatedCount": 1,
+      "updates": [
+        {
+          "fixtureId": "nl1-02-breda-heerenveen",
+          "home": "Breda",
+          "away": "Heerenveen",
+          "oldKickoff": "2026-05-10T16:45:00+02:00",
+          "newKickoff": "2026-05-11T14:30:00+02:00"
+        }
+      ],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "nl-eredivisie-playoffs",
+      "label": "Holland - Eredivisie Playoffs",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": [
+        {
+          "home": "Waalwijk",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Jong Utrecht",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Almere City",
+          "away": "Oss",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Den Haag",
+          "away": "Jong Ajax",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Dordrecht",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong AZ",
+          "away": "Helmond",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Maastricht",
+          "away": "Waalwijk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Venlo",
+          "away": "Cambuur",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Vitesse",
+          "away": "FC Emmen",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Dordrecht",
+          "away": "Maastricht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Helmond",
+          "away": "Oss",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Roda",
+          "away": "Jong PSV",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Venlo",
+          "away": "Waalwijk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Helmond",
+          "away": "Waalwijk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Den Haag",
+          "away": "Eindhoven",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Maastricht",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Oss",
+          "away": "Jong Utrecht",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Roda",
+          "away": "Willem II",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Jong PSV",
+          "away": "Venlo",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Almere City",
+          "away": "Den Haag",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Cambuur",
+          "away": "Jong Utrecht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong AZ",
+          "away": "FC Emmen",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Eindhoven",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Maastricht",
+          "away": "Helmond",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Waalwijk",
+          "away": "FC Emmen",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Venlo",
+          "away": "De Graafschap",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Dordrecht",
+          "away": "Den Haag",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Cambuur",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Den Haag",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Utrecht",
+          "away": "Helmond",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Maastricht",
+          "away": "Venlo",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Oss",
+          "away": "Willem II",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Jong Ajax",
+          "away": "Oss",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Utrecht",
+          "away": "Vitesse",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Helmond",
+          "away": "Cambuur",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Jong AZ",
+          "away": "Maastricht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Roda",
+          "away": "Vitesse",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Den Haag",
+          "away": "Jong Utrecht",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Dordrecht",
+          "away": "Oss",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Venlo",
+          "away": "Jong Ajax",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Den Haag",
+          "away": "Waalwijk",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Helmond",
+          "away": "Venlo",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Utrecht",
+          "away": "Eindhoven",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Oss",
+          "away": "Den Bosch",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Roda",
+          "away": "FC Emmen",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Vitesse",
+          "away": "Maastricht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Venlo",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Utrecht",
+          "away": "Dordrecht",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Oss",
+          "away": "Eindhoven",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Roda",
+          "away": "Helmond",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Den Bosch",
+          "away": "Jong Utrecht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "De Graafschap",
+          "away": "Den Haag",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Maastricht",
+          "away": "Willem II",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Cambuur",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Den Bosch",
+          "away": "Den Haag",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Eindhoven",
+          "away": "Helmond",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Emmen",
+          "away": "De Graafschap",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Jong AZ",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Ajax",
+          "away": "Jong Utrecht",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Maastricht",
+          "away": "Oss",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Venlo",
+          "away": "Almere City",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Den Bosch",
+          "away": "Roda",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Den Haag",
+          "away": "Venlo",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "FC Emmen",
+          "away": "Willem II",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Jong Ajax",
+          "away": "Helmond",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Jong Utrecht",
+          "away": "Almere City",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Maastricht",
+          "away": "De Graafschap",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Oss",
+          "away": "Cambuur",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Eindhoven",
+          "away": "FC Emmen",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Roda",
+          "away": "Waalwijk",
+          "homeResolved": false,
+          "awayResolved": true
+        }
+      ]
+    },
+    {
+      "id": "nl-tweede-divisie",
+      "label": "Holland - Tweede Divisie",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-jupiler-champions-playoffs",
+      "label": "Belgien - Jupiler mesterskabsspil",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-jupiler-europe-playoffs",
+      "label": "Belgien - Jupiler Conference League gruppe",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 3,
+      "skipped": [
+        {
+          "fixtureId": "be1e-03-leuven-antwerp",
+          "reason": "ambiguous-source-match",
+          "home": "Leuven",
+          "away": "Antwerp",
+          "candidates": [
+            "2026-03-22T18:30:00",
+            "2026-05-15T20:45:00"
+          ]
+        },
+        {
+          "fixtureId": "be1e-06-charleroi-leuven",
+          "reason": "ambiguous-source-match",
+          "home": "Charleroi",
+          "away": "Leuven",
+          "candidates": [
+            "2026-03-14T16:00:00",
+            "2026-05-19T20:30:00"
+          ]
+        },
+        {
+          "fixtureId": "be1e-09-antwerp-westerlo",
+          "reason": "ambiguous-source-match",
+          "home": "Antwerp",
+          "away": "Westerlo",
+          "candidates": [
+            "2026-02-15T16:00:00",
+            "2026-05-23T20:45:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-jupiler-relegation-playoffs",
+      "label": "Belgien - Jupiler nedrykningsgruppe",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 3,
+      "skipped": [
+        {
+          "fixtureId": "be1r-04-leuven-antwerp",
+          "reason": "ambiguous-source-match",
+          "home": "Leuven",
+          "away": "Antwerp",
+          "candidates": [
+            "2026-03-22T18:30:00",
+            "2026-05-15T20:45:00"
+          ]
+        },
+        {
+          "fixtureId": "be1r-07-charleroi-leuven",
+          "reason": "ambiguous-source-match",
+          "home": "Charleroi",
+          "away": "Leuven",
+          "candidates": [
+            "2026-03-14T16:00:00",
+            "2026-05-19T20:30:00"
+          ]
+        },
+        {
+          "fixtureId": "be1r-10-antwerp-westerlo",
+          "reason": "ambiguous-source-match",
+          "home": "Antwerp",
+          "away": "Westerlo",
+          "candidates": [
+            "2026-02-15T16:00:00",
+            "2026-05-23T20:45:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-promotion-relegation-playoff",
+      "label": "Belgien - Promotion/relegation playoff",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-national-division-1-acff",
+      "label": "Belgien - National Division 1 ACFF",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 1,
+      "skipped": [
+        {
+          "fixtureId": "be3a-02-union-sg-b-stockay-warfusee",
+          "reason": "ambiguous-source-match",
+          "home": "Union SG B",
+          "away": "Stockay-Warfusee",
+          "candidates": [
+            "2026-01-17T19:30:00",
+            "2026-05-10T15:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "be-national-division-1-acff-promotion",
+      "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 1,
+      "skipped": [
+        {
+          "fixtureId": "be3ap-03-virton-habay-la-neuve",
+          "reason": "ambiguous-source-match",
+          "home": "Virton",
+          "away": "Habay La Neuve",
+          "candidates": [
+            "2026-01-31T20:00:00",
+            "2026-05-10T15:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "tr-super-lig",
+      "label": "Tyrkiet - Süper Lig",
+      "updatedCount": 5,
+      "updates": [
+        {
+          "fixtureId": "tr1-12-gaziantep-basaksehir",
+          "home": "Gaziantep",
+          "away": "Başakşehir",
+          "oldKickoff": "2026-05-17T19:00:00+03:00",
+          "newKickoff": "2026-05-16T19:00:00+03:00"
+        },
+        {
+          "fixtureId": "tr1-13-fatih-karagumruk-alanyaspor",
+          "home": "Fatih Karagümrük",
+          "away": "Alanyaspor",
+          "oldKickoff": "2026-05-17T19:00:00+03:00",
+          "newKickoff": "2026-05-16T16:00:00+03:00"
+        },
+        {
+          "fixtureId": "tr1-15-kayserispor-konyaspor",
+          "home": "Kayserispor",
+          "away": "Konyaspor",
+          "oldKickoff": "2026-05-17T19:00:00+03:00",
+          "newKickoff": "2026-05-17T16:00:00+03:00"
+        },
+        {
+          "fixtureId": "tr1-16-rizespor-besiktas",
+          "home": "Rizespor",
+          "away": "Beşiktaş",
+          "oldKickoff": "2026-05-17T19:00:00+03:00",
+          "newKickoff": "2026-05-15T19:00:00+03:00"
+        },
+        {
+          "fixtureId": "tr1-17-samsunspor-goztepe",
+          "home": "Samsunspor",
+          "away": "Göztepe",
+          "oldKickoff": "2026-05-17T19:00:00+03:00",
+          "newKickoff": "2026-05-16T19:00:00+03:00"
+        }
+      ],
+      "skippedCount": 0,
+      "skipped": [],
+      "unresolvedSourceTeams": []
+    },
+    {
+      "id": "tr-1-lig-playoffs",
+      "label": "Tyrkiet - 1. Lig slutspil",
+      "updatedCount": 0,
+      "updates": [],
+      "skippedCount": 1,
+      "skipped": [
+        {
+          "fixtureId": "tr1p-02-corum-bodrumspor",
+          "reason": "ambiguous-source-match",
+          "home": "Çorum",
+          "away": "Bodrumspor",
+          "candidates": [
+            "2026-04-07T19:00:00",
+            "2026-05-15T19:00:00"
+          ]
+        }
+      ],
+      "unresolvedSourceTeams": [
+        {
+          "home": "Serik Spor",
+          "away": "Sivasspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Umraniyespor",
+          "away": "Bandirmaspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sakaryaspor",
+          "away": "Sariyer",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Hatayspor",
+          "away": "Vanspor FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Boluspor",
+          "away": "Serik Spor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Sakaryaspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Corum",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Bandirmaspor",
+          "away": "Sivasspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Bodrumspor",
+          "away": "Sariyer",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Erokspor",
+          "away": "Pendikspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Igdir FK",
+          "away": "Amedspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Adana Demirspor",
+          "away": "Manisa FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Corum",
+          "away": "Bandirmaspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Keciorengucu",
+          "away": "Vanspor FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sariyer",
+          "away": "Serik Spor",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Erzurumspor",
+          "away": "Igdir FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sivasspor",
+          "away": "Erokspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sariyer",
+          "away": "Umraniyespor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Pendikspor",
+          "away": "Vanspor FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Erzurumspor",
+          "away": "Manisa FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bandirmaspor",
+          "away": "Istanbulspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Amedspor",
+          "away": "Serik Spor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bandirmaspor",
+          "away": "Sariyer",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Pendikspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Boluspor",
+          "away": "Igdir FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bodrumspor",
+          "away": "Erokspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Serik Spor",
+          "away": "Vanspor FK",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Igdir FK",
+          "away": "Keciorengucu",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Erokspor",
+          "away": "Amedspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Vanspor FK",
+          "away": "Adana Demirspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Serik Spor",
+          "away": "Pendikspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Sariyer",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sariyer",
+          "away": "Hatayspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Bodrumspor",
+          "away": "Bandirmaspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Igdir FK",
+          "away": "Bodrumspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Erokspor",
+          "away": "Bandirmaspor",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Vanspor FK",
+          "away": "Manisa FK",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Adana Demirspor",
+          "away": "Igdir FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Keciorengucu",
+          "away": "Serik Spor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sakaryaspor",
+          "away": "Erokspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Adana Demirspor",
+          "away": "Serik Spor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sakaryaspor",
+          "away": "Vanspor FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sariyer",
+          "away": "Keciorengucu",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Amedspor",
+          "away": "Manisa FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bandirmaspor",
+          "away": "Igdir FK",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Corum",
+          "away": "Erokspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Bandirmaspor",
+          "away": "Amedspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Erokspor",
+          "away": "Keciorengucu",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Igdir FK",
+          "away": "Pendikspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Istanbulspor",
+          "away": "Sariyer",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Serik Spor",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Umraniyespor",
+          "away": "Vanspor FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Boluspor",
+          "away": "Bandirmaspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Serik Spor",
+          "away": "Sakaryaspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Manisa FK",
+          "away": "Sivasspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Vanspor FK",
+          "away": "Sariyer",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Igdir FK",
+          "away": "Corum",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Erokspor",
+          "away": "Erzurumspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Serik Spor",
+          "away": "Hatayspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Vanspor FK",
+          "away": "Istanbulspor",
+          "homeResolved": false,
+          "awayResolved": true
+        },
+        {
+          "home": "Erzurumspor",
+          "away": "Bandirmaspor",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Keciorengucu",
+          "away": "Manisa FK",
+          "homeResolved": true,
+          "awayResolved": false
+        },
+        {
+          "home": "Sariyer",
+          "away": "Erokspor",
+          "homeResolved": false,
+          "awayResolved": false
+        },
+        {
+          "home": "Sivasspor",
+          "away": "Igdir FK",
+          "homeResolved": true,
+          "awayResolved": false
+        }
+      ]
+    }
+  ]
+}

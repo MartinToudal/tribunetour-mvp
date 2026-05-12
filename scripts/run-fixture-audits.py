@@ -15,6 +15,8 @@ CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 AUDIT_SCRIPT = WEBSITE_ROOT / "scripts" / "audit-flashscore-fixtures.py"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
+SYNC_SCRIPT = WEBSITE_ROOT / "scripts" / "sync-flashscore-fixtures.py"
+GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
 
 
 @dataclass
@@ -25,10 +27,22 @@ class AuditResult:
     details: str
 
 
+@dataclass
+class SyncResult:
+    audit_id: str
+    label: str
+    updated_count: int
+    updates: list[dict]
+    skipped_count: int
+    skipped: list[dict]
+    unresolved_source_teams: list[dict]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run configured Flashscore fixture audits.")
     parser.add_argument("--all", action="store_true", help="Run all configured audits regardless of cadence")
     parser.add_argument("--due", action="store_true", help="Run only audits that are due today")
+    parser.add_argument("--apply-safe-updates", action="store_true", help="Apply safe kickoff updates before auditing")
     return parser.parse_args()
 
 
@@ -73,6 +87,74 @@ def write_report(results: list[AuditResult]) -> None:
         lines.append(result.details.rstrip())
         lines.append("```")
         lines.append("")
+    markdown_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_update_report(results: list[SyncResult]) -> None:
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).isoformat()
+    json_path = REPORT_DIR / "latest-updates.json"
+    markdown_path = REPORT_DIR / "latest-updates.md"
+
+    total_updated = sum(result.updated_count for result in results)
+    total_skipped = sum(result.skipped_count for result in results)
+    json_payload = {
+        "generatedAt": timestamp,
+        "totalUpdated": total_updated,
+        "totalSkipped": total_skipped,
+        "results": [
+            {
+                "id": result.audit_id,
+                "label": result.label,
+                "updatedCount": result.updated_count,
+                "updates": result.updates,
+                "skippedCount": result.skipped_count,
+                "skipped": result.skipped,
+                "unresolvedSourceTeams": result.unresolved_source_teams,
+            }
+            for result in results
+        ],
+    }
+    json_path.write_text(json.dumps(json_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    lines = [
+        "# Fixture auto-update report",
+        "",
+        f"Generated at: {timestamp}",
+        "",
+        f"Updated fixtures: **{total_updated}**",
+        f"Skipped fixtures: **{total_skipped}**",
+        "",
+    ]
+    for result in results:
+        if result.updated_count == 0 and result.skipped_count == 0 and not result.unresolved_source_teams:
+            continue
+        lines.append(f"## {result.label} (`{result.audit_id}`)")
+        lines.append(f"Updated: **{result.updated_count}**")
+        lines.append(f"Skipped: **{result.skipped_count}**")
+        lines.append("")
+        if result.updates:
+            lines.append("### Updated fixtures")
+            for update in result.updates:
+                lines.append(
+                    f"- `{update['fixtureId']}` {update['home']} vs {update['away']}: "
+                    f"`{update['oldKickoff']}` -> `{update['newKickoff']}`"
+                )
+            lines.append("")
+        if result.skipped:
+            lines.append("### Skipped fixtures")
+            for skipped in result.skipped[:20]:
+                lines.append(
+                    f"- `{skipped['fixtureId']}` {skipped['home']} vs {skipped['away']}: {skipped['reason']}"
+                )
+            lines.append("")
+        if result.unresolved_source_teams:
+            lines.append("### Unresolved source teams")
+            for item in result.unresolved_source_teams[:20]:
+                lines.append(
+                    f"- `{item['home']}` vs `{item['away']}` (home resolved: {item['homeResolved']}, away resolved: {item['awayResolved']})"
+                )
+            lines.append("")
     markdown_path.write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -144,6 +226,53 @@ def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> 
     return AuditResult(audit_id=audit["id"], label=audit["label"], status=status, details=output)
 
 
+def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> SyncResult:
+    source = WEBSITE_ROOT / audit["source"]
+    refresh_error = refreshed_sources.get(source)
+    if refresh_error or not source.exists():
+        return SyncResult(
+            audit_id=audit["id"],
+            label=audit["label"],
+            updated_count=0,
+            updates=[],
+            skipped_count=0,
+            skipped=[],
+            unresolved_source_teams=[],
+        )
+
+    cmd = [
+        sys.executable,
+        str(SYNC_SCRIPT),
+        "--source",
+        str(source),
+        "--season",
+        audit["season"],
+        "--write",
+    ]
+
+    if audit.get("competitionId"):
+        cmd.extend(["--competition", audit["competitionId"]])
+    if audit.get("fixturePrefix"):
+        cmd.extend(["--fixture-prefix", audit["fixturePrefix"]])
+    if audit.get("roundPrefix"):
+        cmd.extend(["--round-prefix", audit["roundPrefix"]])
+
+    completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
+    if completed.returncode != 0:
+        raise RuntimeError(completed.stdout.strip() or completed.stderr.strip() or f"Sync failed for {audit['id']}")
+
+    payload = json.loads(completed.stdout.strip())
+    return SyncResult(
+        audit_id=audit["id"],
+        label=audit["label"],
+        updated_count=int(payload.get("updatedCount", 0)),
+        updates=payload.get("updates", []),
+        skipped_count=int(payload.get("skippedCount", 0)),
+        skipped=payload.get("skipped", []),
+        unresolved_source_teams=payload.get("unresolvedSourceTeams", []),
+    )
+
+
 def main() -> int:
     args = parse_args()
     audits = load_config()
@@ -173,8 +302,29 @@ def main() -> int:
             continue
         refreshed_sources[source] = refresh_source(audit, source)
 
+    sync_results: list[SyncResult] = []
+    if args.apply_safe_updates:
+        sync_results = [run_single_sync(audit, refreshed_sources) for audit in selected]
+        write_update_report(sync_results)
+        if any(result.updated_count > 0 for result in sync_results):
+            completed = subprocess.run(
+                ["node", str(GENERATE_DATA_SCRIPT)],
+                capture_output=True,
+                text=True,
+                cwd=WEBSITE_ROOT,
+            )
+            if completed.returncode != 0:
+                print(completed.stdout)
+                print(completed.stderr, file=sys.stderr)
+                return completed.returncode
+
     results = [run_single_audit(audit, refreshed_sources) for audit in selected]
     write_report(results)
+
+    if args.apply_safe_updates:
+        total_updated = sum(result.updated_count for result in sync_results)
+        total_skipped = sum(result.skipped_count for result in sync_results)
+        print(f"[auto-update] updated={total_updated} skipped={total_skipped}")
 
     for result in results:
         print(f"[{result.status}] {result.label}")

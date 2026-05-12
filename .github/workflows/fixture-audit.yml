@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
         run: |
           set +e
-          output="$(python3 scripts/run-fixture-audits.py --due 2>&1)"
+          output="$(python3 scripts/run-fixture-audits.py --due --apply-safe-updates 2>&1)"
           status=$?
           printf '%s\n' "$output"
 
@@ -47,6 +47,24 @@ jobs:
           path: |
             data/fixture-audits/reports/latest.json
             data/fixture-audits/reports/latest.md
+            data/fixture-audits/reports/latest-updates.json
+            data/fixture-audits/reports/latest-updates.md
+
+      - name: Commit automatic fixture updates
+        id: autocommit
+        if: always() && steps.audit.outputs.had_due == 'true'
+        run: |
+          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest.json data/fixture-audits/reports/latest.md data/fixture-audits/reports/latest-updates.json data/fixture-audits/reports/latest-updates.md; then
+            echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest.json data/fixture-audits/reports/latest.md data/fixture-audits/reports/latest-updates.json data/fixture-audits/reports/latest-updates.md
+          git commit -m "chore: auto-update fixtures"
+          git push
+          echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
 
       - name: Open or update fixture audit issue
         if: always() && steps.audit.outputs.had_due == 'true'
@@ -170,3 +188,108 @@ jobs:
       - name: Fail workflow when due audits fail
         if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outcome != 'success'
         run: exit 1
+
+      - name: Open or update fixture auto-update issue
+        if: always() && steps.audit.outputs.had_due == 'true'
+        uses: actions/github-script@v7
+        env:
+          REPORT_PATH: data/fixture-audits/reports/latest-updates.json
+          ISSUE_TITLE: Fixture audit auto-updates
+          ISSUE_LABEL: fixture-auto-update
+          ISSUE_EXTRA_LABEL: data-quality
+          ISSUE_ASSIGNEE: MartinToudal
+          CHANGES_PUSHED: ${{ steps.autocommit.outputs.changes_pushed }}
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = process.env.REPORT_PATH;
+            const issueTitle = process.env.ISSUE_TITLE;
+            const issueLabel = process.env.ISSUE_LABEL;
+            const issueExtraLabel = process.env.ISSUE_EXTRA_LABEL;
+            const issueAssignee = process.env.ISSUE_ASSIGNEE;
+            const changesPushed = process.env.CHANGES_PUSHED === 'true';
+
+            if (!fs.existsSync(reportPath)) {
+              core.info(`No update report found at ${reportPath}.`);
+              return;
+            }
+
+            const payload = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            if (!payload.totalUpdated || payload.totalUpdated <= 0) {
+              core.info('No fixture updates were applied.');
+              return;
+            }
+
+            const { owner, repo } = context.repo;
+
+            async function ensureLabel(name, color, description) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({ owner, repo, name, color, description });
+              }
+            }
+
+            async function findOpenIssue() {
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner,
+                repo,
+                state: 'open',
+                labels: issueLabel,
+                per_page: 100,
+              });
+              return issues.find((issue) => issue.title === issueTitle) || null;
+            }
+
+            await ensureLabel(issueLabel, '0E8A16', 'Automated fixture updates');
+            await ensureLabel(issueExtraLabel, '1D76DB', 'Data quality and fixture validation work');
+
+            const updatedSections = (payload.results || [])
+              .filter((result) => (result.updatedCount || 0) > 0)
+              .map((result) => {
+                const lines = [
+                  `### ${result.label}`,
+                  `Updated fixtures: **${result.updatedCount}**`,
+                ];
+                for (const update of (result.updates || []).slice(0, 30)) {
+                  lines.push(`- \`${update.fixtureId}\` ${update.home} vs ${update.away}: \`${update.oldKickoff}\` -> \`${update.newKickoff}\``);
+                }
+                return lines.join('\\n');
+              });
+
+            const summary = [
+              `Auto-update applied **${payload.totalUpdated}** fixture change(s).`,
+              `Generated at: ${payload.generatedAt}`,
+              `Committed to main: **${changesPushed ? 'yes' : 'no'}**`,
+              '',
+              ...updatedSections,
+            ].join('\\n');
+
+            const existingIssue = await findOpenIssue();
+            if (existingIssue) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existingIssue.number,
+                labels: [issueLabel, issueExtraLabel],
+                assignees: issueAssignee ? [issueAssignee] : undefined,
+              });
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existingIssue.number,
+                body: summary,
+              });
+              core.info(`Commented on existing fixture auto-update issue #${existingIssue.number}.`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner,
+                repo,
+                title: issueTitle,
+                body: summary,
+                labels: [issueLabel, issueExtraLabel],
+                assignees: issueAssignee ? [issueAssignee] : undefined,
+              });
+              core.info(`Created fixture auto-update issue #${created.data.number}.`);
+            }
