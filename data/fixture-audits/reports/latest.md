@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-11T18:59:34.238273+00:00
+Generated at: 2026-05-12T05:09:29.400717+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -1021,10 +1021,9 @@ time-mismatch: 11
   - 24.05 18:00 Mirandes vs Granada [es2-r41-mirandes-granada] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
   - 24.05 18:00 Valladolid vs La Coruna [es2-r41-valladolid-la-coruna] -> Hold og dato matcher, men tiden 18:00 blev ikke fundet
 
-date-mismatch: 1
-  - 11.05 20:30 Huesca vs Real Sociedad B [es2-r39-huesca-real-sociedad-b] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
-exact: 43
+exact: 44
   - 01.05 16:15 Andorra vs Albacete [es2-r38-andorra-albacete] -> Eksakt match på dato, tid og hold
   - 01.05 18:30 La Coruna vs Leganes [es2-r38-la-coruna-leganes] -> Eksakt match på dato, tid og hold
   - 01.05 21:00 Zaragoza vs Granada [es2-r38-zaragoza-granada] -> Eksakt match på dato, tid og hold
@@ -1046,6 +1045,7 @@ exact: 43
   - 10.05 16:15 Leganes vs Racing Santander [es2-r39-leganes-racing-santander] -> Eksakt match på dato, tid og hold
   - 10.05 18:30 Cordoba vs Granada [es2-r39-cordoba-granada] -> Eksakt match på dato, tid og hold
   - 10.05 18:30 Mirandes vs Eibar [es2-r39-mirandes-eibar] -> Eksakt match på dato, tid og hold
+  - 11.05 20:30 Huesca vs Real Sociedad B [es2-r39-huesca-real-sociedad-b] -> Eksakt match på dato, tid og hold
   - 15.05 20:30 Castellon vs Cadiz [es2-r40-castellon-cadiz] -> Eksakt match på dato, tid og hold
   - 15.05 21:00 Cordoba vs Albacete [es2-r40-cordoba-albacete] -> Eksakt match på dato, tid og hold
   - 16.05 14:00 Real Sociedad B vs Mirandes [es2-r40-real-sociedad-b-mirandes] -> Eksakt match på dato, tid og hold
@@ -1387,7 +1387,7 @@ exact: 24
 ```
 
 ## Italien - Serie A (`it-serie-a`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: ita-
@@ -1398,10 +1398,9 @@ missing: 0
 
 time-mismatch: 0
 
-date-mismatch: 1
-  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Hold matcher, men dato/tid ser anderledes ud
+date-mismatch: 0
 
-exact: 49
+exact: 50
   - 24.04 20:45 SSC Napoli vs Cremonese [ita-r34-ssc-napoli-cremonese] -> Eksakt match på dato, tid og hold
   - 25.04 15:00 Parma Calcio 1913 vs Pisa [ita-r34-parma-calcio-1913-pisa] -> Eksakt match på dato, tid og hold
   - 25.04 18:00 Bologna vs Roma [ita-r34-bologna-roma] -> Eksakt match på dato, tid og hold
@@ -1429,6 +1428,7 @@ exact: 49
   - 10.05 18:00 Lazio vs Inter [ita-r36-lazio-inter] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Lecce vs Juventus [ita-r36-lecce-juventus] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Parma Calcio 1913 vs Roma [ita-r36-parma-calcio-1913-roma] -> Eksakt match på dato, tid og hold
+  - 11.05 20:45 SSC Napoli vs Bologna [ita-r36-ssc-napoli-bologna] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Torino vs Sassuolo [ita-r36-torino-sassuolo] -> Eksakt match på dato, tid og hold
   - 10.05 18:00 Verona vs Como [ita-r36-verona-como] -> Eksakt match på dato, tid og hold
   - 17.05 15:00 Atalanta vs Bologna [ita-r37-atalanta-bologna] -> Eksakt match på dato, tid og hold
@@ -1604,15 +1604,15 @@ exact: 18
   - 11.05 21:15 Rio Ave vs Sporting [pt1-r33-rio-ave-sporting] -> Eksakt match på dato, tid og hold
   - 11.05 21:15 Santa Clara vs Nacional [pt1-r33-santa-clara-nacional] -> Eksakt match på dato, tid og hold
   - 11.05 21:15 Tondela vs Moreirense [pt1-r33-tondela-moreirense] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Arouca vs Tondela [pt1-r34-arouca-tondela] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Braga vs Estrela [pt1-r34-braga-estrela] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Casa Pia vs Rio Ave [pt1-r34-casa-pia-rio-ave] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Estoril Praia vs Benfica [pt1-r34-estoril-praia-benfica] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Famalicao vs Alverca [pt1-r34-famalicao-alverca] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Moreirense vs AFS [pt1-r34-moreirense-afs] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Nacional vs Guimaraes [pt1-r34-nacional-guimaraes] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Porto vs Santa Clara [pt1-r34-porto-santa-clara] -> Eksakt match på dato, tid og hold
-  - 17.05 18:00 Sporting vs Gil Vicente [pt1-r34-sporting-gil-vicente] -> Eksakt match på dato, tid og hold
+  - 16.05 19:00 Arouca vs Tondela [pt1-r34-arouca-tondela] -> Eksakt match på dato, tid og hold
+  - 16.05 19:00 Braga vs Estrela [pt1-r34-braga-estrela] -> Eksakt match på dato, tid og hold
+  - 16.05 19:00 Casa Pia vs Rio Ave [pt1-r34-casa-pia-rio-ave] -> Eksakt match på dato, tid og hold
+  - 16.05 21:30 Estoril Praia vs Benfica [pt1-r34-estoril-praia-benfica] -> Eksakt match på dato, tid og hold
+  - 16.05 21:30 Famalicao vs Alverca [pt1-r34-famalicao-alverca] -> Eksakt match på dato, tid og hold
+  - 16.05 16:30 Moreirense vs AFS [pt1-r34-moreirense-afs] -> Eksakt match på dato, tid og hold
+  - 16.05 19:00 Nacional vs Guimaraes [pt1-r34-nacional-guimaraes] -> Eksakt match på dato, tid og hold
+  - 16.05 16:30 Porto vs Santa Clara [pt1-r34-porto-santa-clara] -> Eksakt match på dato, tid og hold
+  - 16.05 21:30 Sporting vs Gil Vicente [pt1-r34-sporting-gil-vicente] -> Eksakt match på dato, tid og hold
 ```
 
 ## Portugal - Liga Portugal 2 (`pt-liga-portugal-2`)
@@ -1711,24 +1711,24 @@ exact: 18
 ```
 
 ## Holland - Eredivisie Playoffs (`nl-eredivisie-playoffs`)
-Status: **needs-attention**
+Status: **passed**
 
 ```text
 Competition: nl-promotion-relegation-playoffs
 Season: 2025-26
 Fixtures audited: 4
 
-missing: 4
-  - 05.05 18:45 RKC Waalwijk vs Willem II [nlpo-01-rkc-waalwijk-willem-ii] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 06.05 18:45 Almere City vs De Graafschap [nlpo-02-almere-city-de-graafschap] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 16:30 Willem II vs RKC Waalwijk [nlpo-03-willem-ii-rkc-waalwijk] -> Kunne ikke finde kampen i Flashscore-udtrækket
-  - 09.05 20:00 De Graafschap vs Almere City [nlpo-04-de-graafschap-almere-city] -> Kunne ikke finde kampen i Flashscore-udtrækket
+missing: 0
 
 time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 0
+exact: 4
+  - 05.05 18:45 RKC Waalwijk vs Willem II [nlpo-01-rkc-waalwijk-willem-ii] -> Eksakt match på dato, tid og hold
+  - 06.05 18:45 Almere City vs De Graafschap [nlpo-02-almere-city-de-graafschap] -> Eksakt match på dato, tid og hold
+  - 09.05 16:30 Willem II vs RKC Waalwijk [nlpo-03-willem-ii-rkc-waalwijk] -> Eksakt match på dato, tid og hold
+  - 09.05 20:00 De Graafschap vs Almere City [nlpo-04-de-graafschap-almere-city] -> Eksakt match på dato, tid og hold
 ```
 
 ## Holland - Tweede Divisie (`nl-tweede-divisie`)

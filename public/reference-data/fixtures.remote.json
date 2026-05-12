@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-11T18:58:56.673Z",
-    "generatedAt": "2026-05-11T18:58:56.673Z",
-    "checksum": "d920919f44705023cbad93dc8ba76e62c305b438854700fcb8f351d6b0b8b39f",
+    "version": "2026-05-12T05:09:07.911Z",
+    "generatedAt": "2026-05-12T05:09:07.911Z",
+    "checksum": "5e97fa411fa29762d2a4bac006253078542b39e94f4ca5d5d9d0e10e4f0a4943",
     "signature": null
   },
   "fixtures": [
@@ -10425,7 +10425,7 @@
     },
     {
       "id": "pt1-r34-arouca-tondela",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T19:00:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-arouca",
       "awayTeamId": "pt-tondela",
@@ -10436,7 +10436,7 @@
     },
     {
       "id": "pt1-r34-braga-estrela",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T19:00:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-braga",
       "awayTeamId": "pt-estrela",
@@ -10447,7 +10447,7 @@
     },
     {
       "id": "pt1-r34-casa-pia-rio-ave",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T19:00:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-casa-pia",
       "awayTeamId": "pt-rio-ave",
@@ -10458,7 +10458,7 @@
     },
     {
       "id": "pt1-r34-estoril-praia-benfica",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T21:30:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-estoril-praia",
       "awayTeamId": "pt-benfica",
@@ -10469,7 +10469,7 @@
     },
     {
       "id": "pt1-r34-famalicao-alverca",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T21:30:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-famalicao",
       "awayTeamId": "pt-alverca",
@@ -10480,7 +10480,7 @@
     },
     {
       "id": "pt1-r34-moreirense-afs",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T16:30:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-moreirense",
       "awayTeamId": "pt-afs",
@@ -10491,7 +10491,7 @@
     },
     {
       "id": "pt1-r34-nacional-guimaraes",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T19:00:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-nacional",
       "awayTeamId": "pt-guimaraes",
@@ -10502,7 +10502,7 @@
     },
     {
       "id": "pt1-r34-porto-santa-clara",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T16:30:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-porto",
       "awayTeamId": "pt-santa-clara",
@@ -10513,7 +10513,7 @@
     },
     {
       "id": "pt1-r34-sporting-gil-vicente",
-      "kickoff": "2026-05-17T18:00:00+01:00",
+      "kickoff": "2026-05-16T21:30:00+01:00",
       "round": "Liga Portugal - 34. runde",
       "homeTeamId": "pt-sporting",
       "awayTeamId": "pt-gil-vicente",

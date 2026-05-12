@@ -397,9 +397,9 @@
       "label": "Holland - Eredivisie Playoffs",
       "season": "2025-26",
       "competitionId": "nl-promotion-relegation-playoffs",
-      "source": "data/fixture-audits/raw/nl-eredivisie.txt",
+      "source": "data/fixture-audits/raw/nl-eerste-divisie.txt",
       "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/holland/eredivisie/kommende/",
+        "url": "https://www.flashscore.dk/fodbold/holland/eerste-divisie/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
