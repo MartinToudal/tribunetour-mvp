@@ -5,6 +5,10 @@ on:
     - cron: "17 4 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -19,13 +23,142 @@ jobs:
           python-version: "3.11"
 
       - name: Run due fixture audits
-        run: python3 scripts/run-fixture-audits.py --due
+        id: audit
+        continue-on-error: true
+        run: |
+          set +e
+          output="$(python3 scripts/run-fixture-audits.py --due 2>&1)"
+          status=$?
+          printf '%s\n' "$output"
+
+          if [ "$output" = "No audits due today" ]; then
+            echo "had_due=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "had_due=true" >> "$GITHUB_OUTPUT"
+          exit $status
 
       - name: Upload audit reports
-        if: always()
+        if: always() && steps.audit.outputs.had_due == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: fixture-audit-report
           path: |
             data/fixture-audits/reports/latest.json
             data/fixture-audits/reports/latest.md
+
+      - name: Open or update fixture audit issue
+        if: always() && steps.audit.outputs.had_due == 'true'
+        uses: actions/github-script@v7
+        env:
+          REPORT_PATH: data/fixture-audits/reports/latest.json
+          ISSUE_TITLE: Fixture audit failures
+          ISSUE_LABEL: fixture-audit
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = process.env.REPORT_PATH;
+            const issueTitle = process.env.ISSUE_TITLE;
+            const issueLabel = process.env.ISSUE_LABEL;
+
+            if (!fs.existsSync(reportPath)) {
+              core.setFailed(`Missing report file: ${reportPath}`);
+              return;
+            }
+
+            const payload = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            const results = payload.results || [];
+            const failing = results.filter((result) => result.status !== 'passed');
+
+            const { owner, repo } = context.repo;
+
+            async function ensureLabel() {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name: issueLabel });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo,
+                  name: issueLabel,
+                  color: 'B60205',
+                  description: 'Automated fixture audit failures',
+                });
+              }
+            }
+
+            async function findOpenIssue() {
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner,
+                repo,
+                state: 'open',
+                labels: issueLabel,
+                per_page: 100,
+              });
+              return issues.find((issue) => issue.title === issueTitle) || null;
+            }
+
+            async function closeIssue(issue) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issue.number,
+                body: `All due fixture audits passed again at ${payload.generatedAt}. Closing this issue.`,
+              });
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }
+
+            if (failing.length === 0) {
+              const existingIssue = await findOpenIssue();
+              if (existingIssue) {
+                await closeIssue(existingIssue);
+              }
+              core.info('All due audits passed; no issue needed.');
+              return;
+            }
+
+            await ensureLabel();
+
+            const sections = failing.map((result) => {
+              const trimmed = (result.details || '').trim();
+              const snippet = trimmed.length > 6000 ? `${trimmed.slice(0, 6000)}\n\n...[truncated]` : trimmed;
+              return `## ${result.label}\nStatus: **${result.status}**\n\n\`\`\`text\n${snippet}\n\`\`\``;
+            });
+
+            const body = [
+              `Fixture audit found ${failing.length} failing competition(s).`,
+              '',
+              `Generated at: ${payload.generatedAt}`,
+              '',
+              ...sections,
+            ].join('\n');
+
+            const existingIssue = await findOpenIssue();
+            if (existingIssue) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existingIssue.number,
+                body,
+              });
+              core.info(`Updated existing fixture audit issue #${existingIssue.number}.`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner,
+                repo,
+                title: issueTitle,
+                body,
+                labels: [issueLabel],
+              });
+              core.info(`Created fixture audit issue #${created.data.number}.`);
+            }
+
+      - name: Fail workflow when due audits fail
+        if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outcome != 'success'
+        run: exit 1
