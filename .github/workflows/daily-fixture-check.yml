@@ -52,9 +52,11 @@ jobs:
         continue-on-error: true
         run: |
           set +e
+          mkdir -p data/fixture-audits/reports
           output="$(python3 scripts/run-daily-fixture-check.py --apply-safe-updates 2>&1)"
           status=$?
           printf '%s\n' "$output"
+          printf '%s\n' "$output" > data/fixture-audits/reports/latest-daily-run.log
           echo "status_code=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
@@ -68,6 +70,8 @@ jobs:
             data/fixture-audits/reports/latest-daily.md
             data/fixture-audits/reports/latest-daily-updates.json
             data/fixture-audits/reports/latest-daily-updates.md
+            data/fixture-audits/reports/latest-daily-run.log
+            data/fixture-audits/reports/latest-daily-email.log
 
       - name: Commit automatic daily fixture updates
         if: steps.localtime.outputs.run_now == 'true'
@@ -75,6 +79,7 @@ jobs:
         run: |
           if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json; then
             echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            echo "push_status=no_changes" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -87,6 +92,7 @@ jobs:
             git pull --rebase origin main
             if git push origin HEAD:main; then
               echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+              echo "push_status=success" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             if [ "$attempt" -lt 3 ]; then
@@ -94,19 +100,76 @@ jobs:
             fi
           done
           echo "Daily fixture update push failed after retries."
+          echo "push_status=failed" >> "$GITHUB_OUTPUT"
           exit 1
 
       - name: Send daily fixture check email
         if: always() && steps.localtime.outputs.run_now == 'true'
         id: email
+        continue-on-error: true
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           FIXTURE_CHECK_NOTIFY_TO: ${{ secrets.FIXTURE_CHECK_NOTIFY_TO }}
           FIXTURE_CHECK_NOTIFY_FROM: ${{ secrets.FIXTURE_CHECK_NOTIFY_FROM }}
-        run: python3 scripts/send-daily-fixture-check-email.py
+        run: |
+          set +e
+          output="$(python3 scripts/send-daily-fixture-check-email.py 2>&1)"
+          status=$?
+          printf '%s\n' "$output"
+          printf '%s\n' "$output" > data/fixture-audits/reports/latest-daily-email.log
+          echo "status_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Write daily fixture summary
+        if: always() && steps.localtime.outputs.run_now == 'true'
+        env:
+          DAILYCHECK_STATUS: ${{ steps.dailycheck.outputs.status_code }}
+          PUSH_STATUS: ${{ steps.autocommit.outputs.push_status }}
+          EMAIL_STATUS: ${{ steps.email.outputs.status_code }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report_path = Path("data/fixture-audits/reports/latest-daily.json")
+          updates_path = Path("data/fixture-audits/reports/latest-daily-updates.json")
+          summary_path = Path(os.environ["GITHUB_STEP_SUMMARY"])
+
+          report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
+          updates = json.loads(updates_path.read_text(encoding="utf-8")) if updates_path.exists() else {}
+
+          failing = [result for result in report.get("results", []) if result.get("status") != "passed"]
+          lines = [
+              "# Daily Fixture Check",
+              "",
+              f"- Window: `{report.get('window', {}).get('from', '?')}` → `{report.get('window', {}).get('to', '?')}`",
+              f"- Checked competitions: `{report.get('checkedCompetitions', 0)}`",
+              f"- Failing competitions: `{report.get('failingCompetitions', 0)}`",
+              f"- Automatic updates: `{updates.get('totalUpdated', report.get('totalUpdated', 0))}`",
+              f"- Check exit code: `{os.environ.get('DAILYCHECK_STATUS', '?')}`",
+              f"- Push status: `{os.environ.get('PUSH_STATUS', 'unknown')}`",
+              f"- Email exit code: `{os.environ.get('EMAIL_STATUS', '?')}`",
+              "",
+          ]
+
+          if failing:
+              lines.append("## Failing competitions")
+              lines.append("")
+              for result in failing[:15]:
+                  lines.append(f"- **{result['label']}** — `{result['status']}`")
+              lines.append("")
+          else:
+              lines.append("## Result")
+              lines.append("")
+              lines.append("- All competitions in the daily window passed.")
+              lines.append("")
+
+          summary_path.write_text("\n".join(lines), encoding="utf-8")
+          PY
 
       - name: Fail workflow when email could not be sent
-        if: always() && steps.localtime.outputs.run_now == 'true' && steps.email.outcome == 'failure'
+        if: always() && steps.localtime.outputs.run_now == 'true' && steps.email.outputs.status_code != '0'
         run: |
           echo "Daily fixture check mail failed to send."
           exit 1
