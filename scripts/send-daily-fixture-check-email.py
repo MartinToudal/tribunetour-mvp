@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -124,9 +125,14 @@ def main() -> int:
         method="POST",
     )
 
-    with urllib.request.urlopen(request, timeout=30) as response:
-        body = response.read().decode("utf-8", "ignore")
-        print(body)
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            body = response.read().decode("utf-8", "ignore")
+            print(body)
+    except urllib.error.HTTPError as error:
+        body = error.read().decode("utf-8", "ignore")
+        print(f"Resend HTTPError {error.code}: {body}", file=sys.stderr)
+        return 1
     return 0
 
 

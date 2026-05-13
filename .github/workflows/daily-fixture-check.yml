@@ -6,6 +6,10 @@ on:
     - cron: "0 2 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: daily-fixture-check
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -33,6 +37,8 @@ jobs:
       - name: Check out repository
         if: steps.localtime.outputs.run_now == 'true'
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         if: steps.localtime.outputs.run_now == 'true'
@@ -76,17 +82,28 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest-daily.json data/fixture-audits/reports/latest-daily.md data/fixture-audits/reports/latest-daily-updates.json data/fixture-audits/reports/latest-daily-updates.md
           git commit -m "chore: daily fixture check updates"
-          git push
+          git fetch origin main
+          git pull --rebase origin main
+          git push origin HEAD:main
           echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
 
       - name: Send daily fixture check email
         if: always() && steps.localtime.outputs.run_now == 'true'
+        id: email
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           FIXTURE_CHECK_NOTIFY_TO: ${{ secrets.FIXTURE_CHECK_NOTIFY_TO }}
           FIXTURE_CHECK_NOTIFY_FROM: ${{ secrets.FIXTURE_CHECK_NOTIFY_FROM }}
         run: python3 scripts/send-daily-fixture-check-email.py
 
+      - name: Fail workflow when email could not be sent
+        if: always() && steps.localtime.outputs.run_now == 'true' && steps.email.outcome == 'failure'
+        run: |
+          echo "Daily fixture check mail failed to send."
+          exit 1
+
       - name: Fail workflow when daily check found issues
         if: always() && steps.localtime.outputs.run_now == 'true' && steps.dailycheck.outputs.status_code != '0'
-        run: exit 1
+        run: |
+          echo "Daily fixture check found issues. See report artifact and email summary."
+          exit 1
