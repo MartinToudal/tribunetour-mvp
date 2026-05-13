@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: daily-fixture-check
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -73,19 +73,28 @@ jobs:
         if: steps.localtime.outputs.run_now == 'true'
         id: autocommit
         run: |
-          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest-daily.json data/fixture-audits/reports/latest-daily.md data/fixture-audits/reports/latest-daily-updates.json data/fixture-audits/reports/latest-daily-updates.md; then
+          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json; then
             echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest-daily.json data/fixture-audits/reports/latest-daily.md data/fixture-audits/reports/latest-daily-updates.json data/fixture-audits/reports/latest-daily-updates.md
+          git add data/fixtures.json public/reference-data/fixtures.remote.json
           git commit -m "chore: daily fixture check updates"
-          git fetch origin main
-          git pull --rebase origin main
-          git push origin HEAD:main
-          echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep $((attempt * 2))
+            fi
+          done
+          echo "Daily fixture update push failed after retries."
+          exit 1
 
       - name: Send daily fixture check email
         if: always() && steps.localtime.outputs.run_now == 'true'
