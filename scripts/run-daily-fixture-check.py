@@ -399,6 +399,7 @@ def apply_safe_updates(
         new_kickoff = iso_with_offset(source_fixture.kickoff, local_fixture.kickoff)
         row = rows_by_id[local_fixture.fixture_id]
         changed = False
+        visible_change = False
         change_record = {
             "fixtureId": local_fixture.fixture_id,
             "home": local_fixture.home_name,
@@ -411,6 +412,7 @@ def apply_safe_updates(
         if new_kickoff != local_fixture.kickoff:
             row["kickoff"] = new_kickoff
             changed = True
+            visible_change = True
         if source_fixture.round and row.get("round") != source_fixture.round:
             row["round"] = source_fixture.round
             changed = True
@@ -420,7 +422,7 @@ def apply_safe_updates(
         if row.get("seasonId") != audit["season"]:
             row["seasonId"] = audit["season"]
             changed = True
-        if changed:
+        if changed and visible_change:
             updates.append(change_record)
 
     total_updated = len(updates) + len(added)

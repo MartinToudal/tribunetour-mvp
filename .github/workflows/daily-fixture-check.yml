@@ -76,17 +76,22 @@ jobs:
       - name: Commit automatic daily fixture updates
         if: steps.localtime.outputs.run_now == 'true'
         id: autocommit
+        continue-on-error: true
         run: |
-          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fixtures.json public/reference-data/fixtures.remote.json
+          if git diff --cached --quiet; then
             echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
             echo "push_status=no_changes" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fixtures.json public/reference-data/fixtures.remote.json
-          git commit -m "chore: daily fixture check updates"
+          if ! git commit -m "chore: daily fixture check updates"; then
+            echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            echo "push_status=commit_failed" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           for attempt in 1 2 3; do
             git fetch origin main
             git pull --rebase origin main
@@ -101,7 +106,7 @@ jobs:
           done
           echo "Daily fixture update push failed after retries."
           echo "push_status=failed" >> "$GITHUB_OUTPUT"
-          exit 1
+          exit 0
 
       - name: Send daily fixture check email
         if: always() && steps.localtime.outputs.run_now == 'true'
@@ -178,3 +183,8 @@ jobs:
         if: always() && steps.localtime.outputs.run_now == 'true' && steps.dailycheck.outputs.status_code != '0'
         run: |
           echo "Daily fixture check found issues. See report artifact and email summary."
+
+      - name: Log daily fixture push issues
+        if: always() && steps.localtime.outputs.run_now == 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
+        run: |
+          echo "Daily fixture sync could not persist changes automatically. Push status: ${{ steps.autocommit.outputs.push_status }}"
