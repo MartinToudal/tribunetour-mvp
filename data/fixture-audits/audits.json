@@ -342,6 +342,21 @@
       "anchorDate": "2026-05-11"
     },
     {
+      "id": "it-lega-pro-promotion-playoffs",
+      "label": "Italien - Lega Pro opryknings-playoffs",
+      "season": "2025-26",
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "fixturePrefix": "itlp-",
+      "roundPrefix": "Lega Pro - Oprykning - Play Offs - ",
+      "source": "data/fixture-audits/raw/it-lega-pro-promotion-playoffs.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/italien/lega-pro-oprykning-play-offs/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-05-13"
+    },
+    {
       "id": "it-serie-c-gA",
       "label": "Italien - Serie C Gruppe A",
       "season": "2025-26",

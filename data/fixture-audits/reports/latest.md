@@ -1,6 +1,6 @@
 # Fixture audit report
 
-Generated at: 2026-05-12T15:18:38.314623+00:00
+Generated at: 2026-05-13T05:27:57.225250+00:00
 
 ## Danmark - Superliga (`dk-superliga`)
 Status: **passed**
@@ -655,7 +655,7 @@ Status: **passed**
 ```text
 Competition: epl-
 Season: 2025-26
-Fixtures audited: 60
+Fixtures audited: 61
 
 missing: 0
 
@@ -663,7 +663,7 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 60
+exact: 61
   - 18.04 13:30 Brentford vs Fulham [epl-r33-brentford-fulham] -> Eksakt match på dato, tid og hold
   - 18.04 16:00 Leeds United vs Wolverhampton Wanderers [epl-r33-leeds-united-wolverhampton-wanderers] -> Eksakt match på dato, tid og hold
   - 18.04 16:00 Newcastle United vs AFC Bournemouth [epl-r33-newcastle-united-afc-bournemouth] -> Eksakt match på dato, tid og hold
@@ -704,6 +704,7 @@ exact: 60
   - 10.05 15:00 Nottingham Forest vs Newcastle United [epl-r36-nottingham-forest-newcastle-united] -> Eksakt match på dato, tid og hold
   - 10.05 17:30 West Ham United vs Arsenal [epl-r36-west-ham-united-arsenal] -> Eksakt match på dato, tid og hold
   - 11.05 21:00 Tottenham Hotspur vs Leeds United [epl-r36-tottenham-hotspur-leeds-united] -> Eksakt match på dato, tid og hold
+  - 13.05 21:00 Manchester City vs Crystal Palace [epl-r31-manchester-city-crystal-palace] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 AFC Bournemouth vs Manchester City [epl-r37-afc-bournemouth-manchester-city] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Arsenal vs Burnley [epl-r37-arsenal-burnley] -> Eksakt match på dato, tid og hold
   - 17.05 16:00 Aston Villa vs Liverpool [epl-r37-aston-villa-liverpool] -> Eksakt match på dato, tid og hold
@@ -732,7 +733,7 @@ Status: **passed**
 ```text
 Competition: ech-
 Season: 2025-26
-Fixtures audited: 50
+Fixtures audited: 53
 
 missing: 0
 
@@ -740,7 +741,7 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 50
+exact: 53
   - 14.04 21:00 Southampton vs Blackburn Rovers [ech-r45-southampton-blackburn-rovers] -> Eksakt match på dato, tid og hold
   - 17.04 21:00 Blackburn Rovers vs Coventry City [ech-r43-blackburn-rovers-coventry-city] -> Eksakt match på dato, tid og hold
   - 18.04 13:30 Derby County vs Oxford United [ech-r43-derby-county-oxford-united] -> Eksakt match på dato, tid og hold
@@ -790,16 +791,19 @@ exact: 50
   - 02.05 13:30 Swansea City vs Charlton Athletic [ech-r46-swansea-city-charlton-athletic] -> Eksakt match på dato, tid og hold
   - 02.05 13:30 Watford vs Coventry City [ech-r46-watford-coventry-city] -> Eksakt match på dato, tid og hold
   - 02.05 13:30 Wrexham vs Middlesbrough [ech-r46-wrexham-middlesbrough] -> Eksakt match på dato, tid og hold
-  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Eksakt match på dato, tid og hold
+  - 08.05 21:00 Hull City vs Millwall [echp-sf1-hull-city-millwall] -> Eksakt match på dato, tid og hold
+  - 09.05 13:30 Middlesbrough vs Southampton [echp-sf2-middlesbrough-southampton] -> Eksakt match på dato, tid og hold
+  - 11.05 21:00 Millwall vs Hull City [echp-sf3-millwall-hull-city] -> Eksakt match på dato, tid og hold
+  - 12.05 21:00 Southampton vs Middlesbrough [echp-sf4-southampton-middlesbrough] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - Championship Playoffs (`en-championship-playoffs`)
 Status: **passed**
 
 ```text
-Competition: echp-
+Competition: en-championship-playoffs
 Season: 2025-26
-Fixtures audited: 1
+Fixtures audited: 4
 
 missing: 0
 
@@ -807,8 +811,32 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 1
-  - 11.05 21:00 Millwall vs Hull City [echp-sf1-millwall-hull-city] -> Eksakt match på dato, tid og hold
+exact: 4
+  - 08.05 21:00 Hull City vs Millwall [echp-sf1-hull-city-millwall] -> Eksakt match på dato, tid og hold
+  - 09.05 13:30 Middlesbrough vs Southampton [echp-sf2-middlesbrough-southampton] -> Eksakt match på dato, tid og hold
+  - 11.05 21:00 Millwall vs Hull City [echp-sf3-millwall-hull-city] -> Eksakt match på dato, tid og hold
+  - 12.05 21:00 Southampton vs Middlesbrough [echp-sf4-southampton-middlesbrough] -> Eksakt match på dato, tid og hold
+```
+
+## England - League One Playoffs (`en-league-one-playoffs`)
+Status: **passed**
+
+```text
+Competition: en-league-one-playoffs
+Season: 2025-26
+Fixtures audited: 4
+
+missing: 0
+
+time-mismatch: 0
+
+date-mismatch: 0
+
+exact: 4
+  - 09.05 16:00 Stevenage vs Stockport County [el1p-sf1-stevenage-stockport-county] -> Eksakt match på dato, tid og hold
+  - 09.05 21:00 Bolton Wanderers vs Bradford City [el1p-sf2-bolton-wanderers-bradford-city] -> Eksakt match på dato, tid og hold
+  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage] -> Eksakt match på dato, tid og hold
+  - 14.05 21:00 Bradford City vs Bolton Wanderers [el1p-sf4-bradford-city-bolton-wanderers] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - League One (`en-league-one`)
@@ -817,7 +845,7 @@ Status: **passed**
 ```text
 Competition: el1-
 Season: 2025-26
-Fixtures audited: 48
+Fixtures audited: 52
 
 missing: 0
 
@@ -825,7 +853,7 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 48
+exact: 52
   - 15.04 20:45 AFC Wimbledon vs Stockport County [el1-r16-afc-wimbledon-stockport-county] -> Eksakt match på dato, tid og hold
   - 15.04 20:45 Luton Town vs Northampton Town [el1-r43-luton-town-northampton-town] -> Eksakt match på dato, tid og hold
   - 16.04 20:45 Peterborough United vs Port Vale [el1-r36-peterborough-united-port-vale] -> Eksakt match på dato, tid og hold
@@ -874,6 +902,10 @@ exact: 48
   - 02.05 16:00 Reading vs Blackpool [el1-r46-reading-blackpool] -> Eksakt match på dato, tid og hold
   - 02.05 16:00 Stevenage vs Wigan Athletic [el1-r46-stevenage-wigan-athletic] -> Eksakt match på dato, tid og hold
   - 02.05 16:00 Wycombe Wanderers vs Rotherham United [el1-r46-wycombe-wanderers-rotherham-united] -> Eksakt match på dato, tid og hold
+  - 09.05 16:00 Stevenage vs Stockport County [el1p-sf1-stevenage-stockport-county] -> Eksakt match på dato, tid og hold
+  - 09.05 21:00 Bolton Wanderers vs Bradford City [el1p-sf2-bolton-wanderers-bradford-city] -> Eksakt match på dato, tid og hold
+  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage] -> Eksakt match på dato, tid og hold
+  - 14.05 21:00 Bradford City vs Bolton Wanderers [el1p-sf4-bradford-city-bolton-wanderers] -> Eksakt match på dato, tid og hold
 ```
 
 ## England - League Two (`en-league-two`)
@@ -1379,7 +1411,7 @@ Status: **passed**
 ```text
 Competition: itb-
 Season: 2025-26
-Fixtures audited: 30
+Fixtures audited: 34
 
 missing: 0
 
@@ -1387,7 +1419,7 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 30
+exact: 34
   - 24.04 19:00 Monza vs Modena [itb-r36-monza-modena] -> Eksakt match på dato, tid og hold
   - 24.04 21:00 Avellino vs Bari [itb-r36-avellino-bari] -> Eksakt match på dato, tid og hold
   - 25.04 12:30 Catanzaro vs Spezia [itb-r36-catanzaro-spezia] -> Eksakt match på dato, tid og hold
@@ -1418,6 +1450,70 @@ exact: 30
   - 08.05 20:30 Sudtirol vs Juve Stabia [itb-r38-sudtirol-juve-stabia] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Venezia vs Palermo [itb-r38-venezia-palermo] -> Eksakt match på dato, tid og hold
   - 08.05 20:30 Virtus Entella vs Carrarese [itb-r38-virtus-entella-carrarese] -> Eksakt match på dato, tid og hold
+  - 12.05 18:45 Modena vs Juve Stabia [itbp-qf1-modena-juve-stabia] -> Eksakt match på dato, tid og hold
+  - 12.05 21:00 Catanzaro vs Avellino [itbp-qf2-catanzaro-avellino] -> Eksakt match på dato, tid og hold
+  - 15.05 20:00 Bari vs Sudtirol [itbo-f1-bari-sudtirol] -> Eksakt match på dato, tid og hold
+  - 22.05 20:00 Sudtirol vs Bari [itbo-f2-sudtirol-bari] -> Eksakt match på dato, tid og hold
+```
+
+## Italien - Serie B Playoffs (`it-serie-b-playoffs`)
+Status: **passed**
+
+```text
+Competition: it-serie-b-playoffs
+Season: 2025-26
+Fixtures audited: 2
+
+missing: 0
+
+time-mismatch: 0
+
+date-mismatch: 0
+
+exact: 2
+  - 12.05 18:45 Modena vs Juve Stabia [itbp-qf1-modena-juve-stabia] -> Eksakt match på dato, tid og hold
+  - 12.05 21:00 Catanzaro vs Avellino [itbp-qf2-catanzaro-avellino] -> Eksakt match på dato, tid og hold
+```
+
+## Italien - Serie B Play Out (`it-serie-b-playouts`)
+Status: **passed**
+
+```text
+Competition: it-serie-b-playouts
+Season: 2025-26
+Fixtures audited: 2
+
+missing: 0
+
+time-mismatch: 0
+
+date-mismatch: 0
+
+exact: 2
+  - 15.05 20:00 Bari vs Sudtirol [itbo-f1-bari-sudtirol] -> Eksakt match på dato, tid og hold
+  - 22.05 20:00 Sudtirol vs Bari [itbo-f2-sudtirol-bari] -> Eksakt match på dato, tid og hold
+```
+
+## Italien - Lega Pro opryknings-playoffs (`it-lega-pro-promotion-playoffs`)
+Status: **passed**
+
+```text
+Competition: it-lega-pro-promotion-playoffs
+Season: 2025-26
+Fixtures audited: 5
+
+missing: 0
+
+time-mismatch: 0
+
+date-mismatch: 0
+
+exact: 5
+  - 13.05 20:00 Lecco vs Pianese [itlp-r16-lecco-pianese] -> Eksakt match på dato, tid og hold
+  - 13.05 20:00 Ravenna vs Cittadella [itlp-r16-ravenna-cittadella] -> Eksakt match på dato, tid og hold
+  - 13.05 20:00 Renate vs Casarano [itlp-r16-renate-casarano] -> Eksakt match på dato, tid og hold
+  - 13.05 20:45 Salernitana vs Casertana [itlp-r16-salernitana-casertana] -> Eksakt match på dato, tid og hold
+  - 13.05 21:00 Potenza vs Campobasso [itlp-r16-potenza-campobasso] -> Eksakt match på dato, tid og hold
 ```
 
 ## Italien - Serie C Gruppe A (`it-serie-c-gA`)
@@ -1536,7 +1632,7 @@ exact: 18
 ```
 
 ## Portugal - Liga Portugal 2 (`pt-liga-portugal-2`)
-Status: **passed**
+Status: **needs-attention**
 
 ```text
 Competition: pt2-
@@ -1545,11 +1641,20 @@ Fixtures audited: 18
 
 missing: 0
 
-time-mismatch: 0
+time-mismatch: 9
+  - 17.05 17:00 Academico Viseu vs Sporting B [pt2-r34-academico-viseu-sporting-b] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Ferreira vs Penafiel [pt2-r34-ferreira-penafiel] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Leiria vs Feirense [pt2-r34-leiria-feirense] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Leixoes vs Lusitania FC [pt2-r34-leixoes-lusitania-fc] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Maritimo vs Chaves [pt2-r34-maritimo-chaves] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Oliveirense vs Felgueiras [pt2-r34-oliveirense-felgueiras] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Portimonense vs Farense [pt2-r34-portimonense-farense] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Porto B vs Benfica B [pt2-r34-porto-b-benfica-b] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
+  - 17.05 17:00 Torreense vs Vizela [pt2-r34-torreense-vizela] -> Hold og dato matcher, men tiden 17:00 blev ikke fundet
 
 date-mismatch: 0
 
-exact: 18
+exact: 9
   - 09.05 21:30 Benfica B vs Academico Viseu [pt2-r33-benfica-b-academico-viseu] -> Eksakt match på dato, tid og hold
   - 09.05 16:30 Chaves vs Leixoes [pt2-r33-chaves-leixoes] -> Eksakt match på dato, tid og hold
   - 09.05 16:30 Farense vs Ferreira [pt2-r33-farense-ferreira] -> Eksakt match på dato, tid og hold
@@ -1559,15 +1664,6 @@ exact: 18
   - 09.05 16:30 Penafiel vs Maritimo [pt2-r33-penafiel-maritimo] -> Eksakt match på dato, tid og hold
   - 09.05 16:30 Sporting B vs Porto B [pt2-r33-sporting-b-porto-b] -> Eksakt match på dato, tid og hold
   - 09.05 21:30 Vizela vs Leiria [pt2-r33-vizela-leiria] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Academico Viseu vs Sporting B [pt2-r34-academico-viseu-sporting-b] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Ferreira vs Penafiel [pt2-r34-ferreira-penafiel] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Leiria vs Feirense [pt2-r34-leiria-feirense] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Leixoes vs Lusitania FC [pt2-r34-leixoes-lusitania-fc] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Maritimo vs Chaves [pt2-r34-maritimo-chaves] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Oliveirense vs Felgueiras [pt2-r34-oliveirense-felgueiras] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Portimonense vs Farense [pt2-r34-portimonense-farense] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Porto B vs Benfica B [pt2-r34-porto-b-benfica-b] -> Eksakt match på dato, tid og hold
-  - 17.05 17:00 Torreense vs Vizela [pt2-r34-torreense-vizela] -> Eksakt match på dato, tid og hold
 ```
 
 ## Portugal - Liga 3 Oprykningsgruppe (`pt-liga-3-promotion`)
@@ -1636,7 +1732,7 @@ Status: **passed**
 ```text
 Competition: nl-promotion-relegation-playoffs
 Season: 2025-26
-Fixtures audited: 4
+Fixtures audited: 6
 
 missing: 0
 
@@ -1644,11 +1740,13 @@ time-mismatch: 0
 
 date-mismatch: 0
 
-exact: 4
+exact: 6
+  - 13.05 20:00 Almere City vs Willem II [nlpo-05-almere-city-willem-ii] -> Eksakt match på dato, tid og hold
   - 05.05 18:45 RKC Waalwijk vs Willem II [nlpo-01-rkc-waalwijk-willem-ii] -> Eksakt match på dato, tid og hold
   - 06.05 18:45 Almere City vs De Graafschap [nlpo-02-almere-city-de-graafschap] -> Eksakt match på dato, tid og hold
   - 09.05 16:30 Willem II vs RKC Waalwijk [nlpo-03-willem-ii-rkc-waalwijk] -> Eksakt match på dato, tid og hold
   - 09.05 20:00 De Graafschap vs Almere City [nlpo-04-de-graafschap-almere-city] -> Eksakt match på dato, tid og hold
+  - 16.05 20:00 Willem II vs Almere City [nlpo-06-willem-ii-almere-city] -> Eksakt match på dato, tid og hold
 ```
 
 ## Holland - Tweede Divisie (`nl-tweede-divisie`)

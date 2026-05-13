@@ -9,7 +9,7 @@ import sys
 import unicodedata
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 
@@ -61,6 +61,14 @@ def parse_args() -> argparse.Namespace:
         "--round-prefix",
         help="Optional round prefix for legacy rows, e.g. 'Superliga - '",
     )
+    parser.add_argument(
+        "--from-date",
+        help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD",
+    )
+    parser.add_argument(
+        "--to-date",
+        help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD",
+    )
     return parser.parse_args()
 
 
@@ -110,6 +118,8 @@ def load_fixtures(
     season_id: str,
     fixture_prefix: str | None,
     round_prefix: str | None,
+    from_date: date | None,
+    to_date: date | None,
 ) -> list[FixtureRow]:
     rows: list[FixtureRow] = []
     if APP_FIXTURES_CSV.exists():
@@ -132,6 +142,12 @@ def load_fixtures(
         if not any([matches_competition, matches_fixture_prefix, matches_round_prefix]):
             continue
         if row_season != season_id:
+            continue
+        kickoff_dt = datetime.fromisoformat(row["kickoff"])
+        kickoff_date = kickoff_dt.date()
+        if from_date and kickoff_date < from_date:
+            continue
+        if to_date and kickoff_date > to_date:
             continue
         home_team_id = row["homeTeamId"]
         away_team_id = row["awayTeamId"]
@@ -238,6 +254,8 @@ def main() -> int:
     if not args.competition and not args.fixture_prefix and not args.round_prefix:
         print("One of --competition, --fixture-prefix or --round-prefix is required", file=sys.stderr)
         return 1
+    from_date = date.fromisoformat(args.from_date) if args.from_date else None
+    to_date = date.fromisoformat(args.to_date) if args.to_date else None
 
     source_text = normalize_text(source_path.read_text(encoding="utf-8"))
     alias_map = load_aliases()
@@ -248,6 +266,8 @@ def main() -> int:
         args.season,
         args.fixture_prefix,
         args.round_prefix,
+        from_date,
+        to_date,
     )
 
     if not fixtures:

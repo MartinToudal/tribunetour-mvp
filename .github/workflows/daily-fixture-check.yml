@@ -1,0 +1,92 @@
+name: Daily Fixture Check
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Skip if not 03:00 in Copenhagen
+        id: localtime
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run_now=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          local_hour="$(TZ=Europe/Copenhagen date +%H)"
+          if [ "$local_hour" = "03" ]; then
+            echo "run_now=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_now=false" >> "$GITHUB_OUTPUT"
+            echo "Not 03:00 in Copenhagen, skipping."
+          fi
+
+      - name: Check out repository
+        if: steps.localtime.outputs.run_now == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: steps.localtime.outputs.run_now == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run daily fixture check
+        if: steps.localtime.outputs.run_now == 'true'
+        id: dailycheck
+        continue-on-error: true
+        run: |
+          set +e
+          output="$(python3 scripts/run-daily-fixture-check.py --apply-safe-updates 2>&1)"
+          status=$?
+          printf '%s\n' "$output"
+          echo "status_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload daily reports
+        if: steps.localtime.outputs.run_now == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-fixture-check-report
+          path: |
+            data/fixture-audits/reports/latest-daily.json
+            data/fixture-audits/reports/latest-daily.md
+            data/fixture-audits/reports/latest-daily-updates.json
+            data/fixture-audits/reports/latest-daily-updates.md
+
+      - name: Commit automatic daily fixture updates
+        if: steps.localtime.outputs.run_now == 'true'
+        id: autocommit
+        run: |
+          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest-daily.json data/fixture-audits/reports/latest-daily.md data/fixture-audits/reports/latest-daily-updates.json data/fixture-audits/reports/latest-daily-updates.md; then
+            echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest-daily.json data/fixture-audits/reports/latest-daily.md data/fixture-audits/reports/latest-daily-updates.json data/fixture-audits/reports/latest-daily-updates.md
+          git commit -m "chore: daily fixture check updates"
+          git push
+          echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Send daily fixture check email
+        if: always() && steps.localtime.outputs.run_now == 'true'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FIXTURE_CHECK_NOTIFY_TO: ${{ secrets.FIXTURE_CHECK_NOTIFY_TO }}
+          FIXTURE_CHECK_NOTIFY_FROM: ${{ secrets.FIXTURE_CHECK_NOTIFY_FROM }}
+        run: python3 scripts/send-daily-fixture-check-email.py
+
+      - name: Fail workflow when daily check found issues
+        if: always() && steps.localtime.outputs.run_now == 'true' && steps.dailycheck.outputs.status_code != '0'
+        run: exit 1

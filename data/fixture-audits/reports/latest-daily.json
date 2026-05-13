@@ -1,0 +1,265 @@
+{
+  "generatedAt": "2026-05-13T12:12:52.913645+00:00",
+  "window": {
+    "from": "2026-05-13",
+    "to": "2026-05-13"
+  },
+  "checkedCompetitions": 42,
+  "failingCompetitions": 0,
+  "totalUpdated": 0,
+  "totalSkipped": 0,
+  "results": [
+    {
+      "audit_id": "dk-superliga",
+      "label": "Danmark - Superliga",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "dk-1-division",
+      "label": "Danmark - 1. division",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "dk-2-division",
+      "label": "Danmark - 2. division",
+      "status": "passed",
+      "details": "Local fixtures in window: 6\nSource fixtures in window: 6\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 6\n  - 13.05 18:00 AB vs FC Roskilde [2d-r28-ab-ros]\n  - 13.05 18:30 FC Helsingør vs Fremad Amager [2d-r28-hel-faa]\n  - 13.05 19:00 Ishøj IF vs Brabrand IF [2d-r28-ish-bra]\n  - 13.05 19:00 Næstved vs HIK [2d-r28-nas-hik]\n  - 13.05 19:00 Skive vs VSK Aarhus [2d-r28-ski-vsk]\n  - 13.05 19:00 Thisted FC vs Vendsyssel FF [2d-r28-thi-ven]"
+    },
+    {
+      "audit_id": "dk-3-division",
+      "label": "Danmark - 3. division",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "de-bundesliga",
+      "label": "Tyskland - Bundesliga",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "de-2-bundesliga",
+      "label": "Tyskland - 2. Bundesliga",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "de-3-liga",
+      "label": "Tyskland - 3. Liga",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "en-premier-league",
+      "label": "England - Premier League",
+      "status": "passed",
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Manchester City vs Crystal Palace [epl-r31-manchester-city-crystal-palace]"
+    },
+    {
+      "audit_id": "en-championship",
+      "label": "England - Championship",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "en-championship-playoffs",
+      "label": "England - Championship Playoffs",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "en-league-one-playoffs",
+      "label": "England - League One Playoffs",
+      "status": "passed",
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]"
+    },
+    {
+      "audit_id": "en-league-one",
+      "label": "England - League One",
+      "status": "passed",
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]"
+    },
+    {
+      "audit_id": "en-league-two",
+      "label": "England - League Two",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "es-laliga",
+      "label": "Spanien - La Liga",
+      "status": "passed",
+      "details": "Local fixtures in window: 4\nSource fixtures in window: 4\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 4\n  - 13.05 19:00 Espanyol vs Ath. Bilbao [esl-r36-espanyol-ath-bilbao]\n  - 13.05 19:00 Villarreal vs Sevilla [esl-r36-villarreal-sevilla]\n  - 13.05 21:30 Alaves vs Barcelona [esl-r36-alaves-barcelona]\n  - 13.05 21:30 Getafe vs Mallorca [esl-r36-getafe-mallorca]"
+    },
+    {
+      "audit_id": "es-laliga2",
+      "label": "Spanien - Segunda División",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "es-primera-federacion-g1",
+      "label": "Spanien - Primera Federación Gruppe 1",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "es-primera-federacion-g2",
+      "label": "Spanien - Primera Federación Gruppe 2",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "fr-ligue-1",
+      "label": "Frankrig - Ligue 1",
+      "status": "passed",
+      "details": "Local fixtures in window: 2\nSource fixtures in window: 2\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 13.05 19:00 Brest vs Strasbourg [fr1-r29-brest-strasbourg]\n  - 13.05 21:00 Lens vs PSG [fr1-r29-lens-psg]"
+    },
+    {
+      "audit_id": "fr-ligue-2",
+      "label": "Frankrig - Ligue 2",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "fr-national",
+      "label": "Frankrig - National",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-a",
+      "label": "Italien - Serie A",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-b",
+      "label": "Italien - Serie B",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-b-playoffs",
+      "label": "Italien - Serie B Playoffs",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-b-playouts",
+      "label": "Italien - Serie B Play Out",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-lega-pro-promotion-playoffs",
+      "label": "Italien - Lega Pro opryknings-playoffs",
+      "status": "passed",
+      "details": "Local fixtures in window: 5\nSource fixtures in window: 5\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 5\n  - 13.05 20:00 Lecco vs Pianese [itlp-r16-lecco-pianese]\n  - 13.05 20:00 Ravenna vs Cittadella [itlp-r16-ravenna-cittadella]\n  - 13.05 20:00 Renate vs Casarano [itlp-r16-renate-casarano]\n  - 13.05 20:45 Salernitana vs Casertana [itlp-r16-salernitana-casertana]\n  - 13.05 21:00 Potenza vs Campobasso [itlp-r16-potenza-campobasso]"
+    },
+    {
+      "audit_id": "it-serie-c-gA",
+      "label": "Italien - Serie C Gruppe A",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-c-gB",
+      "label": "Italien - Serie C Gruppe B",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "it-serie-c-gC",
+      "label": "Italien - Serie C Gruppe C",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "pt-liga-portugal",
+      "label": "Portugal - Liga Portugal",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "pt-liga-portugal-2",
+      "label": "Portugal - Liga Portugal 2",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "pt-liga-3-promotion",
+      "label": "Portugal - Liga 3 Oprykningsgruppe",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "nl-eredivisie",
+      "label": "Holland - Eredivisie",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "nl-eredivisie-playoffs",
+      "label": "Holland - Eredivisie Playoffs",
+      "status": "passed",
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 20:00 Almere City vs Willem II [nlpo-05-almere-city-willem-ii]"
+    },
+    {
+      "audit_id": "nl-tweede-divisie",
+      "label": "Holland - Tweede Divisie",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-jupiler-champions-playoffs",
+      "label": "Belgien - Jupiler mesterskabsspil",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-jupiler-europe-playoffs",
+      "label": "Belgien - Jupiler Conference League gruppe",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-jupiler-relegation-playoffs",
+      "label": "Belgien - Jupiler nedrykningsgruppe",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-promotion-relegation-playoff",
+      "label": "Belgien - Promotion/relegation playoff",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-national-division-1-acff",
+      "label": "Belgien - National Division 1 ACFF",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "be-national-division-1-acff-promotion",
+      "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "tr-super-lig",
+      "label": "Tyrkiet - Süper Lig",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    },
+    {
+      "audit_id": "tr-1-lig-playoffs",
+      "label": "Tyrkiet - 1. Lig slutspil",
+      "status": "passed",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+    }
+  ]
+}

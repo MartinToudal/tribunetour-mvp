@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-12T19:15:31.969Z",
-    "generatedAt": "2026-05-12T19:15:31.969Z",
-    "checksum": "8cc1ea9b3600bee2098be6ba2b7967c9acddb4196073f25db26348b81c7a1610",
+    "version": "2026-05-13T05:25:25.677Z",
+    "generatedAt": "2026-05-13T05:25:25.677Z",
+    "checksum": "4675d4a560029bcbb102860e6484dd12ea40712038af526f4e29e5b79f89f61a",
     "signature": null
   },
   "fixtures": [
@@ -9392,6 +9392,17 @@
       "awayScore": null
     },
     {
+      "id": "epl-r31-manchester-city-crystal-palace",
+      "kickoff": "2026-05-13T21:00:00+01:00",
+      "round": "Premier League - 31. runde",
+      "homeTeamId": "en-manchester-city",
+      "awayTeamId": "en-crystal-palace",
+      "venueClubId": "en-manchester-city",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
       "id": "2d-r28-ab-ros",
       "kickoff": "2026-05-13T18:00:00+02:00",
       "round": "2. division - Spillerunde 28",
@@ -9491,6 +9502,71 @@
       "awayScore": null
     },
     {
+      "id": "itlp-r16-lecco-pianese",
+      "kickoff": "2026-05-13T20:00:00+02:00",
+      "round": "Lega Pro - Oprykning - Play Offs - 1/8 finale",
+      "homeTeamId": "it-lecco",
+      "awayTeamId": "it-pianese",
+      "venueClubId": "it-lecco",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "itlp-r16-ravenna-cittadella",
+      "kickoff": "2026-05-13T20:00:00+02:00",
+      "round": "Lega Pro - Oprykning - Play Offs - 1/8 finale",
+      "homeTeamId": "it-ravenna",
+      "awayTeamId": "it-cittadella",
+      "venueClubId": "it-ravenna",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "itlp-r16-renate-casarano",
+      "kickoff": "2026-05-13T20:00:00+02:00",
+      "round": "Lega Pro - Oprykning - Play Offs - 1/8 finale",
+      "homeTeamId": "it-renate",
+      "awayTeamId": "it-casarano",
+      "venueClubId": "it-renate",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "nlpo-05-almere-city-willem-ii",
+      "kickoff": "2026-05-13T20:00:00+02:00",
+      "round": "Eredivisie Playoffs - Semifinale",
+      "homeTeamId": "nl-almere-city",
+      "awayTeamId": "nl-willem-ii",
+      "venueClubId": "nl-almere-city",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "nl-promotion-relegation-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "itlp-r16-salernitana-casertana",
+      "kickoff": "2026-05-13T20:45:00+02:00",
+      "round": "Lega Pro - Oprykning - Play Offs - 1/8 finale",
+      "homeTeamId": "it-salernitana",
+      "awayTeamId": "it-casertana",
+      "venueClubId": "it-salernitana",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
       "id": "fr1-r29-lens-psg",
       "kickoff": "2026-05-13T21:00:00+02:00",
       "round": "Ligue 1 - 29. runde",
@@ -9500,6 +9576,19 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null
+    },
+    {
+      "id": "itlp-r16-potenza-campobasso",
+      "kickoff": "2026-05-13T21:00:00+02:00",
+      "round": "Lega Pro - Oprykning - Play Offs - 1/8 finale",
+      "homeTeamId": "it-potenza",
+      "awayTeamId": "it-campobasso",
+      "venueClubId": "it-potenza",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-lega-pro-promotion-playoffs",
+      "seasonId": "2025-26"
     },
     {
       "id": "esl-r36-alaves-barcelona",
@@ -13245,6 +13334,19 @@
       "homeTeamId": "nl-de-graafschap",
       "awayTeamId": "nl-almere-city",
       "venueClubId": "nl-de-graafschap",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "nl-promotion-relegation-playoffs",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "nlpo-06-willem-ii-almere-city",
+      "kickoff": "2026-05-16T20:00:00+02:00",
+      "round": "Eredivisie Playoffs - Semifinale",
+      "homeTeamId": "nl-willem-ii",
+      "awayTeamId": "nl-almere-city",
+      "venueClubId": "nl-willem-ii",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,

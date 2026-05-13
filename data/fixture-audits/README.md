@@ -75,3 +75,44 @@ Rapporter skrives til:
 
 - `data/fixture-audits/reports/latest.json`
 - `data/fixture-audits/reports/latest.md`
+
+### Dagligt nær-check
+
+Ud over den brede 14-dages audit har vi nu også et særskilt dagligt check af det nære kampprogram.
+
+Det daglige check:
+
+- kører mod kampvinduet `i dag -> de næste N dage`
+- sammenligner både vores egne fixtures og Flashscore-kilden i samme vindue
+- kan derfor opdage både:
+  - manglende kampe i vores data
+  - forkerte kickoff-tider
+  - lokale kampe som ikke længere findes i kilden
+- kan automatisk skrive sikre kickoff-opdateringer tilbage i web-fixturedata
+
+Manuel kørsel:
+
+```bash
+python3 scripts/run-daily-fixture-check.py --apply-safe-updates
+```
+
+Rapporter skrives til:
+
+- `data/fixture-audits/reports/latest-daily.json`
+- `data/fixture-audits/reports/latest-daily.md`
+- `data/fixture-audits/reports/latest-daily-updates.json`
+- `data/fixture-audits/reports/latest-daily-updates.md`
+
+### Natlig kørsel og mail
+
+GitHub Actions-workflowet for det daglige check ligger i:
+
+- `.github/workflows/daily-fixture-check.yml`
+
+Det er sat op til at ramme `03:00` i `Europe/Copenhagen` ved at køre på to UTC-crons og derefter kun fortsætte, når den lokale tid faktisk er 03.
+
+For at mails virker fra GitHub Actions, skal disse repo secrets sættes:
+
+- `RESEND_API_KEY`
+- `FIXTURE_CHECK_NOTIFY_TO`
+- `FIXTURE_CHECK_NOTIFY_FROM` (valgfri; der bruges ellers en standard-afsender)

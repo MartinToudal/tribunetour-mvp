@@ -1,0 +1,349 @@
+{
+  "generatedAt": "2026-05-13T12:12:52.913645+00:00",
+  "window": {
+    "from": "2026-05-13",
+    "to": "2026-05-13"
+  },
+  "checkedCompetitions": 42,
+  "failingCompetitions": 0,
+  "totalUpdated": 0,
+  "totalSkipped": 0,
+  "results": [
+    {
+      "audit_id": "dk-superliga",
+      "label": "Danmark - Superliga",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "dk-1-division",
+      "label": "Danmark - 1. division",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "dk-2-division",
+      "label": "Danmark - 2. division",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "dk-3-division",
+      "label": "Danmark - 3. division",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "de-bundesliga",
+      "label": "Tyskland - Bundesliga",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "de-2-bundesliga",
+      "label": "Tyskland - 2. Bundesliga",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "de-3-liga",
+      "label": "Tyskland - 3. Liga",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-premier-league",
+      "label": "England - Premier League",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-championship",
+      "label": "England - Championship",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-championship-playoffs",
+      "label": "England - Championship Playoffs",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-league-one-playoffs",
+      "label": "England - League One Playoffs",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-league-one",
+      "label": "England - League One",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "en-league-two",
+      "label": "England - League Two",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "es-laliga",
+      "label": "Spanien - La Liga",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "es-laliga2",
+      "label": "Spanien - Segunda División",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "es-primera-federacion-g1",
+      "label": "Spanien - Primera Federación Gruppe 1",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "es-primera-federacion-g2",
+      "label": "Spanien - Primera Federación Gruppe 2",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "fr-ligue-1",
+      "label": "Frankrig - Ligue 1",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "fr-ligue-2",
+      "label": "Frankrig - Ligue 2",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "fr-national",
+      "label": "Frankrig - National",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-a",
+      "label": "Italien - Serie A",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-b",
+      "label": "Italien - Serie B",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-b-playoffs",
+      "label": "Italien - Serie B Playoffs",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-b-playouts",
+      "label": "Italien - Serie B Play Out",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-lega-pro-promotion-playoffs",
+      "label": "Italien - Lega Pro opryknings-playoffs",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-c-gA",
+      "label": "Italien - Serie C Gruppe A",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-c-gB",
+      "label": "Italien - Serie C Gruppe B",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "it-serie-c-gC",
+      "label": "Italien - Serie C Gruppe C",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "pt-liga-portugal",
+      "label": "Portugal - Liga Portugal",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "pt-liga-portugal-2",
+      "label": "Portugal - Liga Portugal 2",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "pt-liga-3-promotion",
+      "label": "Portugal - Liga 3 Oprykningsgruppe",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "nl-eredivisie",
+      "label": "Holland - Eredivisie",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "nl-eredivisie-playoffs",
+      "label": "Holland - Eredivisie Playoffs",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "nl-tweede-divisie",
+      "label": "Holland - Tweede Divisie",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-jupiler-champions-playoffs",
+      "label": "Belgien - Jupiler mesterskabsspil",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-jupiler-europe-playoffs",
+      "label": "Belgien - Jupiler Conference League gruppe",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-jupiler-relegation-playoffs",
+      "label": "Belgien - Jupiler nedrykningsgruppe",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-promotion-relegation-playoff",
+      "label": "Belgien - Promotion/relegation playoff",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-national-division-1-acff",
+      "label": "Belgien - National Division 1 ACFF",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "be-national-division-1-acff-promotion",
+      "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "tr-super-lig",
+      "label": "Tyrkiet - Süper Lig",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    },
+    {
+      "audit_id": "tr-1-lig-playoffs",
+      "label": "Tyrkiet - 1. Lig slutspil",
+      "updated_count": 0,
+      "updates": [],
+      "skipped_count": 0,
+      "skipped": []
+    }
+  ]
+}
