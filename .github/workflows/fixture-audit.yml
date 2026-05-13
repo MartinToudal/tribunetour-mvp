@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "17 4 * * *"
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "Which audits to run"
+        required: true
+        default: due
+        type: choice
+        options:
+          - due
+          - all
 
 concurrency:
   group: fixture-audit
@@ -27,18 +36,29 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run due fixture audits
+      - name: Run fixture audits
         id: audit
         continue-on-error: true
         run: |
           set +e
           mkdir -p data/fixture-audits/reports
-          output="$(python3 scripts/run-fixture-audits.py --due --apply-safe-updates 2>&1)"
+          mode="due"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            mode="${{ inputs.scope }}"
+          fi
+
+          if [ "$mode" = "all" ]; then
+            cmd=(python3 scripts/run-fixture-audits.py --all --apply-safe-updates)
+          else
+            cmd=(python3 scripts/run-fixture-audits.py --due --apply-safe-updates)
+          fi
+
+          output="$("${cmd[@]}" 2>&1)"
           status=$?
           printf '%s\n' "$output"
           printf '%s\n' "$output" > data/fixture-audits/reports/latest-run.log
 
-          if [ "$output" = "No audits due today" ]; then
+          if [ "$mode" = "due" ] && [ "$output" = "No audits due today" ]; then
             echo "had_due=false" >> "$GITHUB_OUTPUT"
             echo "status_code=0" >> "$GITHUB_OUTPUT"
             exit 0
