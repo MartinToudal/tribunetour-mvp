@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
 import sys
@@ -14,9 +13,6 @@ from pathlib import Path
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
-WORKSPACE_ROOT = WEBSITE_ROOT.parent
-APP_DIR = WORKSPACE_ROOT / "Tribunetour"
-APP_FIXTURES_CSV = APP_DIR / "fixtures.csv"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
 WEB_FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
@@ -122,12 +118,7 @@ def load_fixtures(
     to_date: date | None,
 ) -> list[FixtureRow]:
     rows: list[FixtureRow] = []
-    if APP_FIXTURES_CSV.exists():
-        with APP_FIXTURES_CSV.open(encoding="utf-8", newline="") as handle:
-            reader = csv.DictReader(handle)
-            source_rows = list(reader)
-    else:
-        source_rows = load_json(WEB_FIXTURES_JSON)
+    source_rows = load_json(WEB_FIXTURES_JSON)
 
     for row in source_rows:
         row_competition = (row.get("competitionId") or "").strip()

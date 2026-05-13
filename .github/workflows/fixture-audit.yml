@@ -5,9 +5,12 @@ on:
     - cron: "17 4 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: fixture-audit
+  cancel-in-progress: true
+
 permissions:
   contents: write
-  issues: write
 
 jobs:
   audit:
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,17 +32,21 @@ jobs:
         continue-on-error: true
         run: |
           set +e
+          mkdir -p data/fixture-audits/reports
           output="$(python3 scripts/run-fixture-audits.py --due --apply-safe-updates 2>&1)"
           status=$?
           printf '%s\n' "$output"
+          printf '%s\n' "$output" > data/fixture-audits/reports/latest-run.log
 
           if [ "$output" = "No audits due today" ]; then
             echo "had_due=false" >> "$GITHUB_OUTPUT"
+            echo "status_code=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           echo "had_due=true" >> "$GITHUB_OUTPUT"
-          exit $status
+          echo "status_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Upload audit reports
         if: always() && steps.audit.outputs.had_due == 'true'
@@ -49,247 +58,122 @@ jobs:
             data/fixture-audits/reports/latest.md
             data/fixture-audits/reports/latest-updates.json
             data/fixture-audits/reports/latest-updates.md
+            data/fixture-audits/reports/latest-run.log
+            data/fixture-audits/reports/latest-email.log
 
       - name: Commit automatic fixture updates
-        id: autocommit
         if: always() && steps.audit.outputs.had_due == 'true'
+        id: autocommit
+        continue-on-error: true
         run: |
-          if git diff --quiet -- data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest.json data/fixture-audits/reports/latest.md data/fixture-audits/reports/latest-updates.json data/fixture-audits/reports/latest-updates.md; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fixtures.json public/reference-data/fixtures.remote.json
+          if git diff --cached --quiet; then
             echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            echo "push_status=no_changes" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fixtures.json public/reference-data/fixtures.remote.json data/fixture-audits/reports/latest.json data/fixture-audits/reports/latest.md data/fixture-audits/reports/latest-updates.json data/fixture-audits/reports/latest-updates.md
-          git commit -m "chore: auto-update fixtures"
-          git push
-          echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+          if ! git commit -m "chore: auto-update fixtures"; then
+            echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+            echo "push_status=commit_failed" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-      - name: Open or update fixture audit issue
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "changes_pushed=true" >> "$GITHUB_OUTPUT"
+              echo "push_status=success" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep $((attempt * 2))
+            fi
+          done
+
+          echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
+          echo "push_status=failed" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Send fixture audit email
         if: always() && steps.audit.outputs.had_due == 'true'
-        uses: actions/github-script@v7
+        id: email
+        continue-on-error: true
         env:
-          REPORT_PATH: data/fixture-audits/reports/latest.json
-          ISSUE_TITLE: Fixture audit failures
-          ISSUE_LABEL: fixture-audit
-          ISSUE_EXTRA_LABEL: data-quality
-          ISSUE_ASSIGNEE: MartinToudal
-        with:
-          script: |
-            const fs = require('fs');
-            const reportPath = process.env.REPORT_PATH;
-            const issueTitle = process.env.ISSUE_TITLE;
-            const issueLabel = process.env.ISSUE_LABEL;
-            const issueExtraLabel = process.env.ISSUE_EXTRA_LABEL;
-            const issueAssignee = process.env.ISSUE_ASSIGNEE;
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FIXTURE_CHECK_NOTIFY_TO: ${{ secrets.FIXTURE_CHECK_NOTIFY_TO }}
+          FIXTURE_CHECK_NOTIFY_FROM: ${{ secrets.FIXTURE_CHECK_NOTIFY_FROM }}
+        run: |
+          set +e
+          output="$(python3 scripts/send-fixture-audit-email.py 2>&1)"
+          status=$?
+          printf '%s\n' "$output"
+          printf '%s\n' "$output" > data/fixture-audits/reports/latest-email.log
+          echo "status_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
 
-            if (!fs.existsSync(reportPath)) {
-              core.setFailed(`Missing report file: ${reportPath}`);
-              return;
-            }
-
-            const payload = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-            const results = payload.results || [];
-            const failing = results.filter((result) => result.status !== 'passed');
-
-            const { owner, repo } = context.repo;
-
-            async function ensureLabel(name, color, description) {
-              try {
-                await github.rest.issues.getLabel({ owner, repo, name });
-              } catch (error) {
-                if (error.status !== 404) throw error;
-                await github.rest.issues.createLabel({
-                  owner,
-                  repo,
-                  name,
-                  color,
-                  description,
-                });
-              }
-            }
-
-            async function findOpenIssue() {
-              const issues = await github.paginate(github.rest.issues.listForRepo, {
-                owner,
-                repo,
-                state: 'open',
-                labels: issueLabel,
-                per_page: 100,
-              });
-              return issues.find((issue) => issue.title === issueTitle) || null;
-            }
-
-            async function closeIssue(issue) {
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: issue.number,
-                body: `All due fixture audits passed again at ${payload.generatedAt}. Closing this issue.`,
-              });
-              await github.rest.issues.update({
-                owner,
-                repo,
-                issue_number: issue.number,
-                state: 'closed',
-              });
-            }
-
-            if (failing.length === 0) {
-              const existingIssue = await findOpenIssue();
-              if (existingIssue) {
-                await closeIssue(existingIssue);
-              }
-              core.info('All due audits passed; no issue needed.');
-              return;
-            }
-
-            await ensureLabel(issueLabel, 'B60205', 'Automated fixture audit failures');
-            await ensureLabel(issueExtraLabel, '1D76DB', 'Data quality and fixture validation work');
-
-            const sections = failing.map((result) => {
-              const trimmed = (result.details || '').trim();
-              const snippet = trimmed.length > 6000 ? `${trimmed.slice(0, 6000)}\n\n...[truncated]` : trimmed;
-              return `## ${result.label}\nStatus: **${result.status}**\n\n\`\`\`text\n${snippet}\n\`\`\``;
-            });
-
-            const body = [
-              `Fixture audit found ${failing.length} failing competition(s).`,
-              '',
-              `Generated at: ${payload.generatedAt}`,
-              '',
-              ...sections,
-            ].join('\n');
-
-            const existingIssue = await findOpenIssue();
-            if (existingIssue) {
-              await github.rest.issues.update({
-                owner,
-                repo,
-                issue_number: existingIssue.number,
-                body,
-                labels: [issueLabel, issueExtraLabel],
-                assignees: issueAssignee ? [issueAssignee] : undefined,
-              });
-              core.info(`Updated existing fixture audit issue #${existingIssue.number}.`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner,
-                repo,
-                title: issueTitle,
-                body,
-                labels: [issueLabel, issueExtraLabel],
-                assignees: issueAssignee ? [issueAssignee] : undefined,
-              });
-              core.info(`Created fixture audit issue #${created.data.number}.`);
-            }
-
-      - name: Fail workflow when due audits fail
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outcome != 'success'
-        run: exit 1
-
-      - name: Open or update fixture auto-update issue
+      - name: Write fixture audit summary
         if: always() && steps.audit.outputs.had_due == 'true'
-        uses: actions/github-script@v7
         env:
-          REPORT_PATH: data/fixture-audits/reports/latest-updates.json
-          ISSUE_TITLE: Fixture audit auto-updates
-          ISSUE_LABEL: fixture-auto-update
-          ISSUE_EXTRA_LABEL: data-quality
-          ISSUE_ASSIGNEE: MartinToudal
-          CHANGES_PUSHED: ${{ steps.autocommit.outputs.changes_pushed }}
-        with:
-          script: |
-            const fs = require('fs');
-            const reportPath = process.env.REPORT_PATH;
-            const issueTitle = process.env.ISSUE_TITLE;
-            const issueLabel = process.env.ISSUE_LABEL;
-            const issueExtraLabel = process.env.ISSUE_EXTRA_LABEL;
-            const issueAssignee = process.env.ISSUE_ASSIGNEE;
-            const changesPushed = process.env.CHANGES_PUSHED === 'true';
+          AUDIT_STATUS: ${{ steps.audit.outputs.status_code }}
+          PUSH_STATUS: ${{ steps.autocommit.outputs.push_status }}
+          EMAIL_STATUS: ${{ steps.email.outputs.status_code }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
 
-            if (!fs.existsSync(reportPath)) {
-              core.info(`No update report found at ${reportPath}.`);
-              return;
-            }
+          report_path = Path("data/fixture-audits/reports/latest.json")
+          updates_path = Path("data/fixture-audits/reports/latest-updates.json")
+          summary_path = Path(os.environ["GITHUB_STEP_SUMMARY"])
 
-            const payload = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-            if (!payload.totalUpdated || payload.totalUpdated <= 0) {
-              core.info('No fixture updates were applied.');
-              return;
-            }
+          report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
+          updates = json.loads(updates_path.read_text(encoding="utf-8")) if updates_path.exists() else {}
 
-            const { owner, repo } = context.repo;
+          failing = [result for result in report.get("results", []) if result.get("status") != "passed"]
+          lines = [
+              "# Fixture Audit",
+              "",
+              f"- Checked competitions: `{report.get('checkedCompetitions', len(report.get('results', [])))}`",
+              f"- Failing competitions: `{report.get('failingCompetitions', len(failing))}`",
+              f"- Automatic updates: `{updates.get('totalUpdated', 0)}`",
+              f"- Audit exit code: `{os.environ.get('AUDIT_STATUS', '?')}`",
+              f"- Push status: `{os.environ.get('PUSH_STATUS', 'unknown')}`",
+              f"- Email exit code: `{os.environ.get('EMAIL_STATUS', '?')}`",
+              "",
+          ]
 
-            async function ensureLabel(name, color, description) {
-              try {
-                await github.rest.issues.getLabel({ owner, repo, name });
-              } catch (error) {
-                if (error.status !== 404) throw error;
-                await github.rest.issues.createLabel({ owner, repo, name, color, description });
-              }
-            }
+          if failing:
+              lines.append("## Failing competitions")
+              lines.append("")
+              for result in failing[:20]:
+                  lines.append(f"- **{result['label']}** — `{result['status']}`")
+              lines.append("")
+          else:
+              lines.append("## Result")
+              lines.append("")
+              lines.append("- All due competitions passed.")
+              lines.append("")
 
-            async function findOpenIssue() {
-              const issues = await github.paginate(github.rest.issues.listForRepo, {
-                owner,
-                repo,
-                state: 'open',
-                labels: issueLabel,
-                per_page: 100,
-              });
-              return issues.find((issue) => issue.title === issueTitle) || null;
-            }
+          summary_path.write_text("\n".join(lines), encoding="utf-8")
+          PY
 
-            await ensureLabel(issueLabel, '0E8A16', 'Automated fixture updates');
-            await ensureLabel(issueExtraLabel, '1D76DB', 'Data quality and fixture validation work');
+      - name: Fail workflow when email could not be sent
+        if: always() && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code != '0'
+        run: |
+          echo "Fixture audit mail failed to send."
+          exit 1
 
-            const updatedSections = (payload.results || [])
-              .filter((result) => (result.updatedCount || 0) > 0)
-              .map((result) => {
-                const lines = [
-                  `### ${result.label}`,
-                  `Updated fixtures: **${result.updatedCount}**`,
-                ];
-                for (const update of (result.updates || []).slice(0, 30)) {
-                  lines.push(`- \`${update.fixtureId}\` ${update.home} vs ${update.away}: \`${update.oldKickoff}\` -> \`${update.newKickoff}\``);
-                }
-                return lines.join('\\n');
-              });
+      - name: Log fixture audit issues
+        if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outputs.status_code != '0'
+        run: |
+          echo "Fixture audit found issues. See report artifact and email summary."
 
-            const summary = [
-              `Auto-update applied **${payload.totalUpdated}** fixture change(s).`,
-              `Generated at: ${payload.generatedAt}`,
-              `Committed to main: **${changesPushed ? 'yes' : 'no'}**`,
-              '',
-              ...updatedSections,
-            ].join('\\n');
-
-            const existingIssue = await findOpenIssue();
-            if (existingIssue) {
-              await github.rest.issues.update({
-                owner,
-                repo,
-                issue_number: existingIssue.number,
-                labels: [issueLabel, issueExtraLabel],
-                assignees: issueAssignee ? [issueAssignee] : undefined,
-              });
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: existingIssue.number,
-                body: summary,
-              });
-              core.info(`Commented on existing fixture auto-update issue #${existingIssue.number}.`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner,
-                repo,
-                title: issueTitle,
-                body: summary,
-                labels: [issueLabel, issueExtraLabel],
-                assignees: issueAssignee ? [issueAssignee] : undefined,
-              });
-              core.info(`Created fixture auto-update issue #${created.data.number}.`);
-            }
+      - name: Log fixture audit push issues
+        if: always() && steps.audit.outputs.had_due == 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
+        run: |
+          echo "Fixture audit sync could not persist changes automatically. Push status: ${{ steps.autocommit.outputs.push_status }}"

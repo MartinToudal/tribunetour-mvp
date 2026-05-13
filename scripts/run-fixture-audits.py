@@ -32,7 +32,11 @@ class SyncResult:
     audit_id: str
     label: str
     updated_count: int
+    added_count: int
+    removed_count: int
     updates: list[dict]
+    added: list[dict]
+    removed: list[dict]
     skipped_count: int
     skipped: list[dict]
     unresolved_source_teams: list[dict]
@@ -66,6 +70,8 @@ def write_report(results: list[AuditResult]) -> None:
 
     json_payload = {
         "generatedAt": timestamp,
+        "checkedCompetitions": len(results),
+        "failingCompetitions": len([result for result in results if result.status != "passed"]),
         "results": [
             {
                 "id": result.audit_id,
@@ -107,7 +113,11 @@ def write_update_report(results: list[SyncResult]) -> None:
                 "id": result.audit_id,
                 "label": result.label,
                 "updatedCount": result.updated_count,
+                "addedCount": result.added_count,
+                "removedCount": result.removed_count,
                 "updates": result.updates,
+                "added": result.added,
+                "removed": result.removed,
                 "skippedCount": result.skipped_count,
                 "skipped": result.skipped,
                 "unresolvedSourceTeams": result.unresolved_source_teams,
@@ -130,7 +140,9 @@ def write_update_report(results: list[SyncResult]) -> None:
         if result.updated_count == 0 and result.skipped_count == 0 and not result.unresolved_source_teams:
             continue
         lines.append(f"## {result.label} (`{result.audit_id}`)")
-        lines.append(f"Updated: **{result.updated_count}**")
+        lines.append(f"Changed: **{result.updated_count}**")
+        lines.append(f"Added: **{result.added_count}**")
+        lines.append(f"Removed: **{result.removed_count}**")
         lines.append(f"Skipped: **{result.skipped_count}**")
         lines.append("")
         if result.updates:
@@ -140,6 +152,16 @@ def write_update_report(results: list[SyncResult]) -> None:
                     f"- `{update['fixtureId']}` {update['home']} vs {update['away']}: "
                     f"`{update['oldKickoff']}` -> `{update['newKickoff']}`"
                 )
+            lines.append("")
+        if result.added:
+            lines.append("### Added fixtures")
+            for item in result.added[:30]:
+                lines.append(f"- `{item['fixtureId']}` {item['home']} vs {item['away']}: `{item['kickoff']}`")
+            lines.append("")
+        if result.removed:
+            lines.append("### Removed fixtures")
+            for item in result.removed[:30]:
+                lines.append(f"- `{item['fixtureId']}` {item['home']} vs {item['away']}: `{item['kickoff']}`")
             lines.append("")
         if result.skipped:
             lines.append("### Skipped fixtures")
@@ -234,7 +256,11 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
             audit_id=audit["id"],
             label=audit["label"],
             updated_count=0,
+            added_count=0,
+            removed_count=0,
             updates=[],
+            added=[],
+            removed=[],
             skipped_count=0,
             skipped=[],
             unresolved_source_teams=[],
@@ -266,7 +292,11 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
         audit_id=audit["id"],
         label=audit["label"],
         updated_count=int(payload.get("updatedCount", 0)),
+        added_count=int(payload.get("addedCount", 0)),
+        removed_count=int(payload.get("removedCount", 0)),
         updates=payload.get("updates", []),
+        added=payload.get("added", []),
+        removed=payload.get("removed", []),
         skipped_count=int(payload.get("skippedCount", 0)),
         skipped=payload.get("skipped", []),
         unresolved_source_teams=payload.get("unresolvedSourceTeams", []),
