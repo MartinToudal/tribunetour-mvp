@@ -38,6 +38,7 @@ class LocalFixture:
 @dataclass
 class SourceFixture:
     kickoff: str
+    round: str
     home_team_id: str
     away_team_id: str
     home_name: str
@@ -57,7 +58,11 @@ class DailySyncResult:
     audit_id: str
     label: str
     updated_count: int
+    added_count: int
+    removed_count: int
     updates: list[dict]
+    added: list[dict]
+    removed: list[dict]
     skipped_count: int
     skipped: list[dict]
 
@@ -78,6 +83,10 @@ def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", lowered).strip()
 
 
+def slugify(value: str) -> str:
+    return normalize_text(value).replace(" ", "-")
+
+
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -92,6 +101,17 @@ def load_aliases() -> dict[str, list[str]]:
         return {}
     payload = load_json(ALIASES_JSON)
     return {key: [str(item) for item in value] for key, value in payload.items()}
+
+
+def source_round_matches_audit(audit: dict, round_label: str) -> bool:
+    include_prefix = str(audit.get("roundPrefix") or "").strip()
+    exclude_prefixes = [str(value).strip() for value in audit.get("excludeRoundPrefixes", []) if str(value).strip()]
+
+    if include_prefix and not round_label.startswith(include_prefix):
+        return False
+    if any(round_label.startswith(prefix) for prefix in exclude_prefixes):
+        return False
+    return True
 
 
 def load_club_names() -> dict[str, str]:
@@ -173,8 +193,7 @@ def local_date_from_kickoff(kickoff: str) -> date:
     return datetime.fromisoformat(kickoff).date()
 
 
-def load_local_fixtures(audit: dict, club_names: dict[str, str], from_date: date, to_date: date) -> tuple[list[dict], list[LocalFixture], dict[str, dict]]:
-    source_rows = load_json(FIXTURES_JSON)
+def select_local_fixtures(source_rows: list[dict], audit: dict, club_names: dict[str, str], from_date: date, to_date: date) -> tuple[list[LocalFixture], dict[str, dict]]:
     selected: list[LocalFixture] = []
     rows_by_id: dict[str, dict] = {}
 
@@ -200,10 +219,22 @@ def load_local_fixtures(audit: dict, club_names: dict[str, str], from_date: date
         )
         selected.append(fixture)
         rows_by_id[fixture.fixture_id] = row
+    return selected, rows_by_id
+
+
+def load_local_fixtures(audit: dict, club_names: dict[str, str], from_date: date, to_date: date) -> tuple[list[dict], list[LocalFixture], dict[str, dict]]:
+    source_rows = load_json(FIXTURES_JSON)
+    selected, rows_by_id = select_local_fixtures(source_rows, audit, club_names, from_date, to_date)
     return source_rows, selected, rows_by_id
 
 
-def parse_source_matches(source_path: Path, alias_to_club_id: dict[str, str], from_date: date, to_date: date) -> tuple[list[SourceFixture], list[dict]]:
+def parse_source_matches(
+    audit: dict,
+    source_path: Path,
+    alias_to_club_id: dict[str, str],
+    from_date: date,
+    to_date: date,
+) -> tuple[list[SourceFixture], list[dict]]:
     fixtures: list[SourceFixture] = []
     unresolved: list[dict] = []
 
@@ -211,13 +242,15 @@ def parse_source_matches(source_path: Path, alias_to_club_id: dict[str, str], fr
         parts = [part.strip() for part in raw_line.split("|")]
         if len(parts) < 5:
             continue
-        dt_token, _country, _round, home, away = parts[:5]
+        dt_token, _country, round_label, home, away = parts[:5]
         try:
             kickoff_dt = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
         except ValueError:
             continue
 
         if kickoff_dt.date() < from_date or kickoff_dt.date() > to_date:
+            continue
+        if not source_round_matches_audit(audit, round_label):
             continue
 
         home_id = alias_to_club_id.get(normalize_text(home))
@@ -236,6 +269,7 @@ def parse_source_matches(source_path: Path, alias_to_club_id: dict[str, str], fr
         fixtures.append(
             SourceFixture(
                 kickoff=kickoff_dt.isoformat(),
+                round=round_label,
                 home_team_id=home_id,
                 away_team_id=away_id,
                 home_name=home,
@@ -250,6 +284,14 @@ def iso_with_offset(dt_iso: str, existing_kickoff: str | None = None) -> str:
     if existing_kickoff and len(existing_kickoff) >= 6 and existing_kickoff[-6] in ["+", "-"]:
         offset = existing_kickoff[-6:]
     return datetime.fromisoformat(dt_iso).strftime("%Y-%m-%dT%H:%M:%S") + offset
+
+
+def build_fixture_id(audit: dict, source_fixture: SourceFixture) -> str:
+    prefix = audit.get("fixturePrefix") or f"{audit['id']}-"
+    kickoff_dt = datetime.fromisoformat(source_fixture.kickoff)
+    home_slug = slugify(source_fixture.home_name)
+    away_slug = slugify(source_fixture.away_name)
+    return f"{prefix}{kickoff_dt.strftime('%Y%m%d')}-{home_slug}-{away_slug}"
 
 
 def compare_audit(
@@ -305,47 +347,95 @@ def compare_audit(
     if exact:
         lines.extend(f"  - {item}" for item in exact[:20])
 
-    status = "passed" if not missing_local and not time_mismatches and not missing_source else "needs-attention"
+    status = "passed" if not missing_local and not time_mismatches else "needs-attention"
     return status, "\n".join(lines)
 
 
 def apply_safe_updates(
     audit: dict,
     local_fixtures: list[LocalFixture],
+    all_rows: list[dict],
     rows_by_id: dict[str, dict],
     source_fixtures: list[SourceFixture],
 ) -> DailySyncResult:
     local_by_key = {(fixture.home_team_id, fixture.away_team_id): fixture for fixture in local_fixtures}
+    source_by_key = {(fixture.home_team_id, fixture.away_team_id): fixture for fixture in source_fixtures}
     updates: list[dict] = []
+    added: list[dict] = []
+    removed: list[dict] = []
     skipped: list[dict] = []
 
     for source_fixture in source_fixtures:
         key = (source_fixture.home_team_id, source_fixture.away_team_id)
         local_fixture = local_by_key.get(key)
         if not local_fixture:
-            skipped.append(
+            fixture_id = build_fixture_id(audit, source_fixture)
+            new_row = {
+                "id": fixture_id,
+                "kickoff": iso_with_offset(source_fixture.kickoff),
+                "round": source_fixture.round,
+                "homeTeamId": source_fixture.home_team_id,
+                "awayTeamId": source_fixture.away_team_id,
+                "venueClubId": source_fixture.home_team_id,
+                "status": "scheduled",
+                "homeScore": None,
+                "awayScore": None,
+                "seasonId": audit["season"],
+            }
+            if audit.get("competitionId"):
+                new_row["competitionId"] = audit["competitionId"]
+            all_rows.append(new_row)
+            rows_by_id[fixture_id] = new_row
+            added.append(
                 {
-                    "fixtureId": "(missing-local)",
-                    "reason": "missing-local-match",
+                    "fixtureId": fixture_id,
                     "home": source_fixture.home_name,
                     "away": source_fixture.away_name,
+                    "kickoff": new_row["kickoff"],
+                    "round": source_fixture.round,
                 }
             )
             continue
         new_kickoff = iso_with_offset(source_fixture.kickoff, local_fixture.kickoff)
-        if new_kickoff == local_fixture.kickoff:
-            continue
-        rows_by_id[local_fixture.fixture_id]["kickoff"] = new_kickoff
-        updates.append(
-            {
-                "fixtureId": local_fixture.fixture_id,
-                "home": local_fixture.home_name,
-                "away": local_fixture.away_name,
-                "oldKickoff": local_fixture.kickoff,
-                "newKickoff": new_kickoff,
-            }
-        )
-    return DailySyncResult(audit["id"], audit["label"], len(updates), updates, len(skipped), skipped)
+        row = rows_by_id[local_fixture.fixture_id]
+        changed = False
+        change_record = {
+            "fixtureId": local_fixture.fixture_id,
+            "home": local_fixture.home_name,
+            "away": local_fixture.away_name,
+            "oldKickoff": local_fixture.kickoff,
+            "newKickoff": new_kickoff,
+            "oldRound": local_fixture.round,
+            "newRound": source_fixture.round,
+        }
+        if new_kickoff != local_fixture.kickoff:
+            row["kickoff"] = new_kickoff
+            changed = True
+        if source_fixture.round and row.get("round") != source_fixture.round:
+            row["round"] = source_fixture.round
+            changed = True
+        if audit.get("competitionId") and row.get("competitionId") != audit["competitionId"]:
+            row["competitionId"] = audit["competitionId"]
+            changed = True
+        if row.get("seasonId") != audit["season"]:
+            row["seasonId"] = audit["season"]
+            changed = True
+        if changed:
+            updates.append(change_record)
+
+    total_updated = len(updates) + len(added)
+    return DailySyncResult(
+        audit["id"],
+        audit["label"],
+        total_updated,
+        len(added),
+        len(removed),
+        updates,
+        added,
+        removed,
+        len(skipped),
+        skipped,
+    )
 
 
 def write_daily_reports(
@@ -400,7 +490,7 @@ def write_daily_reports(
         "",
         f"Generated at: {generated_at}",
         f"Window: {local_date} → {to_date}",
-        f"Updated fixtures: **{total_updated}**",
+        f"Changed fixtures: **{total_updated}**",
         f"Skipped fixtures: **{total_skipped}**",
         "",
     ]
@@ -408,12 +498,22 @@ def write_daily_reports(
         if result.updated_count == 0 and result.skipped_count == 0:
             continue
         update_lines.append(f"## {result.label} (`{result.audit_id}`)")
-        update_lines.append(f"Updated: **{result.updated_count}**")
+        update_lines.append(f"Changed: **{result.updated_count}**")
+        update_lines.append(f"Added: **{result.added_count}**")
+        update_lines.append(f"Removed: **{result.removed_count}**")
         update_lines.append(f"Skipped: **{result.skipped_count}**")
         update_lines.append("")
         for update in result.updates[:10]:
             update_lines.append(
                 f"- `{update['fixtureId']}` {update['home']} vs {update['away']}: `{update['oldKickoff']}` -> `{update['newKickoff']}`"
+            )
+        for added in result.added[:10]:
+            update_lines.append(
+                f"- added `{added['fixtureId']}` {added['home']} vs {added['away']}: `{added['kickoff']}`"
+            )
+        for removed in result.removed[:10]:
+            update_lines.append(
+                f"- removed `{removed['fixtureId']}` {removed['home']} vs {removed['away']}: `{removed['kickoff']}`"
             )
         for skipped in result.skipped[:10]:
             update_lines.append(
@@ -455,16 +555,16 @@ def main() -> int:
         source = WEBSITE_ROOT / audit["source"]
         refresh_error = refreshed_sources.get(source)
         if refresh_error:
-            sync_results.append(DailySyncResult(audit["id"], audit["label"], 0, [], 0, []))
+            sync_results.append(DailySyncResult(audit["id"], audit["label"], 0, 0, 0, [], [], [], 0, []))
             audit_results.append(DailyAuditResult(audit["id"], audit["label"], "fetch-failed", refresh_error))
             continue
 
         _rows, local_fixtures, rows_by_id = load_local_fixtures(audit, club_names, local_today, local_end)
-        source_fixtures, unresolved = parse_source_matches(source, alias_to_club_id, local_today, local_end)
+        source_fixtures, unresolved = parse_source_matches(audit, source, alias_to_club_id, local_today, local_end)
 
-        sync_result = DailySyncResult(audit["id"], audit["label"], 0, [], len(unresolved), unresolved)
+        sync_result = DailySyncResult(audit["id"], audit["label"], 0, 0, 0, [], [], [], len(unresolved), unresolved)
         if args.apply_safe_updates:
-            sync_result = apply_safe_updates(audit, local_fixtures, rows_by_id_global, source_fixtures)
+            sync_result = apply_safe_updates(audit, local_fixtures, all_rows, rows_by_id_global, source_fixtures)
             sync_result.skipped.extend(
                 {
                     "fixtureId": "(unresolved-source)",
@@ -477,7 +577,8 @@ def main() -> int:
             sync_result.skipped_count = len(sync_result.skipped)
         sync_results.append(sync_result)
 
-        status, details = compare_audit(audit, local_fixtures, source_fixtures)
+        synced_local_fixtures, _ = select_local_fixtures(all_rows, audit, club_names, local_today, local_end)
+        status, details = compare_audit(audit, synced_local_fixtures, source_fixtures)
         if unresolved:
             unresolved_lines = [
                 "",

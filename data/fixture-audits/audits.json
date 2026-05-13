@@ -163,6 +163,7 @@
       "season": "2025-26",
       "fixturePrefix": "el1-",
       "roundPrefix": "League One - ",
+      "excludeRoundPrefixes": ["League One - Play Offs - "],
       "source": "data/fixture-audits/raw/en-league-one.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/england/league-one/kommende/",
@@ -303,6 +304,7 @@
       "season": "2025-26",
       "fixturePrefix": "itb-",
       "roundPrefix": "Serie B - ",
+      "excludeRoundPrefixes": ["Serie B - Play Offs - ", "Serie B - Play Out - "],
       "source": "data/fixture-audits/raw/it-serie-b.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
