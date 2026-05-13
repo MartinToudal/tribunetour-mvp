@@ -121,6 +121,7 @@ def main() -> int:
         headers={
             "Authorization": f"Bearer {resend_api_key}",
             "Content-Type": "application/json",
+            "User-Agent": "Tribunetour-Daily-Fixture-Check/1.0",
         },
         method="POST",
     )
