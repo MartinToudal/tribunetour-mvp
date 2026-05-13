@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-05-13T12:12:52.913645+00:00",
+  "generatedAt": "2026-05-13T12:37:09.850741+00:00",
   "window": {
     "from": "2026-05-13",
-    "to": "2026-05-13"
+    "to": "2026-05-15"
   },
   "checkedCompetitions": 42,
-  "failingCompetitions": 0,
+  "failingCompetitions": 9,
   "totalUpdated": 0,
-  "totalSkipped": 0,
+  "totalSkipped": 12,
   "results": [
     {
       "audit_id": "dk-superliga",
@@ -19,7 +19,7 @@
       "audit_id": "dk-1-division",
       "label": "Danmark - 1. division",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 3\nSource fixtures in window: 3\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 3\n  - 14.05 13:00 Hobro IK vs Aarhus Fremad [1d-r30-hob-aaf]\n  - 15.05 18:00 Kolding IF vs Lyngby Boldklub [1d-r30-kol-lyn]\n  - 15.05 19:00 B.93 vs AaB [1d-r30-b93-aab]"
     },
     {
       "audit_id": "dk-2-division",
@@ -54,8 +54,8 @@
     {
       "audit_id": "en-premier-league",
       "label": "England - Premier League",
-      "status": "passed",
-      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Manchester City vs Crystal Palace [epl-r31-manchester-city-crystal-palace]"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 2\n\nmissing-local: 1\n  - 15.05 21:00 Aston Villa vs Liverpool\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Manchester City vs Crystal Palace [epl-r31-manchester-city-crystal-palace]"
     },
     {
       "audit_id": "en-championship",
@@ -73,31 +73,31 @@
       "audit_id": "en-league-one-playoffs",
       "label": "England - League One Playoffs",
       "status": "passed",
-      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]"
+      "details": "Local fixtures in window: 2\nSource fixtures in window: 2\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]\n  - 14.05 21:00 Bradford City vs Bolton Wanderers [el1p-sf4-bradford-city-bolton-wanderers]"
     },
     {
       "audit_id": "en-league-one",
       "label": "England - League One",
       "status": "passed",
-      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]"
+      "details": "Local fixtures in window: 2\nSource fixtures in window: 2\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 13.05 21:00 Stockport County vs Stevenage [el1p-sf3-stockport-county-stevenage]\n  - 14.05 21:00 Bradford City vs Bolton Wanderers [el1p-sf4-bradford-city-bolton-wanderers]"
     },
     {
       "audit_id": "en-league-two",
       "label": "England - League Two",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 2\n\nmissing-local: 2\n  - 15.05 20:15 Salford vs Grimsby\n  - 15.05 21:00 Notts County vs Chesterfield\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
     },
     {
       "audit_id": "es-laliga",
       "label": "Spanien - La Liga",
       "status": "passed",
-      "details": "Local fixtures in window: 4\nSource fixtures in window: 4\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 4\n  - 13.05 19:00 Espanyol vs Ath. Bilbao [esl-r36-espanyol-ath-bilbao]\n  - 13.05 19:00 Villarreal vs Sevilla [esl-r36-villarreal-sevilla]\n  - 13.05 21:30 Alaves vs Barcelona [esl-r36-alaves-barcelona]\n  - 13.05 21:30 Getafe vs Mallorca [esl-r36-getafe-mallorca]"
+      "details": "Local fixtures in window: 7\nSource fixtures in window: 7\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 7\n  - 13.05 19:00 Espanyol vs Ath. Bilbao [esl-r36-espanyol-ath-bilbao]\n  - 13.05 19:00 Villarreal vs Sevilla [esl-r36-villarreal-sevilla]\n  - 13.05 21:30 Alaves vs Barcelona [esl-r36-alaves-barcelona]\n  - 13.05 21:30 Getafe vs Mallorca [esl-r36-getafe-mallorca]\n  - 14.05 19:00 Valencia vs Vallecano [esl-r36-valencia-vallecano]\n  - 14.05 20:00 Girona vs Real Sociedad [esl-r36-girona-real-sociedad]\n  - 14.05 21:30 Real Madrid vs Oviedo [esl-r36-real-madrid-oviedo]"
     },
     {
       "audit_id": "es-laliga2",
       "label": "Spanien - Segunda División",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 2\nSource fixtures in window: 2\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 15.05 20:30 Castellon vs Cadiz [es2-r40-castellon-cadiz]\n  - 15.05 21:00 Cordoba vs Albacete [es2-r40-cordoba-albacete]"
     },
     {
       "audit_id": "es-primera-federacion-g1",
@@ -114,8 +114,8 @@
     {
       "audit_id": "fr-ligue-1",
       "label": "Frankrig - Ligue 1",
-      "status": "passed",
-      "details": "Local fixtures in window: 2\nSource fixtures in window: 2\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 13.05 19:00 Brest vs Strasbourg [fr1-r29-brest-strasbourg]\n  - 13.05 21:00 Lens vs PSG [fr1-r29-lens-psg]"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 2\nSource fixtures in window: 3\n\nmissing-local: 1\n  - 15.05 20:30 St. Etienne vs Rodez\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 2\n  - 13.05 19:00 Brest vs Strasbourg [fr1-r29-brest-strasbourg]\n  - 13.05 21:00 Lens vs PSG [fr1-r29-lens-psg]"
     },
     {
       "audit_id": "fr-ligue-2",
@@ -126,8 +126,8 @@
     {
       "audit_id": "fr-national",
       "label": "Frankrig - National",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 8\nSource fixtures in window: 7\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 1\n  - 15.05 19:30 Sochaux vs Le Puy [fr3-r34-sochaux-le-puy]\n\nexact: 7\n  - 15.05 19:30 Aubagne vs Caen [fr3-r34-aubagne-caen]\n  - 15.05 19:30 Concarneau vs Villefranche [fr3-r34-concarneau-villefranche]\n  - 15.05 19:30 Dijon vs Orléans [fr3-r34-dijon-orleans]\n  - 15.05 19:30 Fleury-Merogis vs Rouen [fr3-r34-fleury-merogis-rouen]\n  - 15.05 19:30 Quevilly Rouen vs Paris 13 Atl. [fr3-r34-quevilly-rouen-paris-13-atl]\n  - 15.05 19:30 Valenciennes vs Châteauroux [fr3-r34-valenciennes-chateauroux]\n  - 15.05 19:30 Versailles vs Stade Briochin [fr3-r34-versailles-stade-briochin]\n\nunresolved-source-teams: 1\n  - Sochaux vs Le Puy-en-Velay (homeResolved=True, awayResolved=False)"
     },
     {
       "audit_id": "it-serie-a",
@@ -139,19 +139,19 @@
       "audit_id": "it-serie-b",
       "label": "Italien - Serie B",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 15.05 20:00 Bari vs Sudtirol [itbo-f1-bari-sudtirol]"
     },
     {
       "audit_id": "it-serie-b-playoffs",
       "label": "Italien - Serie B Playoffs",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 1\n\nmissing-local: 1\n  - 15.05 20:00 Bari vs Sudtirol\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
     },
     {
       "audit_id": "it-serie-b-playouts",
       "label": "Italien - Serie B Play Out",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 15.05 20:00 Bari vs Sudtirol [itbo-f1-bari-sudtirol]"
     },
     {
       "audit_id": "it-lega-pro-promotion-playoffs",
@@ -186,8 +186,8 @@
     {
       "audit_id": "pt-liga-portugal-2",
       "label": "Portugal - Liga Portugal 2",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 2\n\nmissing-local: 2\n  - 15.05 20:00 Maritimo vs Chaves\n  - 15.05 21:00 Leixoes vs Lusitania FC\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0\n\nunresolved-source-teams: 1\n  - FC Porto B vs Benfica B (homeResolved=False, awayResolved=True)"
     },
     {
       "audit_id": "pt-liga-3-promotion",
@@ -216,26 +216,26 @@
     {
       "audit_id": "be-jupiler-champions-playoffs",
       "label": "Belgien - Jupiler mesterskabsspil",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 1\n\nmissing-local: 1\n  - 15.05 20:45 Leuven vs Antwerp\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
     },
     {
       "audit_id": "be-jupiler-europe-playoffs",
       "label": "Belgien - Jupiler Conference League gruppe",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 15.05 20:45 Leuven vs Antwerp [be1e-03-leuven-antwerp]"
     },
     {
       "audit_id": "be-jupiler-relegation-playoffs",
       "label": "Belgien - Jupiler nedrykningsgruppe",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 15.05 20:45 Leuven vs Antwerp [be1r-04-leuven-antwerp]"
     },
     {
       "audit_id": "be-promotion-relegation-playoff",
       "label": "Belgien - Promotion/relegation playoff",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 1\n\nmissing-local: 1\n  - 15.05 20:45 Leuven vs Antwerp\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
     },
     {
       "audit_id": "be-national-division-1-acff",
@@ -252,14 +252,14 @@
     {
       "audit_id": "tr-super-lig",
       "label": "Tyrkiet - Süper Lig",
-      "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "status": "needs-attention",
+      "details": "Local fixtures in window: 0\nSource fixtures in window: 1\n\nmissing-local: 1\n  - 15.05 19:00 Rizespor vs Besiktas\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
     },
     {
       "audit_id": "tr-1-lig-playoffs",
       "label": "Tyrkiet - 1. Lig slutspil",
       "status": "passed",
-      "details": "Local fixtures in window: 0\nSource fixtures in window: 0\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 0"
+      "details": "Local fixtures in window: 1\nSource fixtures in window: 1\n\nmissing-local: 0\n\ntime-mismatch: 0\n\nmissing-source: 0\n\nexact: 1\n  - 15.05 19:00 Çorum vs Bodrumspor [tr1p-02-corum-bodrumspor]"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-05-13T12:12:52.913645+00:00",
+  "generatedAt": "2026-05-13T12:37:09.850741+00:00",
   "window": {
     "from": "2026-05-13",
-    "to": "2026-05-13"
+    "to": "2026-05-15"
   },
   "checkedCompetitions": 42,
-  "failingCompetitions": 0,
+  "failingCompetitions": 9,
   "totalUpdated": 0,
-  "totalSkipped": 0,
+  "totalSkipped": 12,
   "results": [
     {
       "audit_id": "dk-superliga",
@@ -70,8 +70,15 @@
       "label": "England - Premier League",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Aston Villa",
+          "away": "Liverpool"
+        }
+      ]
     },
     {
       "audit_id": "en-championship",
@@ -110,8 +117,21 @@
       "label": "England - League Two",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 2,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Salford",
+          "away": "Grimsby"
+        },
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Notts County",
+          "away": "Chesterfield"
+        }
+      ]
     },
     {
       "audit_id": "es-laliga",
@@ -150,8 +170,15 @@
       "label": "Frankrig - Ligue 1",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "St. Etienne",
+          "away": "Rodez"
+        }
+      ]
     },
     {
       "audit_id": "fr-ligue-2",
@@ -166,8 +193,15 @@
       "label": "Frankrig - National",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(unresolved-source)",
+          "reason": "unresolved-source-team",
+          "home": "Sochaux",
+          "away": "Le Puy-en-Velay"
+        }
+      ]
     },
     {
       "audit_id": "it-serie-a",
@@ -190,8 +224,15 @@
       "label": "Italien - Serie B Playoffs",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Bari",
+          "away": "Sudtirol"
+        }
+      ]
     },
     {
       "audit_id": "it-serie-b-playouts",
@@ -246,8 +287,27 @@
       "label": "Portugal - Liga Portugal 2",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 3,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Maritimo",
+          "away": "Chaves"
+        },
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Leixoes",
+          "away": "Lusitania FC"
+        },
+        {
+          "fixtureId": "(unresolved-source)",
+          "reason": "unresolved-source-team",
+          "home": "FC Porto B",
+          "away": "Benfica B"
+        }
+      ]
     },
     {
       "audit_id": "pt-liga-3-promotion",
@@ -286,8 +346,15 @@
       "label": "Belgien - Jupiler mesterskabsspil",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Leuven",
+          "away": "Antwerp"
+        }
+      ]
     },
     {
       "audit_id": "be-jupiler-europe-playoffs",
@@ -310,8 +377,15 @@
       "label": "Belgien - Promotion/relegation playoff",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Leuven",
+          "away": "Antwerp"
+        }
+      ]
     },
     {
       "audit_id": "be-national-division-1-acff",
@@ -334,8 +408,15 @@
       "label": "Tyrkiet - Süper Lig",
       "updated_count": 0,
       "updates": [],
-      "skipped_count": 0,
-      "skipped": []
+      "skipped_count": 1,
+      "skipped": [
+        {
+          "fixtureId": "(missing-local)",
+          "reason": "missing-local-match",
+          "home": "Rizespor",
+          "away": "Besiktas"
+        }
+      ]
     },
     {
       "audit_id": "tr-1-lig-playoffs",
