@@ -26,23 +26,9 @@ LEAGUE_PACK = "belgium_top_3"
 
 
 PRO_LEAGUE_RELEGATION_FIXTURES = """
-RUNDE 37
-08.05. 20:45 St. Liege Leuven
 RUNDE 36
 09.05. 16:00 RAAL La Louviere Cercle Brugge
 09.05. 16:00 Waregem Dender
-RUNDE 38
-15.05. 20:45 Leuven Antwerp
-16.05. 16:00 Charleroi Westerlo
-16.05. 18:15 St. Liege Genk
-RUNDE 39
-19.05. 20:30 Charleroi Leuven
-19.05. 20:30 Genk Antwerp
-19.05. 20:30 Westerlo St. Liege
-RUNDE 40
-23.05. 20:45 Antwerp Westerlo
-23.05. 20:45 Leuven Genk
-23.05. 20:45 St. Liege Charleroi
 """.strip()
 
 PRO_LEAGUE_CHAMPIONS_FIXTURES = """
@@ -112,10 +98,10 @@ TEAM_ROWS = [
     {"team": "Genk", "page": "K.R.C._Genk", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-europe-playoffs", "short_code": "GNK"},
     {"team": "Gent", "page": "K.A.A._Gent", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-champions-playoffs", "short_code": "GEN"},
     {"team": "KV Mechelen", "page": "K.V._Mechelen", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-champions-playoffs", "short_code": "MEC", "city_override": "Mechelen"},
-    {"team": "Leuven", "page": "Oud-Heverlee_Leuven", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-relegation-playoffs|be-pro-league-europe-playoffs", "short_code": "LEU", "city_override": "Leuven"},
+    {"team": "Leuven", "page": "Oud-Heverlee_Leuven", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-europe-playoffs", "short_code": "LEU", "city_override": "Leuven"},
     {"team": "RAAL La Louviere", "page": "R.A.A._La_Louvi%C3%A8re", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-relegation-playoffs", "short_code": "LOU", "ground_override": "Stade du Tivoli", "city_override": "La Louviere"},
     {"team": "Royale Union SG", "page": "Royale_Union_Saint-Gilloise", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-champions-playoffs", "short_code": "USG", "city_override": "Forest"},
-    {"team": "St. Liege", "page": "Standard_Li%C3%A8ge", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-relegation-playoffs|be-pro-league-europe-playoffs", "short_code": "STL", "city_override": "Liege"},
+    {"team": "St. Liege", "page": "Standard_Li%C3%A8ge", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-europe-playoffs", "short_code": "STL", "city_override": "Liege"},
     {"team": "St. Truiden", "page": "Sint-Truidense_V.V.", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-champions-playoffs", "short_code": "STR", "city_override": "Sint-Truiden"},
     {"team": "Waregem", "page": "S.V._Zulte_Waregem", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-relegation-playoffs", "short_code": "WAR"},
     {"team": "Westerlo", "page": "K.V.C._Westerlo", "league": "Jupiler Pro League", "league_code": "be-jupiler-pro-league", "competition_id": "be-jupiler-pro-league", "secondary_competition_ids": "be-pro-league-europe-playoffs", "short_code": "WES"},

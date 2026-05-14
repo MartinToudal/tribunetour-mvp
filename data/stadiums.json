@@ -618,7 +618,6 @@
     "primarySeasonId": "2025-26",
     "membershipStatus": "active",
     "secondaryCompetitionIds": [
-      "be-pro-league-relegation-playoffs",
       "be-pro-league-europe-playoffs"
     ]
   },
@@ -676,7 +675,6 @@
     "primarySeasonId": "2025-26",
     "membershipStatus": "active",
     "secondaryCompetitionIds": [
-      "be-pro-league-relegation-playoffs",
       "be-pro-league-europe-playoffs"
     ]
   },
