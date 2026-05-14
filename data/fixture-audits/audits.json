@@ -486,6 +486,7 @@
       "label": "Belgien - Jupiler mesterskabsspil",
       "season": "2025-26",
       "competitionId": "be-pro-league-champions-playoffs",
+      "sourceGroupPrefix": "BELGIEN: Jupiler League - Mesterskabet - Slutspil",
       "source": "data/fixture-audits/raw/be-jupiler-league.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
@@ -499,6 +500,7 @@
       "label": "Belgien - Jupiler Conference League gruppe",
       "season": "2025-26",
       "competitionId": "be-pro-league-europe-playoffs",
+      "sourceGroupPrefix": "BELGIEN: Jupiler League - Conference League Gruppe",
       "source": "data/fixture-audits/raw/be-jupiler-league.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
@@ -512,6 +514,7 @@
       "label": "Belgien - Jupiler nedrykningsgruppe",
       "season": "2025-26",
       "competitionId": "be-pro-league-relegation-playoffs",
+      "sourceGroupPrefix": "BELGIEN: Jupiler League - Nedrykningsgruppe",
       "source": "data/fixture-audits/raw/be-jupiler-league.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
@@ -525,6 +528,7 @@
       "label": "Belgien - Promotion/relegation playoff",
       "season": "2025-26",
       "competitionId": "be-promotion-relegation-playoffs",
+      "sourceGroupPrefix": "BELGIEN: Jupiler League - Nedrykning",
       "source": "data/fixture-audits/raw/be-jupiler-league.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
@@ -538,6 +542,11 @@
       "label": "Belgien - National Division 1 ACFF",
       "season": "2025-26",
       "competitionId": "be-national-division-1-acff",
+      "sourceGroupPrefix": "BELGIEN: National Division 1 - ACFF",
+      "excludeSourceGroupPrefixes": [
+        "BELGIEN: National Division 1 - ACFF - Gruppe for Oprykning",
+        "BELGIEN: National Division 1 - ACFF - Nedrykningsgruppe"
+      ],
       "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",
@@ -551,6 +560,7 @@
       "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
       "season": "2025-26",
       "competitionId": "be-national-division-1-acff-promotion-group",
+      "sourceGroupPrefix": "BELGIEN: National Division 1 - ACFF - Gruppe for Oprykning",
       "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",

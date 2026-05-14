@@ -103,10 +103,16 @@ def load_aliases() -> dict[str, list[str]]:
     return {key: [str(item) for item in value] for key, value in payload.items()}
 
 
-def source_round_matches_audit(audit: dict, round_label: str) -> bool:
+def source_round_matches_audit(audit: dict, source_group: str, round_label: str) -> bool:
+    include_group_prefix = str(audit.get("sourceGroupPrefix") or "").strip()
+    exclude_group_prefixes = [str(value).strip() for value in audit.get("excludeSourceGroupPrefixes", []) if str(value).strip()]
     include_prefix = str(audit.get("roundPrefix") or "").strip()
     exclude_prefixes = [str(value).strip() for value in audit.get("excludeRoundPrefixes", []) if str(value).strip()]
 
+    if include_group_prefix and not source_group.startswith(include_group_prefix):
+        return False
+    if any(source_group.startswith(prefix) for prefix in exclude_group_prefixes):
+        return False
     if include_prefix and not round_label.startswith(include_prefix):
         return False
     if any(round_label.startswith(prefix) for prefix in exclude_prefixes):
@@ -242,7 +248,7 @@ def parse_source_matches(
         parts = [part.strip() for part in raw_line.split("|")]
         if len(parts) < 5:
             continue
-        dt_token, _country, round_label, home, away = parts[:5]
+        dt_token, source_group, round_label, home, away = parts[:5]
         try:
             kickoff_dt = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
         except ValueError:
@@ -250,7 +256,7 @@ def parse_source_matches(
 
         if kickoff_dt.date() < from_date or kickoff_dt.date() > to_date:
             continue
-        if not source_round_matches_audit(audit, round_label):
+        if not source_round_matches_audit(audit, source_group, round_label):
             continue
 
         home_id = alias_to_club_id.get(normalize_text(home))
@@ -425,7 +431,27 @@ def apply_safe_updates(
         if changed and visible_change:
             updates.append(change_record)
 
-    total_updated = len(updates) + len(added)
+    for local_fixture in local_fixtures:
+        key = (local_fixture.home_team_id, local_fixture.away_team_id)
+        if key in source_by_key:
+            continue
+        row = rows_by_id.get(local_fixture.fixture_id)
+        if not row:
+            continue
+        if row in all_rows:
+            all_rows.remove(row)
+        rows_by_id.pop(local_fixture.fixture_id, None)
+        removed.append(
+            {
+                "fixtureId": local_fixture.fixture_id,
+                "home": local_fixture.home_name,
+                "away": local_fixture.away_name,
+                "kickoff": local_fixture.kickoff,
+                "round": local_fixture.round,
+            }
+        )
+
+    total_updated = len(updates) + len(added) + len(removed)
     return DailySyncResult(
         audit["id"],
         audit["label"],
