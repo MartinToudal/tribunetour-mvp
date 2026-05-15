@@ -248,6 +248,7 @@
       "season": "2025-26",
       "fixturePrefix": "fr1-",
       "roundPrefix": "Ligue 1 - ",
+      "excludeSourceGroupPrefixes": ["FRANKRIG: Ligue 1 - Nedrykning - Slutspil"],
       "source": "data/fixture-audits/raw/fr-ligue-1.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/frankrig/ligue-1/kommende/",
@@ -305,6 +306,7 @@
       "fixturePrefix": "itb-",
       "roundPrefix": "Serie B - ",
       "excludeRoundPrefixes": ["Serie B - Play Offs - ", "Serie B - Play Out - "],
+      "excludeSourceGroupPrefixes": ["ITALIEN: Serie B - Play Offs", "ITALIEN: Serie B - Play Out"],
       "source": "data/fixture-audits/raw/it-serie-b.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
@@ -320,6 +322,7 @@
       "competitionId": "it-serie-b-playoffs",
       "fixturePrefix": "itbp-",
       "roundPrefix": "Serie B - Play Offs - ",
+      "sourceGroupPrefix": "ITALIEN: Serie B - Play Offs",
       "source": "data/fixture-audits/raw/it-serie-b.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
@@ -335,6 +338,7 @@
       "competitionId": "it-serie-b-playouts",
       "fixturePrefix": "itbo-",
       "roundPrefix": "Serie B - Play Out - ",
+      "sourceGroupPrefix": "ITALIEN: Serie B - Play Out",
       "source": "data/fixture-audits/raw/it-serie-b.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/italien/serie-b/kommende/",
@@ -406,6 +410,7 @@
       "season": "2025-26",
       "fixturePrefix": "pt1-",
       "roundPrefix": "Liga Portugal - ",
+      "excludeSourceGroupPrefixes": ["PORTUGAL: Liga Portugal - Championship Group"],
       "source": "data/fixture-audits/raw/pt-liga-portugal.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/portugal/liga-portugal/kommende/",
