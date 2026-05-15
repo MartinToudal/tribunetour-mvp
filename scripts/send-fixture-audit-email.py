@@ -19,6 +19,8 @@ def load_json(path: Path) -> dict:
 
 
 def summarize_failures(payload: dict) -> str:
+    if int(payload.get("checkedCompetitions", len(payload.get("results", [])))) == 0:
+        return "Ingen fixture audits var forfaldne i dag, men jobbet kørte som planlagt."
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     if not failing:
         return "Alt så grønt ud i de forfaldne rækkekontroller."
@@ -55,9 +57,12 @@ def build_html(payload: dict, updates_payload: dict) -> str:
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     total_updated = int(updates_payload.get("totalUpdated", 0))
     checked = int(payload.get("checkedCompetitions", len(payload.get("results", []))))
-    items = "".join(
-        f"<li><strong>{result['label']}</strong> — {result['status']}</li>" for result in failing[:20]
-    ) or "<li>Ingen fejl fundet.</li>"
+    if checked == 0:
+        items = "<li>Ingen fixture audits var forfaldne i dag.</li>"
+    else:
+        items = "".join(
+            f"<li><strong>{result['label']}</strong> — {result['status']}</li>" for result in failing[:20]
+        ) or "<li>Ingen fejl fundet.</li>"
     update_items = []
     for result in updates_payload.get("results", []):
         updates = result.get("updates", [])
@@ -102,7 +107,10 @@ def main() -> int:
     failing_count = int(payload.get("failingCompetitions", len([r for r in payload.get("results", []) if r.get("status") != "passed"])))
     total_updated = int(updates_payload.get("totalUpdated", 0))
     generated_at = payload.get("generatedAt", "")
-    status = "FEJL" if failing_count > 0 else "OK"
+    if int(payload.get("checkedCompetitions", len(payload.get("results", [])))) == 0:
+        status = "OK"
+    else:
+        status = "FEJL" if failing_count > 0 else "OK"
     subject = f"[Tribunetour] Fixture audit {status} · {generated_at[:10] or 'today'}"
 
     text = "\n\n".join(

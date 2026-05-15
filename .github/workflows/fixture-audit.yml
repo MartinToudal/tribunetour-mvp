@@ -56,19 +56,18 @@ jobs:
           status=$?
           printf '%s\n' "$output"
           printf '%s\n' "$output" > data/fixture-audits/reports/latest-run.log
-
           if [ "$mode" = "due" ] && [ "$output" = "No audits due today" ]; then
             echo "had_due=false" >> "$GITHUB_OUTPUT"
-            echo "status_code=0" >> "$GITHUB_OUTPUT"
-            exit 0
+            echo "no_due=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "had_due=true" >> "$GITHUB_OUTPUT"
+            echo "no_due=false" >> "$GITHUB_OUTPUT"
           fi
-
-          echo "had_due=true" >> "$GITHUB_OUTPUT"
           echo "status_code=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
       - name: Upload audit reports
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fixture-audit-report
@@ -81,7 +80,7 @@ jobs:
             data/fixture-audits/reports/latest-email.log
 
       - name: Commit automatic fixture updates
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always() && steps.audit.outputs.no_due != 'true'
         id: autocommit
         continue-on-error: true
         run: |
@@ -126,7 +125,7 @@ jobs:
           exit 0
 
       - name: Send fixture audit email
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always()
         id: email
         continue-on-error: true
         env:
@@ -143,11 +142,12 @@ jobs:
           exit 0
 
       - name: Write fixture audit summary
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always()
         env:
           AUDIT_STATUS: ${{ steps.audit.outputs.status_code }}
           PUSH_STATUS: ${{ steps.autocommit.outputs.push_status }}
           EMAIL_STATUS: ${{ steps.email.outputs.status_code }}
+          NO_DUE: ${{ steps.audit.outputs.no_due }}
         run: |
           python3 - <<'PY'
           import json
@@ -174,7 +174,12 @@ jobs:
               "",
           ]
 
-          if failing:
+          if os.environ.get("NO_DUE") == "true":
+              lines.append("## Result")
+              lines.append("")
+              lines.append("- No fixture audits were due today.")
+              lines.append("")
+          elif failing:
               lines.append("## Failing competitions")
               lines.append("")
               for result in failing[:20]:
@@ -190,17 +195,17 @@ jobs:
           PY
 
       - name: Fail workflow when email could not be sent
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code != '0'
+        if: always() && steps.email.outputs.status_code != '0'
         run: |
           echo "Fixture audit mail failed to send."
           exit 1
 
       - name: Log fixture audit issues
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outputs.status_code != '0'
+        if: always() && steps.audit.outputs.no_due != 'true' && steps.audit.outputs.status_code != '0'
         run: |
           echo "Fixture audit found issues. See report artifact and email summary."
 
       - name: Log fixture audit push issues
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
+        if: always() && steps.audit.outputs.no_due != 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
         run: |
           echo "Fixture audit sync could not persist changes automatically. Push status: ${{ steps.autocommit.outputs.push_status }}"

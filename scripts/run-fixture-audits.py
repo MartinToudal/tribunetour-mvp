@@ -356,6 +356,8 @@ def main() -> int:
         selected.append(audit)
 
     if not selected:
+        write_update_report([])
+        write_report([])
         print("No audits due today")
         return 0
 
