@@ -68,6 +68,10 @@ def current_local_date() -> str:
     return datetime.now(LOCAL_TIMEZONE).date().isoformat()
 
 
+def current_local_datetime() -> str:
+    return datetime.now(LOCAL_TIMEZONE).replace(tzinfo=None).isoformat(timespec="minutes")
+
+
 def write_report(results: list[AuditResult]) -> None:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).isoformat()
@@ -241,6 +245,8 @@ def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> 
         audit["season"],
         "--from-date",
         current_local_date(),
+        "--from-datetime",
+        current_local_datetime(),
     ]
 
     if audit.get("competitionId"):
@@ -292,6 +298,8 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
         "--write",
         "--from-date",
         current_local_date(),
+        "--from-datetime",
+        current_local_datetime(),
     ]
 
     if audit.get("competitionId"):

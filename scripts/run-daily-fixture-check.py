@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import subprocess
@@ -14,6 +15,8 @@ from zoneinfo import ZoneInfo
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
+WORKSPACE_ROOT = WEBSITE_ROOT.parent
+APP_FIXTURES_CSV = WORKSPACE_ROOT / "Tribunetour" / "fixtures.csv"
 CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
@@ -22,6 +25,19 @@ FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
 LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
 ALIASES_JSON = WEBSITE_ROOT / "data" / "fixture-audits" / "flashscore-team-aliases.json"
+FIXTURE_FIELDNAMES = [
+    "id",
+    "kickoff",
+    "round",
+    "homeTeamId",
+    "awayTeamId",
+    "venueClubId",
+    "status",
+    "homeScore",
+    "awayScore",
+    "competitionId",
+    "seasonId",
+]
 
 
 @dataclass
@@ -81,6 +97,24 @@ def normalize_text(value: str) -> str:
     lowered = stripped.lower().replace("&", " and ")
     lowered = re.sub(r"[^a-z0-9]+", " ", lowered)
     return re.sub(r"\s+", " ", lowered).strip()
+
+
+def persist_fixture_rows(source_rows: list[dict]) -> None:
+    FIXTURES_JSON.write_text(json.dumps(source_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    csv_rows: list[dict[str, str]] = []
+    for row in source_rows:
+        csv_rows.append(
+            {
+                key: "" if row.get(key) is None else str(row.get(key, ""))
+                for key in FIXTURE_FIELDNAMES
+            }
+        )
+
+    with APP_FIXTURES_CSV.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=FIXTURE_FIELDNAMES)
+        writer.writeheader()
+        writer.writerows(csv_rows)
 
 
 def slugify(value: str) -> str:
@@ -644,7 +678,7 @@ def main() -> int:
         audit_results.append(DailyAuditResult(audit["id"], audit["label"], status, details))
 
     if args.apply_safe_updates and any(result.updated_count > 0 for result in sync_results):
-        FIXTURES_JSON.write_text(json.dumps(all_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        persist_fixture_rows(all_rows)
         completed = subprocess.run(
             ["node", str(GENERATE_DATA_SCRIPT)],
             capture_output=True,

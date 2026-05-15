@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import unicodedata
@@ -9,13 +10,30 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
+WORKSPACE_ROOT = WEBSITE_ROOT.parent
+APP_FIXTURES_CSV = WORKSPACE_ROOT / "Tribunetour" / "fixtures.csv"
 FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
 LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
 ALIASES_JSON = WEBSITE_ROOT / "data" / "fixture-audits" / "flashscore-team-aliases.json"
+LOCAL_TIMEZONE = ZoneInfo("Europe/Copenhagen")
+FIXTURE_FIELDNAMES = [
+    "id",
+    "kickoff",
+    "round",
+    "homeTeamId",
+    "awayTeamId",
+    "venueClubId",
+    "status",
+    "homeScore",
+    "awayScore",
+    "competitionId",
+    "seasonId",
+]
 
 
 @dataclass
@@ -101,6 +119,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--write", action="store_true", help="Persist safe updates to data/fixtures.json")
     parser.add_argument("--from-date", help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD")
     parser.add_argument("--to-date", help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD")
+    parser.add_argument("--from-datetime", help="Optional local kickoff datetime filter (inclusive), format YYYY-MM-DDTHH:MM")
     return parser.parse_args()
 
 
@@ -174,6 +193,7 @@ def load_fixtures(
     round_prefix: str | None,
     from_date: date | None,
     to_date: date | None,
+    from_datetime: datetime | None,
 ) -> tuple[list[dict], list[FixtureRow]]:
     source_rows = load_json(FIXTURES_JSON)
     selected: list[FixtureRow] = []
@@ -193,10 +213,13 @@ def load_fixtures(
         if row_season != season_id:
             continue
         kickoff_dt = datetime.fromisoformat(row["kickoff"])
+        kickoff_local = kickoff_dt.astimezone(LOCAL_TIMEZONE).replace(tzinfo=None)
         kickoff_date = kickoff_dt.date()
         if from_date and kickoff_date < from_date:
             continue
         if to_date and kickoff_date > to_date:
+            continue
+        if from_datetime and kickoff_local < from_datetime:
             continue
 
         home_team_id = row["homeTeamId"]
@@ -237,6 +260,7 @@ def parse_source_matches(
     exclude_source_round_prefixes: list[str],
     from_date: date | None,
     to_date: date | None,
+    from_datetime: datetime | None,
 ) -> tuple[list[SourceFixture], list[dict]]:
     fixtures: list[SourceFixture] = []
     unresolved: list[dict] = []
@@ -250,6 +274,8 @@ def parse_source_matches(
         try:
             kickoff = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
         except ValueError:
+            continue
+        if from_datetime and kickoff < from_datetime:
             continue
         if from_date and kickoff.date() < from_date:
             continue
@@ -305,6 +331,24 @@ def build_fixture_id(prefix: str, source_fixture: SourceFixture) -> str:
     return f"{prefix}{kickoff_dt.strftime('%Y%m%d')}-{slugify(source_fixture.home_name)}-{slugify(source_fixture.away_name)}"
 
 
+def persist_fixture_rows(source_rows: list[dict]) -> None:
+    FIXTURES_JSON.write_text(json.dumps(source_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    csv_rows: list[dict[str, str]] = []
+    for row in source_rows:
+        csv_rows.append(
+            {
+                key: "" if row.get(key) is None else str(row.get(key, ""))
+                for key in FIXTURE_FIELDNAMES
+            }
+        )
+
+    with APP_FIXTURES_CSV.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=FIXTURE_FIELDNAMES)
+        writer.writeheader()
+        writer.writerows(csv_rows)
+
+
 def main() -> int:
     args = parse_args()
     source_path = Path(args.source).expanduser().resolve()
@@ -314,6 +358,7 @@ def main() -> int:
         raise SystemExit("One of --competition, --fixture-prefix or --round-prefix is required")
     from_date = date.fromisoformat(args.from_date) if args.from_date else None
     to_date = date.fromisoformat(args.to_date) if args.to_date else None
+    from_datetime = datetime.fromisoformat(args.from_datetime) if args.from_datetime else None
 
     aliases = load_aliases()
     club_names = load_club_names()
@@ -326,6 +371,7 @@ def main() -> int:
         args.round_prefix,
         from_date,
         to_date,
+        from_datetime,
     )
 
     source_fixtures, unresolved = parse_source_matches(
@@ -337,6 +383,7 @@ def main() -> int:
         list(args.exclude_source_round_prefix or []),
         from_date,
         to_date,
+        from_datetime,
     )
     rows_by_id = {row["id"]: row for row in source_rows}
     local_by_key: dict[tuple[str, str], list[FixtureRow]] = defaultdict(list)
@@ -460,7 +507,7 @@ def main() -> int:
             )
 
     if args.write and (updates or added or removed):
-        FIXTURES_JSON.write_text(json.dumps(source_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        persist_fixture_rows(source_rows)
 
     payload = {
         "competition": args.competition or args.fixture_prefix or args.round_prefix,

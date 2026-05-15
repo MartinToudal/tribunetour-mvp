@@ -10,6 +10,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
@@ -17,6 +18,7 @@ AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
 WEB_FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 LEAGUE_PACKS_DIR = WEBSITE_ROOT / "data" / "league-packs"
 ALIASES_JSON = WEBSITE_ROOT / "data" / "fixture-audits" / "flashscore-team-aliases.json"
+LOCAL_TIMEZONE = ZoneInfo("Europe/Copenhagen")
 
 
 @dataclass
@@ -58,12 +60,36 @@ def parse_args() -> argparse.Namespace:
         help="Optional round prefix for legacy rows, e.g. 'Superliga - '",
     )
     parser.add_argument(
+        "--source-group-prefix",
+        help="Optional source group prefix filter, e.g. 'BELGIEN: Jupiler League - Mesterskabet - Slutspil'",
+    )
+    parser.add_argument(
+        "--exclude-source-group-prefix",
+        action="append",
+        default=[],
+        help="Optional source group prefix to exclude; repeatable",
+    )
+    parser.add_argument(
+        "--source-round-prefix",
+        help="Optional source round-label prefix filter, e.g. 'Kvartfinalerne'",
+    )
+    parser.add_argument(
+        "--exclude-source-round-prefix",
+        action="append",
+        default=[],
+        help="Optional source round-label prefix to exclude; repeatable",
+    )
+    parser.add_argument(
         "--from-date",
         help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD",
     )
     parser.add_argument(
         "--to-date",
         help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD",
+    )
+    parser.add_argument(
+        "--from-datetime",
+        help="Optional local kickoff datetime filter (inclusive), format YYYY-MM-DDTHH:MM",
     )
     return parser.parse_args()
 
@@ -75,6 +101,25 @@ def normalize_text(value: str) -> str:
     lowered = lowered.replace("&", " and ")
     lowered = re.sub(r"[^a-z0-9]+", " ", lowered)
     return re.sub(r"\s+", " ", lowered).strip()
+
+
+def source_round_matches_filter(
+    source_group: str,
+    round_label: str,
+    source_group_prefix: str | None,
+    exclude_source_group_prefixes: list[str],
+    source_round_prefix: str | None,
+    exclude_source_round_prefixes: list[str],
+) -> bool:
+    if source_group_prefix and not source_group.startswith(source_group_prefix):
+        return False
+    if any(source_group.startswith(prefix) for prefix in exclude_source_group_prefixes):
+        return False
+    if source_round_prefix and not round_label.startswith(source_round_prefix):
+        return False
+    if any(round_label.startswith(prefix) for prefix in exclude_source_round_prefixes):
+        return False
+    return True
 
 
 def load_json(path: Path):
@@ -116,6 +161,7 @@ def load_fixtures(
     round_prefix: str | None,
     from_date: date | None,
     to_date: date | None,
+    from_datetime: datetime | None,
 ) -> list[FixtureRow]:
     rows: list[FixtureRow] = []
     source_rows = load_json(WEB_FIXTURES_JSON)
@@ -135,10 +181,13 @@ def load_fixtures(
         if row_season != season_id:
             continue
         kickoff_dt = datetime.fromisoformat(row["kickoff"])
+        kickoff_local = kickoff_dt.astimezone(LOCAL_TIMEZONE).replace(tzinfo=None)
         kickoff_date = kickoff_dt.date()
         if from_date and kickoff_date < from_date:
             continue
         if to_date and kickoff_date > to_date:
+            continue
+        if from_datetime and kickoff_local < from_datetime:
             continue
         home_team_id = row["homeTeamId"]
         away_team_id = row["awayTeamId"]
@@ -214,6 +263,45 @@ def build_team_patterns(home_aliases: list[str], away_aliases: list[str]) -> lis
     return patterns
 
 
+def filter_source_lines(
+    source_path: Path,
+    from_date: date | None,
+    to_date: date | None,
+    source_group_prefix: str | None,
+    exclude_source_group_prefixes: list[str],
+    source_round_prefix: str | None,
+    exclude_source_round_prefixes: list[str],
+    from_datetime: datetime | None,
+) -> list[str]:
+    filtered: list[str] = []
+    for raw_line in source_path.read_text(encoding="utf-8").splitlines():
+        parts = [part.strip() for part in raw_line.split("|")]
+        if len(parts) < 5:
+            continue
+        dt_token, source_group, round_label = parts[:3]
+        try:
+            kickoff = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
+        except ValueError:
+            continue
+        if from_datetime and kickoff < from_datetime:
+            continue
+        if from_date and kickoff.date() < from_date:
+            continue
+        if to_date and kickoff.date() > to_date:
+            continue
+        if not source_round_matches_filter(
+            source_group,
+            round_label,
+            source_group_prefix,
+            exclude_source_group_prefixes,
+            source_round_prefix,
+            exclude_source_round_prefixes,
+        ):
+            continue
+        filtered.append(raw_line)
+    return filtered
+
+
 def evaluate_fixture(
     fixture: FixtureRow,
     source_text: str,
@@ -247,8 +335,18 @@ def main() -> int:
         return 1
     from_date = date.fromisoformat(args.from_date) if args.from_date else None
     to_date = date.fromisoformat(args.to_date) if args.to_date else None
-
-    source_text = normalize_text(source_path.read_text(encoding="utf-8"))
+    from_datetime = datetime.fromisoformat(args.from_datetime) if args.from_datetime else None
+    source_lines = filter_source_lines(
+        source_path,
+        from_date,
+        to_date,
+        args.source_group_prefix,
+        list(args.exclude_source_group_prefix or []),
+        args.source_round_prefix,
+        list(args.exclude_source_round_prefix or []),
+        from_datetime,
+    )
+    source_text = normalize_text("\n".join(source_lines))
     alias_map = load_aliases()
     club_names = load_club_names()
     fixtures = load_fixtures(
@@ -259,14 +357,21 @@ def main() -> int:
         args.round_prefix,
         from_date,
         to_date,
+        from_datetime,
     )
 
     if not fixtures:
+        if source_lines:
+            print(
+                f"Source has {len(source_lines)} future fixture(s), but no local fixtures found for competition={args.competition} fixturePrefix={args.fixture_prefix} roundPrefix={args.round_prefix} season={args.season}",
+                file=sys.stderr,
+            )
+            return 2
         print(
-            f"No fixtures found for competition={args.competition} fixturePrefix={args.fixture_prefix} roundPrefix={args.round_prefix} season={args.season}",
-            file=sys.stderr,
+            f"No fixtures found in forward window for competition={args.competition} fixturePrefix={args.fixture_prefix} roundPrefix={args.round_prefix} season={args.season}",
+            file=sys.stdout,
         )
-        return 1
+        return 0
 
     grouped: dict[str, list[tuple[FixtureRow, str]]] = defaultdict(list)
     for fixture in fixtures:
