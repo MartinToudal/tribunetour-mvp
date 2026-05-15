@@ -2,7 +2,7 @@ name: Daily Fixture Check
 
 on:
   schedule:
-    - cron: "7,17,27,37,47,57 1,2 * * *"
+    - cron: "7,17,27,37,47,57 1,2,6 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -33,11 +33,11 @@ jobs:
           local_time="$(TZ=Europe/Copenhagen date +%H:%M)"
           echo "local_date=$local_date" >> "$GITHUB_OUTPUT"
           echo "local_time=$local_time" >> "$GITHUB_OUTPUT"
-          if [ "$local_hour" = "03" ]; then
+          if [ "$local_hour" = "03" ] || [ "$local_hour" = "08" ]; then
             echo "run_now=true" >> "$GITHUB_OUTPUT"
           else
             echo "run_now=false" >> "$GITHUB_OUTPUT"
-            echo "Not 03:00 in Copenhagen, skipping."
+            echo "Not 03:00 or 08:00 in Copenhagen, skipping."
           fi
 
       - name: Restore daily success marker
