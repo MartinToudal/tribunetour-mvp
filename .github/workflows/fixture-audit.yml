@@ -2,7 +2,7 @@ name: Fixture Audit
 
 on:
   schedule:
-    - cron: "17 4 * * *"
+    - cron: "7,17,27,37,47,57 4,5 * * *"
   workflow_dispatch:
     inputs:
       scope:
@@ -20,23 +20,62 @@ concurrency:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   audit:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Decide whether this run should execute
+        id: localtime
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run_now=true" >> "$GITHUB_OUTPUT"
+            echo "local_date=$(TZ=Europe/Copenhagen date +%F)" >> "$GITHUB_OUTPUT"
+            echo "local_time=$(TZ=Europe/Copenhagen date +%H:%M)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          local_hour="$(TZ=Europe/Copenhagen date +%H)"
+          local_date="$(TZ=Europe/Copenhagen date +%F)"
+          local_time="$(TZ=Europe/Copenhagen date +%H:%M)"
+          echo "local_date=$local_date" >> "$GITHUB_OUTPUT"
+          echo "local_time=$local_time" >> "$GITHUB_OUTPUT"
+          if [ "$local_hour" = "06" ]; then
+            echo "run_now=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_now=false" >> "$GITHUB_OUTPUT"
+            echo "Not 06:00 in Copenhagen, skipping."
+          fi
+
+      - name: Restore daily audit success marker
+        if: steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule'
+        id: marker
+        uses: actions/cache/restore@v4
+        with:
+          path: .github/.tmp/fixture-audit-marker
+          key: fixture-audit-${{ steps.localtime.outputs.local_date }}
+
+      - name: Skip if fixture audit already succeeded today
+        if: steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit == 'true'
+        run: |
+          echo "Fixture audit already completed successfully on ${{ steps.localtime.outputs.local_date }}."
+
       - name: Check out repository
+        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
+        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Run fixture audits
+        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         id: audit
         continue-on-error: true
         run: |
@@ -69,7 +108,7 @@ jobs:
           exit 0
 
       - name: Upload audit reports
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: fixture-audit-report
@@ -82,7 +121,7 @@ jobs:
             data/fixture-audits/reports/latest-email.log
 
       - name: Commit automatic fixture updates
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true'
         id: autocommit
         continue-on-error: true
         run: |
@@ -119,7 +158,7 @@ jobs:
           exit 0
 
       - name: Send fixture audit email
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true'
         id: email
         continue-on-error: true
         env:
@@ -135,8 +174,21 @@ jobs:
           echo "status_code=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
+      - name: Prepare fixture audit success marker
+        if: always() && steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit != 'true' && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code == '0'
+        run: |
+          mkdir -p .github/.tmp/fixture-audit-marker
+          printf '%s\n' "${{ steps.localtime.outputs.local_date }} ${{ steps.localtime.outputs.local_time }}" > .github/.tmp/fixture-audit-marker/success.txt
+
+      - name: Save fixture audit success marker
+        if: always() && steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit != 'true' && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code == '0'
+        uses: actions/cache/save@v4
+        with:
+          path: .github/.tmp/fixture-audit-marker
+          key: fixture-audit-${{ steps.localtime.outputs.local_date }}
+
       - name: Write fixture audit summary
-        if: always() && steps.audit.outputs.had_due == 'true'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true'
         env:
           AUDIT_STATUS: ${{ steps.audit.outputs.status_code }}
           PUSH_STATUS: ${{ steps.autocommit.outputs.push_status }}
@@ -183,17 +235,17 @@ jobs:
           PY
 
       - name: Fail workflow when email could not be sent
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code != '0'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true' && steps.email.outputs.status_code != '0'
         run: |
           echo "Fixture audit mail failed to send."
           exit 1
 
       - name: Log fixture audit issues
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.audit.outputs.status_code != '0'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true' && steps.audit.outputs.status_code != '0'
         run: |
           echo "Fixture audit found issues. See report artifact and email summary."
 
       - name: Log fixture audit push issues
-        if: always() && steps.audit.outputs.had_due == 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
+        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.audit.outputs.had_due == 'true' && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
         run: |
           echo "Fixture audit sync could not persist changes automatically. Push status: ${{ steps.autocommit.outputs.push_status }}"
