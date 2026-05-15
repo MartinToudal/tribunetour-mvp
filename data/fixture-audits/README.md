@@ -119,6 +119,8 @@ Den periodiske fixture-audit bruger samme model:
 - `app/api/cron/fixture-audit/route.ts`
 - `.github/workflows/fixture-audit.yml`
 
+Den brede audit/sync arbejder nu kun med kampe fra lokal dags dato og frem, så historiske kampe ikke bliver trukket ind igen fra Flashscores fulde kommende-program.
+
 For at det virker stabilt i drift, skal disse secrets/env vars sættes:
 
 - `RESEND_API_KEY`

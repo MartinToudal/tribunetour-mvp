@@ -41,6 +41,50 @@ class SourceFixture:
     away_name: str
 
 
+def round_labels_match(local_round: str, source_round: str) -> bool:
+    normalized_local = normalize_text(local_round)
+    normalized_source = normalize_text(source_round)
+    if not normalized_local or not normalized_source:
+        return False
+    return (
+        normalized_local == normalized_source
+        or normalized_local.endswith(normalized_source)
+        or normalized_source in normalized_local
+    )
+
+
+def select_best_local_fixture(
+    source_fixture: SourceFixture,
+    candidates: list[FixtureRow],
+) -> tuple[FixtureRow | None, str | None]:
+    if not candidates:
+        return None, None
+    if len(candidates) == 1:
+        return candidates[0], None
+
+    round_matches = [fixture for fixture in candidates if round_labels_match(fixture.round, source_fixture.round)]
+    if len(round_matches) == 1:
+        return round_matches[0], None
+
+    source_date = datetime.fromisoformat(source_fixture.kickoff).date()
+    date_matches = [
+        fixture for fixture in candidates if datetime.fromisoformat(fixture.kickoff).date() == source_date
+    ]
+    if len(date_matches) == 1:
+        return date_matches[0], None
+
+    exact_matches = [
+        fixture
+        for fixture in candidates
+        if round_labels_match(fixture.round, source_fixture.round)
+        and datetime.fromisoformat(fixture.kickoff).date() == source_date
+    ]
+    if len(exact_matches) == 1:
+        return exact_matches[0], None
+
+    return None, "ambiguous-local-match"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Synchronize safe fixture kickoff updates from raw Flashscore text."
@@ -295,18 +339,36 @@ def main() -> int:
         to_date,
     )
     rows_by_id = {row["id"]: row for row in source_rows}
-    local_by_key = {(fixture.home_team_id, fixture.away_team_id): fixture for fixture in fixtures}
+    local_by_key: dict[tuple[str, str], list[FixtureRow]] = defaultdict(list)
+    for fixture in fixtures:
+        local_by_key[(fixture.home_team_id, fixture.away_team_id)].append(fixture)
+    for candidates in local_by_key.values():
+        candidates.sort(key=lambda fixture: fixture.kickoff)
 
     updates: list[dict] = []
     added: list[dict] = []
     removed: list[dict] = []
     skipped: list[dict] = []
+    matched_fixture_ids: set[str] = set()
 
     fixture_prefix = args.fixture_prefix or (f"{args.competition}-" if args.competition else "fixture-")
 
     for source_fixture in source_fixtures:
         key = (source_fixture.home_team_id, source_fixture.away_team_id)
-        local_fixture = local_by_key.get(key)
+        remaining_candidates = [
+            fixture for fixture in local_by_key.get(key, []) if fixture.fixture_id not in matched_fixture_ids
+        ]
+        local_fixture, match_error = select_best_local_fixture(source_fixture, remaining_candidates)
+        if match_error:
+            skipped.append(
+                {
+                    "fixtureId": "(ambiguous-local-match)",
+                    "reason": match_error,
+                    "home": source_fixture.home_name,
+                    "away": source_fixture.away_name,
+                }
+            )
+            continue
         if not local_fixture:
             fixture_id = build_fixture_id(fixture_prefix, source_fixture)
             new_row = {
@@ -336,6 +398,7 @@ def main() -> int:
             )
             continue
 
+        matched_fixture_ids.add(local_fixture.fixture_id)
         existing_kickoff = local_fixture.kickoff
         new_kickoff = iso_with_offset(source_fixture.kickoff, existing_kickoff)
         row = rows_by_id[local_fixture.fixture_id]
@@ -378,8 +441,7 @@ def main() -> int:
         )
     elif args.write:
         for fixture in fixtures:
-            key = (fixture.home_team_id, fixture.away_team_id)
-            if key in source_keys:
+            if fixture.fixture_id in matched_fixture_ids:
                 continue
             row = rows_by_id.get(fixture.fixture_id)
             if not row:

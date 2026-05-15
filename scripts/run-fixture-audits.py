@@ -6,8 +6,9 @@ import json
 import subprocess
 import sys
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
@@ -17,6 +18,7 @@ AUDIT_SCRIPT = WEBSITE_ROOT / "scripts" / "audit-flashscore-fixtures.py"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
 SYNC_SCRIPT = WEBSITE_ROOT / "scripts" / "sync-flashscore-fixtures.py"
 GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
+LOCAL_TIMEZONE = ZoneInfo("Europe/Copenhagen")
 
 
 @dataclass
@@ -57,9 +59,13 @@ def load_config() -> list[dict]:
 
 def is_due_today(anchor_date: str, interval_days: int) -> bool:
     anchor = date.fromisoformat(anchor_date)
-    today = datetime.now(timezone.utc).date()
+    today = datetime.now(LOCAL_TIMEZONE).date()
     delta = (today - anchor).days
     return delta >= 0 and delta % interval_days == 0
+
+
+def current_local_date() -> str:
+    return datetime.now(LOCAL_TIMEZONE).date().isoformat()
 
 
 def write_report(results: list[AuditResult]) -> None:
@@ -233,6 +239,8 @@ def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> 
         str(source),
         "--season",
         audit["season"],
+        "--from-date",
+        current_local_date(),
     ]
 
     if audit.get("competitionId"):
@@ -282,6 +290,8 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
         "--season",
         audit["season"],
         "--write",
+        "--from-date",
+        current_local_date(),
     ]
 
     if audit.get("competitionId"):
