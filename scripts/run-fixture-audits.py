@@ -241,6 +241,14 @@ def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> 
         cmd.extend(["--fixture-prefix", audit["fixturePrefix"]])
     if audit.get("roundPrefix"):
         cmd.extend(["--round-prefix", audit["roundPrefix"]])
+    if audit.get("sourceGroupPrefix"):
+        cmd.extend(["--source-group-prefix", audit["sourceGroupPrefix"]])
+    for value in audit.get("excludeSourceGroupPrefixes", []):
+        cmd.extend(["--exclude-source-group-prefix", value])
+    if audit.get("sourceRoundPrefix"):
+        cmd.extend(["--source-round-prefix", audit["sourceRoundPrefix"]])
+    for value in audit.get("excludeSourceRoundPrefixes", []):
+        cmd.extend(["--exclude-source-round-prefix", value])
 
     completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
     output = completed.stdout.strip() or completed.stderr.strip() or "(no output)"
@@ -282,6 +290,14 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
         cmd.extend(["--fixture-prefix", audit["fixturePrefix"]])
     if audit.get("roundPrefix"):
         cmd.extend(["--round-prefix", audit["roundPrefix"]])
+    if audit.get("sourceGroupPrefix"):
+        cmd.extend(["--source-group-prefix", audit["sourceGroupPrefix"]])
+    for value in audit.get("excludeSourceGroupPrefixes", []):
+        cmd.extend(["--exclude-source-group-prefix", value])
+    if audit.get("sourceRoundPrefix"):
+        cmd.extend(["--source-round-prefix", audit["sourceRoundPrefix"]])
+    for value in audit.get("excludeSourceRoundPrefixes", []):
+        cmd.extend(["--exclude-source-round-prefix", value])
 
     completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
     if completed.returncode != 0:

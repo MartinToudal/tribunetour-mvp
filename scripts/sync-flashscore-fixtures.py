@@ -50,6 +50,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--season", default="2025-26", help="Season id to sync (default: 2025-26)")
     parser.add_argument("--fixture-prefix", help="Optional fixture id prefix for legacy rows, e.g. sl-")
     parser.add_argument("--round-prefix", help="Optional round prefix for legacy rows, e.g. 'Superliga - '")
+    parser.add_argument("--source-group-prefix", help="Optional source group prefix filter, e.g. 'BELGIEN: Jupiler League - Mesterskabet - Slutspil'")
+    parser.add_argument("--exclude-source-group-prefix", action="append", default=[], help="Optional source group prefix to exclude; repeatable")
+    parser.add_argument("--source-round-prefix", help="Optional source round-label prefix filter, e.g. 'Kvartfinalerne'")
+    parser.add_argument("--exclude-source-round-prefix", action="append", default=[], help="Optional source round-label prefix to exclude; repeatable")
     parser.add_argument("--write", action="store_true", help="Persist safe updates to data/fixtures.json")
     parser.add_argument("--from-date", help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD")
     parser.add_argument("--to-date", help="Optional local kickoff date filter (inclusive), format YYYY-MM-DD")
@@ -79,10 +83,23 @@ def load_aliases() -> dict[str, list[str]]:
     return {key: [str(item) for item in value] for key, value in payload.items()}
 
 
-def source_round_matches_filter(round_label: str, round_prefix: str | None) -> bool:
-    if not round_prefix:
-        return True
-    return round_label.startswith(round_prefix)
+def source_round_matches_filter(
+    source_group: str,
+    round_label: str,
+    source_group_prefix: str | None,
+    exclude_source_group_prefixes: list[str],
+    source_round_prefix: str | None,
+    exclude_source_round_prefixes: list[str],
+) -> bool:
+    if source_group_prefix and not source_group.startswith(source_group_prefix):
+        return False
+    if any(source_group.startswith(prefix) for prefix in exclude_source_group_prefixes):
+        return False
+    if source_round_prefix and not round_label.startswith(source_round_prefix):
+        return False
+    if any(round_label.startswith(prefix) for prefix in exclude_source_round_prefixes):
+        return False
+    return True
 
 
 def load_club_names() -> dict[str, str]:
@@ -170,7 +187,10 @@ def build_alias_map(club_names: dict[str, str], aliases: dict[str, list[str]]) -
 def parse_source_matches(
     source_path: Path,
     alias_to_club_id: dict[str, str],
-    round_prefix: str | None,
+    source_group_prefix: str | None,
+    exclude_source_group_prefixes: list[str],
+    source_round_prefix: str | None,
+    exclude_source_round_prefixes: list[str],
     from_date: date | None,
     to_date: date | None,
 ) -> tuple[list[SourceFixture], list[dict]]:
@@ -182,7 +202,7 @@ def parse_source_matches(
         if len(parts) < 5:
             continue
 
-        dt_token, _country, round_label, home, away = parts[:5]
+        dt_token, source_group, round_label, home, away = parts[:5]
         try:
             kickoff = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
         except ValueError:
@@ -191,7 +211,14 @@ def parse_source_matches(
             continue
         if to_date and kickoff.date() > to_date:
             continue
-        if not source_round_matches_filter(round_label, round_prefix):
+        if not source_round_matches_filter(
+            source_group,
+            round_label,
+            source_group_prefix,
+            exclude_source_group_prefixes,
+            source_round_prefix,
+            exclude_source_round_prefixes,
+        ):
             continue
 
         home_id = alias_to_club_id.get(normalize_text(home))
@@ -260,7 +287,10 @@ def main() -> int:
     source_fixtures, unresolved = parse_source_matches(
         source_path,
         alias_to_club_id,
-        args.round_prefix,
+        args.source_group_prefix,
+        list(args.exclude_source_group_prefix or []),
+        args.source_round_prefix,
+        list(args.exclude_source_round_prefix or []),
         from_date,
         to_date,
     )
@@ -337,7 +367,16 @@ def main() -> int:
             updates.append(change_record)
 
     source_keys = {(fixture.home_team_id, fixture.away_team_id) for fixture in source_fixtures}
-    if args.write:
+    if args.write and not source_fixtures and fixtures:
+        skipped.append(
+            {
+                "fixtureId": "(bulk-removal-guard)",
+                "reason": "empty-source-window",
+                "home": args.competition or args.fixture_prefix or args.round_prefix or "unknown",
+                "away": f"{len(fixtures)} local fixture(s) retained",
+            }
+        )
+    elif args.write:
         for fixture in fixtures:
             key = (fixture.home_team_id, fixture.away_team_id)
             if key in source_keys:

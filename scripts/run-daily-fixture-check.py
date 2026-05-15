@@ -106,8 +106,8 @@ def load_aliases() -> dict[str, list[str]]:
 def source_round_matches_audit(audit: dict, source_group: str, round_label: str) -> bool:
     include_group_prefix = str(audit.get("sourceGroupPrefix") or "").strip()
     exclude_group_prefixes = [str(value).strip() for value in audit.get("excludeSourceGroupPrefixes", []) if str(value).strip()]
-    include_prefix = str(audit.get("roundPrefix") or "").strip()
-    exclude_prefixes = [str(value).strip() for value in audit.get("excludeRoundPrefixes", []) if str(value).strip()]
+    include_prefix = str(audit.get("sourceRoundPrefix") or "").strip()
+    exclude_prefixes = [str(value).strip() for value in audit.get("excludeSourceRoundPrefixes", []) if str(value).strip()]
 
     if include_group_prefix and not source_group.startswith(include_group_prefix):
         return False
@@ -430,6 +430,29 @@ def apply_safe_updates(
             changed = True
         if changed and visible_change:
             updates.append(change_record)
+
+    if not source_fixtures and local_fixtures:
+        skipped.append(
+            {
+                "fixtureId": "(bulk-removal-guard)",
+                "reason": "empty-source-window",
+                "home": audit["label"],
+                "away": f"{len(local_fixtures)} local fixture(s) retained",
+            }
+        )
+        total_updated = len(updates) + len(added) + len(removed)
+        return DailySyncResult(
+            audit["id"],
+            audit["label"],
+            total_updated,
+            len(added),
+            len(removed),
+            updates,
+            added,
+            removed,
+            len(skipped),
+            skipped,
+        )
 
     for local_fixture in local_fixtures:
         key = (local_fixture.home_team_id, local_fixture.away_team_id)
