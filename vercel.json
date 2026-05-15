@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/daily-fixture-check",
+      "schedule": "17 1 * * *"
+    },
+    {
+      "path": "/api/cron/fixture-audit",
+      "schedule": "17 4 * * *"
+    }
+  ]
+}

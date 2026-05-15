@@ -1,8 +1,6 @@
 name: Daily Fixture Check
 
 on:
-  schedule:
-    - cron: "7,17,27,37,47,57 1,2,6 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -18,55 +16,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Decide whether this run should execute
-        id: localtime
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "run_now=true" >> "$GITHUB_OUTPUT"
-            echo "local_date=$(TZ=Europe/Copenhagen date +%F)" >> "$GITHUB_OUTPUT"
-            echo "local_time=$(TZ=Europe/Copenhagen date +%H:%M)" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          local_hour="$(TZ=Europe/Copenhagen date +%H)"
-          local_date="$(TZ=Europe/Copenhagen date +%F)"
-          local_time="$(TZ=Europe/Copenhagen date +%H:%M)"
-          echo "local_date=$local_date" >> "$GITHUB_OUTPUT"
-          echo "local_time=$local_time" >> "$GITHUB_OUTPUT"
-          if [ "$local_hour" = "03" ] || [ "$local_hour" = "08" ]; then
-            echo "run_now=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run_now=false" >> "$GITHUB_OUTPUT"
-            echo "Not 03:00 or 08:00 in Copenhagen, skipping."
-          fi
-
-      - name: Restore daily success marker
-        if: steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule'
-        id: marker
-        uses: actions/cache/restore@v4
-        with:
-          path: .github/.tmp/daily-fixture-check-marker
-          key: daily-fixture-check-${{ steps.localtime.outputs.local_date }}
-
-      - name: Skip if daily check already succeeded today
-        if: steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit == 'true'
-        run: |
-          echo "Daily fixture check already completed successfully on ${{ steps.localtime.outputs.local_date }}."
-
       - name: Check out repository
-        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Run daily fixture check
-        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         id: dailycheck
         continue-on-error: true
         run: |
@@ -80,7 +40,6 @@ jobs:
           exit 0
 
       - name: Upload daily reports
-        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         uses: actions/upload-artifact@v4
         with:
           name: daily-fixture-check-report
@@ -93,7 +52,6 @@ jobs:
             data/fixture-audits/reports/latest-daily-email.log
 
       - name: Commit automatic daily fixture updates
-        if: steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
         id: autocommit
         continue-on-error: true
         run: |
@@ -128,7 +86,7 @@ jobs:
           exit 0
 
       - name: Send daily fixture check email
-        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
+        if: always()
         id: email
         continue-on-error: true
         env:
@@ -144,21 +102,8 @@ jobs:
           echo "status_code=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Prepare daily success marker
-        if: always() && steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit != 'true' && steps.email.outputs.status_code == '0'
-        run: |
-          mkdir -p .github/.tmp/daily-fixture-check-marker
-          printf '%s\n' "${{ steps.localtime.outputs.local_date }} ${{ steps.localtime.outputs.local_time }}" > .github/.tmp/daily-fixture-check-marker/success.txt
-
-      - name: Save daily success marker
-        if: always() && steps.localtime.outputs.run_now == 'true' && github.event_name == 'schedule' && steps.marker.outputs.cache-hit != 'true' && steps.email.outputs.status_code == '0'
-        uses: actions/cache/save@v4
-        with:
-          path: .github/.tmp/daily-fixture-check-marker
-          key: daily-fixture-check-${{ steps.localtime.outputs.local_date }}
-
       - name: Write daily fixture summary
-        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true')
+        if: always()
         env:
           DAILYCHECK_STATUS: ${{ steps.dailycheck.outputs.status_code }}
           PUSH_STATUS: ${{ steps.autocommit.outputs.push_status }}
@@ -206,17 +151,17 @@ jobs:
           PY
 
       - name: Fail workflow when email could not be sent
-        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.email.outputs.status_code != '0'
+        if: always() && steps.email.outputs.status_code != '0'
         run: |
           echo "Daily fixture check mail failed to send."
           exit 1
 
       - name: Log daily check issues
-        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.dailycheck.outputs.status_code != '0'
+        if: always() && steps.dailycheck.outputs.status_code != '0'
         run: |
           echo "Daily fixture check found issues. See report artifact and email summary."
 
       - name: Log daily fixture push issues
-        if: always() && steps.localtime.outputs.run_now == 'true' && (github.event_name != 'schedule' || steps.marker.outputs.cache-hit != 'true') && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
+        if: always() && steps.autocommit.outputs.push_status != '' && steps.autocommit.outputs.push_status != 'no_changes' && steps.autocommit.outputs.push_status != 'success'
         run: |
           echo "Daily fixture sync could not persist changes automatically. Push status: ${{ steps.autocommit.outputs.push_status }}"

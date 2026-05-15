@@ -105,14 +105,30 @@ Rapporter skrives til:
 
 ### Natlig kørsel og mail
 
-GitHub Actions-workflowet for det daglige check ligger i:
+Det daglige check bruger nu denne kæde:
 
+- `vercel.json`
+- `app/api/cron/daily-fixture-check/route.ts`
 - `.github/workflows/daily-fixture-check.yml`
 
-Det er sat op til at ramme `03:00` i `Europe/Copenhagen` ved at køre på to UTC-crons og derefter kun fortsætte, når den lokale tid faktisk er 03.
+Vercel Cron kalder det beskyttede API-endpoint, og endpointet dispatcher derefter GitHub-workflowet. Selve sync, commit/push, rapport og mail lever stadig i GitHub-workflowet.
 
-For at mails virker fra GitHub Actions, skal disse repo secrets sættes:
+Den periodiske fixture-audit bruger samme model:
+
+- `vercel.json`
+- `app/api/cron/fixture-audit/route.ts`
+- `.github/workflows/fixture-audit.yml`
+
+For at det virker stabilt i drift, skal disse secrets/env vars sættes:
 
 - `RESEND_API_KEY`
 - `FIXTURE_CHECK_NOTIFY_TO`
 - `FIXTURE_CHECK_NOTIFY_FROM` (valgfri; der bruges ellers en standard-afsender)
+- `CRON_SECRET`
+- `GITHUB_WORKFLOW_DISPATCH_TOKEN`
+- `GITHUB_WORKFLOW_DISPATCH_REPO` (valgfri; default `MartinToudal/tribunetour-mvp`)
+- `GITHUB_WORKFLOW_DISPATCH_REF` (valgfri; default `main`)
+
+`CRON_SECRET` skal sættes i Vercel-projektet. Vercel Cron sender den automatisk videre som `Authorization: Bearer <CRON_SECRET>` til cron-endpoints.
+
+`GITHUB_WORKFLOW_DISPATCH_TOKEN` skal være en GitHub token, der må starte workflows i repoet.
