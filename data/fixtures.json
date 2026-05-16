@@ -16135,6 +16135,19 @@
     "seasonId": "2025-26"
   },
   {
+    "id": "itcpo-20260516-torres-bra",
+    "kickoff": "2026-05-16T20:30:00+02:00",
+    "round": "Serie C - Play Out",
+    "homeTeamId": "it-torres",
+    "awayTeamId": "it-bra",
+    "venueClubId": "it-torres",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "competitionId": "it-serie-c-playouts",
+    "seasonId": "2025-26"
+  },
+  {
     "id": "be-national-division-1-acff-20261130-habay-la-neuve-union-rochefortoise",
     "kickoff": "2026-11-30T14:30:00+02:00",
     "round": "Runde 15",

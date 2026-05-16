@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-15T19:03:21.050Z",
-    "generatedAt": "2026-05-15T19:03:21.050Z",
-    "checksum": "47d9f55444674459a16b47e2e6ccb9ac9b225f3f942af42893bdbe46be21f408",
+    "version": "2026-05-16T09:39:55.059Z",
+    "generatedAt": "2026-05-16T09:39:55.059Z",
+    "checksum": "6fcd531ba13fdd668d248ae13e956955d55f95143d4d7e864b61279d2fc15363",
     "signature": null
   },
   "fixtures": [
@@ -16139,6 +16139,19 @@
       "homeScore": null,
       "awayScore": null,
       "competitionId": "be-national-division-1-acff",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "itcpo-20260516-torres-bra",
+      "kickoff": "2026-05-16T20:30:00+02:00",
+      "round": "Serie C - Play Out",
+      "homeTeamId": "it-torres",
+      "awayTeamId": "it-bra",
+      "venueClubId": "it-torres",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "competitionId": "it-serie-c-playouts",
       "seasonId": "2025-26"
     },
     {
