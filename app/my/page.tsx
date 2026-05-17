@@ -301,6 +301,15 @@ export default function MyPage() {
     () => premiumRequestRows.filter((row) => row.status === 'open'),
     [premiumRequestRows]
   );
+  const enabledPackIdSet = useMemo(() => new Set<string>(enabledPackIds), [enabledPackIds]);
+  const unlockedPremiumPackOptions = useMemo(
+    () => premiumRequestOptions.filter((option) => enabledPackIdSet.has(option.key)),
+    [enabledPackIdSet]
+  );
+  const lockedPremiumPackOptions = useMemo(
+    () => premiumRequestOptions.filter((option) => !enabledPackIdSet.has(option.key)),
+    [enabledPackIdSet]
+  );
   const selectedPackOpenRequest = useMemo(
     () => openPremiumRequestRows.find((row) => row.pack_key === premiumRequestPackKey) ?? null,
     [openPremiumRequestRows, premiumRequestPackKey]
@@ -830,7 +839,7 @@ export default function MyPage() {
             </p>
             {hiddenLeaguePackStadiumCount > 0 && (
               <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
-                Ekstra ligaer bliver synlige efter login, hvis din konto har adgang til de relevante premium-pakker.
+                Du ser kun grundpakken for Danmark lige nu. {hiddenLeaguePackStadiumCount} stadions ligger bag premium-landepakker og bliver synlige efter login og godkendt adgang.
               </div>
             )}
             <div className="mt-4 flex flex-wrap gap-3">
@@ -880,6 +889,43 @@ export default function MyPage() {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
                 Anmod om adgang til ligaer i andre lande. Vi behandler anmodningen manuelt og åbner den rigtige pakke på din konto.
               </p>
+
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                <div className="rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Åbent nu</div>
+                  <div className="mt-2 text-base font-semibold text-white">
+                    {unlockedPremiumPackOptions.length > 0
+                      ? `Danmark + ${unlockedPremiumPackOptions.length} premiumpakke${unlockedPremiumPackOptions.length === 1 ? '' : 'r'}`
+                      : 'Kun Danmark'}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    {unlockedPremiumPackOptions.length > 0
+                      ? unlockedPremiumPackOptions.map((option) => option.label).join(', ')
+                      : 'Din konto har adgang til de danske rækker i grundpakken.'}
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Låst nu</div>
+                  <div className="mt-2 text-base font-semibold text-white">
+                    {lockedPremiumPackOptions.length > 0
+                      ? `${lockedPremiumPackOptions.length} premiumpakke${lockedPremiumPackOptions.length === 1 ? '' : 'r'} mangler adgang`
+                      : 'Ingen låste premium-pakker'}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    {lockedPremiumPackOptions.length > 0
+                      ? lockedPremiumPackOptions.map((option) => option.label).join(', ')
+                      : 'Din konto har allerede adgang til alle nuværende premium-pakker.'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
+                <div className="text-sm font-medium text-white">Sådan virker det</div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                  Danmark er altid med. Hver premium-pakke låser et ekstra land op på din konto, og den samme adgang slår igennem på både web og i appen. Når du sender en anmodning herfra, bliver den behandlet manuelt, så vi kun åbner de pakker du faktisk skal bruge.
+                </p>
+              </div>
 
               {isLoadingPremiumRequestRows && (
                 <p className="mt-3 text-sm leading-6 text-[var(--muted)]">

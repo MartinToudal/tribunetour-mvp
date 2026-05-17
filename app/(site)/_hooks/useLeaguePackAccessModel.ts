@@ -58,7 +58,7 @@ export function useLeaguePackAccessModel() {
         }
         console.error(error);
         setEnabledPackIds(['core_denmark']);
-        setLeaguePackAccessError('Kunne ikke hente din adgang til league packs lige nu.');
+        setLeaguePackAccessError('Kunne ikke hente dine premium-adgange lige nu.');
         setIsLoadingLeaguePackAccess(false);
       });
 

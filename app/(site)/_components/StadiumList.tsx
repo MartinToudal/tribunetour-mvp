@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import LeaguePackAccessPanel from './LeaguePackAccessPanel';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
@@ -311,25 +312,16 @@ export default function StadiumList() {
         </div>
       )}
 
-      {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
-        <div className="border-b border-white/5 p-5 md:p-6">
-          <div className="text-sm leading-6 text-[var(--muted)]">
-            Premium-stadions er skjult, indtil du er logget ind og har adgang til de relevante landepakker.
-          </div>
-        </div>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
-        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
-          Henter din adgang til league packs…
-        </div>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
-        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
-          {leaguePackAccessError}
-        </div>
-      )}
+      <LeaguePackAccessPanel
+        hasSupabaseEnv={hasSupabaseEnv}
+        isLoggedIn={isLoggedIn}
+        isLoadingLeaguePackAccess={isLoadingLeaguePackAccess}
+        leaguePackAccessError={leaguePackAccessError}
+        enabledPackIds={enabledPackIds}
+        hiddenItemCount={hiddenLeaguePackStadiumCount}
+        hiddenItemLabel="stadions"
+        title="Adgang til stadions"
+      />
 
       {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
         <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">

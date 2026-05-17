@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+import LeaguePackAccessPanel from './LeaguePackAccessPanel';
 import { useVisitedModel } from '../_hooks/useVisitedModel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { useWeekendPlanModel } from '../_hooks/useWeekendPlanModel';
@@ -300,6 +301,24 @@ export default function MatchesList() {
     activeFilterCount === 0
       ? `${filteredFixtures.length} kommende kampe i dit nuværende scope`
       : `${filteredFixtures.length} kommende kampe med ${activeFilterCount} aktive filtre`;
+  const hiddenUpcomingFixturesCount = useMemo(() => {
+    const now = new Date();
+    const todayStart = new Date(now);
+    todayStart.setHours(0, 0, 0, 0);
+
+    return fixtures.filter((fixture) => {
+      if (new Date(fixture.kickoff).getTime() < todayStart.getTime()) {
+        return false;
+      }
+
+      const venue = stadiumMap[fixture.venueClubId];
+      if (!venue) {
+        return false;
+      }
+
+      return !enabledPackIds.includes(stadiumLeaguePackId(venue));
+    }).length;
+  }, [enabledPackIds, fixtures, stadiumMap]);
 
   const plannedFixtures = useMemo(() => {
     if (fixtureIds.length === 0) {
@@ -594,17 +613,16 @@ export default function MatchesList() {
         </div>
       )}
 
-      {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
-        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
-          Henter din adgang til league packs…
-        </div>
-      )}
-
-      {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
-        <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">
-          {leaguePackAccessError}
-        </div>
-      )}
+      <LeaguePackAccessPanel
+        hasSupabaseEnv={hasSupabaseEnv}
+        isLoggedIn={isLoggedIn}
+        isLoadingLeaguePackAccess={isLoadingLeaguePackAccess}
+        leaguePackAccessError={leaguePackAccessError}
+        enabledPackIds={enabledPackIds}
+        hiddenItemCount={hiddenUpcomingFixturesCount}
+        hiddenItemLabel="kommende kampe"
+        title="Adgang til kampe"
+      />
 
       {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
         <div className="border-b border-white/5 p-5 md:p-6 text-sm text-[var(--muted)]">

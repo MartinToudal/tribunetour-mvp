@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import LeaguePackAccessPanel from './LeaguePackAccessPanel';
 import { useLeaguePackAccessModel } from '../_hooks/useLeaguePackAccessModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../_lib/leaguePacks';
 import { compareCountryCodes } from '../_lib/leaguePackCatalog';
@@ -185,29 +186,16 @@ export default function MapView() {
                 </div>
             )}
 
-            {hasSupabaseEnv && !isLoggedIn && (
-                <div className="text-sm text-[var(--muted)]">
-                    Log ind for at bruge din besøgsstatus som filter på kortet og resten af Tribunetour.
-                </div>
-            )}
-
-            {hiddenLeaguePackStadiumCount > 0 && !isLoggedIn && (
-                <div className="text-sm text-[var(--muted)]">
-                    Premium-stadions vises på kortet, når du er logget ind og har adgang til de relevante landepakker.
-                </div>
-            )}
-
-            {hasSupabaseEnv && isLoggedIn && isLoadingLeaguePackAccess && (
-                <div className="text-sm text-[var(--muted)]">
-                    Henter din adgang til league packs…
-                </div>
-            )}
-
-            {hasSupabaseEnv && isLoggedIn && leaguePackAccessError && (
-                <div className="text-sm text-[var(--muted)]">
-                    {leaguePackAccessError}
-                </div>
-            )}
+            <LeaguePackAccessPanel
+                hasSupabaseEnv={hasSupabaseEnv}
+                isLoggedIn={isLoggedIn}
+                isLoadingLeaguePackAccess={isLoadingLeaguePackAccess}
+                leaguePackAccessError={leaguePackAccessError}
+                enabledPackIds={enabledPackIds}
+                hiddenItemCount={hiddenLeaguePackStadiumCount}
+                hiddenItemLabel="stadions"
+                title="Adgang til kortet"
+            />
 
             {hasSupabaseEnv && isLoggedIn && isLoadingVisits && (
                 <div className="text-sm text-[var(--muted)]">
