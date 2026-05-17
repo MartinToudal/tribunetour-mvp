@@ -7,7 +7,9 @@ import re
 import sys
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 WEBSITE_ROOT = Path(__file__).resolve().parent.parent
@@ -94,6 +96,26 @@ def summarize_updates(update_payload: dict) -> str:
     return "\n".join(lines)
 
 
+def expected_window_from() -> str:
+    override = (os.environ.get("EXPECTED_DAILY_WINDOW_FROM") or "").strip()
+    if override:
+        return override
+    return datetime.now(ZoneInfo("Europe/Copenhagen")).date().isoformat()
+
+
+def build_stale_report_html(expected_from: str, actual_from: str | None, actual_to: str | None, generated_at: str | None) -> str:
+    return f"""
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #162016;">
+      <h1 style="font-size: 22px; margin-bottom: 12px;">Dagligt fixture-check kunne ikke bekræftes</h1>
+      <p>Rapportfilen matcher ikke dagens forventede vindue, så den almindelige fixture-status er ikke sendt.</p>
+      <p><strong>Forventet startdato:</strong> {expected_from}</p>
+      <p><strong>Rapportens vindue:</strong> {actual_from or '?'} → {actual_to or '?'}</p>
+      <p><strong>Rapport genereret:</strong> {generated_at or '?'}</p>
+      <p>Det betyder typisk, at selve fixture-checket stoppede før en frisk rapport blev skrevet.</p>
+    </div>
+    """
+
+
 def build_html(payload: dict, updates_payload: dict) -> str:
     window = payload.get("window", {})
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
@@ -148,9 +170,72 @@ def main() -> int:
 
     payload = load_json(REPORT_PATH)
     updates_payload = load_json(UPDATES_PATH)
+
+    def send_email(body_payload: dict, from_address: str) -> tuple[bool, str]:
+        request = urllib.request.Request(
+            "https://api.resend.com/emails",
+            data=json.dumps({**body_payload, "from": from_address}).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {resend_api_key}",
+                "Content-Type": "application/json",
+                "User-Agent": "Tribunetour-Daily-Fixture-Check/1.0",
+            },
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return True, response.read().decode("utf-8", "ignore")
+        except urllib.error.HTTPError as error:
+            return False, error.read().decode("utf-8", "ignore")
+
+    def send_with_fallback(body_payload: dict) -> tuple[bool, str]:
+        success, response_body = send_email(body_payload, notify_from)
+        if success:
+            return True, response_body
+
+        fallback_from = "Tribunetour <onboarding@resend.dev>"
+        if notify_from != fallback_from and "domain is not verified" in response_body:
+            print(
+                f"Primary from-address failed domain verification, retrying with fallback sender {fallback_from}.",
+                file=sys.stderr,
+            )
+            return send_email(body_payload, fallback_from)
+        return False, response_body
+
+    expected_from = expected_window_from()
+    window = payload.get("window", {})
+    actual_from = window.get("from")
+    actual_to = window.get("to")
+    if actual_from != expected_from:
+        text = "\n\n".join(
+            [
+                "Dagligt fixture-check kunne ikke bekræftes.",
+                f"Forventet startdato: {expected_from}",
+                f"Rapportens vindue: {actual_from or '?'} → {actual_to or '?'}",
+                f"Rapport genereret: {payload.get('generatedAt') or '?'}",
+                "Den normale rapport blev ikke sendt, fordi den ser ud til at være forældet.",
+            ]
+        )
+        stale_body_payload = {
+            "from": notify_from,
+            "to": notify_to,
+            "subject": f"[Tribunetour] Dagligt fixture-check FEJL · stale rapport · {expected_from}",
+            "text": text,
+            "html": build_stale_report_html(expected_from, actual_from, actual_to, payload.get("generatedAt")),
+        }
+        success, response_body = send_with_fallback(stale_body_payload)
+        if success:
+            print(response_body)
+        else:
+            print(f"Resend send failed: {response_body}", file=sys.stderr)
+        print(
+            f"Daily fixture report is stale: expected window.from {expected_from}, got {actual_from or '?'}",
+            file=sys.stderr,
+        )
+        return 1
+
     failing_count = int(payload.get("failingCompetitions", 0))
     total_updated = int(updates_payload.get("totalUpdated", 0))
-    window = payload.get("window", {})
     status = "FEJL" if failing_count > 0 else "OK"
     subject = f"[Tribunetour] Dagligt fixture-check {status} · {window.get('from')}"
 
@@ -173,39 +258,10 @@ def main() -> int:
         "html": build_html(payload, updates_payload),
     }
 
-    def send_email(from_address: str) -> tuple[bool, str]:
-        request = urllib.request.Request(
-            "https://api.resend.com/emails",
-            data=json.dumps({**body_payload, "from": from_address}).encode("utf-8"),
-            headers={
-                "Authorization": f"Bearer {resend_api_key}",
-                "Content-Type": "application/json",
-                "User-Agent": "Tribunetour-Daily-Fixture-Check/1.0",
-            },
-            method="POST",
-        )
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                return True, response.read().decode("utf-8", "ignore")
-        except urllib.error.HTTPError as error:
-            return False, error.read().decode("utf-8", "ignore")
-
-    success, response_body = send_email(notify_from)
+    success, response_body = send_with_fallback(body_payload)
     if success:
         print(response_body)
         return 0
-
-    fallback_from = "Tribunetour <onboarding@resend.dev>"
-    if notify_from != fallback_from and "domain is not verified" in response_body:
-        print(
-            f"Primary from-address failed domain verification, retrying with fallback sender {fallback_from}.",
-            file=sys.stderr,
-        )
-        success, fallback_body = send_email(fallback_from)
-        if success:
-            print(fallback_body)
-            return 0
-        response_body = fallback_body
 
     print(f"Resend send failed: {response_body}", file=sys.stderr)
     return 1
