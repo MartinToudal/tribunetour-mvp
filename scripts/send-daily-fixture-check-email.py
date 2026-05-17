@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -18,13 +19,53 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def extract_count(details: str, key: str) -> int:
+    match = re.search(rf"^{re.escape(key)}:\s*(\d+)\s*$", details, flags=re.MULTILINE)
+    return int(match.group(1)) if match else 0
+
+
+def format_count(count: int, singular: str, plural: str) -> str:
+    if count == 1:
+        return f"1 {singular}"
+    return f"{count} {plural}"
+
+
+def summarize_failure_reason(result: dict) -> str:
+    status = result.get("status", "")
+    details = result.get("details", "") or ""
+
+    if status == "fetch-failed":
+        return "kunne ikke hente kildedata"
+
+    reasons: list[str] = []
+    missing_local = extract_count(details, "missing-local")
+    time_mismatch = extract_count(details, "time-mismatch")
+    missing_source = extract_count(details, "missing-source")
+    unresolved = extract_count(details, "unresolved-source-teams")
+
+    if missing_local:
+        reasons.append(format_count(missing_local, "manglende kamp", "manglende kampe"))
+    if time_mismatch:
+        reasons.append(format_count(time_mismatch, "tidsafvigelse", "tidsafvigelser"))
+    if missing_source:
+        reasons.append(format_count(missing_source, "ekstra lokal kamp", "ekstra lokale kampe"))
+    if unresolved:
+        reasons.append(format_count(unresolved, "ukendt holdnavn", "ukendte holdnavne"))
+
+    if reasons:
+        return ", ".join(reasons)
+
+    compact = " ".join(line.strip() for line in details.splitlines() if line.strip())
+    return compact[:140] + ("…" if len(compact) > 140 else "") if compact else status
+
+
 def summarize_failures(payload: dict) -> str:
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     if not failing:
         return "Alt så grønt ud i dagens check."
     lines = [f"{len(failing)} række(r) kræver opmærksomhed:"]
     for result in failing[:12]:
-        lines.append(f"- {result['label']} ({result['status']})")
+        lines.append(f"- {result['label']}: {summarize_failure_reason(result)}")
     return "\n".join(lines)
 
 
@@ -58,7 +99,7 @@ def build_html(payload: dict, updates_payload: dict) -> str:
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     total_updated = int(updates_payload.get("totalUpdated", 0))
     items = "".join(
-        f"<li><strong>{result['label']}</strong> — {result['status']}</li>" for result in failing[:12]
+        f"<li><strong>{result['label']}</strong> — {summarize_failure_reason(result)}</li>" for result in failing[:12]
     ) or "<li>Ingen fejl fundet.</li>"
     update_items = []
     for result in updates_payload.get("results", []):
