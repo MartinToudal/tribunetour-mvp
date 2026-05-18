@@ -59,13 +59,13 @@ export default function SupportPage() {
                             <details className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4">
                                 <summary className="cursor-pointer font-medium">Hvorfor kan jeg kun se Danmark og ikke de andre lande?</summary>
                                 <p className="mt-3 text-sm text-neutral-400">
-                                    Danmark er grundpakken. Ligaer i andre lande ligger i premium-landepakker, som bliver synlige, når du er logget ind og din konto har fået adgang til den relevante pakke.
+                                    Danmark er altid åbent. Flere lande bliver synlige, når du er logget ind og har fået adgang til dem på din konto.
                                 </p>
                             </details>
                             <details className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4">
                                 <summary className="cursor-pointer font-medium">Hvordan får jeg adgang til premium-ligaer?</summary>
                                 <p className="mt-3 text-sm text-neutral-400">
-                                    Gå til Min tur, vælg den pakke du vil have adgang til, og send en anmodning. Når den er godkendt, slår adgangen igennem på både web og i appen.
+                                    Gå til Min tur, vælg det land du vil åbne, og send en anmodning. Når den er godkendt, bliver landet synligt på din konto.
                                 </p>
                             </details>
                             <details className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-4">

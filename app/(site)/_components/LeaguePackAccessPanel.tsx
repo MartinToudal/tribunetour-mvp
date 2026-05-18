@@ -46,7 +46,7 @@ export default function LeaguePackAccessPanel({
         <div className="rounded-[24px] border border-white/8 bg-white/4 p-4">
           <div className="text-sm font-medium text-white">{title}</div>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-            Webmiljøet er ikke koblet helt til login endnu, så du ser kun grundpakken for Danmark her.
+            Login er ikke slået til i denne version endnu, så du ser kun de danske rækker her.
           </p>
           {hiddenSummary && <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{hiddenSummary}</p>}
         </div>
@@ -87,8 +87,7 @@ export default function LeaguePackAccessPanel({
               </p>
             ) : (
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Din konto har altid Danmark aktivt. Ekstra lande åbnes som landepakker, så web og app
-                viser det samme indhold på tværs af fladerne.
+                Danmark er altid åbent. Flere lande bliver synlige, når de er åbnet på din konto.
               </p>
             )}
             {hiddenSummary && <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{hiddenSummary}</p>}
@@ -109,13 +108,13 @@ export default function LeaguePackAccessPanel({
             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Åbent nu</div>
             <div className="mt-2 text-base font-semibold text-white">
               {unlockedPremiumPacks.length > 0
-                ? `Danmark + ${unlockedPremiumPacks.length} premiumland${unlockedPremiumPacks.length === 1 ? '' : 'e'}`
+                ? `Danmark + ${unlockedPremiumPacks.length} ekstra land${unlockedPremiumPacks.length === 1 ? '' : 'e'}`
                 : 'Kun Danmark'}
             </div>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
               {unlockedPremiumPacks.length > 0
                 ? summarizeLabels(unlockedPremiumPacks.map((entry) => entry.label))
-                : 'Superligaen og de danske rækker i grundpakken er tilgængelige.'}
+                : 'De danske rækker er åbne.'}
             </p>
           </div>
 
@@ -123,13 +122,13 @@ export default function LeaguePackAccessPanel({
             <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Låst lige nu</div>
             <div className="mt-2 text-base font-semibold text-white">
               {lockedPremiumPacks.length > 0
-                ? `${lockedPremiumPacks.length} premiumland${lockedPremiumPacks.length === 1 ? '' : 'e'} venter`
+                ? `${lockedPremiumPacks.length} land${lockedPremiumPacks.length === 1 ? '' : 'e'} mangler`
                 : 'Alt premium-indhold er åbent'}
             </div>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
               {lockedPremiumPacks.length > 0
                 ? summarizeLabels(lockedPremiumPacks.map((entry) => entry.label))
-                : 'Din konto har allerede adgang til alle nuværende premium-pakker.'}
+                : 'Din konto har allerede adgang til alle nuværende lande.'}
             </p>
           </div>
         </div>

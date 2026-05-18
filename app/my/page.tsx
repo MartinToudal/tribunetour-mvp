@@ -835,11 +835,11 @@ export default function MyPage() {
           <>
             <h3 className="mt-2 text-xl font-semibold tracking-tight">Gør Min tur personlig</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Log ind øverst på siden for at gemme dine stadionbesøg, synkronisere med appen og få adgang til premium-landepakker.
+              Log ind øverst på siden for at gemme dine stadionbesøg, samle dine oplevelser og se flere lande.
             </p>
             {hiddenLeaguePackStadiumCount > 0 && (
               <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
-                Du ser kun grundpakken for Danmark lige nu. {hiddenLeaguePackStadiumCount} stadions ligger bag premium-landepakker og bliver synlige efter login og godkendt adgang.
+                Du ser kun de danske rækker lige nu. {hiddenLeaguePackStadiumCount} stadions bliver synlige, når de relevante lande er åbnet på din konto.
               </div>
             )}
             <div className="mt-4 flex flex-wrap gap-3">
@@ -857,7 +857,7 @@ export default function MyPage() {
           <>
             <h3 className="mt-2 text-xl font-semibold tracking-tight">Logget ind</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Kontoen {userEmail ?? ''} er aktiv. Din besøgsstatus og dine premium-adgange følger nu samme konto på tværs af web og app.
+              Kontoen {userEmail ?? ''} er aktiv. Dine stadionbesøg og dine åbne lande er nu samlet på din konto.
             </p>
 
             {leaguePackAccessError && (
@@ -887,7 +887,7 @@ export default function MyPage() {
             <div className="mt-6">
               <div className="text-sm font-medium text-white">Premium-adgang</div>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-                Anmod om adgang til ligaer i andre lande. Vi behandler anmodningen manuelt og åbner den rigtige pakke på din konto.
+                Vil du videre end Danmark, kan du bede om adgang til flere lande her.
               </p>
 
               <div className="mt-4 grid gap-3 md:grid-cols-2">
@@ -895,13 +895,13 @@ export default function MyPage() {
                   <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Åbent nu</div>
                   <div className="mt-2 text-base font-semibold text-white">
                     {unlockedPremiumPackOptions.length > 0
-                      ? `Danmark + ${unlockedPremiumPackOptions.length} premiumpakke${unlockedPremiumPackOptions.length === 1 ? '' : 'r'}`
+                      ? `Danmark + ${unlockedPremiumPackOptions.length} ekstra land${unlockedPremiumPackOptions.length === 1 ? '' : 'e'}`
                       : 'Kun Danmark'}
                   </div>
                   <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                     {unlockedPremiumPackOptions.length > 0
                       ? unlockedPremiumPackOptions.map((option) => option.label).join(', ')
-                      : 'Din konto har adgang til de danske rækker i grundpakken.'}
+                      : 'De danske rækker er åbne på din konto.'}
                   </p>
                 </div>
 
@@ -909,21 +909,21 @@ export default function MyPage() {
                   <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Låst nu</div>
                   <div className="mt-2 text-base font-semibold text-white">
                     {lockedPremiumPackOptions.length > 0
-                      ? `${lockedPremiumPackOptions.length} premiumpakke${lockedPremiumPackOptions.length === 1 ? '' : 'r'} mangler adgang`
-                      : 'Ingen låste premium-pakker'}
+                      ? `${lockedPremiumPackOptions.length} land${lockedPremiumPackOptions.length === 1 ? '' : 'e'} mangler`
+                      : 'Ingen låste lande'}
                   </div>
                   <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                     {lockedPremiumPackOptions.length > 0
                       ? lockedPremiumPackOptions.map((option) => option.label).join(', ')
-                      : 'Din konto har allerede adgang til alle nuværende premium-pakker.'}
+                      : 'Din konto har allerede adgang til alle nuværende lande.'}
                   </p>
                 </div>
               </div>
 
               <div className="mt-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
-                <div className="text-sm font-medium text-white">Sådan virker det</div>
+                <div className="text-sm font-medium text-white">Sådan fungerer det</div>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                  Danmark er altid med. Hver premium-pakke låser et ekstra land op på din konto, og den samme adgang slår igennem på både web og i appen. Når du sender en anmodning herfra, bliver den behandlet manuelt, så vi kun åbner de pakker du faktisk skal bruge.
+                  Danmark er altid med. Hvert ekstra land bliver åbnet på din konto, når din anmodning er godkendt.
                 </p>
               </div>
 
@@ -951,7 +951,7 @@ export default function MyPage() {
               <div className="mt-4 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
                 <div>
                   <label className="text-sm font-medium text-white" htmlFor="premium-request-pack">
-                    Premium-pakke
+                    Land
                   </label>
                   <select
                     id="premium-request-pack"
@@ -979,7 +979,7 @@ export default function MyPage() {
                     className="field-input mt-2 min-h-24"
                     value={premiumRequestMessage}
                     onChange={(event) => setPremiumRequestMessage(event.target.value)}
-                    placeholder="Fx hvilken pakke du gerne vil teste først."
+                    placeholder="Fx hvilket land du gerne vil åbne først."
                   />
                 </div>
               </div>
@@ -990,7 +990,7 @@ export default function MyPage() {
                 disabled={isSubmittingPremiumRequest || Boolean(selectedPackOpenRequest)}
                 onClick={submitPremiumRequest}
               >
-                {isSubmittingPremiumRequest ? 'Sender…' : selectedPackOpenRequest ? 'Anmodning allerede sendt' : 'Anmod om premium-adgang'}
+                {isSubmittingPremiumRequest ? 'Sender…' : selectedPackOpenRequest ? 'Anmodning allerede sendt' : 'Anmod om adgang'}
               </button>
 
               {premiumRequestStatus && (

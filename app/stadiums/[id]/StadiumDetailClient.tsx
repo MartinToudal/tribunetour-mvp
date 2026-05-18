@@ -162,12 +162,12 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
         setNoteState(result.ok ? 'saved' : 'error');
         if (!result.ok) {
             if (result.error === 'notes_table_missing') {
-                setNoteError('Notes-backend er ikke oprettet endnu.');
+                setNoteError('Noter er ikke klar på web endnu.');
                 return;
             }
 
             if (result.error === 'notes_permission_denied') {
-                setNoteError('Notes-backend mangler adgang eller policy for denne bruger.');
+                setNoteError('Vi kunne ikke åbne noter for denne konto lige nu.');
                 return;
             }
 
@@ -203,12 +203,12 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
         setReviewState(result.ok ? 'saved' : 'error');
         if (!result.ok) {
             if (result.error === 'reviews_table_missing') {
-                setReviewError('Reviews-backend er ikke oprettet endnu.');
+                setReviewError('Anmeldelser er ikke klar på web endnu.');
                 return;
             }
 
             if (result.error === 'reviews_permission_denied') {
-                setReviewError('Reviews-backend mangler adgang eller policy for denne bruger.');
+                setReviewError('Vi kunne ikke åbne anmeldelser for denne konto lige nu.');
                 return;
             }
 
@@ -235,17 +235,17 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
 
         if (!result.ok) {
             if (result.error === 'photos_table_missing') {
-                setPhotoError('Photos-backend er ikke oprettet endnu.');
+                setPhotoError('Billeder er ikke klar på web endnu.');
                 return;
             }
 
             if (result.error === 'photos_storage_missing') {
-                setPhotoError('Photos-storage mangler bucket eller policy.');
+                setPhotoError('Billeder er ikke tilgængelige lige nu.');
                 return;
             }
 
             if (result.error === 'photos_permission_denied') {
-                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                setPhotoError('Vi kunne ikke åbne billeder for denne konto lige nu.');
                 return;
             }
 
@@ -278,7 +278,7 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
             }
 
             if (result.error === 'photos_permission_denied') {
-                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                setPhotoError('Vi kunne ikke åbne billeder for denne konto lige nu.');
                 return;
             }
 
@@ -305,12 +305,12 @@ export default function StadiumDetailClient({ stadium }: StadiumDetailClientProp
             }
 
             if (result.error === 'photos_permission_denied') {
-                setPhotoError('Photos-backend mangler adgang eller policy for denne bruger.');
+                setPhotoError('Vi kunne ikke åbne billeder for denne konto lige nu.');
                 return;
             }
 
             if (result.error === 'photos_storage_missing') {
-                setPhotoError('Photos-storage mangler bucket eller policy.');
+                setPhotoError('Billeder er ikke tilgængelige lige nu.');
                 return;
             }
 
