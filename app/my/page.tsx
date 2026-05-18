@@ -821,12 +821,12 @@ export default function MyPage() {
       </section>
 
       <section className="site-card-soft p-5 md:p-6">
-        <div className="label-eyebrow">Konto og sync</div>
+        <div className="label-eyebrow">Konto</div>
         {!hasSupabaseEnv && (
           <>
             <h3 className="mt-2 text-xl font-semibold tracking-tight">Login klargøres</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Web kan allerede vise data og progression, men personlig sync er ikke slået helt til i dette miljø endnu.
+              Web kan allerede vise data og progression, men login er ikke helt slået til i dette miljø endnu.
             </p>
           </>
         )}
@@ -885,7 +885,7 @@ export default function MyPage() {
             )}
 
             <div className="mt-6">
-              <div className="text-sm font-medium text-white">Premium-adgang</div>
+              <div className="text-sm font-medium text-white">Flere lande</div>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
                 Vil du videre end Danmark, kan du bede om adgang til flere lande her.
               </p>

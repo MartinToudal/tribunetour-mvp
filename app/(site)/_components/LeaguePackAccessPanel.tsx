@@ -82,8 +82,8 @@ export default function LeaguePackAccessPanel({
             <div className="text-sm font-medium text-white">{title}</div>
             {!isLoggedIn ? (
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Du ser kun Danmark lige nu. Ligaer i andre lande er premium og bliver først synlige,
-                når du logger ind og får den relevante landepakke aktiveret på din konto.
+                Du ser kun Danmark lige nu. Flere lande bliver synlige,
+                når du logger ind og får adgang til dem på din konto.
               </p>
             ) : (
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
@@ -98,7 +98,7 @@ export default function LeaguePackAccessPanel({
               {!isLoggedIn ? 'Log ind og se adgang' : lockedPremiumPacks.length > 0 ? 'Anmod om flere ligaer' : 'Administrer adgang'}
             </a>
             <a href="/support" className="cta-secondary">
-              Hvad betyder premium?
+              Hvordan får jeg adgang?
             </a>
           </div>
         </div>
