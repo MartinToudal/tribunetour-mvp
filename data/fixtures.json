@@ -16238,5 +16238,30 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "pt1-20260520-torreense-casa-pia",
+    "kickoff": "2026-05-20T19:00:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "pt-torreense",
+    "awayTeamId": "pt-casa-pia",
+    "venueClubId": "pt-torreense",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "nl-eredivisie-playoffs-20260520-willem-ii-fc-volendam",
+    "kickoff": "2026-05-20T18:45:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "nl-willem-ii",
+    "awayTeamId": "nl-fc-volendam",
+    "venueClubId": "nl-willem-ii",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "nl-promotion-relegation-playoffs"
   }
 ]
