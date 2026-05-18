@@ -446,7 +446,7 @@ export default function MyPage() {
       {
         id: 'halfway',
         title: 'Halvvejs',
-        description: 'Besøg halvdelen af de danske stadions i grundpakken.',
+        description: 'Besøg halvdelen af de danske stadions.',
         isUnlocked: coreVisitedCount >= halfThreshold,
         progressText: clampProgress(coreVisitedCount, halfThreshold),
       },
@@ -516,7 +516,7 @@ export default function MyPage() {
       {
         id: 'all_stadiums',
         title: 'Tribune Tour Master',
-        description: 'Besøg alle stadions i grundpakken.',
+        description: 'Besøg alle danske stadions.',
         isUnlocked: coreVisibleStadiums.length > 0 && coreVisitedCount === coreVisibleStadiums.length,
         progressText: `${coreVisitedCount}/${Math.max(1, coreVisibleStadiums.length)}`,
       },
@@ -548,14 +548,14 @@ export default function MyPage() {
       {
         id: 'premium_first_visit',
         title: 'Udebanestart',
-        description: 'Besøg dit første premium-stadion.',
+        description: 'Besøg dit første stadion uden for Danmark.',
         isUnlocked: premiumVisitedCount >= 1,
         progressText: clampProgress(premiumVisitedCount, 1),
       },
       {
         id: 'premium_explorer',
         title: 'International groundhopper',
-        description: 'Besøg 5 premium-stadions.',
+        description: 'Besøg 5 stadions uden for Danmark.',
         isUnlocked: premiumVisitedCount >= 5,
         progressText: clampProgress(premiumVisitedCount, 5),
       },
@@ -569,7 +569,7 @@ export default function MyPage() {
       {
         id: 'premium_league_complete',
         title: 'Premium-specialist',
-        description: 'Fuldfør alle stadions i én premium-række.',
+        description: 'Fuldfør alle stadions i én række uden for Danmark.',
         isUnlocked: completePremiumLeagues >= 1,
         progressText: clampProgress(completePremiumLeagues, 1),
       },
@@ -633,8 +633,8 @@ export default function MyPage() {
       <section className="site-card p-5 md:p-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <div className="label-eyebrow">Hjemland og scope</div>
-            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Lås samme scope-logik som i appen</h3>
+            <div className="label-eyebrow">Hjemland</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Start i dit hjemland</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
               Dit hjemland bliver udgangspunktet, når du åbner Tribunetour. Herfra kan du skifte mellem hjemland og alle aktive lande uden at miste overblikket.
             </p>
@@ -703,9 +703,9 @@ export default function MyPage() {
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <div className="label-eyebrow">Achievements</div>
-            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Samme progression, uanset platform</h3>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Din progression</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Basis-achievements følger din danske grundpakke, mens premium-achievements bliver synlige, når du har ekstra lande aktive. På den måde kan nye pyramider føjes til uden at ændre selve modellen.
+              Se hvor langt du er kommet, og hvad der er næste skridt i din stadionrejse.
             </p>
           </div>
           <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4">
@@ -737,7 +737,7 @@ export default function MyPage() {
         </div>
 
         <div className="mt-6">
-          <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Basis-achievements</div>
+          <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Danmark</div>
           <div className="grid gap-3 lg:grid-cols-2">
             {baseAchievements.map((achievement) => (
               <article
@@ -777,9 +777,9 @@ export default function MyPage() {
 
         {premiumAchievements.length > 0 && (
           <div className="mt-6">
-            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Premium achievements</div>
+            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Flere lande</div>
             <div className="mb-4 rounded-[24px] border border-white/8 bg-white/4 px-4 py-3 text-sm leading-6 text-[var(--muted)]">
-              Grundachievements kan stadig fuldføres uanset hvor mange lande du har aktive. Premium-achievements gør det tydeligt, når du bruger flere landepakker og bevæger dig på tværs af pyramider.
+              Når du åbner flere lande, dukker nye mål op her.
             </div>
             <div className="grid gap-3 lg:grid-cols-2">
               {premiumAchievements.map((achievement) => (
@@ -1042,7 +1042,7 @@ export default function MyPage() {
             <div className="label-eyebrow">Mine stadions</div>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight">Se stadions i dit aktuelle scope</h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-              Listen nedenfor følger dit valgte scope. Skift mellem hjemland og alle aktive lande ovenfor for at tjekke hvordan samme model føles på tværs af produktet.
+              Listen nedenfor følger dit valgte scope. Skift mellem hjemland og alle lande ovenfor, hvis du vil brede udsynet ud.
             </p>
           </div>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
