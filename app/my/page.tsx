@@ -9,7 +9,7 @@ import { useVisitedModel } from '../(site)/_hooks/useVisitedModel';
 import { countryLabel, filterStadiumsForLeaguePackAccess } from '../(site)/_lib/leaguePacks';
 import { compareCountryCodes, requestableLeaguePackCatalog, type RequestableLeaguePackId as PremiumRequestPackKey } from '../(site)/_lib/leaguePackCatalog';
 import { compareLeagues } from '../(site)/_lib/leagueOrder';
-import { getStadiums, type Stadium } from '../(site)/_lib/referenceData';
+import { getFixtures, getStadiums, type Fixture, type Stadium } from '../(site)/_lib/referenceData';
 import { supabase } from '../(site)/_lib/supabaseClient';
 
 type Achievement = {
@@ -73,6 +73,7 @@ async function submitPremiumAccessRequestViaApi(targetPackKey: PremiumRequestPac
 
 export default function MyPage() {
   const [stadiums, setStadiums] = useState<Stadium[]>([]);
+  const [fixtures, setFixtures] = useState<Fixture[]>([]);
   const [countryFilter, setCountryFilter] = useState<string>('dk');
   const [preferredHomeCountryCode, setPreferredHomeCountryCode] = useState<string>('dk');
   const [showVisited, setShowVisited] = useState(false);
@@ -93,9 +94,10 @@ export default function MyPage() {
   useEffect(() => {
     let isCancelled = false;
 
-    getStadiums().then((data) => {
+    Promise.all([getStadiums(), getFixtures()]).then(([stadiumData, fixtureData]) => {
       if (!isCancelled) {
-        setStadiums(data);
+        setStadiums(stadiumData);
+        setFixtures(fixtureData);
       }
     });
 
@@ -287,17 +289,48 @@ export default function MyPage() {
   }, [prioritizedLeagueRows]);
 
   const suggestedNextStadium = useMemo(() => {
-    if (nextLeagueTarget) {
-      const leagueMatch = visibleStadiums
-        .filter((stadium) =>
-          (stadium.countryCode ?? 'dk') === nextLeagueTarget.countryCode &&
-          stadium.league === nextLeagueTarget.league &&
-          !visited[stadium.id]
-        )
-        .sort((left, right) => left.name.localeCompare(right.name, 'da'));
+    const upcomingFixtures = fixtures
+      .filter((fixture) => fixture.status === 'scheduled' && new Date(fixture.kickoff).getTime() >= Date.now())
+      .sort((left, right) => new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime());
 
-      if (leagueMatch[0]) {
-        return leagueMatch[0];
+    if (nextLeagueTarget) {
+      const targetRows = prioritizedLeagueRows;
+      for (const row of targetRows) {
+        const clubsInRow = visibleStadiums.filter(
+          (stadium) =>
+            (stadium.countryCode ?? 'dk') === row.countryCode &&
+            stadium.league === row.league &&
+            !visited[stadium.id]
+        );
+        const clubIds = new Set(clubsInRow.map((stadium) => stadium.id));
+        const nextFixture = upcomingFixtures.find((fixture) => clubIds.has(fixture.venueClubId));
+        if (nextFixture) {
+          const club = clubsInRow.find((stadium) => stadium.id === nextFixture.venueClubId);
+          if (club) {
+            return club;
+          }
+        }
+      }
+    }
+
+    const homeCountryUnvisited = visibleStadiums.filter(
+      (stadium) => (stadium.countryCode ?? 'dk') === preferredHomeCountryCode && !visited[stadium.id]
+    );
+    const homeCountryIds = new Set(homeCountryUnvisited.map((stadium) => stadium.id));
+    const nextHomeFixture = upcomingFixtures.find((fixture) => homeCountryIds.has(fixture.venueClubId));
+    if (nextHomeFixture) {
+      const club = homeCountryUnvisited.find((stadium) => stadium.id === nextHomeFixture.venueClubId);
+      if (club) {
+        return club;
+      }
+    }
+
+    const allUnvisitedIds = new Set(visibleStadiums.filter((stadium) => !visited[stadium.id]).map((stadium) => stadium.id));
+    const nextFixture = upcomingFixtures.find((fixture) => allUnvisitedIds.has(fixture.venueClubId));
+    if (nextFixture) {
+      const club = visibleStadiums.find((stadium) => stadium.id === nextFixture.venueClubId);
+      if (club && !visited[club.id]) {
+        return club;
       }
     }
 
@@ -312,7 +345,7 @@ export default function MyPage() {
     return scopedStadiums
       .filter((stadium) => !visited[stadium.id])
       .sort((left, right) => left.name.localeCompare(right.name, 'da'))[0] ?? null;
-  }, [nextLeagueTarget, preferredHomeCountryCode, scopedStadiums, visibleStadiums, visited]);
+  }, [fixtures, nextLeagueTarget, preferredHomeCountryCode, prioritizedLeagueRows, scopedStadiums, visibleStadiums, visited]);
 
   const completeLeagues = visitedByLeague.filter((row) => row.total > 0 && row.visited === row.total).length;
   const completePremiumLeagues = useMemo(() => {
