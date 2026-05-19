@@ -13846,7 +13846,7 @@
   {
     "id": "be1c-07-anderlecht-st-truiden",
     "kickoff": "2026-05-21T20:30:00+02:00",
-    "round": "Jupiler Pro League - Mesterskabsspil - Runde 39",
+    "round": "Runde 39",
     "homeTeamId": "be-anderlecht",
     "awayTeamId": "be-st-truiden",
     "venueClubId": "be-anderlecht",
@@ -13859,7 +13859,7 @@
   {
     "id": "be1c-08-gent-royale-union-sg",
     "kickoff": "2026-05-21T20:30:00+02:00",
-    "round": "Jupiler Pro League - Mesterskabsspil - Runde 39",
+    "round": "Runde 39",
     "homeTeamId": "be-gent",
     "awayTeamId": "be-royale-union-sg",
     "venueClubId": "be-gent",
@@ -13872,7 +13872,7 @@
   {
     "id": "be1c-09-kv-mechelen-club-brugge",
     "kickoff": "2026-05-21T20:30:00+02:00",
-    "round": "Jupiler Pro League - Mesterskabsspil - Runde 39",
+    "round": "Runde 39",
     "homeTeamId": "be-kv-mechelen",
     "awayTeamId": "be-club-brugge",
     "venueClubId": "be-kv-mechelen",
@@ -16263,5 +16263,55 @@
     "awayScore": null,
     "seasonId": "2025-26",
     "competitionId": "nl-promotion-relegation-playoffs"
+  },
+  {
+    "id": "sl-20260521-br-ndby-if-fc-k-benhavn",
+    "kickoff": "2026-05-21T18:30:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "dk-brondby-if",
+    "awayTeamId": "dk-fc-kobenhavn",
+    "venueClubId": "dk-brondby-if",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "bl-20260521-wolfsburg-paderborn",
+    "kickoff": "2026-05-21T20:30:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "de-vfl-wolfsburg",
+    "awayTeamId": "de-sc-paderborn-07",
+    "venueClubId": "de-vfl-wolfsburg",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "nl-eredivisie-20260521-ajax-groningen",
+    "kickoff": "2026-05-21T18:45:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "nl-ajax",
+    "awayTeamId": "nl-groningen",
+    "venueClubId": "nl-ajax",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "nl-eredivisie"
+  },
+  {
+    "id": "nl-eredivisie-20260521-utrecht-heerenveen",
+    "kickoff": "2026-05-21T21:00:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "nl-utrecht",
+    "awayTeamId": "nl-heerenveen",
+    "venueClubId": "nl-utrecht",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "nl-eredivisie"
   }
 ]
