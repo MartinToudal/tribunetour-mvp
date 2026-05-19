@@ -260,6 +260,60 @@ export default function MyPage() {
     });
   }, [visibleStadiums, visited]);
 
+  const homeCountryVisitedByLeague = useMemo(
+    () => visitedByLeague.filter((row) => row.countryCode === preferredHomeCountryCode),
+    [visitedByLeague, preferredHomeCountryCode]
+  );
+
+  const prioritizedLeagueRows = homeCountryVisitedByLeague.length > 0 ? homeCountryVisitedByLeague : visitedByLeague;
+
+  const nextLeagueTarget = useMemo(() => {
+    const candidates = prioritizedLeagueRows
+      .filter((row) => row.total > 0 && row.visited < row.total)
+      .sort((left, right) => {
+        const remainingLeft = left.total - left.visited;
+        const remainingRight = right.total - right.visited;
+        if (remainingLeft !== remainingRight) {
+          return remainingLeft - remainingRight;
+        }
+        const countryComparison = compareCountryCodes(left.countryCode, right.countryCode);
+        if (countryComparison !== 0) {
+          return countryComparison;
+        }
+        return compareLeagues(left.league, right.league);
+      });
+
+    return candidates[0] ?? null;
+  }, [prioritizedLeagueRows]);
+
+  const suggestedNextStadium = useMemo(() => {
+    if (nextLeagueTarget) {
+      const leagueMatch = visibleStadiums
+        .filter((stadium) =>
+          (stadium.countryCode ?? 'dk') === nextLeagueTarget.countryCode &&
+          stadium.league === nextLeagueTarget.league &&
+          !visited[stadium.id]
+        )
+        .sort((left, right) => left.name.localeCompare(right.name, 'da'));
+
+      if (leagueMatch[0]) {
+        return leagueMatch[0];
+      }
+    }
+
+    const homeCountryMatch = visibleStadiums
+      .filter((stadium) => (stadium.countryCode ?? 'dk') === preferredHomeCountryCode && !visited[stadium.id])
+      .sort((left, right) => left.name.localeCompare(right.name, 'da'));
+
+    if (homeCountryMatch[0]) {
+      return homeCountryMatch[0];
+    }
+
+    return scopedStadiums
+      .filter((stadium) => !visited[stadium.id])
+      .sort((left, right) => left.name.localeCompare(right.name, 'da'))[0] ?? null;
+  }, [nextLeagueTarget, preferredHomeCountryCode, scopedStadiums, visibleStadiums, visited]);
+
   const completeLeagues = visitedByLeague.filter((row) => row.total > 0 && row.visited === row.total).length;
   const completePremiumLeagues = useMemo(() => {
     const grouped = new Map<string, { total: number; visited: number }>();
@@ -627,6 +681,54 @@ export default function MyPage() {
               style={{ width: `${Math.max(progress * 100, 0)}%` }}
             />
           </div>
+        </div>
+      </section>
+
+      <section className="site-card p-5 md:p-6">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="label-eyebrow">Lige nu</div>
+            <h3 className="mt-2 text-2xl font-semibold tracking-tight">Hold retningen i din stadionrejse</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Her er dit faste udgangspunkt, din nærmeste milepæl og et godt næste stop.
+            </p>
+          </div>
+          <div className="rounded-[28px] border border-[rgba(184,255,106,0.18)] bg-[rgba(184,255,106,0.08)] px-5 py-4 lg:min-w-[18rem]">
+            <div className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Låst op</div>
+            <div className="mt-2 text-3xl font-semibold">{unlockedAchievementsCount}/{achievements.length}</div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-3 lg:grid-cols-3">
+          <article className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Hjemland</div>
+            <div className="mt-2 text-xl font-semibold">{countryLabel(preferredHomeCountryCode)}</div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">Det er her din rejse starter, når du åbner Tribunetour.</p>
+          </article>
+
+          <article className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste milepæl</div>
+            <div className="mt-2 text-xl font-semibold">
+              {nextLeagueTarget
+                ? `${nextLeagueTarget.total - nextLeagueTarget.visited} stadion${nextLeagueTarget.total - nextLeagueTarget.visited === 1 ? '' : 's'} tilbage`
+                : 'Fortsæt rejsen'}
+            </div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {nextLeagueTarget
+                ? `${countryLabel(nextLeagueTarget.countryCode)} · ${nextLeagueTarget.league}`
+                : 'Et nyt besøg bringer dig videre mod næste store mål.'}
+            </p>
+          </article>
+
+          <article className="stat-chip">
+            <div className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Næste stop</div>
+            <div className="mt-2 text-xl font-semibold">{suggestedNextStadium?.name ?? 'Vælg dit næste stadion'}</div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {suggestedNextStadium
+                ? `${suggestedNextStadium.team} · ${suggestedNextStadium.league}`
+                : 'Brug listen længere nede til at vælge det næste besøg.'}
+            </p>
+          </article>
         </div>
       </section>
 
@@ -1011,9 +1113,9 @@ export default function MyPage() {
 
       <section className="site-card p-5 md:p-6">
         <div className="label-eyebrow">Fordelt på liga</div>
-        <h3 className="mt-2 text-2xl font-semibold tracking-tight">Din progression følger pyramiderne</h3>
+        <h3 className="mt-2 text-2xl font-semibold tracking-tight">Så tæt er du på hver række</h3>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-          Ligaerne er sorteret efter pyramiden i hvert land, så nye pakker kan falde ind i samme mønster uden ekstra UI-arbejde.
+          Brug oversigten her til hurtigt at se, hvor du er tæt på at lukke en række.
         </p>
 
         <div className="mt-6 grid gap-3">
