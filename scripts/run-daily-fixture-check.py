@@ -20,6 +20,7 @@ APP_FIXTURES_CSV = WORKSPACE_ROOT / "Tribunetour" / "fixtures.csv"
 CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
+SYNC_SCRIPT = WEBSITE_ROOT / "scripts" / "sync-flashscore-fixtures.py"
 GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
 FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
 AGGREGATE_STADIUMS_JSON = WEBSITE_ROOT / "data" / "stadiums.json"
@@ -219,6 +220,114 @@ def refresh_source(audit: dict, source: Path) -> str | None:
     if completed.returncode == 0:
         return None
     return completed.stdout.strip() or completed.stderr.strip() or "(no output)"
+
+
+def build_sync_command(
+    audit: dict,
+    source: Path,
+    *,
+    from_date: date,
+    from_datetime: datetime | None,
+    to_date: date | None,
+) -> list[str]:
+    cmd = [
+        sys.executable,
+        str(SYNC_SCRIPT),
+        "--source",
+        str(source),
+        "--season",
+        audit["season"],
+        "--write",
+        "--from-date",
+        from_date.isoformat(),
+    ]
+
+    if from_datetime:
+        cmd.extend(["--from-datetime", from_datetime.isoformat(timespec="minutes")])
+    if to_date:
+        cmd.extend(["--to-date", to_date.isoformat()])
+    if audit.get("competitionId"):
+        cmd.extend(["--competition", audit["competitionId"]])
+    if audit.get("fixturePrefix"):
+        cmd.extend(["--fixture-prefix", audit["fixturePrefix"]])
+    if audit.get("roundPrefix"):
+        cmd.extend(["--round-prefix", audit["roundPrefix"]])
+    if audit.get("sourceGroupPrefix"):
+        cmd.extend(["--source-group-prefix", audit["sourceGroupPrefix"]])
+    for value in audit.get("excludeSourceGroupPrefixes", []):
+        cmd.extend(["--exclude-source-group-prefix", value])
+    if audit.get("sourceRoundPrefix"):
+        cmd.extend(["--source-round-prefix", audit["sourceRoundPrefix"]])
+    for value in audit.get("excludeSourceRoundPrefixes", []):
+        cmd.extend(["--exclude-source-round-prefix", value])
+    return cmd
+
+
+def run_sync_command(
+    audit: dict,
+    source: Path,
+    *,
+    from_date: date,
+    from_datetime: datetime | None,
+    to_date: date | None,
+) -> DailySyncResult:
+    completed = subprocess.run(
+        build_sync_command(
+            audit,
+            source,
+            from_date=from_date,
+            from_datetime=from_datetime,
+            to_date=to_date,
+        ),
+        capture_output=True,
+        text=True,
+        cwd=WEBSITE_ROOT,
+    )
+    if completed.returncode != 0:
+        raise RuntimeError(completed.stdout.strip() or completed.stderr.strip() or f"Sync failed for {audit['id']}")
+    payload = json.loads(completed.stdout.strip())
+    unresolved = payload.get("unresolvedSourceTeams", [])
+    skipped = payload.get("skipped", [])
+    skipped.extend(
+        {
+            "fixtureId": "(unresolved-source)",
+            "reason": "unresolved-source-team",
+            "home": item["home"],
+            "away": item["away"],
+        }
+        for item in unresolved
+    )
+    return DailySyncResult(
+        audit["id"],
+        audit["label"],
+        int(payload.get("updatedCount", 0)),
+        int(payload.get("addedCount", 0)),
+        int(payload.get("removedCount", 0)),
+        payload.get("updates", []),
+        payload.get("added", []),
+        payload.get("removed", []),
+        len(skipped),
+        skipped,
+    )
+
+
+def merge_sync_results(primary: DailySyncResult, follow_up: DailySyncResult) -> DailySyncResult:
+    updates = [*primary.updates, *follow_up.updates]
+    added = [*primary.added, *follow_up.added]
+    removed = [*primary.removed, *follow_up.removed]
+    skipped = [*primary.skipped, *follow_up.skipped]
+    return DailySyncResult(
+        primary.audit_id,
+        primary.label,
+        len(updates) + len(added) + len(removed),
+        len(added),
+        len(removed),
+        updates,
+        added,
+        removed,
+        len(skipped),
+        skipped,
+    )
 
 
 def matches_audit(row: dict, audit: dict) -> bool:
@@ -637,18 +746,23 @@ def main() -> int:
     rows_by_id_global = {row["id"]: row for row in all_rows}
 
     sync_results: list[DailySyncResult] = []
-    audit_results: list[DailyAuditResult] = []
+    source_fixtures_by_audit: dict[str, list[SourceFixture]] = {}
+    unresolved_by_audit: dict[str, list[dict]] = {}
+    audit_by_id = {audit["id"]: audit for audit in audits}
 
     for audit in audits:
         source = WEBSITE_ROOT / audit["source"]
         refresh_error = refreshed_sources.get(source)
         if refresh_error:
             sync_results.append(DailySyncResult(audit["id"], audit["label"], 0, 0, 0, [], [], [], 0, []))
-            audit_results.append(DailyAuditResult(audit["id"], audit["label"], "fetch-failed", refresh_error))
+            source_fixtures_by_audit[audit["id"]] = []
+            unresolved_by_audit[audit["id"]] = [{"home": refresh_error, "away": "", "homeResolved": False, "awayResolved": False}]
             continue
 
-        _rows, local_fixtures, rows_by_id = load_local_fixtures(audit, club_names, local_today, local_end)
+        _rows, local_fixtures, _rows_by_id = load_local_fixtures(audit, club_names, local_today, local_end)
         source_fixtures, unresolved = parse_source_matches(audit, source, alias_to_club_id, local_today, local_end)
+        source_fixtures_by_audit[audit["id"]] = source_fixtures
+        unresolved_by_audit[audit["id"]] = unresolved
 
         sync_result = DailySyncResult(audit["id"], audit["label"], 0, 0, 0, [], [], [], len(unresolved), unresolved)
         if args.apply_safe_updates:
@@ -665,7 +779,65 @@ def main() -> int:
             sync_result.skipped_count = len(sync_result.skipped)
         sync_results.append(sync_result)
 
+    if args.apply_safe_updates and any(result.updated_count > 0 for result in sync_results):
+        persist_fixture_rows(all_rows)
+        completed = subprocess.run(
+            ["node", str(GENERATE_DATA_SCRIPT)],
+            capture_output=True,
+            text=True,
+            cwd=WEBSITE_ROOT,
+        )
+        if completed.returncode != 0:
+            print(completed.stdout)
+            print(completed.stderr, file=sys.stderr)
+            return completed.returncode
+
+        follow_up_ids = [result.audit_id for result in sync_results if result.added_count > 0 or result.removed_count > 0]
+        if follow_up_ids:
+            follow_up_now = datetime.now(tz).replace(tzinfo=None)
+            sync_result_map = {result.audit_id: result for result in sync_results}
+            follow_up_changed = False
+            for audit_id in follow_up_ids:
+                audit = audit_by_id[audit_id]
+                source = WEBSITE_ROOT / audit["source"]
+                follow_up_result = run_sync_command(
+                    audit,
+                    source,
+                    from_date=local_today,
+                    from_datetime=follow_up_now,
+                    to_date=None,
+                )
+                if follow_up_result.updated_count == 0 and follow_up_result.skipped_count == 0:
+                    continue
+                sync_result_map[audit_id] = merge_sync_results(sync_result_map[audit_id], follow_up_result)
+                follow_up_changed = follow_up_changed or follow_up_result.updated_count > 0
+
+            sync_results = [sync_result_map[result.audit_id] for result in sync_results]
+            if follow_up_changed:
+                all_rows = load_json(FIXTURES_JSON)
+                rows_by_id_global = {row["id"]: row for row in all_rows}
+                completed = subprocess.run(
+                    ["node", str(GENERATE_DATA_SCRIPT)],
+                    capture_output=True,
+                    text=True,
+                    cwd=WEBSITE_ROOT,
+                )
+                if completed.returncode != 0:
+                    print(completed.stdout)
+                    print(completed.stderr, file=sys.stderr)
+                    return completed.returncode
+
+    audit_results: list[DailyAuditResult] = []
+    for audit in audits:
+        source = WEBSITE_ROOT / audit["source"]
+        refresh_error = refreshed_sources.get(source)
+        if refresh_error:
+            audit_results.append(DailyAuditResult(audit["id"], audit["label"], "fetch-failed", refresh_error))
+            continue
+
         synced_local_fixtures, _ = select_local_fixtures(all_rows, audit, club_names, local_today, local_end)
+        source_fixtures = source_fixtures_by_audit.get(audit["id"], [])
+        unresolved = unresolved_by_audit.get(audit["id"], [])
         status, details = compare_audit(audit, synced_local_fixtures, source_fixtures)
         if unresolved:
             unresolved_lines = [
@@ -679,19 +851,6 @@ def main() -> int:
             details = details + "\n" + "\n".join(unresolved_lines)
             status = "needs-attention"
         audit_results.append(DailyAuditResult(audit["id"], audit["label"], status, details))
-
-    if args.apply_safe_updates and any(result.updated_count > 0 for result in sync_results):
-        persist_fixture_rows(all_rows)
-        completed = subprocess.run(
-            ["node", str(GENERATE_DATA_SCRIPT)],
-            capture_output=True,
-            text=True,
-            cwd=WEBSITE_ROOT,
-        )
-        if completed.returncode != 0:
-            print(completed.stdout)
-            print(completed.stderr, file=sys.stderr)
-            return completed.returncode
 
     write_daily_reports(local_today.isoformat(), local_end.isoformat(), audit_results, sync_results)
 
