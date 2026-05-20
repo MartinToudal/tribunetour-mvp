@@ -380,6 +380,24 @@ def load_local_fixtures(audit: dict, club_names: dict[str, str], from_date: date
     return source_rows, selected, rows_by_id
 
 
+def has_duplicate_future_pairings(audit: dict, rows: list[dict], from_date: date) -> bool:
+    pair_counts: dict[tuple[str, str], int] = {}
+    for row in rows:
+        if not matches_audit(row, audit):
+            continue
+        row_season = (row.get("seasonId") or audit["season"]).strip() or audit["season"]
+        if row_season != audit["season"]:
+            continue
+        kickoff_date = local_date_from_kickoff(row["kickoff"])
+        if kickoff_date < from_date:
+            continue
+        key = (row["homeTeamId"], row["awayTeamId"])
+        pair_counts[key] = pair_counts.get(key, 0) + 1
+        if pair_counts[key] > 1:
+            return True
+    return False
+
+
 def parse_source_matches(
     audit: dict,
     source_path: Path,
@@ -792,7 +810,13 @@ def main() -> int:
             print(completed.stderr, file=sys.stderr)
             return completed.returncode
 
-        follow_up_ids = [result.audit_id for result in sync_results if result.added_count > 0 or result.removed_count > 0]
+        follow_up_ids = [
+            result.audit_id
+            for result in sync_results
+            if result.added_count > 0
+            or result.removed_count > 0
+            or has_duplicate_future_pairings(audit_by_id[result.audit_id], all_rows, local_today)
+        ]
         if follow_up_ids:
             follow_up_now = datetime.now(tz).replace(tzinfo=None)
             sync_result_map = {result.audit_id: result for result in sync_results}
