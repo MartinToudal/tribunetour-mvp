@@ -343,10 +343,13 @@ def persist_fixture_rows(source_rows: list[dict]) -> None:
             }
         )
 
-    with APP_FIXTURES_CSV.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=FIXTURE_FIELDNAMES)
-        writer.writeheader()
-        writer.writerows(csv_rows)
+    if APP_FIXTURES_CSV.parent.exists():
+        with APP_FIXTURES_CSV.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=FIXTURE_FIELDNAMES)
+            writer.writeheader()
+            writer.writerows(csv_rows)
+    else:
+        print(f"Skipping app fixtures CSV sync because directory is missing: {APP_FIXTURES_CSV.parent}")
 
 
 def main() -> int:
