@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-19T02:16:50.145Z",
-    "generatedAt": "2026-05-19T02:16:50.145Z",
-    "checksum": "0b657f4f14266e5865f210626a29c0e02ff6d770da265718e1e255dfe0a9a738",
+    "version": "2026-05-20T01:37:01.102Z",
+    "generatedAt": "2026-05-20T01:37:01.102Z",
+    "checksum": "a57f40b0bd14767ba2a5e14a86818f2f94913b940561b2b957f5fcf2e57c91ee",
     "signature": null
   },
   "fixtures": [
@@ -16320,6 +16320,42 @@
       "awayScore": null,
       "seasonId": "2025-26",
       "competitionId": "nl-eredivisie"
+    },
+    {
+      "id": "b2-20260522-rw-essen-furth",
+      "kickoff": "2026-05-22T20:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "de-rot-weiss-essen",
+      "awayTeamId": "de-greuther-furth",
+      "venueClubId": "de-rot-weiss-essen",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "esf1-b-20260522-ud-marbella-teruel",
+      "kickoff": "2026-05-22T18:30:00+02:00",
+      "round": "Runde 38",
+      "homeTeamId": "es-ud-marbella",
+      "awayTeamId": "es-teruel",
+      "venueClubId": "es-ud-marbella",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "ita-20260522-fiorentina-atalanta",
+      "kickoff": "2026-05-22T20:45:00+02:00",
+      "round": "Runde 38",
+      "homeTeamId": "it-fiorentina",
+      "awayTeamId": "it-atalanta",
+      "venueClubId": "it-fiorentina",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
     }
   ]
 }
