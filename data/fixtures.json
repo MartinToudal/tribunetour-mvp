@@ -12471,18 +12471,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "1d-r32-hil-hvi",
-    "kickoff": "2026-10-18T14:00:00+02:00",
-    "round": "Runde 13",
-    "homeTeamId": "dk-hillerod-fodbold",
-    "awayTeamId": "dk-hvidovre-if",
-    "venueClubId": "dk-hillerod-fodbold",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "es2-r42-almeria-valladolid",
     "kickoff": "2026-05-31T18:00:00+02:00",
     "round": "Runde 42",
@@ -14545,42 +14533,6 @@
     "homeTeamId": "dk-esbjerg-fb",
     "awayTeamId": "dk-middelfart",
     "venueClubId": "dk-esbjerg-fb",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "1d-20261017-hb-k-ge-kolding-if",
-    "kickoff": "2026-10-17T18:30:00+02:00",
-    "round": "Runde 13",
-    "homeTeamId": "dk-hb-koge",
-    "awayTeamId": "dk-kolding-if",
-    "venueClubId": "dk-hb-koge",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "1d-20261017-b-93-aab",
-    "kickoff": "2026-10-17T19:00:00+02:00",
-    "round": "Runde 13",
-    "homeTeamId": "dk-b-93",
-    "awayTeamId": "dk-aab",
-    "venueClubId": "dk-b-93",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "1d-20261018-middelfart-ac-horsens",
-    "kickoff": "2026-10-18T14:00:00+02:00",
-    "round": "Runde 13",
-    "homeTeamId": "dk-middelfart",
-    "awayTeamId": "dk-ac-horsens",
-    "venueClubId": "dk-middelfart",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
