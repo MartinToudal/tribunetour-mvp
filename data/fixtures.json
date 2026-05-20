@@ -12315,18 +12315,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "2d-r31-nas-ab",
-    "kickoff": "2026-10-17T19:00:00+02:00",
-    "round": "2. division - Spillerunde 31",
-    "homeTeamId": "dk-naestved",
-    "awayTeamId": "dk-ab",
-    "venueClubId": "dk-naestved",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "3d-r30-hør-fa2",
     "kickoff": "2026-05-29T19:00:00+02:00",
     "round": "Runde 30",
@@ -14911,42 +14899,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "2d-20261011-ish-j-if-thisted-fc",
-    "kickoff": "2026-10-11T13:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-ishoj-if",
-    "awayTeamId": "dk-thisted-fc",
-    "venueClubId": "dk-ishoj-if",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261011-fc-roskilde-brabrand-if",
-    "kickoff": "2026-10-11T14:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-fc-roskilde",
-    "awayTeamId": "dk-brabrand-if",
-    "venueClubId": "dk-fc-roskilde",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261011-hik-vsk-aarhus",
-    "kickoff": "2026-10-11T14:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-hik",
-    "awayTeamId": "dk-vsk-aarhus",
-    "venueClubId": "dk-hik",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "2d-20261114-fc-helsing-r-ab",
     "kickoff": "2026-11-14T19:00:00+02:00",
     "round": "",
@@ -14989,42 +14941,6 @@
     "homeTeamId": "dk-naestved",
     "awayTeamId": "dk-vsk-aarhus",
     "venueClubId": "dk-naestved",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261017-fc-helsing-r-ish-j-if",
-    "kickoff": "2026-10-17T19:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-fc-helsingor",
-    "awayTeamId": "dk-ishoj-if",
-    "venueClubId": "dk-fc-helsingor",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261017-fc-roskilde-fremad-amager",
-    "kickoff": "2026-10-17T19:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-fc-roskilde",
-    "awayTeamId": "dk-fremad-amager",
-    "venueClubId": "dk-fc-roskilde",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261017-skive-vendsyssel-ff",
-    "kickoff": "2026-10-17T19:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-skive",
-    "awayTeamId": "dk-vendsyssel-ff",
-    "venueClubId": "dk-skive",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
