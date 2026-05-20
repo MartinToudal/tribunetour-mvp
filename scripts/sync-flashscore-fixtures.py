@@ -349,7 +349,10 @@ def persist_fixture_rows(source_rows: list[dict]) -> None:
             writer.writeheader()
             writer.writerows(csv_rows)
     else:
-        print(f"Skipping app fixtures CSV sync because directory is missing: {APP_FIXTURES_CSV.parent}")
+        print(
+            f"Skipping app fixtures CSV sync because directory is missing: {APP_FIXTURES_CSV.parent}",
+            file=sys.stderr,
+        )
 
 
 def main() -> int:
