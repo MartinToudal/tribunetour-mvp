@@ -5,6 +5,7 @@ import argparse
 import json
 import subprocess
 import sys
+from dataclasses import asdict
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -49,6 +50,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--all", action="store_true", help="Run all configured audits regardless of cadence")
     parser.add_argument("--due", action="store_true", help="Run only audits that are due today")
     parser.add_argument("--apply-safe-updates", action="store_true", help="Apply safe kickoff updates before auditing")
+    parser.add_argument("--audit-id", action="append", default=[], help="Run one or more specific audits by id; repeatable")
+    parser.add_argument("--skip-report-write", action="store_true", help="Run audits without overwriting latest audit report files")
+    parser.add_argument("--json-output", action="store_true", help="Print a machine-readable JSON summary to stdout")
     return parser.parse_args()
 
 
@@ -344,21 +348,35 @@ def main() -> int:
         print("No audits configured", file=sys.stderr)
         return 1
 
+    requested_ids = list(dict.fromkeys(args.audit_id))
     selected = []
-    for audit in audits:
-        if args.all:
-            selected.append(audit)
-            continue
-        if args.due:
-            if is_due_today(audit["anchorDate"], int(audit["intervalDays"])):
+    if requested_ids:
+        requested_set = set(requested_ids)
+        selected = [audit for audit in audits if audit["id"] in requested_set]
+        selected_ids = {audit["id"] for audit in selected}
+        missing_ids = [audit_id for audit_id in requested_ids if audit_id not in selected_ids]
+        if missing_ids:
+            print(f"Unknown audit id(s): {', '.join(missing_ids)}", file=sys.stderr)
+            return 1
+    else:
+        for audit in audits:
+            if args.all:
                 selected.append(audit)
-            continue
-        selected.append(audit)
+                continue
+            if args.due:
+                if is_due_today(audit["anchorDate"], int(audit["intervalDays"])):
+                    selected.append(audit)
+                continue
+            selected.append(audit)
 
     if not selected:
-        write_update_report([])
-        write_report([])
-        print("No audits due today")
+        if not args.skip_report_write:
+            write_update_report([])
+            write_report([])
+        if args.json_output:
+            print(json.dumps({"selectedAuditIds": [], "syncResults": [], "auditResults": []}, ensure_ascii=False))
+        else:
+            print("No audits due today")
         return 0
 
     refreshed_sources: dict[Path, str | None] = {}
@@ -371,7 +389,8 @@ def main() -> int:
     sync_results: list[SyncResult] = []
     if args.apply_safe_updates:
         sync_results = [run_single_sync(audit, refreshed_sources) for audit in selected]
-        write_update_report(sync_results)
+        if not args.skip_report_write:
+            write_update_report(sync_results)
         if any(result.updated_count > 0 for result in sync_results):
             completed = subprocess.run(
                 ["node", str(GENERATE_DATA_SCRIPT)],
@@ -385,7 +404,17 @@ def main() -> int:
                 return completed.returncode
 
     results = [run_single_audit(audit, refreshed_sources) for audit in selected]
-    write_report(results)
+    if not args.skip_report_write:
+        write_report(results)
+
+    if args.json_output:
+        payload = {
+            "selectedAuditIds": [audit["id"] for audit in selected],
+            "syncResults": [asdict(result) for result in sync_results],
+            "auditResults": [asdict(result) for result in results],
+        }
+        print(json.dumps(payload, ensure_ascii=False))
+        return 2 if any(result.status != "passed" for result in results) else 0
 
     if args.apply_safe_updates:
         total_updated = sum(result.updated_count for result in sync_results)
