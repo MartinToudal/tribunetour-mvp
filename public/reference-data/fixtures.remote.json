@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-20T01:37:01.102Z",
-    "generatedAt": "2026-05-20T01:37:01.102Z",
-    "checksum": "a57f40b0bd14767ba2a5e14a86818f2f94913b940561b2b957f5fcf2e57c91ee",
+    "version": "2026-05-20T19:30:36.878Z",
+    "generatedAt": "2026-05-20T19:30:36.878Z",
+    "checksum": "e36b974e620506e902ae30fff126e7cae44b7d6eb38fa5e06b97cdf172634dd4",
     "signature": null
   },
   "fixtures": [
@@ -10073,18 +10073,6 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "3d-r28-fre-lys",
-      "kickoff": "2026-10-04T14:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-frem",
-      "awayTeamId": "dk-if-lyseng",
-      "venueClubId": "dk-frem",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "3d-r28-næs-brø",
       "kickoff": "2026-05-16T14:00:00+02:00",
       "round": "Runde 28",
@@ -11647,7 +11635,7 @@
     },
     {
       "id": "es2-r41-albacete-real-sociedad-b",
-      "kickoff": "2026-05-24T18:30:00+02:00",
+      "kickoff": "2026-05-24T16:15:00+02:00",
       "round": "Runde 41",
       "homeTeamId": "es-albacete",
       "awayTeamId": "es-real-sociedad-b",
@@ -11659,7 +11647,7 @@
     },
     {
       "id": "es2-r41-andorra-ceuta",
-      "kickoff": "2026-05-24T18:30:00+02:00",
+      "kickoff": "2026-05-24T16:15:00+02:00",
       "round": "Runde 41",
       "homeTeamId": "es-andorra",
       "awayTeamId": "es-ceuta",
@@ -11890,112 +11878,110 @@
     {
       "id": "esf1-b-r38-antequera-torremolinos",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-antequera",
       "awayTeamId": "es-torremolinos",
       "venueClubId": "es-antequera",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-atl-madrid-b-algeciras-cf",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-atl-madrid-b",
       "awayTeamId": "es-algeciras-cf",
       "venueClubId": "es-atl-madrid-b",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-cartagena-betis-b",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-cartagena",
       "awayTeamId": "es-betis-b",
       "venueClubId": "es-cartagena",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-ce-europa-ud-ibiza",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-ce-europa",
       "awayTeamId": "es-ud-ibiza",
       "venueClubId": "es-ce-europa",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-hercules-gimnastic",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-hercules",
       "awayTeamId": "es-gimnastic",
       "venueClubId": "es-hercules",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-murcia-eldense",
-      "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "kickoff": "2026-05-24T18:00:00+02:00",
+      "round": "Runde 38",
       "homeTeamId": "es-murcia",
       "awayTeamId": "es-eldense",
       "venueClubId": "es-murcia",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-sanluqueno-villarreal-b",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-sanluqueno",
       "awayTeamId": "es-villarreal-b",
       "venueClubId": "es-sanluqueno",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-sevilla-b-alcorcon",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-sevilla-b",
       "awayTeamId": "es-alcorcon",
       "venueClubId": "es-sevilla-b",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esf1-b-r38-tarazona-sabadell",
       "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
+      "round": "Runde 38",
       "homeTeamId": "es-tarazona",
       "awayTeamId": "es-sabadell",
       "venueClubId": "es-tarazona",
       "status": "scheduled",
       "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "esf1-b-r38-ud-marbella-teruel",
-      "kickoff": "2026-05-23T18:30:00+02:00",
-      "round": "Primera Federación - Gruppe 2 - 38. runde",
-      "homeTeamId": "es-ud-marbella",
-      "awayTeamId": "es-teruel",
-      "venueClubId": "es-ud-marbella",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null
+      "awayScore": null,
+      "seasonId": "2025-26"
     },
     {
       "id": "esl-r38-alaves-vallecano",
@@ -12119,7 +12105,7 @@
     },
     {
       "id": "ita-r38-ac-milan-cagliari",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-ac-milan",
       "awayTeamId": "it-cagliari",
@@ -12131,7 +12117,7 @@
     },
     {
       "id": "ita-r38-bologna-inter",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-23T18:00:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-bologna",
       "awayTeamId": "it-inter",
@@ -12143,7 +12129,7 @@
     },
     {
       "id": "ita-r38-cremonese-como",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-cremonese",
       "awayTeamId": "it-como",
@@ -12154,20 +12140,8 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "ita-r38-fiorentina-atalanta",
-      "kickoff": "2026-05-24T15:00:00+02:00",
-      "round": "Runde 38",
-      "homeTeamId": "it-fiorentina",
-      "awayTeamId": "it-atalanta",
-      "venueClubId": "it-fiorentina",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "ita-r38-lazio-pisa",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-23T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-lazio",
       "awayTeamId": "it-pisa",
@@ -12179,7 +12153,7 @@
     },
     {
       "id": "ita-r38-lecce-genoa",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-lecce",
       "awayTeamId": "it-genoa",
@@ -12203,7 +12177,7 @@
     },
     {
       "id": "ita-r38-ssc-napoli-udinese",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T18:00:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-ssc-napoli",
       "awayTeamId": "it-udinese",
@@ -12215,7 +12189,7 @@
     },
     {
       "id": "ita-r38-torino-juventus",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-torino",
       "awayTeamId": "it-juventus",
@@ -12227,7 +12201,7 @@
     },
     {
       "id": "ita-r38-verona-roma",
-      "kickoff": "2026-05-24T15:00:00+02:00",
+      "kickoff": "2026-05-24T20:45:00+02:00",
       "round": "Runde 38",
       "homeTeamId": "it-verona",
       "awayTeamId": "it-roma",
@@ -12298,36 +12272,12 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "3d-r30-brø-van",
-      "kickoff": "2026-10-10T18:30:00+02:00",
-      "round": "Runde 11",
-      "homeTeamId": "dk-bronshoj",
-      "awayTeamId": "dk-vanlose",
-      "venueClubId": "dk-bronshoj",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "2d-r31-faa-ski",
       "kickoff": "2026-11-14T19:00:00+02:00",
       "round": "2. division - Spillerunde 31",
       "homeTeamId": "dk-fremad-amager",
       "awayTeamId": "dk-skive",
       "venueClubId": "dk-fremad-amager",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-r31-nas-ab",
-      "kickoff": "2026-10-17T19:00:00+02:00",
-      "round": "2. division - Spillerunde 31",
-      "homeTeamId": "dk-naestved",
-      "awayTeamId": "dk-ab",
-      "venueClubId": "dk-naestved",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -12478,20 +12428,8 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "1d-r32-hil-hvi",
-      "kickoff": "2026-10-18T14:00:00+02:00",
-      "round": "Runde 13",
-      "homeTeamId": "dk-hillerod-fodbold",
-      "awayTeamId": "dk-hvidovre-if",
-      "venueClubId": "dk-hillerod-fodbold",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "es2-r42-almeria-valladolid",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-almeria",
       "awayTeamId": "es-valladolid",
@@ -12503,7 +12441,7 @@
     },
     {
       "id": "es2-r42-burgos-cf-andorra",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-burgos-cf",
       "awayTeamId": "es-andorra",
@@ -12515,7 +12453,7 @@
     },
     {
       "id": "es2-r42-castellon-eibar",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-castellon",
       "awayTeamId": "es-eibar",
@@ -12527,7 +12465,7 @@
     },
     {
       "id": "es2-r42-ceuta-albacete",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-30T16:15:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-ceuta",
       "awayTeamId": "es-albacete",
@@ -12539,7 +12477,7 @@
     },
     {
       "id": "es2-r42-cordoba-huesca",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-cordoba",
       "awayTeamId": "es-huesca",
@@ -12551,7 +12489,7 @@
     },
     {
       "id": "es2-r42-granada-gijon",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-30T21:00:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-granada",
       "awayTeamId": "es-gijon",
@@ -12563,7 +12501,7 @@
     },
     {
       "id": "es2-r42-la-coruna-las-palmas",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-la-coruna",
       "awayTeamId": "es-las-palmas",
@@ -12575,7 +12513,7 @@
     },
     {
       "id": "es2-r42-leganes-mirandes",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-leganes",
       "awayTeamId": "es-mirandes",
@@ -12587,7 +12525,7 @@
     },
     {
       "id": "es2-r42-racing-santander-cadiz",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-racing-santander",
       "awayTeamId": "es-cadiz",
@@ -12599,7 +12537,7 @@
     },
     {
       "id": "es2-r42-real-sociedad-b-cultural-leonesa",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-real-sociedad-b",
       "awayTeamId": "es-cultural-leonesa",
@@ -12611,7 +12549,7 @@
     },
     {
       "id": "es2-r42-zaragoza-malaga",
-      "kickoff": "2026-05-31T18:00:00+02:00",
+      "kickoff": "2026-05-31T18:30:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-zaragoza",
       "awayTeamId": "es-malaga",
@@ -12760,18 +12698,6 @@
       "homeTeamId": "dk-naesby-bk",
       "awayTeamId": "dk-fa-2000",
       "venueClubId": "dk-naesby-bk",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "3d-r31-van-hør",
-      "kickoff": "2026-10-04T14:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-vanlose",
-      "awayTeamId": "dk-horsholm-usserod-ik",
-      "venueClubId": "dk-vanlose",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -14162,36 +14088,12 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "sl-20261103-fc-midtjylland-agf",
-      "kickoff": "2026-11-03T19:00:00+02:00",
-      "round": "Runde 14",
-      "homeTeamId": "dk-fc-midtjylland",
-      "awayTeamId": "dk-agf",
-      "venueClubId": "dk-fc-midtjylland",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "sl-20261205-fc-fredericia-ob",
       "kickoff": "2026-12-05T19:00:00+02:00",
       "round": "Runde 18",
       "homeTeamId": "dk-fc-fredericia",
       "awayTeamId": "dk-ob",
       "venueClubId": "dk-fc-fredericia",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "sl-20261107-ob-silkeborg-if",
-      "kickoff": "2026-11-07T19:00:00+02:00",
-      "round": "Runde 15",
-      "homeTeamId": "dk-ob",
-      "awayTeamId": "dk-silkeborg-if",
-      "venueClubId": "dk-ob",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -14582,42 +14484,6 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "1d-20261017-hb-k-ge-kolding-if",
-      "kickoff": "2026-10-17T18:30:00+02:00",
-      "round": "Runde 13",
-      "homeTeamId": "dk-hb-koge",
-      "awayTeamId": "dk-kolding-if",
-      "venueClubId": "dk-hb-koge",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "1d-20261017-b-93-aab",
-      "kickoff": "2026-10-17T19:00:00+02:00",
-      "round": "Runde 13",
-      "homeTeamId": "dk-b-93",
-      "awayTeamId": "dk-aab",
-      "venueClubId": "dk-b-93",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "1d-20261018-middelfart-ac-horsens",
-      "kickoff": "2026-10-18T14:00:00+02:00",
-      "round": "Runde 13",
-      "homeTeamId": "dk-middelfart",
-      "awayTeamId": "dk-ac-horsens",
-      "venueClubId": "dk-middelfart",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "1d-20261019-lyngby-aarhus-fremad",
       "kickoff": "2026-10-19T15:00:00+02:00",
       "round": "Runde 13",
@@ -14990,42 +14856,6 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "2d-20261011-ish-j-if-thisted-fc",
-      "kickoff": "2026-10-11T13:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-ishoj-if",
-      "awayTeamId": "dk-thisted-fc",
-      "venueClubId": "dk-ishoj-if",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261011-fc-roskilde-brabrand-if",
-      "kickoff": "2026-10-11T14:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-fc-roskilde",
-      "awayTeamId": "dk-brabrand-if",
-      "venueClubId": "dk-fc-roskilde",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261011-hik-vsk-aarhus",
-      "kickoff": "2026-10-11T14:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-hik",
-      "awayTeamId": "dk-vsk-aarhus",
-      "venueClubId": "dk-hik",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "2d-20261114-fc-helsing-r-ab",
       "kickoff": "2026-11-14T19:00:00+02:00",
       "round": "",
@@ -15068,42 +14898,6 @@
       "homeTeamId": "dk-naestved",
       "awayTeamId": "dk-vsk-aarhus",
       "venueClubId": "dk-naestved",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261017-fc-helsing-r-ish-j-if",
-      "kickoff": "2026-10-17T19:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-fc-helsingor",
-      "awayTeamId": "dk-ishoj-if",
-      "venueClubId": "dk-fc-helsingor",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261017-fc-roskilde-fremad-amager",
-      "kickoff": "2026-10-17T19:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-fc-roskilde",
-      "awayTeamId": "dk-fremad-amager",
-      "venueClubId": "dk-fc-roskilde",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261017-skive-vendsyssel-ff",
-      "kickoff": "2026-10-17T19:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-skive",
-      "awayTeamId": "dk-vendsyssel-ff",
-      "venueClubId": "dk-skive",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -15320,54 +15114,6 @@
       "homeTeamId": "dk-vanlose",
       "awayTeamId": "dk-bronshoj",
       "venueClubId": "dk-vanlose",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "3d-20261004-odder-br-nsh-j",
-      "kickoff": "2026-10-04T13:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-odder-fodbold",
-      "awayTeamId": "dk-bronshoj",
-      "venueClubId": "dk-odder-fodbold",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "3d-20261004-n-sby-holb-k",
-      "kickoff": "2026-10-04T14:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-naesby-bk",
-      "awayTeamId": "dk-holbaek-bi",
-      "venueClubId": "dk-naesby-bk",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "3d-20261004-sundby-fa-2000",
-      "kickoff": "2026-10-04T14:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-sundby-bk",
-      "awayTeamId": "dk-fa-2000",
-      "venueClubId": "dk-sundby-bk",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "3d-20261004-vejgaard-nyk-bing-fc",
-      "kickoff": "2026-10-04T15:00:00+02:00",
-      "round": "Runde 10",
-      "homeTeamId": "dk-vejgaard-b",
-      "awayTeamId": "dk-nykobing-fc",
-      "venueClubId": "dk-vejgaard-b",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -15767,31 +15513,6 @@
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "ech-20260523-hull-southampton",
-      "kickoff": "2026-05-23T17:30:00+02:00",
-      "round": "Finale",
-      "homeTeamId": "en-hull-city",
-      "awayTeamId": "en-southampton",
-      "venueClubId": "en-hull-city",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "echp-20260523-hull-southampton",
-      "kickoff": "2026-05-23T17:30:00+02:00",
-      "round": "Finale",
-      "homeTeamId": "en-hull-city",
-      "awayTeamId": "en-southampton",
-      "venueClubId": "en-hull-city",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "en-championship-playoffs",
       "seasonId": "2025-26"
     },
     {
@@ -16356,6 +16077,128 @@
       "homeScore": null,
       "awayScore": null,
       "seasonId": "2025-26"
+    },
+    {
+      "id": "bl-20260525-paderborn-wolfsburg",
+      "kickoff": "2026-05-25T20:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "de-sc-paderborn-07",
+      "awayTeamId": "de-vfl-wolfsburg",
+      "venueClubId": "de-sc-paderborn-07",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "b2-20260526-furth-rw-essen",
+      "kickoff": "2026-05-26T20:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "de-greuther-furth",
+      "awayTeamId": "de-rot-weiss-essen",
+      "venueClubId": "de-greuther-furth",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "ech-20260523-hull-middlesbrough",
+      "kickoff": "2026-05-23T16:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "en-hull-city",
+      "awayTeamId": "en-middlesbrough",
+      "venueClubId": "en-hull-city",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "echp-20260523-hull-middlesbrough",
+      "kickoff": "2026-05-23T16:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "en-hull-city",
+      "awayTeamId": "en-middlesbrough",
+      "venueClubId": "en-hull-city",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "en-championship-playoffs"
+    },
+    {
+      "id": "el2-20260525-notts-county-salford",
+      "kickoff": "2026-05-25T16:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "en-notts-county",
+      "awayTeamId": "en-salford-city",
+      "venueClubId": "en-notts-county",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "fr2-20260524-laval-rouen",
+      "kickoff": "2026-05-24T17:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "fr-laval",
+      "awayTeamId": "fr-rouen",
+      "venueClubId": "fr-laval",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "pt1-20260528-casa-pia-torreense",
+      "kickoff": "2026-05-28T21:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "pt-casa-pia",
+      "awayTeamId": "pt-torreense",
+      "venueClubId": "pt-casa-pia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "pt2-20260523-farense-os-belenenses",
+      "kickoff": "2026-05-23T21:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "pt-farense",
+      "awayTeamId": "pt-os-belenenses",
+      "venueClubId": "pt-farense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "pt2-20260530-os-belenenses-farense",
+      "kickoff": "2026-05-30T21:30:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "pt-os-belenenses",
+      "awayTeamId": "pt-farense",
+      "venueClubId": "pt-os-belenenses",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "nl-promotion-relegation-playoffs-20260523-fc-volendam-willem-ii",
+      "kickoff": "2026-05-23T20:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "nl-fc-volendam",
+      "awayTeamId": "nl-willem-ii",
+      "venueClubId": "nl-fc-volendam",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "nl-promotion-relegation-playoffs"
     }
   ]
 }
