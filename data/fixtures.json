@@ -14155,36 +14155,12 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "sl-20261103-fc-midtjylland-agf",
-    "kickoff": "2026-11-03T19:00:00+02:00",
-    "round": "Runde 14",
-    "homeTeamId": "dk-fc-midtjylland",
-    "awayTeamId": "dk-agf",
-    "venueClubId": "dk-fc-midtjylland",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "sl-20261205-fc-fredericia-ob",
     "kickoff": "2026-12-05T19:00:00+02:00",
     "round": "Runde 18",
     "homeTeamId": "dk-fc-fredericia",
     "awayTeamId": "dk-ob",
     "venueClubId": "dk-fc-fredericia",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "sl-20261107-ob-silkeborg-if",
-    "kickoff": "2026-11-07T19:00:00+02:00",
-    "round": "Runde 15",
-    "homeTeamId": "dk-ob",
-    "awayTeamId": "dk-silkeborg-if",
-    "venueClubId": "dk-ob",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
