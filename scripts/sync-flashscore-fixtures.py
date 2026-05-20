@@ -476,7 +476,6 @@ def main() -> int:
         if changed and visible_change:
             updates.append(change_record)
 
-    source_keys = {(fixture.home_team_id, fixture.away_team_id) for fixture in source_fixtures}
     if args.write and not source_fixtures and fixtures:
         skipped.append(
             {

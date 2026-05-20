@@ -813,12 +813,10 @@ def main() -> int:
         follow_up_ids = [
             result.audit_id
             for result in sync_results
-            if result.added_count > 0
-            or result.removed_count > 0
+            if result.updated_count > 0
             or has_duplicate_future_pairings(audit_by_id[result.audit_id], all_rows, local_today)
         ]
         if follow_up_ids:
-            follow_up_now = datetime.now(tz).replace(tzinfo=None)
             sync_result_map = {result.audit_id: result for result in sync_results}
             follow_up_changed = False
             for audit_id in follow_up_ids:
@@ -828,7 +826,7 @@ def main() -> int:
                     audit,
                     source,
                     from_date=local_today,
-                    from_datetime=follow_up_now,
+                    from_datetime=None,
                     to_date=None,
                 )
                 if follow_up_result.updated_count == 0 and follow_up_result.skipped_count == 0:
