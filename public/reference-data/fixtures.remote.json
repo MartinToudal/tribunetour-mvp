@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-20T19:30:36.878Z",
-    "generatedAt": "2026-05-20T19:30:36.878Z",
-    "checksum": "e36b974e620506e902ae30fff126e7cae44b7d6eb38fa5e06b97cdf172634dd4",
+    "version": "2026-05-20T19:53:18.835Z",
+    "generatedAt": "2026-05-20T19:53:18.835Z",
+    "checksum": "67a65c40a109187319fbccb2235b461146df9b10370f4034b8b06ec4a336b6d1",
     "signature": null
   },
   "fixtures": [
@@ -16199,6 +16199,19 @@
       "awayScore": null,
       "seasonId": "2025-26",
       "competitionId": "nl-promotion-relegation-playoffs"
+    },
+    {
+      "id": "tr-1-lig-playoffs-20260524-erokspor-corum",
+      "kickoff": "2026-05-24T18:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "tr-esenler-erokspor",
+      "awayTeamId": "tr-corum",
+      "venueClubId": "tr-esenler-erokspor",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "tr-1-lig-playoffs"
     }
   ]
 }

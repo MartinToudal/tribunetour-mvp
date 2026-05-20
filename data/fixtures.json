@@ -16192,5 +16192,18 @@
     "awayScore": null,
     "seasonId": "2025-26",
     "competitionId": "nl-promotion-relegation-playoffs"
+  },
+  {
+    "id": "tr-1-lig-playoffs-20260524-erokspor-corum",
+    "kickoff": "2026-05-24T18:00:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "tr-esenler-erokspor",
+    "awayTeamId": "tr-corum",
+    "venueClubId": "tr-esenler-erokspor",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "tr-1-lig-playoffs"
   }
 ]
