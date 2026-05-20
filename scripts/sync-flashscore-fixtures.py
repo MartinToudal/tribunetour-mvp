@@ -5,6 +5,7 @@ import argparse
 import csv
 import json
 import re
+import sys
 import unicodedata
 from collections import defaultdict
 from dataclasses import dataclass
