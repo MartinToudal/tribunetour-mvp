@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-22T02:08:22.323Z",
-    "generatedAt": "2026-05-22T02:08:22.323Z",
-    "checksum": "d90a9333868ed24140d803c99e71a51619dc4eb82eace6438e73b46b39c46b3e",
+    "version": "2026-05-23T01:18:26.418Z",
+    "generatedAt": "2026-05-23T01:18:26.418Z",
+    "checksum": "63756fdd47ab73ffd7e33c363d8a49af21ff5704838c0eb55575e956a167895b",
     "signature": null
   },
   "fixtures": [
@@ -14914,30 +14914,6 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "2d-20261018-brabrand-if-vsk-aarhus",
-      "kickoff": "2026-10-18T14:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-brabrand-if",
-      "awayTeamId": "dk-vsk-aarhus",
-      "venueClubId": "dk-brabrand-if",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
-      "id": "2d-20261019-thisted-fc-hik",
-      "kickoff": "2026-10-19T14:00:00+02:00",
-      "round": "",
-      "homeTeamId": "dk-thisted-fc",
-      "awayTeamId": "dk-hik",
-      "venueClubId": "dk-thisted-fc",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "2d-20260523-vsk-aarhus-fremad-amager",
       "kickoff": "2026-05-23T13:30:00+02:00",
       "round": "Runde 30",
@@ -16199,7 +16175,7 @@
     },
     {
       "id": "nl-promotion-relegation-playoffs-20260523-fc-volendam-willem-ii",
-      "kickoff": "2026-05-23T20:00:00+02:00",
+      "kickoff": "2026-05-23T16:30:00+02:00",
       "round": "Finale",
       "homeTeamId": "nl-fc-volendam",
       "awayTeamId": "nl-willem-ii",
@@ -16264,7 +16240,7 @@
     },
     {
       "id": "nl-eredivisie-20260524-ajax-utrecht",
-      "kickoff": "2026-05-24T18:00:00+02:00",
+      "kickoff": "2026-05-24T12:15:00+02:00",
       "round": "Finale",
       "homeTeamId": "nl-ajax",
       "awayTeamId": "nl-utrecht",
