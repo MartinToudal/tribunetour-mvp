@@ -12731,18 +12731,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "3d-r32-hol-vej",
-    "kickoff": "2026-10-11T13:00:00+02:00",
-    "round": "Runde 11",
-    "homeTeamId": "dk-holbaek-bi",
-    "awayTeamId": "dk-vejgaard-b",
-    "venueClubId": "dk-holbaek-bi",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "3d-r32-hør-næs",
     "kickoff": "2026-06-13T14:00:00+02:00",
     "round": "Runde 32",
@@ -14487,18 +14475,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "1d-20261019-lyngby-aarhus-fremad",
-    "kickoff": "2026-10-19T15:00:00+02:00",
-    "round": "Runde 13",
-    "homeTeamId": "dk-lyngby-boldklub",
-    "awayTeamId": "dk-aarhus-fremad",
-    "venueClubId": "dk-lyngby-boldklub",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "1d-20261120-hobro-ik-hvidovre-if",
     "kickoff": "2026-11-20T18:30:00+02:00",
     "round": "Runde 17",
@@ -14541,18 +14517,6 @@
     "homeTeamId": "dk-middelfart",
     "awayTeamId": "dk-b-93",
     "venueClubId": "dk-middelfart",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "1d-20261023-hvidovre-if-hb-k-ge",
-    "kickoff": "2026-10-23T18:30:00+02:00",
-    "round": "Runde 14",
-    "homeTeamId": "dk-hvidovre-if",
-    "awayTeamId": "dk-hb-koge",
-    "venueClubId": "dk-hvidovre-if",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
@@ -14919,30 +14883,6 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "2d-20261024-fc-helsing-r-thisted-fc",
-    "kickoff": "2026-10-24T19:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-fc-helsingor",
-    "awayTeamId": "dk-thisted-fc",
-    "venueClubId": "dk-fc-helsingor",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "2d-20261024-vendsyssel-ff-fremad-amager",
-    "kickoff": "2026-10-24T19:00:00+02:00",
-    "round": "",
-    "homeTeamId": "dk-vendsyssel-ff",
-    "awayTeamId": "dk-fremad-amager",
-    "venueClubId": "dk-vendsyssel-ff",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "2d-20261025-ish-j-if-n-stved-bk",
     "kickoff": "2026-10-25T13:00:00+02:00",
     "round": "",
@@ -15177,54 +15117,6 @@
     "homeTeamId": "dk-naesby-bk",
     "awayTeamId": "dk-if-lyseng",
     "venueClubId": "dk-naesby-bk",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "3d-20261011-h-rsholm-usser-d-sundby",
-    "kickoff": "2026-10-11T13:00:00+02:00",
-    "round": "Runde 11",
-    "homeTeamId": "dk-horsholm-usserod-ik",
-    "awayTeamId": "dk-sundby-bk",
-    "venueClubId": "dk-horsholm-usserod-ik",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "3d-20261011-if-lyseng-n-sby",
-    "kickoff": "2026-10-11T13:30:00+02:00",
-    "round": "Runde 11",
-    "homeTeamId": "dk-if-lyseng",
-    "awayTeamId": "dk-naesby-bk",
-    "venueClubId": "dk-if-lyseng",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "3d-20261011-fa-2000-odder",
-    "kickoff": "2026-10-11T14:00:00+02:00",
-    "round": "Runde 11",
-    "homeTeamId": "dk-fa-2000",
-    "awayTeamId": "dk-odder-fodbold",
-    "venueClubId": "dk-fa-2000",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
-    "id": "3d-20261011-nyk-bing-fc-bk-frem",
-    "kickoff": "2026-10-11T15:00:00+02:00",
-    "round": "Runde 11",
-    "homeTeamId": "dk-nykobing-fc",
-    "awayTeamId": "dk-frem",
-    "venueClubId": "dk-nykobing-fc",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
