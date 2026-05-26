@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-25T04:26:21.664Z",
-    "generatedAt": "2026-05-25T04:26:21.664Z",
-    "checksum": "cc441f10108f554466e41305434aeab1e8b118a01e5b8921121898508668aa22",
+    "version": "2026-05-26T05:45:35.470Z",
+    "generatedAt": "2026-05-26T05:45:35.470Z",
+    "checksum": "f9693fc93ee45a60bc184cf051f179a0295d021c616917bc90a9f95facd412b8",
     "signature": null
   },
   "fixtures": [
@@ -12487,7 +12487,7 @@
     },
     {
       "id": "es2-r42-cordoba-huesca",
-      "kickoff": "2026-05-31T18:30:00+02:00",
+      "kickoff": "2026-05-31T21:00:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-cordoba",
       "awayTeamId": "es-huesca",
@@ -12523,7 +12523,7 @@
     },
     {
       "id": "es2-r42-leganes-mirandes",
-      "kickoff": "2026-05-31T18:30:00+02:00",
+      "kickoff": "2026-05-31T21:00:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-leganes",
       "awayTeamId": "es-mirandes",
@@ -12547,7 +12547,7 @@
     },
     {
       "id": "es2-r42-real-sociedad-b-cultural-leonesa",
-      "kickoff": "2026-05-31T18:30:00+02:00",
+      "kickoff": "2026-05-30T16:15:00+02:00",
       "round": "Runde 42",
       "homeTeamId": "es-real-sociedad-b",
       "awayTeamId": "es-cultural-leonesa",
