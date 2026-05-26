@@ -178,6 +178,38 @@ def load_club_names() -> dict[str, str]:
     return names
 
 
+def load_competition_club_ids() -> dict[str, set[str]]:
+    mapping: dict[str, set[str]] = defaultdict(set)
+
+    def merge_stadium_entries(stadiums: list[dict]) -> None:
+        for stadium in stadiums:
+            club_id = stadium.get("id")
+            competition_id = (stadium.get("competition_id") or stadium.get("primaryCompetitionId") or "").strip()
+            secondary_ids = [
+                value.strip()
+                for value in (
+                    stadium.get("secondaryCompetitionIds")
+                    if isinstance(stadium.get("secondaryCompetitionIds"), list)
+                    else str(stadium.get("secondary_competition_ids") or "").split(",")
+                )
+                if value.strip()
+            ]
+            if not club_id:
+                continue
+            for value in [competition_id, *secondary_ids]:
+                if value:
+                    mapping[value].add(club_id)
+
+    if AGGREGATE_STADIUMS_JSON.exists():
+        merge_stadium_entries(load_json(AGGREGATE_STADIUMS_JSON))
+
+    if LEAGUE_PACKS_DIR.exists():
+        for sidecar in sorted(LEAGUE_PACKS_DIR.glob("*/stadiums.json")):
+            merge_stadium_entries(load_json(sidecar))
+
+    return mapping
+
+
 def build_alias_map(club_names: dict[str, str], aliases: dict[str, list[str]]) -> dict[str, str]:
     alias_to_club_id: dict[str, str] = {}
     for club_id, canonical_name in club_names.items():
@@ -349,6 +381,7 @@ def parse_source_matches(
     audit: dict,
     source_path: Path,
     alias_to_club_id: dict[str, str],
+    allowed_club_ids: set[str] | None,
     from_date: date,
     to_date: date,
 ) -> tuple[list[SourceFixture], list[dict]]:
@@ -372,6 +405,8 @@ def parse_source_matches(
 
         home_id = alias_to_club_id.get(normalize_text(home))
         away_id = alias_to_club_id.get(normalize_text(away))
+        if allowed_club_ids is not None and not (home_id in allowed_club_ids and away_id in allowed_club_ids):
+            continue
         if not home_id or not away_id:
             unresolved.append(
                 {
@@ -698,6 +733,7 @@ def main() -> int:
 
     aliases = load_aliases()
     club_names = load_club_names()
+    competition_club_ids = load_competition_club_ids()
     alias_to_club_id = build_alias_map(club_names, aliases)
 
     refreshed_sources: dict[Path, str | None] = {}
@@ -725,7 +761,14 @@ def main() -> int:
             continue
 
         _rows, local_fixtures, _rows_by_id = load_local_fixtures(audit, club_names, local_today, local_end)
-        source_fixtures, unresolved = parse_source_matches(audit, source, alias_to_club_id, local_today, local_end)
+        source_fixtures, unresolved = parse_source_matches(
+            audit,
+            source,
+            alias_to_club_id,
+            competition_club_ids.get(audit.get("competitionId", "")) if audit.get("competitionId") else None,
+            local_today,
+            local_end,
+        )
         source_fixtures_by_audit[audit["id"]] = source_fixtures
         unresolved_by_audit[audit["id"]] = unresolved
 

@@ -153,6 +153,38 @@ def load_club_names() -> dict[str, str]:
     return names
 
 
+def load_competition_club_ids() -> dict[str, set[str]]:
+    mapping: dict[str, set[str]] = defaultdict(set)
+
+    def merge_stadium_entries(stadiums: list[dict]) -> None:
+        for stadium in stadiums:
+            club_id = stadium.get("id")
+            competition_id = (stadium.get("competition_id") or stadium.get("primaryCompetitionId") or "").strip()
+            secondary_ids = [
+                value.strip()
+                for value in (
+                    stadium.get("secondaryCompetitionIds")
+                    if isinstance(stadium.get("secondaryCompetitionIds"), list)
+                    else str(stadium.get("secondary_competition_ids") or "").split(",")
+                )
+                if value.strip()
+            ]
+            if not club_id:
+                continue
+            for value in [competition_id, *secondary_ids]:
+                if value:
+                    mapping[value].add(club_id)
+
+    if AGGREGATE_STADIUMS_JSON.exists():
+        merge_stadium_entries(load_json(AGGREGATE_STADIUMS_JSON))
+
+    if LEAGUE_PACKS_DIR.exists():
+        for sidecar in sorted(LEAGUE_PACKS_DIR.glob("*/stadiums.json")):
+            merge_stadium_entries(load_json(sidecar))
+
+    return mapping
+
+
 def load_fixtures(
     club_names: dict[str, str],
     competition_id: str | None,
@@ -272,13 +304,14 @@ def filter_source_lines(
     source_round_prefix: str | None,
     exclude_source_round_prefixes: list[str],
     from_datetime: datetime | None,
+    allowed_line_aliases: set[str] | None,
 ) -> list[str]:
     filtered: list[str] = []
     for raw_line in source_path.read_text(encoding="utf-8").splitlines():
         parts = [part.strip() for part in raw_line.split("|")]
         if len(parts) < 5:
             continue
-        dt_token, source_group, round_label = parts[:3]
+        dt_token, source_group, round_label, home, away = parts[:5]
         try:
             kickoff = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
         except ValueError:
@@ -298,6 +331,9 @@ def filter_source_lines(
             exclude_source_round_prefixes,
         ):
             continue
+        if allowed_line_aliases is not None:
+            if normalize_text(home) not in allowed_line_aliases or normalize_text(away) not in allowed_line_aliases:
+                continue
         filtered.append(raw_line)
     return filtered
 
@@ -336,6 +372,7 @@ def main() -> int:
     from_date = date.fromisoformat(args.from_date) if args.from_date else None
     to_date = date.fromisoformat(args.to_date) if args.to_date else None
     from_datetime = datetime.fromisoformat(args.from_datetime) if args.from_datetime else None
+    alias_map = load_aliases()
     source_lines = filter_source_lines(
         source_path,
         from_date,
@@ -345,10 +382,32 @@ def main() -> int:
         args.source_round_prefix,
         list(args.exclude_source_round_prefix or []),
         from_datetime,
+        None,
     )
-    source_text = normalize_text("\n".join(source_lines))
-    alias_map = load_aliases()
     club_names = load_club_names()
+    competition_club_ids = load_competition_club_ids()
+    allowed_line_aliases: set[str] | None = None
+    if args.competition:
+        club_ids = competition_club_ids.get(args.competition)
+        if club_ids:
+            allowed_line_aliases = set()
+            for club_id in club_ids:
+                canonical_name = club_names.get(club_id)
+                if not canonical_name:
+                    continue
+                allowed_line_aliases.update(build_aliases(club_id, canonical_name, alias_map))
+            source_lines = filter_source_lines(
+                source_path,
+                from_date,
+                to_date,
+                args.source_group_prefix,
+                list(args.exclude_source_group_prefix or []),
+                args.source_round_prefix,
+                list(args.exclude_source_round_prefix or []),
+                from_datetime,
+                allowed_line_aliases,
+            )
+    source_text = normalize_text("\n".join(source_lines))
     fixtures = load_fixtures(
         club_names,
         args.competition,

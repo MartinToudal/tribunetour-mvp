@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from dataclasses import asdict
@@ -74,6 +75,18 @@ def current_local_date() -> str:
 
 def current_local_datetime() -> str:
     return datetime.now(LOCAL_TIMEZONE).replace(tzinfo=None).isoformat(timespec="minutes")
+
+
+def inferred_season_end_date(audit: dict) -> str | None:
+    explicit = (audit.get("seasonEndDate") or "").strip()
+    if explicit:
+        return explicit
+    season = (audit.get("season") or "").strip()
+    match = re.fullmatch(r"(\d{4})-(\d{2})", season)
+    if not match:
+        return None
+    end_year = int(match.group(1)[:2] + match.group(2))
+    return f"{end_year:04d}-06-30"
 
 
 def write_report(results: list[AuditResult]) -> None:
@@ -252,6 +265,9 @@ def run_single_audit(audit: dict, refreshed_sources: dict[Path, str | None]) -> 
         "--from-datetime",
         current_local_datetime(),
     ]
+    season_end_date = inferred_season_end_date(audit)
+    if season_end_date:
+        cmd.extend(["--to-date", season_end_date])
 
     if audit.get("competitionId"):
         cmd.extend(["--competition", audit["competitionId"]])
@@ -305,6 +321,9 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
         "--from-datetime",
         current_local_datetime(),
     ]
+    season_end_date = inferred_season_end_date(audit)
+    if season_end_date:
+        cmd.extend(["--to-date", season_end_date])
 
     if audit.get("competitionId"):
         cmd.extend(["--competition", audit["competitionId"]])
