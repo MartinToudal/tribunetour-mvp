@@ -8,6 +8,7 @@ import re
 import subprocess
 import sys
 import unicodedata
+from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
