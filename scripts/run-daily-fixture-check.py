@@ -101,11 +101,47 @@ def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", lowered).strip()
 
 
+def inferred_season_window(season_id: str | None) -> tuple[datetime, datetime] | None:
+    if not season_id:
+        return None
+    match = re.fullmatch(r"(\d{4})-(\d{2}|\d{4})", season_id.strip())
+    if not match:
+        return None
+    start_year = int(match.group(1))
+    end_token = match.group(2)
+    end_year = (start_year // 100) * 100 + int(end_token) if len(end_token) == 2 else int(end_token)
+    start = datetime.fromisoformat(f"{start_year:04d}-07-01T00:00:00+00:00")
+    end_exclusive = datetime.fromisoformat(f"{end_year:04d}-08-01T00:00:00+00:00")
+    if start >= end_exclusive:
+        return None
+    return start, end_exclusive
+
+
+def fixture_row_matches_inferred_season(row: dict) -> bool:
+    season_window = inferred_season_window((row.get("seasonId") or "").strip())
+    if not season_window:
+        return True
+    kickoff_raw = row.get("kickoff")
+    if not kickoff_raw:
+        return True
+    try:
+        kickoff = datetime.fromisoformat(kickoff_raw)
+    except ValueError:
+        return True
+    start, end_exclusive = season_window
+    return start <= kickoff < end_exclusive
+
+
+def sanitize_source_rows(rows: list[dict]) -> list[dict]:
+    return [row for row in rows if fixture_row_matches_inferred_season(row)]
+
+
 def persist_fixture_rows(source_rows: list[dict]) -> None:
-    FIXTURES_JSON.write_text(json.dumps(source_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    sanitized_rows = sanitize_source_rows(source_rows)
+    FIXTURES_JSON.write_text(json.dumps(sanitized_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     csv_rows: list[dict[str, str]] = []
-    for row in source_rows:
+    for row in sanitized_rows:
         csv_rows.append(
             {
                 key: "" if row.get(key) is None else str(row.get(key, ""))
@@ -355,7 +391,7 @@ def select_local_fixtures(source_rows: list[dict], audit: dict, club_names: dict
 
 
 def load_local_fixtures(audit: dict, club_names: dict[str, str], from_date: date, to_date: date) -> tuple[list[dict], list[LocalFixture], dict[str, dict]]:
-    source_rows = load_json(FIXTURES_JSON)
+    source_rows = sanitize_source_rows(load_json(FIXTURES_JSON))
     selected, rows_by_id = select_local_fixtures(source_rows, audit, club_names, from_date, to_date)
     return source_rows, selected, rows_by_id
 
@@ -744,7 +780,7 @@ def main() -> int:
             continue
         refreshed_sources[source] = refresh_source(audit, source)
 
-    all_rows = load_json(FIXTURES_JSON)
+    all_rows = sanitize_source_rows(load_json(FIXTURES_JSON))
     rows_by_id_global = {row["id"]: row for row in all_rows}
 
     sync_results: list[DailySyncResult] = []

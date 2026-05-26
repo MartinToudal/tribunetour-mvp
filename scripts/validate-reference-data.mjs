@@ -25,6 +25,31 @@ function loadLeaguePackStadiums() {
   return files.flatMap((filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8')));
 }
 
+function inferSeasonWindow(seasonId) {
+  if (!seasonId || typeof seasonId !== 'string') {
+    return null;
+  }
+
+  const match = seasonId.trim().match(/^(\d{4})-(\d{2}|\d{4})$/);
+  if (!match) {
+    return null;
+  }
+
+  const startYear = Number.parseInt(match[1], 10);
+  const endToken = match[2];
+  const endYear = endToken.length === 2
+    ? Math.trunc(startYear / 100) * 100 + Number.parseInt(endToken, 10)
+    : Number.parseInt(endToken, 10);
+
+  const start = Date.parse(`${startYear}-07-01T00:00:00Z`);
+  const endExclusive = Date.parse(`${endYear}-08-01T00:00:00Z`);
+  if (Number.isNaN(start) || Number.isNaN(endExclusive) || start >= endExclusive) {
+    return null;
+  }
+
+  return { start, endExclusive };
+}
+
 const stadiums = readJson('data/stadiums.json');
 const fixtures = readJson('data/fixtures.json');
 const sidecarStadiums = loadLeaguePackStadiums();
@@ -110,6 +135,16 @@ for (const fixture of fixtures) {
 
   if (!fixture.kickoff || Number.isNaN(Date.parse(fixture.kickoff))) {
     errors.push(`Fixture ${fixture.id} har ugyldigt kickoff: ${fixture.kickoff}`);
+  }
+
+  const seasonWindow = inferSeasonWindow(fixture.seasonId);
+  if (seasonWindow) {
+    const kickoffTs = Date.parse(fixture.kickoff);
+    if (!Number.isNaN(kickoffTs) && (kickoffTs < seasonWindow.start || kickoffTs >= seasonWindow.endExclusive)) {
+      errors.push(
+        `Fixture ${fixture.id} ligger uden for seasonId ${fixture.seasonId}: ${fixture.kickoff}`
+      );
+    }
   }
 
   if (typeof fixture.id === 'string') {

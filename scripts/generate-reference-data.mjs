@@ -150,6 +150,60 @@ function parseFixtures() {
   }));
 }
 
+function inferSeasonWindow(seasonId) {
+  if (!seasonId || typeof seasonId !== 'string') {
+    return null;
+  }
+
+  const match = seasonId.trim().match(/^(\d{4})-(\d{2}|\d{4})$/);
+  if (!match) {
+    return null;
+  }
+
+  const startYear = Number.parseInt(match[1], 10);
+  const endToken = match[2];
+  const endYear = endToken.length === 2
+    ? Math.trunc(startYear / 100) * 100 + Number.parseInt(endToken, 10)
+    : Number.parseInt(endToken, 10);
+
+  const start = Date.parse(`${startYear}-07-01T00:00:00Z`);
+  const endExclusive = Date.parse(`${endYear}-08-01T00:00:00Z`);
+  if (Number.isNaN(start) || Number.isNaN(endExclusive) || start >= endExclusive) {
+    return null;
+  }
+
+  return { start, endExclusive };
+}
+
+function fixtureMatchesSeasonWindow(fixture) {
+  const window = inferSeasonWindow(fixture.seasonId);
+  if (!window) {
+    return true;
+  }
+
+  const kickoff = Date.parse(fixture.kickoff);
+  if (Number.isNaN(kickoff)) {
+    return true;
+  }
+
+  return kickoff >= window.start && kickoff < window.endExclusive;
+}
+
+function sanitizeFixtures(fixtures) {
+  const sanitized = [];
+  const dropped = [];
+
+  for (const fixture of fixtures) {
+    if (fixtureMatchesSeasonWindow(fixture)) {
+      sanitized.push(fixture);
+    } else {
+      dropped.push(fixture);
+    }
+  }
+
+  return { sanitized, dropped };
+}
+
 function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -200,9 +254,10 @@ const experimentalLeaguePackStadiums = loadExperimentalLeaguePackStadiums();
 const stadiums = hasCanonicalCsvInputs
   ? mergeStadiums([...parseStadiums(), ...experimentalLeaguePackStadiums])
   : mergeStadiums([...readExistingJson(stadiumsJsonPath), ...experimentalLeaguePackStadiums]);
-const fixtures = hasCanonicalCsvInputs
+const parsedFixtures = hasCanonicalCsvInputs
   ? parseFixtures()
   : readExistingJson(fixturesJsonPath);
+const { sanitized: fixtures, dropped: droppedFixtures } = sanitizeFixtures(parsedFixtures);
 const previousRemoteFixturesEnvelope = fs.existsSync(remoteFixturesJsonPath)
   ? readExistingJson(remoteFixturesJsonPath)
   : null;
@@ -222,6 +277,9 @@ if (hasCanonicalCsvInputs) {
 }
 console.log(`Generated stadiums: ${stadiums.length}`);
 console.log(`Generated fixtures: ${fixtures.length}`);
+if (droppedFixtures.length > 0) {
+  console.log(`Dropped structurally invalid fixtures: ${droppedFixtures.length}`);
+}
 console.log(`Updated ${path.relative(websiteRootDir, stadiumsJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, fixturesJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, remoteFixturesJsonPath)}`);
