@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-26T06:02:35.931Z",
-    "generatedAt": "2026-05-26T06:02:35.931Z",
-    "checksum": "0ab3804eeeeacbcb144d6b4e42f85afc0ee674c63bda4d57246bf71513a73366",
+    "version": "2026-05-27T02:09:40.691Z",
+    "generatedAt": "2026-05-27T02:09:40.691Z",
+    "checksum": "bef0839a3bf6b3c9d669971d5200dd4ede763edd9b39f7184de52fe65c81f6fe",
     "signature": null
   },
   "fixtures": [
@@ -14376,6 +14376,57 @@
       "homeScore": null,
       "awayScore": null,
       "competitionId": "it-serie-c-playouts",
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "itbp-20260529-monza-catanzaro",
+      "kickoff": "2026-05-29T20:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "it-monza",
+      "awayTeamId": "it-catanzaro",
+      "venueClubId": "it-monza",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "it-serie-b-playoffs"
+    },
+    {
+      "id": "itlp-20260527-brescia-salernitana",
+      "kickoff": "2026-05-27T20:00:00+02:00",
+      "round": "Semifinalerne",
+      "homeTeamId": "it-brescia",
+      "awayTeamId": "it-salernitana",
+      "venueClubId": "it-brescia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "it-lega-pro-promotion-playoffs"
+    },
+    {
+      "id": "itlp-20260527-catania-ascoli",
+      "kickoff": "2026-05-27T21:00:00+02:00",
+      "round": "Semifinalerne",
+      "homeTeamId": "it-catania",
+      "awayTeamId": "it-ascoli",
+      "venueClubId": "it-catania",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "it-lega-pro-promotion-playoffs"
+    },
+    {
+      "id": "pt1-20260528-casa-pia-torreense",
+      "kickoff": "2026-05-28T21:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "pt-casa-pia",
+      "awayTeamId": "pt-torreense",
+      "venueClubId": "pt-casa-pia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
       "seasonId": "2025-26"
     }
   ]
