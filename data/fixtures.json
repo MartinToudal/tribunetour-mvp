@@ -12324,7 +12324,7 @@
   },
   {
     "id": "es2-r42-almeria-valladolid",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-almeria",
     "awayTeamId": "es-valladolid",
@@ -12336,7 +12336,7 @@
   },
   {
     "id": "es2-r42-burgos-cf-andorra",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-burgos-cf",
     "awayTeamId": "es-andorra",
@@ -12348,7 +12348,7 @@
   },
   {
     "id": "es2-r42-castellon-eibar",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-castellon",
     "awayTeamId": "es-eibar",
@@ -12359,20 +12359,8 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "es2-r42-ceuta-albacete",
-    "kickoff": "2026-05-31T18:00:00+02:00",
-    "round": "Runde 42",
-    "homeTeamId": "es-ceuta",
-    "awayTeamId": "es-albacete",
-    "venueClubId": "es-ceuta",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "es2-r42-cordoba-huesca",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T21:00:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-cordoba",
     "awayTeamId": "es-huesca",
@@ -12383,20 +12371,8 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "es2-r42-granada-gijon",
-    "kickoff": "2026-05-31T18:00:00+02:00",
-    "round": "Runde 42",
-    "homeTeamId": "es-granada",
-    "awayTeamId": "es-gijon",
-    "venueClubId": "es-granada",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "es2-r42-la-coruna-las-palmas",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-la-coruna",
     "awayTeamId": "es-las-palmas",
@@ -12408,7 +12384,7 @@
   },
   {
     "id": "es2-r42-leganes-mirandes",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T21:00:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-leganes",
     "awayTeamId": "es-mirandes",
@@ -12420,7 +12396,7 @@
   },
   {
     "id": "es2-r42-racing-santander-cadiz",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-racing-santander",
     "awayTeamId": "es-cadiz",
@@ -12431,20 +12407,8 @@
     "seasonId": "2025-26"
   },
   {
-    "id": "es2-r42-real-sociedad-b-cultural-leonesa",
-    "kickoff": "2026-05-31T18:00:00+02:00",
-    "round": "Runde 42",
-    "homeTeamId": "es-real-sociedad-b",
-    "awayTeamId": "es-cultural-leonesa",
-    "venueClubId": "es-real-sociedad-b",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "seasonId": "2025-26"
-  },
-  {
     "id": "es2-r42-zaragoza-malaga",
-    "kickoff": "2026-05-31T18:00:00+02:00",
+    "kickoff": "2026-05-31T18:30:00+02:00",
     "round": "Runde 42",
     "homeTeamId": "es-zaragoza",
     "awayTeamId": "es-malaga",
@@ -14417,6 +14381,54 @@
     "homeTeamId": "pt-casa-pia",
     "awayTeamId": "pt-torreense",
     "venueClubId": "pt-casa-pia",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260530-ceuta-albacete",
+    "kickoff": "2026-05-30T16:15:00+02:00",
+    "round": "Runde 42",
+    "homeTeamId": "es-ceuta",
+    "awayTeamId": "es-albacete",
+    "venueClubId": "es-ceuta",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260530-real-sociedad-b-cultural-leonesa",
+    "kickoff": "2026-05-30T16:15:00+02:00",
+    "round": "Runde 42",
+    "homeTeamId": "es-real-sociedad-b",
+    "awayTeamId": "es-cultural-leonesa",
+    "venueClubId": "es-real-sociedad-b",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260530-granada-gijon",
+    "kickoff": "2026-05-30T21:00:00+02:00",
+    "round": "Runde 42",
+    "homeTeamId": "es-granada",
+    "awayTeamId": "es-gijon",
+    "venueClubId": "es-granada",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "pt2-20260530-os-belenenses-farense",
+    "kickoff": "2026-05-30T21:30:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "pt-os-belenenses",
+    "awayTeamId": "pt-farense",
+    "venueClubId": "pt-os-belenenses",
     "status": "scheduled",
     "homeScore": null,
     "awayScore": null,
