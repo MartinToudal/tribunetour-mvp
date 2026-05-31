@@ -14433,5 +14433,31 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "itlp-20260602-brescia-ascoli",
+    "kickoff": "2026-06-02T21:15:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "it-brescia",
+    "awayTeamId": "it-ascoli",
+    "venueClubId": "it-brescia",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "it-lega-pro-promotion-playoffs"
+  },
+  {
+    "id": "itlp-20260607-ascoli-brescia",
+    "kickoff": "2026-06-07T18:00:00+02:00",
+    "round": "Finale",
+    "homeTeamId": "it-ascoli",
+    "awayTeamId": "it-brescia",
+    "venueClubId": "it-ascoli",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26",
+    "competitionId": "it-lega-pro-promotion-playoffs"
   }
 ]
