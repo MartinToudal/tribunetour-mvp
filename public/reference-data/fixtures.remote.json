@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-05-31T01:51:46.934Z",
-    "generatedAt": "2026-05-31T01:51:46.934Z",
-    "checksum": "583cf10cc5bc8f02f6068a953b756c64c61c463f1dc0916c9dd38f6f7eba236f",
+    "version": "2026-06-02T01:43:47.377Z",
+    "generatedAt": "2026-06-02T01:43:47.377Z",
+    "checksum": "a660b740fdedf791596e7594b2b0062deb921c051ff965c79c5463d3826c8dc1",
     "signature": null
   },
   "fixtures": [
@@ -12438,18 +12438,6 @@
       "seasonId": "2025-26"
     },
     {
-      "id": "3d-r31-sun-hol",
-      "kickoff": "2026-06-05T19:00:00+02:00",
-      "round": "Runde 31",
-      "homeTeamId": "dk-sundby-bk",
-      "awayTeamId": "dk-holbaek-bi",
-      "venueClubId": "dk-sundby-bk",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "seasonId": "2025-26"
-    },
-    {
       "id": "3d-r31-odd-fre",
       "kickoff": "2026-06-06T13:00:00+02:00",
       "round": "Runde 31",
@@ -14466,6 +14454,18 @@
       "awayScore": null,
       "seasonId": "2025-26",
       "competitionId": "it-lega-pro-promotion-playoffs"
+    },
+    {
+      "id": "3d-20260604-sundby-holb-k",
+      "kickoff": "2026-06-04T19:00:00+02:00",
+      "round": "Runde 31",
+      "homeTeamId": "dk-sundby-bk",
+      "awayTeamId": "dk-holbaek-bi",
+      "venueClubId": "dk-sundby-bk",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
     }
   ]
 }
