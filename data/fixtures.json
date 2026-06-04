@@ -14459,5 +14459,53 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260606-castellon-almeria",
+    "kickoff": "2026-06-06T21:00:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "es-castellon",
+    "awayTeamId": "es-almeria",
+    "venueClubId": "es-castellon",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260607-las-palmas-malaga",
+    "kickoff": "2026-06-07T21:00:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "es-las-palmas",
+    "awayTeamId": "es-malaga",
+    "venueClubId": "es-las-palmas",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260609-almeria-castellon",
+    "kickoff": "2026-06-09T21:00:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "es-almeria",
+    "awayTeamId": "es-castellon",
+    "venueClubId": "es-almeria",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "es2-20260610-malaga-las-palmas",
+    "kickoff": "2026-06-10T21:00:00+02:00",
+    "round": "Semifinalerne",
+    "homeTeamId": "es-malaga",
+    "awayTeamId": "es-las-palmas",
+    "venueClubId": "es-malaga",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
   }
 ]
