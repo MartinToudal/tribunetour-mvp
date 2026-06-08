@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-06-04T01:39:29.949Z",
-    "generatedAt": "2026-06-04T01:39:29.949Z",
-    "checksum": "24bfd1e2b64cf622bb845190027b2a54241f0dbbb37b3684785fcc1aa3f992d6",
+    "version": "2026-06-08T01:45:53.377Z",
+    "generatedAt": "2026-06-08T01:45:53.377Z",
+    "checksum": "60336ad6d2baad86f05f0f6ec802c7e1a1b4793bc835d6491163b36d4d0ee7b8",
     "signature": null
   },
   "fixtures": [
@@ -14514,6 +14514,32 @@
       "homeScore": null,
       "awayScore": null,
       "seasonId": "2025-26"
+    },
+    {
+      "id": "nl-tweede-divisie-20260610-excelsior-maassluis-ijsselmeervogels",
+      "kickoff": "2026-06-10T20:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "nl-excelsior-maassluis",
+      "awayTeamId": "nl-ijsselmeervogels",
+      "venueClubId": "nl-excelsior-maassluis",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "nl-tweede-divisie"
+    },
+    {
+      "id": "nl-tweede-divisie-20260613-ijsselmeervogels-excelsior-maassluis",
+      "kickoff": "2026-06-13T15:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "nl-ijsselmeervogels",
+      "awayTeamId": "nl-excelsior-maassluis",
+      "venueClubId": "nl-ijsselmeervogels",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26",
+      "competitionId": "nl-tweede-divisie"
     }
   ]
 }
