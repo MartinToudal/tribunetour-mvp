@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-06-08T01:45:53.377Z",
-    "generatedAt": "2026-06-08T01:45:53.377Z",
-    "checksum": "60336ad6d2baad86f05f0f6ec802c7e1a1b4793bc835d6491163b36d4d0ee7b8",
+    "version": "2026-06-12T01:55:30.712Z",
+    "generatedAt": "2026-06-12T01:55:30.712Z",
+    "checksum": "a8701dcd40ffb39e889a3c0d43ee01546320da2e8b02b65e48cb422b83dfc6d8",
     "signature": null
   },
   "fixtures": [
@@ -14540,6 +14540,30 @@
       "awayScore": null,
       "seasonId": "2025-26",
       "competitionId": "nl-tweede-divisie"
+    },
+    {
+      "id": "es2-20260614-malaga-almeria",
+      "kickoff": "2026-06-14T21:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "es-malaga",
+      "awayTeamId": "es-almeria",
+      "venueClubId": "es-malaga",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "es2-20260620-almeria-malaga",
+      "kickoff": "2026-06-20T21:00:00+02:00",
+      "round": "Finale",
+      "homeTeamId": "es-almeria",
+      "awayTeamId": "es-malaga",
+      "venueClubId": "es-almeria",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
     }
   ]
 }
