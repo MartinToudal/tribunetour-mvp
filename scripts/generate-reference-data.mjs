@@ -15,6 +15,17 @@ const stadiumsJsonPath = path.join(websiteRootDir, 'data', 'stadiums.json');
 const fixturesJsonPath = path.join(websiteRootDir, 'data', 'fixtures.json');
 const remoteFixturesJsonPath = path.join(websiteRootDir, 'public', 'reference-data', 'fixtures.remote.json');
 const leaguePacksDir = path.join(websiteRootDir, 'data', 'league-packs');
+const leaguePackCsvSources = [
+  { leaguePack: 'germany_top_3', fileName: 'germany_top_3.csv' },
+  { leaguePack: 'england_top_4', fileName: 'england_top_4.csv' },
+  { leaguePack: 'italy_top_3', fileName: 'italy_top_3.csv' },
+  { leaguePack: 'spain_top_4', fileName: 'spain_top_4.csv' },
+  { leaguePack: 'france_top_3', fileName: 'france_top_3.csv' },
+  { leaguePack: 'portugal_top_3', fileName: 'portugal_top_3.csv' },
+  { leaguePack: 'netherlands_top_3', fileName: 'netherlands_top_3.csv' },
+  { leaguePack: 'belgium_top_3', fileName: 'belgium_top_3.csv' },
+  { leaguePack: 'turkey_top_3', fileName: 'turkey_top_3.csv' },
+];
 
 function splitCsvLine(line) {
   const result = [];
@@ -102,20 +113,59 @@ function parseStadiums() {
     city: row.city,
     lat: Number.parseFloat(String(row.lat).replace(',', '.')),
     lon: Number.parseFloat(String(row.lon).replace(',', '.')),
+    countryCode: row.country_code || undefined,
+    leagueCode: row.league_code || undefined,
+    leaguePack: row.league_pack || undefined,
+    shortCode: row.short_code || undefined,
+    competitionId: row.competition_id || undefined,
+    seasonId: row.season_id || undefined,
+    membershipStatus: row.membership_status || undefined,
+    secondaryCompetitionIds: row.secondary_competition_ids || undefined,
   }));
 }
 
-function loadExperimentalLeaguePackStadiums() {
+function parseLeaguePackCsv(filePath) {
+  const rows = parseCsv(readCsv(filePath));
+
+  return rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    team: row.team,
+    league: row.league,
+    city: row.city,
+    lat: Number.parseFloat(String(row.lat).replace(',', '.')),
+    lon: Number.parseFloat(String(row.lon).replace(',', '.')),
+    countryCode: row.country_code || undefined,
+    leagueCode: row.league_code || undefined,
+    leaguePack: row.league_pack || undefined,
+    shortCode: row.short_code || undefined,
+    competitionId: row.competition_id || undefined,
+    seasonId: row.season_id || undefined,
+    membershipStatus: row.membership_status || undefined,
+    secondaryCompetitionIds: row.secondary_competition_ids || undefined,
+  }));
+}
+
+function loadCanonicalLeaguePackStadiums() {
+  return leaguePackCsvSources.flatMap(({ fileName }) => {
+    const filePath = path.join(appDir, fileName);
+    if (!fs.existsSync(filePath)) {
+      return [];
+    }
+    return parseLeaguePackCsv(filePath);
+  });
+}
+
+function loadExperimentalLeaguePackStadiumsFromSidecars() {
   if (!fs.existsSync(leaguePacksDir)) {
     return [];
   }
 
-  const packs = fs.readdirSync(leaguePacksDir, { withFileTypes: true })
+  return fs.readdirSync(leaguePacksDir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => path.join(leaguePacksDir, entry.name, 'stadiums.json'))
-    .filter((filePath) => fs.existsSync(filePath));
-
-  return packs.flatMap((filePath) => readExistingJson(filePath));
+    .filter((filePath) => fs.existsSync(filePath))
+    .flatMap((filePath) => readExistingJson(filePath));
 }
 
 function mergeStadiums(stadiums) {
@@ -130,6 +180,33 @@ function mergeStadiums(stadiums) {
   }
 
   return [...byId.values()];
+}
+
+function writeLeaguePackSidecars(stadiums) {
+  const grouped = new Map();
+
+  for (const stadium of stadiums) {
+    const leaguePack = stadium.leaguePack;
+    if (!leaguePack || leaguePack === 'core_denmark') {
+      continue;
+    }
+
+    if (!grouped.has(leaguePack)) {
+      grouped.set(leaguePack, []);
+    }
+    grouped.get(leaguePack).push(stadium);
+  }
+
+  let updatedCount = 0;
+
+  for (const [leaguePack, leaguePackStadiums] of grouped.entries()) {
+    const filePath = path.join(leaguePacksDir, leaguePack, 'stadiums.json');
+    if (writeFileEnsured(filePath, stableJson(leaguePackStadiums))) {
+      updatedCount += 1;
+    }
+  }
+
+  return updatedCount;
 }
 
 function parseFixtures() {
@@ -250,7 +327,9 @@ function buildRemoteFixturesEnvelope(fixtures, previousEnvelope) {
 
 const hasCanonicalCsvInputs = fs.existsSync(stadiumsCsvPath) && fs.existsSync(fixturesCsvPath);
 
-const experimentalLeaguePackStadiums = loadExperimentalLeaguePackStadiums();
+const experimentalLeaguePackStadiums = hasCanonicalCsvInputs
+  ? loadCanonicalLeaguePackStadiums()
+  : loadExperimentalLeaguePackStadiumsFromSidecars();
 const stadiums = hasCanonicalCsvInputs
   ? mergeStadiums([...parseStadiums(), ...experimentalLeaguePackStadiums])
   : mergeStadiums([...readExistingJson(stadiumsJsonPath), ...experimentalLeaguePackStadiums]);
@@ -269,9 +348,12 @@ const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(
 writeFileEnsured(stadiumsJsonPath, stableJson(stadiums));
 writeFileEnsured(fixturesJsonPath, stableJson(fixtures));
 writeFileEnsured(remoteFixturesJsonPath, stableJson(remoteFixturesEnvelope));
+const updatedLeaguePackSidecars = hasCanonicalCsvInputs
+  ? writeLeaguePackSidecars(stadiums)
+  : 0;
 
 if (hasCanonicalCsvInputs) {
-  console.log('Source: app CSV files + league-pack sidecars');
+  console.log('Source: app CSV files');
 } else {
   console.log('Source: checked-in web JSON aggregate + league-pack sidecars');
 }
@@ -283,3 +365,6 @@ if (droppedFixtures.length > 0) {
 console.log(`Updated ${path.relative(websiteRootDir, stadiumsJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, fixturesJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, remoteFixturesJsonPath)}`);
+if (hasCanonicalCsvInputs) {
+  console.log(`Updated league-pack sidecars: ${updatedLeaguePackSidecars}`);
+}
