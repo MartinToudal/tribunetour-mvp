@@ -14557,5 +14557,41 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "sl-20260724-viborg-ff-ob",
+    "kickoff": "2026-07-24T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-viborg-ff",
+    "awayTeamId": "dk-ob",
+    "venueClubId": "dk-viborg-ff",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260724-vejle-boldklub-ab",
+    "kickoff": "2026-07-24T18:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-vejle-boldklub",
+    "awayTeamId": "dk-ab",
+    "venueClubId": "dk-vejle-boldklub",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260724-aab-hiller-d-fodbold",
+    "kickoff": "2026-07-24T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-aab",
+    "awayTeamId": "dk-hillerod-fodbold",
+    "venueClubId": "dk-aab",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
   }
 ]

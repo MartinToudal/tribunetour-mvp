@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-06-12T01:55:30.712Z",
-    "generatedAt": "2026-06-12T01:55:30.712Z",
-    "checksum": "a8701dcd40ffb39e889a3c0d43ee01546320da2e8b02b65e48cb422b83dfc6d8",
+    "version": "2026-07-22T02:02:35.311Z",
+    "generatedAt": "2026-07-22T02:02:35.311Z",
+    "checksum": "f4e81662757db72b3f8970345ade7e2c404692a382c5544eca1a081a1e4b1e1a",
     "signature": null
   },
   "fixtures": [
@@ -14560,6 +14560,42 @@
       "homeTeamId": "es-almeria",
       "awayTeamId": "es-malaga",
       "venueClubId": "es-almeria",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "sl-20260724-viborg-ff-ob",
+      "kickoff": "2026-07-24T19:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-viborg-ff",
+      "awayTeamId": "dk-ob",
+      "venueClubId": "dk-viborg-ff",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "1d-20260724-vejle-boldklub-ab",
+      "kickoff": "2026-07-24T18:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-vejle-boldklub",
+      "awayTeamId": "dk-ab",
+      "venueClubId": "dk-vejle-boldklub",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "1d-20260724-aab-hiller-d-fodbold",
+      "kickoff": "2026-07-24T19:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-aab",
+      "awayTeamId": "dk-hillerod-fodbold",
+      "venueClubId": "dk-aab",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
