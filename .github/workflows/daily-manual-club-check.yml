@@ -1,0 +1,88 @@
+name: Daily Manual Club Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 6 * * *"
+
+concurrency:
+  group: daily-manual-club-check
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate daily manual club check
+        run: |
+          mkdir -p data/manual-club-checks/reports
+          python3 scripts/generate-manual-club-spotcheck.py
+
+      - name: Upload manual club check report
+        uses: actions/upload-artifact@v4
+        with:
+          name: manual-club-check-report
+          path: |
+            data/manual-club-checks/reports/latest.json
+            data/manual-club-checks/reports/latest.md
+
+      - name: Send manual club check email
+        id: email
+        continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FIXTURE_CHECK_NOTIFY_TO: ${{ secrets.FIXTURE_CHECK_NOTIFY_TO }}
+          FIXTURE_CHECK_NOTIFY_FROM: ${{ secrets.FIXTURE_CHECK_NOTIFY_FROM }}
+          MANUAL_SPOTCHECK_NOTIFY_TO: ${{ secrets.MANUAL_SPOTCHECK_NOTIFY_TO }}
+          MANUAL_SPOTCHECK_NOTIFY_FROM: ${{ secrets.MANUAL_SPOTCHECK_NOTIFY_FROM }}
+          TRIBUNETOUR_BASE_URL: https://www.tribunetour.dk
+        run: |
+          set +e
+          output="$(python3 scripts/send-manual-club-spotcheck-email.py 2>&1)"
+          status=$?
+          printf '%s\n' "$output"
+          echo "status_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Write summary
+        if: always()
+        env:
+          EMAIL_STATUS: ${{ steps.email.outputs.status_code }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(Path("data/manual-club-checks/reports/latest.json").read_text(encoding="utf-8"))
+          lines = [
+              "# Daily Manual Club Check",
+              "",
+              f"- Generated at: `{report.get('generatedAt', '?')}`",
+              f"- Seed: `{report.get('seed', '?')}`",
+              f"- Club count: `{len(report.get('clubs', []))}`",
+              f"- Email exit code: `{os.environ.get('EMAIL_STATUS', '?')}`",
+              "",
+          ]
+          for club in report.get("clubs", []):
+              lines.append(f"- **{club['team']}** — {club['league']}")
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text("\n".join(lines), encoding="utf-8")
+          PY
+
+      - name: Fail workflow when email could not be sent
+        if: always() && steps.email.outputs.status_code != '0'
+        run: |
+          echo "Manual club check mail failed to send."
+          exit 1
