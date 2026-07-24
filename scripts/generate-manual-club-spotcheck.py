@@ -43,6 +43,7 @@ class ClubSpotcheck:
     lastHomeMatchKickoff: str | None
     lastCompetitionMatchKickoff: str | None
     sampleHomeMatches: list[dict[str, str]]
+    qualityTier: str
 
 
 def load_json(path: Path) -> Any:
@@ -87,6 +88,7 @@ def build_spotcheck(
     fixtures: list[dict[str, Any]],
     base_url: str,
     now: datetime,
+    minimum_home_matches: int,
 ) -> ClubSpotcheck | None:
     stadium_id = stadium.get("id")
     competition_id = stadium.get("competitionId")
@@ -116,7 +118,7 @@ def build_spotcheck(
         if fixture.get("venueClubId") == stadium_id:
             home_fixtures.append(fixture)
 
-    if len(home_fixtures) < 2:
+    if len(home_fixtures) < minimum_home_matches:
         return None
 
     upcoming_fixtures = dedupe_fixtures(upcoming_fixtures)
@@ -145,6 +147,7 @@ def build_spotcheck(
         lastHomeMatchKickoff=home_fixtures[-1]["kickoff"] if home_fixtures else None,
         lastCompetitionMatchKickoff=competition_fixtures[-1]["kickoff"] if competition_fixtures else None,
         sampleHomeMatches=[format_match(match) for match in home_fixtures[:4]],
+        qualityTier="full" if len(home_fixtures) >= 2 else "fallback",
     )
 
 
@@ -176,6 +179,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
                 f"- Koordinater: `{club['lat']}, {club['lon']}`",
                 f"- Kommende kampe i data: `{club['upcomingMatchCount']}`",
                 f"- Kommende hjemmekampe i data: `{club['upcomingHomeMatchCount']}`",
+                f"- Datagrundlag: `{'standard' if club['qualityTier'] == 'full' else 'fallback med begrænset kampprogram'}`",
                 f"- Første hjemmekamp i data: `{club['firstHomeMatchKickoff'] or '-'}`",
                 f"- Sidste hjemmekamp i data: `{club['lastHomeMatchKickoff'] or '-'}`",
                 f"- Sidste kamp i rækken lige nu: `{club['lastCompetitionMatchKickoff'] or '-'}`",
@@ -204,12 +208,22 @@ def main() -> int:
     requested_count = int((os.environ.get("MANUAL_CLUB_SPOTCHECK_COUNT") or "3").strip())
 
     candidates: list[ClubSpotcheck] = []
-    for stadium in stadiums:
-        if stadium.get("membershipStatus") != "active":
-            continue
-        spotcheck = build_spotcheck(stadium, fixtures, base_url, now)
-        if spotcheck is not None:
-            candidates.append(spotcheck)
+    for minimum_home_matches in (2, 1):
+        candidates = []
+        for stadium in stadiums:
+            if stadium.get("membershipStatus") != "active":
+                continue
+            spotcheck = build_spotcheck(
+                stadium,
+                fixtures,
+                base_url,
+                now,
+                minimum_home_matches=minimum_home_matches,
+            )
+            if spotcheck is not None:
+                candidates.append(spotcheck)
+        if len(candidates) >= requested_count:
+            break
 
     if len(candidates) < requested_count:
         raise SystemExit(f"Not enough eligible clubs for manual spotcheck: {len(candidates)} available")
