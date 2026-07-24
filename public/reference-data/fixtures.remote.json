@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-07-23T01:27:20.022Z",
-    "generatedAt": "2026-07-23T01:27:20.022Z",
-    "checksum": "70a3bf78e3a9b6afc30afe61ecb538851b0b896c53ed8c7871f10a5b6d73d780",
+    "version": "2026-07-24T02:08:51.975Z",
+    "generatedAt": "2026-07-24T02:08:51.975Z",
+    "checksum": "3f67c2beb891d740612f8baf37dc0a2891d66cb7fe8c85b4cdad70111fd1c80e",
     "signature": null
   },
   "fixtures": [
@@ -14644,6 +14644,54 @@
       "homeTeamId": "dk-fc-fredericia",
       "awayTeamId": "dk-hb-koge",
       "venueClubId": "dk-fc-fredericia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "sl-20260726-s-nderjyske-fc-midtjylland",
+      "kickoff": "2026-07-26T14:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-sonderjyske",
+      "awayTeamId": "dk-fc-midtjylland",
+      "venueClubId": "dk-sonderjyske",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "sl-20260726-fc-k-benhavn-lyngby",
+      "kickoff": "2026-07-26T16:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-fc-kobenhavn",
+      "awayTeamId": "dk-lyngby-boldklub",
+      "venueClubId": "dk-fc-kobenhavn",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "sl-20260726-ac-horsens-fc-nordsj-lland",
+      "kickoff": "2026-07-26T18:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-ac-horsens",
+      "awayTeamId": "dk-fc-nordsjaelland",
+      "venueClubId": "dk-ac-horsens",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2025-26"
+    },
+    {
+      "id": "1d-20260726-hobro-ik-aarhus-fremad",
+      "kickoff": "2026-07-26T14:00:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "dk-hobro-ik",
+      "awayTeamId": "dk-aarhus-fremad",
+      "venueClubId": "dk-hobro-ik",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,

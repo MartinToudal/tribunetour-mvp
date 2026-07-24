@@ -14641,5 +14641,53 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "sl-20260726-s-nderjyske-fc-midtjylland",
+    "kickoff": "2026-07-26T14:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-sonderjyske",
+    "awayTeamId": "dk-fc-midtjylland",
+    "venueClubId": "dk-sonderjyske",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "sl-20260726-fc-k-benhavn-lyngby",
+    "kickoff": "2026-07-26T16:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-fc-kobenhavn",
+    "awayTeamId": "dk-lyngby-boldklub",
+    "venueClubId": "dk-fc-kobenhavn",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "sl-20260726-ac-horsens-fc-nordsj-lland",
+    "kickoff": "2026-07-26T18:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-ac-horsens",
+    "awayTeamId": "dk-fc-nordsjaelland",
+    "venueClubId": "dk-ac-horsens",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260726-hobro-ik-aarhus-fremad",
+    "kickoff": "2026-07-26T14:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-hobro-ik",
+    "awayTeamId": "dk-aarhus-fremad",
+    "venueClubId": "dk-hobro-ik",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
   }
 ]
