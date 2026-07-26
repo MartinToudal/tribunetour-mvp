@@ -65,6 +65,27 @@ function sortCompetitionMemberships(memberships: CompetitionMembership[]) {
     });
 }
 
+function dedupeFixtures(fixtures: Fixture[]) {
+    const unique = new Map<string, Fixture>();
+
+    for (const fixture of fixtures) {
+        const key = [
+            fixture.kickoff ?? '',
+            fixture.homeTeamId ?? '',
+            fixture.awayTeamId ?? '',
+            fixture.venueClubId ?? '',
+            fixture.round ?? '',
+        ].join('::');
+        const existing = unique.get(key);
+
+        if (!existing || (fixture.id?.length ?? 0) < (existing.id?.length ?? 0)) {
+            unique.set(key, fixture);
+        }
+    }
+
+    return [...unique.values()].sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime());
+}
+
 export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
     const stadium = getSeedStadiumById(params.id);
 
@@ -92,11 +113,11 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
         permanentRedirect(`/stadiums/${canonicalId}`);
     }
 
-    const upcomingFixtures = fixtures
+    const allUpcomingFixtures = dedupeFixtures(fixtures
         .filter((fixture) => isSameClubId(fixture.venueClubId, stadium.id))
         .filter((fixture) => new Date(fixture.kickoff).getTime() >= Date.now())
-        .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime())
-        .slice(0, 5);
+    );
+    const upcomingFixtures = allUpcomingFixtures;
     const nextFixture = upcomingFixtures[0] ?? null;
     const directionsHref = mapsHref(stadium);
     const isExpandedLeaguePack = Boolean(stadium.countryCode && stadium.countryCode !== 'dk');
@@ -108,7 +129,7 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
     const quickStats = [
         { label: 'Klub', value: stadium.team },
         { label: 'By', value: stadium.city ?? 'Ukendt' },
-        { label: 'Kommende kampe', value: String(upcomingFixtures.length) },
+        { label: 'Kommende kampe i data', value: String(allUpcomingFixtures.length) },
         ...(isExpandedLeaguePack
             ? [{ label: 'Land', value: countryLabel(stadium.countryCode) }]
             : []),
@@ -321,6 +342,11 @@ export default function StadiumDetailPage({ params }: StadiumDetailPageProps) {
                 <div className="border-b border-white/5 p-5 md:p-6">
                     <div className="label-eyebrow">Kampe</div>
                     <h2 className="mt-2 text-2xl font-semibold tracking-tight">Kommende kampe her</h2>
+                    {allUpcomingFixtures.length > 0 && (
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                            Siden viser {upcomingFixtures.length} kommende kampe på stadionet.
+                        </p>
+                    )}
                 </div>
 
                 <ul className="divide-y divide-white/5">
