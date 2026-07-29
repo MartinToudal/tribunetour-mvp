@@ -192259,5 +192259,101 @@
     "homeScore": null,
     "awayScore": null,
     "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260731-aarhus-fremad-aab",
+    "kickoff": "2026-07-31T18:00:00+02:00",
+    "round": "Runde 2",
+    "homeTeamId": "dk-aarhus-fremad",
+    "awayTeamId": "dk-aab",
+    "venueClubId": "dk-aarhus-fremad",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260731-ab-fc-fredericia",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 2",
+    "homeTeamId": "dk-ab",
+    "awayTeamId": "dk-fc-fredericia",
+    "venueClubId": "dk-ab",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "1d-20260731-hb-k-ge-vejle-boldklub",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 2",
+    "homeTeamId": "dk-hb-koge",
+    "awayTeamId": "dk-vejle-boldklub",
+    "venueClubId": "dk-hb-koge",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "2d-20260731-fa-2000-b-93",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-fa-2000",
+    "awayTeamId": "dk-b-93",
+    "venueClubId": "dk-fa-2000",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "2d-20260731-fc-roskilde-n-stved-bk",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-fc-roskilde",
+    "awayTeamId": "dk-naestved",
+    "venueClubId": "dk-fc-roskilde",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "2d-20260731-nyk-bing-fc-fremad-amager",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-nykobing-fc",
+    "awayTeamId": "dk-fremad-amager",
+    "venueClubId": "dk-nykobing-fc",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "3d-20260731-br-nsh-j-ish-j-if",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-bronshoj",
+    "awayTeamId": "dk-ishoj-if",
+    "venueClubId": "dk-bronshoj",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
+  },
+  {
+    "id": "3d-20260731-fc-helsing-r-vanl-se",
+    "kickoff": "2026-07-31T19:00:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "dk-fc-helsingor",
+    "awayTeamId": "dk-vanlose",
+    "venueClubId": "dk-fc-helsingor",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2025-26"
   }
 ]
