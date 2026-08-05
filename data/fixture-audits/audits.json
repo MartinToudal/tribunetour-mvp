@@ -3,7 +3,7 @@
     {
       "id": "dk-superliga",
       "label": "Danmark - Superliga",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "sl-",
       "roundPrefix": "Superliga - ",
       "source": "data/fixture-audits/raw/dk-superliga.txt",
@@ -13,12 +13,12 @@
         "competitionFilter": "Superliga"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-02"
     },
     {
       "id": "dk-1-division",
       "label": "Danmark - 1. division",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "1d-",
       "roundPrefix": "1. division - ",
       "source": "data/fixture-audits/raw/dk-1-division.txt",
@@ -27,12 +27,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-02"
     },
     {
       "id": "dk-2-division",
       "label": "Danmark - 2. division",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "2d-",
       "roundPrefix": "2. division - ",
       "source": "data/fixture-audits/raw/dk-2-division.txt",
@@ -41,12 +41,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-02"
     },
     {
       "id": "dk-3-division",
       "label": "Danmark - 3. division",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "3d-",
       "roundPrefix": "3. division - ",
       "source": "data/fixture-audits/raw/dk-3-division.txt",
@@ -55,12 +55,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-02"
     },
     {
       "id": "de-bundesliga",
       "label": "Tyskland - Bundesliga",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "bl-",
       "roundPrefix": "Bundesliga - ",
       "source": "data/fixture-audits/raw/de-bundesliga.txt",
@@ -69,12 +69,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "de-2-bundesliga",
       "label": "Tyskland - 2. Bundesliga",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "b2-",
       "roundPrefix": "2. Bundesliga - ",
       "source": "data/fixture-audits/raw/de-2-bundesliga.txt",
@@ -83,12 +83,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "de-3-liga",
       "label": "Tyskland - 3. Liga",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "b3-",
       "roundPrefix": "3. Liga - ",
       "source": "data/fixture-audits/raw/de-3-liga.txt",
@@ -97,12 +97,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-premier-league",
       "label": "England - Premier League",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "epl-",
       "roundPrefix": "Premier League - ",
       "source": "data/fixture-audits/raw/en-premier-league.txt",
@@ -111,12 +111,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-championship",
       "label": "England - Championship",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "ech-",
       "roundPrefix": "Championship - ",
       "source": "data/fixture-audits/raw/en-championship.txt",
@@ -125,12 +125,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-championship-playoffs",
       "label": "England - Championship Playoffs",
-      "season": "2025-26",
+      "season": "2026-27",
       "competitionId": "en-championship-playoffs",
       "fixturePrefix": "echp-",
       "roundPrefix": "Championship - Play Offs - ",
@@ -140,12 +140,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-league-one-playoffs",
       "label": "England - League One Playoffs",
-      "season": "2025-26",
+      "season": "2026-27",
       "competitionId": "en-league-one-playoffs",
       "fixturePrefix": "el1p-",
       "roundPrefix": "League One - Play Offs - ",
@@ -155,12 +155,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-league-one",
       "label": "England - League One",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "el1-",
       "roundPrefix": "League One - ",
       "excludeRoundPrefixes": ["League One - Play Offs - "],
@@ -170,12 +170,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "en-league-two",
       "label": "England - League Two",
-      "season": "2025-26",
+      "season": "2026-27",
       "fixturePrefix": "el2-",
       "roundPrefix": "League Two - ",
       "source": "data/fixture-audits/raw/en-league-two.txt",
@@ -184,12 +184,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "es-laliga",
       "label": "Spanien - La Liga",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "es-la-liga",
       "fixturePrefix": "esl-",
       "roundPrefix": "La Liga - ",
       "source": "data/fixture-audits/raw/es-laliga.txt",
@@ -198,12 +199,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "es-laliga2",
       "label": "Spanien - Segunda División",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "es-segunda-division",
       "fixturePrefix": "es2-",
       "roundPrefix": "Segunda División - ",
       "source": "data/fixture-audits/raw/es-laliga2.txt",
@@ -212,13 +214,14 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "es-primera-federacion-g1",
       "label": "Spanien - Primera Federación Gruppe 1",
-      "season": "2025-26",
-    "fixturePrefix": "esf1-a-",
+      "season": "2026-27",
+      "competitionId": "es-primera-federacion-gruppe-1",
+      "fixturePrefix": "esf1-a-",
       "roundPrefix": "Primera Federación - Gruppe 1 - ",
       "source": "data/fixture-audits/raw/es-primera-federacion-g1.txt",
       "fetch": {
@@ -226,13 +229,14 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "es-primera-federacion-g2",
       "label": "Spanien - Primera Federación Gruppe 2",
-      "season": "2025-26",
-    "fixturePrefix": "esf1-b-",
+      "season": "2026-27",
+      "competitionId": "es-primera-federacion-gruppe-2",
+      "fixturePrefix": "esf1-b-",
       "roundPrefix": "Primera Federación - Gruppe 2 - ",
       "source": "data/fixture-audits/raw/es-primera-federacion-g2.txt",
       "fetch": {
@@ -240,12 +244,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "fr-ligue-1",
       "label": "Frankrig - Ligue 1",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "fr-ligue-1",
       "fixturePrefix": "fr1-",
       "roundPrefix": "Ligue 1 - ",
       "excludeSourceGroupPrefixes": ["FRANKRIG: Ligue 1 - Nedrykning - Slutspil"],
@@ -255,12 +260,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "fr-ligue-2",
       "label": "Frankrig - Ligue 2",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "fr-ligue-2",
       "fixturePrefix": "fr2-",
       "roundPrefix": "Ligue 2 - ",
       "source": "data/fixture-audits/raw/fr-ligue-2.txt",
@@ -269,13 +275,14 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "fr-national",
-      "label": "Frankrig - National",
-      "season": "2025-26",
-      "fixturePrefix": "fr3-",
+      "label": "Frankrig - Ligue 3",
+      "season": "2026-27",
+      "competitionId": "fr-national",
+      "fixturePrefix": "frn-",
       "roundPrefix": "National - ",
       "source": "data/fixture-audits/raw/fr-national.txt",
       "fetch": {
@@ -283,12 +290,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "it-serie-a",
       "label": "Italien - Serie A",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "it-serie-a",
       "fixturePrefix": "ita-",
       "roundPrefix": "Serie A - ",
       "source": "data/fixture-audits/raw/it-serie-a.txt",
@@ -297,12 +305,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "it-serie-b",
       "label": "Italien - Serie B",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "it-serie-b",
       "fixturePrefix": "itb-",
       "roundPrefix": "Serie B - ",
       "excludeRoundPrefixes": ["Serie B - Play Offs - ", "Serie B - Play Out - "],
@@ -313,7 +322,7 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "it-serie-b-playoffs",
@@ -365,7 +374,8 @@
     {
       "id": "it-serie-c-gA",
       "label": "Italien - Serie C Gruppe A",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "it-serie-c-gruppe-a",
       "fixturePrefix": "itc-a-",
       "roundPrefix": "Serie C - Gruppe A - ",
       "source": "data/fixture-audits/raw/it-serie-c-gA.txt",
@@ -374,12 +384,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "it-serie-c-gB",
       "label": "Italien - Serie C Gruppe B",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "it-serie-c-gruppe-b",
       "fixturePrefix": "itc-b-",
       "roundPrefix": "Serie C - Gruppe B - ",
       "source": "data/fixture-audits/raw/it-serie-c-gB.txt",
@@ -388,12 +399,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "it-serie-c-gC",
       "label": "Italien - Serie C Gruppe C",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "it-serie-c-gruppe-c",
       "fixturePrefix": "itc-c-",
       "roundPrefix": "Serie C - Gruppe C - ",
       "source": "data/fixture-audits/raw/it-serie-c-gC.txt",
@@ -402,12 +414,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "pt-liga-portugal",
       "label": "Portugal - Liga Portugal",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "pt-liga-portugal",
       "fixturePrefix": "pt1-",
       "roundPrefix": "Liga Portugal - ",
       "excludeSourceGroupPrefixes": ["PORTUGAL: Liga Portugal - Championship Group"],
@@ -417,12 +430,13 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "pt-liga-portugal-2",
       "label": "Portugal - Liga Portugal 2",
-      "season": "2025-26",
+      "season": "2026-27",
+      "competitionId": "pt-liga-portugal-2",
       "fixturePrefix": "pt2-",
       "roundPrefix": "Liga Portugal 2 - ",
       "source": "data/fixture-audits/raw/pt-liga-portugal-2.txt",
@@ -431,26 +445,12 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
-    },
-    {
-      "id": "pt-liga-3-promotion",
-      "label": "Portugal - Liga 3 Oprykningsgruppe",
-      "season": "2025-26",
-      "fixturePrefix": "pt3-",
-      "roundPrefix": "Liga 3 - Oprykningsgruppe - ",
-      "source": "data/fixture-audits/raw/pt-liga-3.txt",
-      "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/portugal/liga-3/kommende/",
-        "timezone": "Europe/Copenhagen"
-      },
-      "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "nl-eredivisie",
       "label": "Holland - Eredivisie",
-      "season": "2025-26",
+      "season": "2026-27",
       "competitionId": "nl-eredivisie",
       "source": "data/fixture-audits/raw/nl-eredivisie.txt",
       "fetch": {
@@ -458,13 +458,27 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
+    },
+    {
+      "id": "nl-eerste-divisie",
+      "label": "Holland - Eerste Divisie",
+      "season": "2026-27",
+      "competitionId": "nl-eerste-divisie",
+      "source": "data/fixture-audits/raw/nl-eerste-divisie.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/holland/eerste-divisie/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-24"
     },
     {
       "id": "nl-eredivisie-playoffs",
       "label": "Holland - Eredivisie Playoffs",
       "season": "2025-26",
       "competitionId": "nl-promotion-relegation-playoffs",
+      "activeUntilDate": "2026-06-30",
       "source": "data/fixture-audits/raw/nl-eerste-divisie.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/holland/eerste-divisie/kommende/",
@@ -476,7 +490,7 @@
     {
       "id": "nl-tweede-divisie",
       "label": "Holland - Tweede Divisie",
-      "season": "2025-26",
+      "season": "2026-27",
       "competitionId": "nl-tweede-divisie",
       "source": "data/fixture-audits/raw/nl-tweede-divisie.txt",
       "fetch": {
@@ -484,95 +498,63 @@
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-24"
     },
     {
-      "id": "be-jupiler-champions-playoffs",
-      "label": "Belgien - Jupiler mesterskabsspil",
-      "season": "2025-26",
-      "competitionId": "be-pro-league-champions-playoffs",
-      "sourceGroupPrefix": "BELGIEN: Jupiler League - Mesterskabet - Slutspil",
-      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "id": "be-jupiler-pro-league",
+      "label": "Belgien - Jupiler Pro League",
+      "season": "2026-27",
+      "competitionId": "be-jupiler-pro-league",
+      "fixturePrefix": "be1-",
+      "source": "data/fixture-audits/raw/be-jupiler-pro-league.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
-      "id": "be-jupiler-europe-playoffs",
-      "label": "Belgien - Jupiler Conference League gruppe",
-      "season": "2025-26",
-      "competitionId": "be-pro-league-europe-playoffs",
-      "sourceGroupPrefix": "BELGIEN: Jupiler League - Conference League Gruppe",
-      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "id": "be-challenger-pro-league",
+      "label": "Belgien - Challenger Pro League",
+      "season": "2026-27",
+      "competitionId": "be-challenger-pro-league",
+      "fixturePrefix": "be2-",
+      "source": "data/fixture-audits/raw/be-challenger-pro-league.txt",
       "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "url": "https://www.flashscore.dk/fodbold/belgien/challenger-pro-league/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
-      "id": "be-jupiler-relegation-playoffs",
-      "label": "Belgien - Jupiler nedrykningsgruppe",
-      "season": "2025-26",
-      "competitionId": "be-pro-league-relegation-playoffs",
-      "sourceGroupPrefix": "BELGIEN: Jupiler League - Nedrykningsgruppe",
-      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
+      "id": "be-national-division-1-vv",
+      "label": "Belgien - National Division 1 VV",
+      "season": "2026-27",
+      "competitionId": "be-national-division-1-vv",
+      "fixturePrefix": "be3v-",
+      "source": "data/fixture-audits/raw/be-national-division-1-vv.txt",
       "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
+        "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-vv/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
-    },
-    {
-      "id": "be-promotion-relegation-playoff",
-      "label": "Belgien - Promotion/relegation playoff",
-      "season": "2025-26",
-      "competitionId": "be-promotion-relegation-playoffs",
-      "sourceGroupPrefix": "BELGIEN: Jupiler League - Nedrykning",
-      "source": "data/fixture-audits/raw/be-jupiler-league.txt",
-      "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/belgien/jupiler-pro-league/kommende/",
-        "timezone": "Europe/Copenhagen"
-      },
-      "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "be-national-division-1-acff",
       "label": "Belgien - National Division 1 ACFF",
-      "season": "2025-26",
+      "season": "2026-27",
       "competitionId": "be-national-division-1-acff",
-      "sourceGroupPrefix": "BELGIEN: National Division 1 - ACFF",
-      "excludeSourceGroupPrefixes": [
-        "BELGIEN: National Division 1 - ACFF - Gruppe for Oprykning",
-        "BELGIEN: National Division 1 - ACFF - Nedrykningsgruppe"
-      ],
+      "fixturePrefix": "be3a-",
       "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",
         "timezone": "Europe/Copenhagen"
       },
       "intervalDays": 14,
-      "anchorDate": "2026-05-11"
-    },
-    {
-      "id": "be-national-division-1-acff-promotion",
-      "label": "Belgien - National Division 1 ACFF oprykningsgruppe",
-      "season": "2025-26",
-      "competitionId": "be-national-division-1-acff-promotion-group",
-      "sourceGroupPrefix": "BELGIEN: National Division 1 - ACFF - Gruppe for Oprykning",
-      "source": "data/fixture-audits/raw/be-national-division-1-acff.txt",
-      "fetch": {
-        "url": "https://www.flashscore.dk/fodbold/belgien/national-division-1-acff/kommende/",
-        "timezone": "Europe/Copenhagen"
-      },
-      "intervalDays": 14,
-      "anchorDate": "2026-05-11"
+      "anchorDate": "2026-07-08"
     },
     {
       "id": "tr-super-lig",
@@ -592,6 +574,7 @@
       "label": "Tyrkiet - 1. Lig slutspil",
       "season": "2025-26",
       "competitionId": "tr-1-lig-playoffs",
+      "activeUntilDate": "2026-06-30",
       "source": "data/fixture-audits/raw/tr-1-lig.txt",
       "fetch": {
         "url": "https://www.flashscore.dk/fodbold/tyrkiet/1-lig/kommende/",
@@ -599,6 +582,254 @@
       },
       "intervalDays": 14,
       "anchorDate": "2026-05-11"
+    },
+    {
+      "id": "cz-1-liga",
+      "label": "Tjekkiet - 1. liga",
+      "season": "2026-27",
+      "competitionId": "cz-1-liga",
+      "source": "data/fixture-audits/raw/cz-1-liga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tjekkiet/1-liga/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-01"
+    },
+    {
+      "id": "cz-2-liga",
+      "label": "Tjekkiet - 2. liga",
+      "season": "2026-27",
+      "competitionId": "cz-2-liga",
+      "source": "data/fixture-audits/raw/cz-2-liga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tjekkiet/division-2/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-01"
+    },
+    {
+      "id": "cz-bohemian-football-league-a",
+      "label": "Tjekkiet - Bohemian Football League Gruppe A",
+      "season": "2026-27",
+      "competitionId": "cz-bohemian-football-league-a",
+      "source": "data/fixture-audits/raw/cz-bohemian-football-league-a.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tjekkiet/3-cfl-gruppe-a/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-01"
+    },
+    {
+      "id": "cz-bohemian-football-league-b",
+      "label": "Tjekkiet - Bohemian Football League Gruppe B",
+      "season": "2026-27",
+      "competitionId": "cz-bohemian-football-league-b",
+      "source": "data/fixture-audits/raw/cz-bohemian-football-league-b.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tjekkiet/3-cfl-gruppe-b/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-01"
+    },
+    {
+      "id": "cz-moravian-silesian-football-league",
+      "label": "Tjekkiet - Moravian-Silesian Football League",
+      "season": "2026-27",
+      "competitionId": "cz-moravian-silesian-football-league",
+      "source": "data/fixture-audits/raw/cz-moravian-silesian-football-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/tjekkiet/3-msfl/kommende/",
+        "timezone": "Europe/Copenhagen"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-01"
+    },
+    {
+      "id": "gr-super-league",
+      "label": "Grækenland - Super League",
+      "season": "2026-27",
+      "competitionId": "gr-super-league",
+      "source": "data/fixture-audits/raw/gr-super-league.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/graekenland/super-league/kommende/",
+        "timezone": "Europe/Athens"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-13"
+    },
+    {
+      "id": "gr-super-league-2",
+      "label": "Grækenland - Super League 2",
+      "season": "2026-27",
+      "competitionId": "gr-super-league-2",
+      "source": "data/fixture-audits/raw/gr-super-league-2.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/graekenland/super-league-2/kommende/",
+        "timezone": "Europe/Athens"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-13"
+    },
+    {
+      "id": "pl-ekstraklasa",
+      "label": "Polen - Ekstraklasa",
+      "season": "2026-27",
+      "competitionId": "pl-ekstraklasa",
+      "fixturePrefix": "plx-",
+      "roundPrefix": "Ekstraklasa - ",
+      "source": "data/fixture-audits/raw/pl-ekstraklasa.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/polen/ekstraklasa/kommende/",
+        "timezone": "Europe/Warsaw"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-13"
+    },
+    {
+      "id": "pl-i-liga",
+      "label": "Polen - I liga",
+      "season": "2026-27",
+      "competitionId": "pl-i-liga",
+      "fixturePrefix": "pl1-",
+      "roundPrefix": "I liga - ",
+      "source": "data/fixture-audits/raw/pl-i-liga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/polen/division-1/kommende/",
+        "timezone": "Europe/Warsaw"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-13"
+    },
+    {
+      "id": "pl-ii-liga",
+      "label": "Polen - II liga",
+      "season": "2026-27",
+      "competitionId": "pl-ii-liga",
+      "fixturePrefix": "pl2-",
+      "roundPrefix": "II liga - ",
+      "source": "data/fixture-audits/raw/pl-ii-liga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/polen/division-2/kommende/",
+        "timezone": "Europe/Warsaw"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-13"
+    },
+    {
+      "id": "se-allsvenskan",
+      "label": "Sverige - Allsvenskan",
+      "season": "2026",
+      "competitionId": "se-allsvenskan",
+      "source": "data/fixture-audits/raw/se-allsvenskan.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/sverige/allsvenskan/kommende/",
+        "timezone": "Europe/Stockholm",
+        "competitionFilter": "Allsvenskan"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-15"
+    },
+    {
+      "id": "se-superettan",
+      "label": "Sverige - Superettan",
+      "season": "2026",
+      "competitionId": "se-superettan",
+      "source": "data/fixture-audits/raw/se-superettan.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/sverige/superettan/kommende/",
+        "timezone": "Europe/Stockholm",
+        "competitionFilter": "Superettan"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-15"
+    },
+    {
+      "id": "se-ettan-norra",
+      "label": "Sverige - Ettan Norra",
+      "season": "2026",
+      "competitionId": "se-ettan-norra",
+      "source": "data/fixture-audits/raw/se-ettan-norra.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/sverige/1-division-norra/kommende/",
+        "timezone": "Europe/Stockholm",
+        "competitionFilter": "Division 1 - Nord"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-15"
+    },
+    {
+      "id": "se-ettan-sodra",
+      "label": "Sverige - Ettan Södra",
+      "season": "2026",
+      "competitionId": "se-ettan-sodra",
+      "source": "data/fixture-audits/raw/se-ettan-sodra.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/sverige/1-division-sodra/kommende/",
+        "timezone": "Europe/Stockholm",
+        "competitionFilter": "Division 1 - Syd"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-15"
+    },
+    {
+      "id": "lt-toplyga",
+      "label": "Litauen - TOPLYGA",
+      "season": "2026",
+      "competitionId": "lt-toplyga",
+      "source": "data/fixture-audits/raw/lt-toplyga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/litauen/toplyga/kommende/",
+        "timezone": "Europe/Vilnius",
+        "competitionFilter": "TOPLYGA"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-07"
+    },
+    {
+      "id": "lt-i-lyga",
+      "label": "Litauen - I Lyga",
+      "season": "2026",
+      "competitionId": "lt-i-lyga",
+      "source": "data/fixture-audits/raw/lt-i-lyga.txt",
+      "fetch": {
+        "url": "https://www.flashscore.dk/fodbold/litauen/i-lyga/kommende/",
+        "timezone": "Europe/Vilnius",
+        "competitionFilter": "I Lyga"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-07"
+    },
+    {
+      "id": "lt-ii-lyga-a",
+      "label": "Litauen - II Lyga A",
+      "season": "2026",
+      "competitionId": "lt-ii-lyga-a",
+      "source": "data/fixture-audits/raw/lt-ii-lyga-a.txt",
+      "fetch": {
+        "provider": "lff",
+        "url": "https://lietuvosfutbolas.lt/en/competitions/23383524/ii-lyga-a-div/",
+        "groupLabel": "LITAUEN: II Lyga A"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-12"
+    },
+    {
+      "id": "lt-ii-lyga-b",
+      "label": "Litauen - II Lyga B",
+      "season": "2026",
+      "competitionId": "lt-ii-lyga-b",
+      "source": "data/fixture-audits/raw/lt-ii-lyga-b.txt",
+      "fetch": {
+        "provider": "lff",
+        "url": "https://lietuvosfutbolas.lt/en/competitions/23384849/ii-lyga-b-div/",
+        "groupLabel": "LITAUEN: II Lyga B"
+      },
+      "intervalDays": 14,
+      "anchorDate": "2026-07-12"
     }
   ]
 }

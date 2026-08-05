@@ -21,6 +21,7 @@ APP_FIXTURES_CSV = WORKSPACE_ROOT / "Tribunetour" / "fixtures.csv"
 CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
+FETCH_LFF_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-lff-fixtures.py"
 FIXTURE_AUDIT_RUNNER = WEBSITE_ROOT / "scripts" / "run-fixture-audits.py"
 GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
 FIXTURES_JSON = WEBSITE_ROOT / "data" / "fixtures.json"
@@ -101,6 +102,25 @@ def normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", lowered).strip()
 
 
+def parse_source_kickoff(dt_token: str, season_id: str | None) -> datetime:
+    parts = dt_token.split()
+    if len(parts) != 4:
+        raise ValueError(f"Unexpected dt token: {dt_token}")
+
+    day, month, hour, minute = map(int, parts)
+    if season_id and re.fullmatch(r"\d{4}-\d{2,4}", season_id.strip()):
+        start_year = int(season_id[:4])
+        end_token = season_id.split("-", 1)[1]
+        end_year = (start_year // 100) * 100 + int(end_token) if len(end_token) == 2 else int(end_token)
+        year = start_year if month >= 7 else end_year
+    elif season_id and re.fullmatch(r"\d{4}", season_id.strip()):
+        year = int(season_id)
+    else:
+        year = datetime.now(LOCAL_TIMEZONE).year
+
+    return datetime(year, month, day, hour, minute)
+
+
 def inferred_season_window(season_id: str | None) -> tuple[datetime, datetime] | None:
     if not season_id:
         return None
@@ -115,6 +135,42 @@ def inferred_season_window(season_id: str | None) -> tuple[datetime, datetime] |
     if start >= end_exclusive:
         return None
     return start, end_exclusive
+
+
+def parse_season_years(season_id: str | None) -> tuple[int, int] | None:
+    if not season_id:
+        return None
+    match = re.fullmatch(r"(\d{4})-(\d{2}|\d{4})", season_id.strip())
+    if not match:
+        return None
+    start_year = int(match.group(1))
+    end_token = match.group(2)
+    end_year = (start_year // 100) * 100 + int(end_token) if len(end_token) == 2 else int(end_token)
+    return start_year, end_year
+
+
+def detect_stale_future_only_source(fixtures: list[SourceFixture], season_id: str | None, reference_date: date) -> str | None:
+    season_years = parse_season_years(season_id)
+    if not season_years or not fixtures:
+        return None
+
+    start_year, end_year = season_years
+    if reference_date.year != start_year or reference_date.month < 7:
+        return None
+
+    kickoffs = [datetime.fromisoformat(fixture.kickoff) for fixture in fixtures]
+    has_start_year_fixture = any(kickoff.year == start_year for kickoff in kickoffs)
+    has_end_year_fixture = any(kickoff.year == end_year for kickoff in kickoffs)
+    if has_end_year_fixture and not has_start_year_fixture:
+        first = min(kickoffs).date().isoformat()
+        last = max(kickoffs).date().isoformat()
+        return (
+            f"Source appears stale for season {season_id}: found only {end_year} fixtures "
+            f"({first} -> {last}) and no fixtures in {start_year}. "
+            f"Refusing to use this as upcoming data on {reference_date.isoformat()}."
+        )
+
+    return None
 
 
 def fixture_row_matches_inferred_season(row: dict) -> bool:
@@ -169,6 +225,16 @@ def load_json(path: Path):
 def load_config() -> list[dict]:
     payload = load_json(CONFIG_PATH)
     return payload.get("audits", [])
+
+
+def audit_is_active_on(audit: dict, target_date: date) -> bool:
+    active_from = str(audit.get("activeFromDate") or "").strip()
+    active_until = str(audit.get("activeUntilDate") or "").strip()
+    if active_from and target_date < date.fromisoformat(active_from):
+        return False
+    if active_until and target_date > date.fromisoformat(active_until):
+        return False
+    return True
 
 
 def load_aliases() -> dict[str, list[str]]:
@@ -272,18 +338,31 @@ def refresh_source(audit: dict, source: Path) -> str | None:
     if not fetch:
         return None
 
-    cmd = [
-        sys.executable,
-        str(FETCH_SCRIPT),
-        "--url",
-        fetch["url"],
-        "--output",
-        str(source),
-        "--timezone",
-        fetch.get("timezone", "Europe/Copenhagen"),
-    ]
-    if fetch.get("competitionFilter"):
-        cmd.extend(["--competition-filter", fetch["competitionFilter"]])
+    provider = (fetch.get("provider") or "flashscore").strip().lower()
+    if provider == "lff":
+        cmd = [
+            sys.executable,
+            str(FETCH_LFF_SCRIPT),
+            "--url",
+            fetch["url"],
+            "--output",
+            str(source),
+            "--group-label",
+            fetch["groupLabel"],
+        ]
+    else:
+        cmd = [
+            sys.executable,
+            str(FETCH_SCRIPT),
+            "--url",
+            fetch["url"],
+            "--output",
+            str(source),
+            "--timezone",
+            fetch.get("timezone", "Europe/Copenhagen"),
+        ]
+        if fetch.get("competitionFilter"):
+            cmd.extend(["--competition-filter", fetch["competitionFilter"]])
 
     completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
     if completed.returncode == 0:
@@ -431,7 +510,7 @@ def parse_source_matches(
             continue
         dt_token, source_group, round_label, home, away = parts[:5]
         try:
-            kickoff_dt = datetime.strptime(f"{dt_token} 2026", "%d %m %H %M %Y")
+            kickoff_dt = parse_source_kickoff(dt_token, audit["season"])
         except ValueError:
             continue
 
@@ -759,14 +838,13 @@ def write_daily_reports(
 
 def main() -> int:
     args = parse_args()
-    audits = load_config()
-    if not audits:
-        print("No audits configured", file=sys.stderr)
-        return 1
-
     tz = ZoneInfo("Europe/Copenhagen")
     local_today = date.fromisoformat(args.local_date) if args.local_date else datetime.now(tz).date()
     local_end = local_today + timedelta(days=max(args.days_ahead, 0))
+    audits = [audit for audit in load_config() if audit_is_active_on(audit, local_today)]
+    if not audits:
+        print("No audits configured", file=sys.stderr)
+        return 1
 
     aliases = load_aliases()
     club_names = load_club_names()
@@ -806,6 +884,13 @@ def main() -> int:
             local_today,
             local_end,
         )
+        stale_source_error = detect_stale_future_only_source(source_fixtures, audit["season"], local_today)
+        if stale_source_error:
+            sync_results.append(DailySyncResult(audit["id"], audit["label"], 0, 0, 0, [], [], [], 0, []))
+            source_fixtures_by_audit[audit["id"]] = []
+            unresolved_by_audit[audit["id"]] = [{"home": stale_source_error, "away": "", "homeResolved": False, "awayResolved": False}]
+            continue
+
         source_fixtures_by_audit[audit["id"]] = source_fixtures
         unresolved_by_audit[audit["id"]] = unresolved
 

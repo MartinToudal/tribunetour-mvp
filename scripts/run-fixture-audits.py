@@ -18,6 +18,7 @@ CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 AUDIT_SCRIPT = WEBSITE_ROOT / "scripts" / "audit-flashscore-fixtures.py"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
+FETCH_LFF_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-lff-fixtures.py"
 SYNC_SCRIPT = WEBSITE_ROOT / "scripts" / "sync-flashscore-fixtures.py"
 GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
 LOCAL_TIMEZONE = ZoneInfo("Europe/Copenhagen")
@@ -75,6 +76,16 @@ def current_local_date() -> str:
 
 def current_local_datetime() -> str:
     return datetime.now(LOCAL_TIMEZONE).replace(tzinfo=None).isoformat(timespec="minutes")
+
+
+def audit_is_active_on(audit: dict, target_date: date) -> bool:
+    active_from = str(audit.get("activeFromDate") or "").strip()
+    active_until = str(audit.get("activeUntilDate") or "").strip()
+    if active_from and target_date < date.fromisoformat(active_from):
+        return False
+    if active_until and target_date > date.fromisoformat(active_until):
+        return False
+    return True
 
 
 def inferred_season_end_date(audit: dict) -> str | None:
@@ -212,19 +223,32 @@ def refresh_source(audit: dict, source: Path) -> str | None:
     if not fetch:
         return None
 
-    cmd = [
-        sys.executable,
-        str(FETCH_SCRIPT),
-        "--url",
-        fetch["url"],
-        "--output",
-        str(source),
-        "--timezone",
-        fetch.get("timezone", "Europe/Copenhagen"),
-    ]
+    provider = (fetch.get("provider") or "flashscore").strip().lower()
+    if provider == "lff":
+        cmd = [
+            sys.executable,
+            str(FETCH_LFF_SCRIPT),
+            "--url",
+            fetch["url"],
+            "--output",
+            str(source),
+            "--group-label",
+            fetch["groupLabel"],
+        ]
+    else:
+        cmd = [
+            sys.executable,
+            str(FETCH_SCRIPT),
+            "--url",
+            fetch["url"],
+            "--output",
+            str(source),
+            "--timezone",
+            fetch.get("timezone", "Europe/Copenhagen"),
+        ]
 
-    if fetch.get("competitionFilter"):
-        cmd.extend(["--competition-filter", fetch["competitionFilter"]])
+        if fetch.get("competitionFilter"):
+            cmd.extend(["--competition-filter", fetch["competitionFilter"]])
 
     completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
     if completed.returncode == 0:
@@ -362,7 +386,8 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
 
 def main() -> int:
     args = parse_args()
-    audits = load_config()
+    today = datetime.now(LOCAL_TIMEZONE).date()
+    audits = [audit for audit in load_config() if audit_is_active_on(audit, today)]
     if not audits:
         print("No audits configured", file=sys.stderr)
         return 1
