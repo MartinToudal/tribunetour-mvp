@@ -237,6 +237,11 @@ def audit_is_active_on(audit: dict, target_date: date) -> bool:
     return True
 
 
+def audit_is_daily_enabled(audit: dict) -> bool:
+    value = audit.get("dailyCheckEnabled", True)
+    return value not in (False, 0, "0", "false", "False")
+
+
 def load_aliases() -> dict[str, list[str]]:
     if not ALIASES_JSON.exists():
         return {}
@@ -841,7 +846,7 @@ def main() -> int:
     tz = ZoneInfo("Europe/Copenhagen")
     local_today = date.fromisoformat(args.local_date) if args.local_date else datetime.now(tz).date()
     local_end = local_today + timedelta(days=max(args.days_ahead, 0))
-    audits = [audit for audit in load_config() if audit_is_active_on(audit, local_today)]
+    audits = [audit for audit in load_config() if audit_is_active_on(audit, local_today) and audit_is_daily_enabled(audit)]
     if not audits:
         print("No audits configured", file=sys.stderr)
         return 1
