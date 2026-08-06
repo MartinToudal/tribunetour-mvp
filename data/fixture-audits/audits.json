@@ -738,6 +738,7 @@
         "timezone": "Europe/Stockholm",
         "competitionFilter": "Allsvenskan"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-15"
     },
@@ -752,6 +753,7 @@
         "timezone": "Europe/Stockholm",
         "competitionFilter": "Superettan"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-15"
     },
@@ -766,6 +768,7 @@
         "timezone": "Europe/Stockholm",
         "competitionFilter": "Division 1 - Nord"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-15"
     },
@@ -780,6 +783,7 @@
         "timezone": "Europe/Stockholm",
         "competitionFilter": "Division 1 - Syd"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-15"
     },
@@ -794,6 +798,7 @@
         "timezone": "Europe/Vilnius",
         "competitionFilter": "TOPLYGA"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-07"
     },
@@ -808,6 +813,7 @@
         "timezone": "Europe/Vilnius",
         "competitionFilter": "I Lyga"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-07"
     },
@@ -822,6 +828,7 @@
         "url": "https://lietuvosfutbolas.lt/en/competitions/23383524/ii-lyga-a-div/",
         "groupLabel": "LITAUEN: II Lyga A"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-12"
     },
@@ -836,6 +843,7 @@
         "url": "https://lietuvosfutbolas.lt/en/competitions/23384849/ii-lyga-b-div/",
         "groupLabel": "LITAUEN: II Lyga B"
       },
+      "dailyCheckEnabled": false,
       "intervalDays": 14,
       "anchorDate": "2026-07-12"
     }
