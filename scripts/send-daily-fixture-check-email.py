@@ -32,6 +32,26 @@ def format_count(count: int, singular: str, plural: str) -> str:
     return f"{count} {plural}"
 
 
+def failure_categories(result: dict) -> list[str]:
+    status = result.get("status", "")
+    details = result.get("details", "") or ""
+
+    if status == "fetch-failed":
+        return ["kildeproblem"]
+
+    categories: list[str] = []
+    if extract_count(details, "unresolved-source-teams"):
+        categories.append("alias/navneproblem")
+    if extract_count(details, "missing-local"):
+        categories.append("manglende kamp")
+    if extract_count(details, "time-mismatch"):
+        categories.append("tidsafvigelse")
+    if extract_count(details, "missing-source"):
+        categories.append("lokalt mismatch")
+
+    return categories or ["uklassificeret"]
+
+
 def summarize_failure_reason(result: dict) -> str:
     status = result.get("status", "")
     details = result.get("details", "") or ""
@@ -61,13 +81,37 @@ def summarize_failure_reason(result: dict) -> str:
     return compact[:140] + ("…" if len(compact) > 140 else "") if compact else status
 
 
+def summarize_failure_line(result: dict) -> str:
+    category_text = ", ".join(failure_categories(result))
+    return f"{result['label']}: [{category_text}] {summarize_failure_reason(result)}"
+
+
+def summarize_failure_categories(payload: dict) -> str:
+    failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
+    if not failing:
+        return "Ingen aktive fejltyper i dagens check."
+
+    category_counts: dict[str, int] = {}
+    for result in failing:
+        for category in failure_categories(result):
+            category_counts[category] = category_counts.get(category, 0) + 1
+
+    ordered = ["alias/navneproblem", "manglende kamp", "tidsafvigelse", "lokalt mismatch", "kildeproblem", "uklassificeret"]
+    lines = ["Fejltyper i dagens check:"]
+    for category in ordered:
+        count = category_counts.get(category, 0)
+        if count:
+            lines.append(f"- {category}: {count} række(r)")
+    return "\n".join(lines)
+
+
 def summarize_failures(payload: dict) -> str:
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     if not failing:
         return "Alt så grønt ud i dagens check."
     lines = [f"{len(failing)} række(r) kræver opmærksomhed:"]
     for result in failing[:12]:
-        lines.append(f"- {result['label']}: {summarize_failure_reason(result)}")
+        lines.append(f"- {summarize_failure_line(result)}")
     return "\n".join(lines)
 
 
@@ -120,8 +164,20 @@ def build_html(payload: dict, updates_payload: dict) -> str:
     window = payload.get("window", {})
     failing = [result for result in payload.get("results", []) if result.get("status") != "passed"]
     total_updated = int(updates_payload.get("totalUpdated", 0))
+    category_counts: dict[str, int] = {}
+    for result in failing:
+        for category in failure_categories(result):
+            category_counts[category] = category_counts.get(category, 0) + 1
+    category_items = "".join(
+        f"<li><strong>{category}</strong>: {count} række(r)</li>"
+        for category, count in (
+            (category, category_counts.get(category, 0))
+            for category in ["alias/navneproblem", "manglende kamp", "tidsafvigelse", "lokalt mismatch", "kildeproblem", "uklassificeret"]
+        )
+        if count
+    ) or "<li>Ingen aktive fejltyper.</li>"
     items = "".join(
-        f"<li><strong>{result['label']}</strong> — {summarize_failure_reason(result)}</li>" for result in failing[:12]
+        f"<li><strong>{result['label']}</strong> — [{', '.join(failure_categories(result))}] {summarize_failure_reason(result)}</li>" for result in failing[:12]
     ) or "<li>Ingen fejl fundet.</li>"
     update_items = []
     for result in updates_payload.get("results", []):
@@ -149,6 +205,8 @@ def build_html(payload: dict, updates_payload: dict) -> str:
       <p><strong>Tjekkede rækker:</strong> {payload.get('checkedCompetitions', 0)}</p>
       <p><strong>Fejl fundet:</strong> {payload.get('failingCompetitions', 0)}</p>
       <p><strong>Automatiske opdateringer:</strong> {total_updated}</p>
+      <h2 style="font-size: 18px; margin-top: 24px;">Fejltyper</h2>
+      <ul>{category_items}</ul>
       <h2 style="font-size: 18px; margin-top: 24px;">Status</h2>
       <ul>{items}</ul>
       <h2 style="font-size: 18px; margin-top: 24px;">Opdateringer</h2>
@@ -245,6 +303,7 @@ def main() -> int:
             f"Tjekkede rækker: {payload.get('checkedCompetitions', 0)}",
             f"Fejl fundet: {failing_count}",
             f"Automatiske opdateringer: {total_updated}",
+            summarize_failure_categories(payload),
             summarize_failures(payload),
             summarize_updates(updates_payload),
         ]
