@@ -411,25 +411,6 @@ def run_targeted_fixture_audits(audit_ids: list[str]) -> dict[str, DailySyncResu
     return sync_map
 
 
-def merge_sync_results(primary: DailySyncResult, follow_up: DailySyncResult) -> DailySyncResult:
-    updates = [*primary.updates, *follow_up.updates]
-    added = [*primary.added, *follow_up.added]
-    removed = [*primary.removed, *follow_up.removed]
-    skipped = [*primary.skipped, *follow_up.skipped]
-    return DailySyncResult(
-        primary.audit_id,
-        primary.label,
-        len(updates) + len(added) + len(removed),
-        len(added),
-        len(removed),
-        updates,
-        added,
-        removed,
-        len(skipped),
-        skipped,
-    )
-
-
 def matches_audit(row: dict, audit: dict) -> bool:
     row_id = row["id"]
     row_round = row.get("round") or ""
@@ -934,16 +915,8 @@ def main() -> int:
             or has_duplicate_future_pairings(audit_by_id[result.audit_id], all_rows, local_today)
         ]
         if follow_up_ids:
-            sync_result_map = {result.audit_id: result for result in sync_results}
             follow_up_results = run_targeted_fixture_audits(follow_up_ids)
             follow_up_changed = any(result.updated_count > 0 for result in follow_up_results.values())
-            for audit_id, follow_up_result in follow_up_results.items():
-                original = sync_result_map.get(audit_id)
-                if not original:
-                    continue
-                sync_result_map[audit_id] = merge_sync_results(original, follow_up_result)
-
-            sync_results = [sync_result_map.get(result.audit_id, result) for result in sync_results]
             if follow_up_changed:
                 all_rows = load_json(FIXTURES_JSON)
                 rows_by_id_global = {row["id"]: row for row in all_rows}
