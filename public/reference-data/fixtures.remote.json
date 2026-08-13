@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-08-13T01:35:03.203Z",
-    "generatedAt": "2026-08-13T01:35:03.203Z",
-    "checksum": "fa27945f51d8224447966571f25143904267c7f0175a8975679470607439d8f0",
+    "version": "2026-08-13T05:13:20.604Z",
+    "generatedAt": "2026-08-13T05:13:20.604Z",
+    "checksum": "d8b7d5525020f2ef6d18a51a46b0c320d286d6addfb3a35e7bc288302f35f5e8",
     "signature": null
   },
   "fixtures": [
@@ -17514,7 +17514,7 @@
     },
     {
       "id": "sl-20260913-fc-k-benhavn-ac-horsens",
-      "kickoff": "2026-09-13T18:00:00+02:00",
+      "kickoff": "2026-09-11T19:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-fc-kobenhavn",
       "awayTeamId": "dk-ac-horsens",
@@ -17527,7 +17527,7 @@
     },
     {
       "id": "sl-20260913-fc-midtjylland-br-ndby-if",
-      "kickoff": "2026-09-13T18:00:00+02:00",
+      "kickoff": "2026-09-14T19:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-fc-midtjylland",
       "awayTeamId": "dk-brondby-if",
@@ -17553,7 +17553,7 @@
     },
     {
       "id": "sl-20260913-lyngby-s-nderjyske",
-      "kickoff": "2026-09-13T18:00:00+02:00",
+      "kickoff": "2026-09-13T14:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-lyngby-boldklub",
       "awayTeamId": "dk-sonderjyske",
@@ -17566,7 +17566,7 @@
     },
     {
       "id": "sl-20260913-randers-fc-ob",
-      "kickoff": "2026-09-13T18:00:00+02:00",
+      "kickoff": "2026-09-13T16:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-randers-fc",
       "awayTeamId": "dk-ob",
@@ -17579,7 +17579,7 @@
     },
     {
       "id": "sl-20260913-silkeborg-if-viborg-ff",
-      "kickoff": "2026-09-13T18:00:00+02:00",
+      "kickoff": "2026-09-13T14:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-silkeborg-if",
       "awayTeamId": "dk-viborg-ff",
@@ -17748,7 +17748,7 @@
     },
     {
       "id": "sl-20260920-ac-horsens-agf",
-      "kickoff": "2026-09-20T18:00:00+02:00",
+      "kickoff": "2026-09-20T16:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-ac-horsens",
       "awayTeamId": "dk-agf",
@@ -17761,7 +17761,7 @@
     },
     {
       "id": "sl-20260920-br-ndby-if-fc-k-benhavn",
-      "kickoff": "2026-09-20T18:00:00+02:00",
+      "kickoff": "2026-09-20T14:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-brondby-if",
       "awayTeamId": "dk-fc-kobenhavn",
@@ -17774,7 +17774,7 @@
     },
     {
       "id": "sl-20260920-lyngby-silkeborg-if",
-      "kickoff": "2026-09-20T18:00:00+02:00",
+      "kickoff": "2026-09-18T19:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-lyngby-boldklub",
       "awayTeamId": "dk-silkeborg-if",
@@ -17787,7 +17787,7 @@
     },
     {
       "id": "sl-20260920-ob-fc-midtjylland",
-      "kickoff": "2026-09-20T18:00:00+02:00",
+      "kickoff": "2026-09-19T18:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-ob",
       "awayTeamId": "dk-fc-midtjylland",
@@ -17800,7 +17800,7 @@
     },
     {
       "id": "sl-20260920-s-nderjyske-randers-fc",
-      "kickoff": "2026-09-20T18:00:00+02:00",
+      "kickoff": "2026-09-20T14:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-sonderjyske",
       "awayTeamId": "dk-randers-fc",
@@ -17826,7 +17826,7 @@
     },
     {
       "id": "sl-20260821-agf-ob",
-      "kickoff": "2026-08-21T19:00:00+02:00",
+      "kickoff": "2026-08-23T14:00:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "dk-agf",
       "awayTeamId": "dk-ob",
@@ -18723,7 +18723,7 @@
     },
     {
       "id": "1d-20260912-esbjerg-fb-hb-k-ge",
-      "kickoff": "2026-09-12T14:00:00+02:00",
+      "kickoff": "2026-09-12T15:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-esbjerg-fb",
       "awayTeamId": "dk-hb-koge",
@@ -18736,7 +18736,7 @@
     },
     {
       "id": "1d-20260912-hiller-d-fodbold-ab",
-      "kickoff": "2026-09-12T14:00:00+02:00",
+      "kickoff": "2026-09-12T13:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-hillerod-fodbold",
       "awayTeamId": "dk-ab",
@@ -18749,7 +18749,7 @@
     },
     {
       "id": "1d-20260912-hobro-ik-vejle-boldklub",
-      "kickoff": "2026-09-12T14:00:00+02:00",
+      "kickoff": "2026-09-11T18:30:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-hobro-ik",
       "awayTeamId": "dk-vejle-boldklub",
@@ -18775,7 +18775,7 @@
     },
     {
       "id": "1d-20260912-kolding-if-fc-fredericia",
-      "kickoff": "2026-09-12T14:00:00+02:00",
+      "kickoff": "2026-09-12T18:30:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-kolding-if",
       "awayTeamId": "dk-fc-fredericia",
@@ -18788,7 +18788,7 @@
     },
     {
       "id": "1d-20260912-vendsyssel-ff-aarhus-fremad",
-      "kickoff": "2026-09-12T14:00:00+02:00",
+      "kickoff": "2026-09-11T19:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-vendsyssel-ff",
       "awayTeamId": "dk-aarhus-fremad",
@@ -18970,7 +18970,7 @@
     },
     {
       "id": "1d-20260919-aab-vendsyssel-ff",
-      "kickoff": "2026-09-19T14:00:00+02:00",
+      "kickoff": "2026-09-20T14:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-aab",
       "awayTeamId": "dk-vendsyssel-ff",
@@ -18996,7 +18996,7 @@
     },
     {
       "id": "1d-20260919-fc-fredericia-vejle-boldklub",
-      "kickoff": "2026-09-19T14:00:00+02:00",
+      "kickoff": "2026-09-20T15:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-fc-fredericia",
       "awayTeamId": "dk-vejle-boldklub",
@@ -19009,7 +19009,7 @@
     },
     {
       "id": "1d-20260919-hb-k-ge-hobro-ik",
-      "kickoff": "2026-09-19T14:00:00+02:00",
+      "kickoff": "2026-09-21T19:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-hb-koge",
       "awayTeamId": "dk-hobro-ik",
@@ -19022,7 +19022,7 @@
     },
     {
       "id": "1d-20260919-kolding-if-hiller-d-fodbold",
-      "kickoff": "2026-09-19T14:00:00+02:00",
+      "kickoff": "2026-09-18T19:00:00+02:00",
       "round": "Runde 9",
       "homeTeamId": "dk-kolding-if",
       "awayTeamId": "dk-hillerod-fodbold",
@@ -19347,7 +19347,7 @@
     },
     {
       "id": "1d-20260828-aarhus-fremad-vejle-boldklub",
-      "kickoff": "2026-08-28T18:00:00+02:00",
+      "kickoff": "2026-08-30T14:00:00+02:00",
       "round": "Runde 6",
       "homeTeamId": "dk-aarhus-fremad",
       "awayTeamId": "dk-vejle-boldklub",
@@ -81431,84 +81431,6 @@
       "awayScore": null,
       "competitionId": "se-ettan-sodra",
       "seasonId": "2026"
-    },
-    {
-      "id": "sl-20270221-fc-k-benhavn-viborg-ff",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-fc-kobenhavn",
-      "awayTeamId": "dk-viborg-ff",
-      "venueClubId": "dk-fc-kobenhavn",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "sl-20270221-fc-midtjylland-ob",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-fc-midtjylland",
-      "awayTeamId": "dk-ob",
-      "venueClubId": "dk-fc-midtjylland",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "sl-20270221-fc-nordsj-lland-ac-horsens",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-fc-nordsjaelland",
-      "awayTeamId": "dk-ac-horsens",
-      "venueClubId": "dk-fc-nordsjaelland",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "sl-20270221-lyngby-br-ndby-if",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-lyngby-boldklub",
-      "awayTeamId": "dk-brondby-if",
-      "venueClubId": "dk-lyngby-boldklub",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "sl-20270221-silkeborg-if-randers-fc",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-silkeborg-if",
-      "awayTeamId": "dk-randers-fc",
-      "venueClubId": "dk-silkeborg-if",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "sl-20270221-s-nderjyske-agf",
-      "kickoff": "2027-02-21T18:00:00+02:00",
-      "round": "Runde 18",
-      "homeTeamId": "dk-sonderjyske",
-      "awayTeamId": "dk-agf",
-      "venueClubId": "dk-sonderjyske",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "dk-superliga",
-      "seasonId": "2026-27"
     },
     {
       "id": "3d-20260801-h-rsholm-usser-d-holstebro",
