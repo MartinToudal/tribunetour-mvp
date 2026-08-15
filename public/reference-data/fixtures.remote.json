@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-08-14T01:36:38.330Z",
-    "generatedAt": "2026-08-14T01:36:38.330Z",
-    "checksum": "717ca40ac2e1a8c7c007267b20f59ecbb27c9036cd00fa0dd234e4bf467043a0",
+    "version": "2026-08-15T01:40:49.049Z",
+    "generatedAt": "2026-08-15T01:40:49.049Z",
+    "checksum": "2bafc3bf4a986cca86f0cd6613762488cc27439541aff5baf1dfaf30f7ce763f",
     "signature": null
   },
   "fixtures": [
@@ -91392,7 +91392,7 @@
     },
     {
       "id": "nl-tweede-divisie-20260815-jong-almere-city-rijnsburgse-boys",
-      "kickoff": "2026-08-15T15:30:00+02:00",
+      "kickoff": "2026-08-15T17:30:00+02:00",
       "round": "Runde 1",
       "homeTeamId": "nl-jong-almere-city",
       "awayTeamId": "nl-rijnsburgse-boys",
