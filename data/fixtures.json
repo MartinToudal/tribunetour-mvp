@@ -54347,19 +54347,6 @@
     "seasonId": "2026-27"
   },
   {
-    "id": "fr1-20260823-psg-rennes",
-    "kickoff": "2026-08-23T20:45:00+02:00",
-    "round": "Runde 1",
-    "homeTeamId": "fr-psg",
-    "awayTeamId": "fr-rennes",
-    "venueClubId": "fr-psg",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "competitionId": "fr-ligue-1",
-    "seasonId": "2026-27"
-  },
-  {
     "id": "fr1-20261024-angers-lorient",
     "kickoff": "2026-10-24T17:00:00+02:00",
     "round": "Runde 8",
@@ -155671,5 +155658,18 @@
     "awayScore": null,
     "seasonId": "2026-27",
     "competitionId": "nl-tweede-divisie"
+  },
+  {
+    "id": "fr1-20260823-rennes-psg",
+    "kickoff": "2026-08-23T20:45:00+02:00",
+    "round": "Runde 1",
+    "homeTeamId": "fr-rennes",
+    "awayTeamId": "fr-psg",
+    "venueClubId": "fr-rennes",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2026-27",
+    "competitionId": "fr-ligue-1"
   }
 ]

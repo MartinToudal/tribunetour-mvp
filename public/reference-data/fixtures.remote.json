@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-08-21T05:01:51.134Z",
-    "generatedAt": "2026-08-21T05:01:51.134Z",
-    "checksum": "d3c178739b7d9c6bb39ae1c227c884ffbe468751d956d1a9a04d364f6ef7922b",
+    "version": "2026-08-22T01:45:55.584Z",
+    "generatedAt": "2026-08-22T01:45:55.584Z",
+    "checksum": "ff308842502a32bfed0f916ffde7522eb447490c6afb49a2979b8008790b1151",
     "signature": null
   },
   "fixtures": [
@@ -54347,19 +54347,6 @@
       "homeTeamId": "fr-le-havre",
       "awayTeamId": "fr-monaco",
       "venueClubId": "fr-le-havre",
-      "status": "scheduled",
-      "homeScore": null,
-      "awayScore": null,
-      "competitionId": "fr-ligue-1",
-      "seasonId": "2026-27"
-    },
-    {
-      "id": "fr1-20260823-psg-rennes",
-      "kickoff": "2026-08-23T20:45:00+02:00",
-      "round": "Runde 1",
-      "homeTeamId": "fr-psg",
-      "awayTeamId": "fr-rennes",
-      "venueClubId": "fr-psg",
       "status": "scheduled",
       "homeScore": null,
       "awayScore": null,
@@ -155678,6 +155665,19 @@
       "awayScore": null,
       "seasonId": "2026-27",
       "competitionId": "nl-tweede-divisie"
+    },
+    {
+      "id": "fr1-20260823-rennes-psg",
+      "kickoff": "2026-08-23T20:45:00+02:00",
+      "round": "Runde 1",
+      "homeTeamId": "fr-rennes",
+      "awayTeamId": "fr-psg",
+      "venueClubId": "fr-rennes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "fr-ligue-1"
     }
   ]
 }
