@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-08-22T01:45:55.584Z",
-    "generatedAt": "2026-08-22T01:45:55.584Z",
-    "checksum": "ff308842502a32bfed0f916ffde7522eb447490c6afb49a2979b8008790b1151",
+    "version": "2026-08-27T05:17:10.395Z",
+    "generatedAt": "2026-08-27T05:17:10.395Z",
+    "checksum": "4c09692970c302fe1ee49389a591b48051a8d37efed9e3431578f701d10794b4",
     "signature": null
   },
   "fixtures": [
@@ -18749,7 +18749,7 @@
     },
     {
       "id": "1d-20260912-hobro-ik-vejle-boldklub",
-      "kickoff": "2026-09-11T18:30:00+02:00",
+      "kickoff": "2026-09-11T18:00:00+02:00",
       "round": "Runde 8",
       "homeTeamId": "dk-hobro-ik",
       "awayTeamId": "dk-vejle-boldklub",
