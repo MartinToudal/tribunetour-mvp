@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-08-27T05:17:10.395Z",
-    "generatedAt": "2026-08-27T05:17:10.395Z",
-    "checksum": "4c09692970c302fe1ee49389a591b48051a8d37efed9e3431578f701d10794b4",
+    "version": "2026-08-29T01:49:44.055Z",
+    "generatedAt": "2026-08-29T01:49:44.055Z",
+    "checksum": "377c6104b5f2feee7376fc9e7a6306daa6e43597dd92e03fa44e5125259b86c2",
     "signature": null
   },
   "fixtures": [
@@ -51937,7 +51937,7 @@
     },
     {
       "id": "pt1-20260906-alverca-braga",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-05T19:00:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-alverca",
       "awayTeamId": "pt-braga",
@@ -51950,7 +51950,7 @@
     },
     {
       "id": "pt1-20260906-estoril-arouca",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-07T21:15:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-estoril-praia",
       "awayTeamId": "pt-arouca",
@@ -51963,7 +51963,7 @@
     },
     {
       "id": "pt1-20260906-estrela-famalicao",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-05T16:30:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-estrela",
       "awayTeamId": "pt-famalicao",
@@ -51976,7 +51976,7 @@
     },
     {
       "id": "pt1-20260906-fc-porto-moreirense",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-04T21:15:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-porto",
       "awayTeamId": "pt-moreirense",
@@ -51989,7 +51989,7 @@
     },
     {
       "id": "pt1-20260906-gil-vicente-academico-viseu",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-06T21:30:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-gil-vicente",
       "awayTeamId": "pt-academico-viseu",
@@ -52002,7 +52002,7 @@
     },
     {
       "id": "pt1-20260906-guimaraes-casa-pia",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-06T19:00:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-guimaraes",
       "awayTeamId": "pt-casa-pia",
@@ -52015,7 +52015,7 @@
     },
     {
       "id": "pt1-20260906-maritimo-benfica",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-05T19:00:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-maritimo",
       "awayTeamId": "pt-benfica",
@@ -52028,7 +52028,7 @@
     },
     {
       "id": "pt1-20260906-santa-clara-rio-ave",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-06T16:30:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-santa-clara",
       "awayTeamId": "pt-rio-ave",
@@ -52041,7 +52041,7 @@
     },
     {
       "id": "pt1-20260906-sporting-nacional",
-      "kickoff": "2026-09-06T17:00:00+02:00",
+      "kickoff": "2026-09-04T21:15:00+02:00",
       "round": "Runde 5",
       "homeTeamId": "pt-sporting",
       "awayTeamId": "pt-nacional",
@@ -53237,7 +53237,7 @@
     },
     {
       "id": "pt1-20260830-benfica-estoril",
-      "kickoff": "2026-08-31T19:45:00+02:00",
+      "kickoff": "2026-08-31T21:15:00+02:00",
       "round": "Runde 4",
       "homeTeamId": "pt-benfica",
       "awayTeamId": "pt-estoril-praia",
@@ -53250,7 +53250,7 @@
     },
     {
       "id": "pt1-20260830-braga-guimaraes",
-      "kickoff": "2026-08-31T21:45:00+02:00",
+      "kickoff": "2026-08-31T21:15:00+02:00",
       "round": "Runde 4",
       "homeTeamId": "pt-braga",
       "awayTeamId": "pt-guimaraes",
@@ -155678,6 +155678,123 @@
       "awayScore": null,
       "seasonId": "2026-27",
       "competitionId": "fr-ligue-1"
+    },
+    {
+      "id": "pt1-20261227-benfica-sporting",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-benfica",
+      "awayTeamId": "pt-sporting",
+      "venueClubId": "pt-benfica",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-casa-pia-famalicao",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-casa-pia",
+      "awayTeamId": "pt-famalicao",
+      "venueClubId": "pt-casa-pia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-estoril-alverca",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-estoril-praia",
+      "awayTeamId": "pt-alverca",
+      "venueClubId": "pt-estoril-praia",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-fc-porto-nacional",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-porto",
+      "awayTeamId": "pt-nacional",
+      "venueClubId": "pt-porto",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-gil-vicente-arouca",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-gil-vicente",
+      "awayTeamId": "pt-arouca",
+      "venueClubId": "pt-gil-vicente",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-guimaraes-rio-ave",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-guimaraes",
+      "awayTeamId": "pt-rio-ave",
+      "venueClubId": "pt-guimaraes",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-maritimo-braga",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-maritimo",
+      "awayTeamId": "pt-braga",
+      "venueClubId": "pt-maritimo",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-moreirense-academico-viseu",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-moreirense",
+      "awayTeamId": "pt-academico-viseu",
+      "venueClubId": "pt-moreirense",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
+    },
+    {
+      "id": "pt1-20261227-santa-clara-estrela",
+      "kickoff": "2026-12-27T17:00:00+02:00",
+      "round": "Runde 16",
+      "homeTeamId": "pt-santa-clara",
+      "awayTeamId": "pt-estrela",
+      "venueClubId": "pt-santa-clara",
+      "status": "scheduled",
+      "homeScore": null,
+      "awayScore": null,
+      "seasonId": "2026-27",
+      "competitionId": "pt-liga-portugal"
     }
   ]
 }
