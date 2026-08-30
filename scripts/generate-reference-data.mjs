@@ -14,6 +14,12 @@ const fixturesCsvPath = path.join(appDir, 'fixtures.csv');
 const stadiumsJsonPath = path.join(websiteRootDir, 'data', 'stadiums.json');
 const fixturesJsonPath = path.join(websiteRootDir, 'data', 'fixtures.json');
 const remoteFixturesJsonPath = path.join(websiteRootDir, 'public', 'reference-data', 'fixtures.remote.json');
+const remoteDenmarkFixturesJsonPath = path.join(
+  websiteRootDir,
+  'public',
+  'reference-data',
+  'fixtures.denmark.remote.json'
+);
 const leaguePacksDir = path.join(websiteRootDir, 'data', 'league-packs');
 const leaguePackCsvSources = [
   { leaguePack: 'germany_top_3', fileName: 'germany_top_3.csv' },
@@ -281,6 +287,78 @@ function sanitizeFixtures(fixtures) {
   return { sanitized, dropped };
 }
 
+function deduplicateFixtures(fixtures) {
+  const byId = new Map();
+  const duplicates = [];
+
+  const fixtureIdentity = (fixture) => JSON.stringify({
+    kickoff: fixture.kickoff,
+    round: fixture.round,
+    homeTeamId: fixture.homeTeamId,
+    awayTeamId: fixture.awayTeamId,
+    venueClubId: fixture.venueClubId,
+    status: fixture.status,
+    homeScore: fixture.homeScore,
+    awayScore: fixture.awayScore,
+  });
+
+  const seasonStartYear = (fixture) => {
+    const match = fixture.seasonId?.match(/^(\d{4})-/);
+    return match ? Number.parseInt(match[1], 10) : 0;
+  };
+
+  const completenessScore = (fixture) => (
+    (fixture.competitionId ? 1 : 0) + (fixture.seasonId ? 1 : 0)
+  );
+
+  for (const fixture of fixtures) {
+    const existing = byId.get(fixture.id);
+    if (!existing) {
+      byId.set(fixture.id, fixture);
+      continue;
+    }
+
+    if (fixtureIdentity(existing) !== fixtureIdentity(fixture)) {
+      throw new Error(`Conflicting fixture records share id ${fixture.id}`);
+    }
+
+    const existingSeasonStart = seasonStartYear(existing);
+    const fixtureSeasonStart = seasonStartYear(fixture);
+    if (
+      fixtureSeasonStart > existingSeasonStart
+        || (
+          fixtureSeasonStart === existingSeasonStart
+            && completenessScore(fixture) > completenessScore(existing)
+        )
+    ) {
+      byId.set(fixture.id, fixture);
+    }
+    duplicates.push(fixture);
+  }
+
+  return { fixtures: [...byId.values()], duplicates };
+}
+
+function selectDanishFixtures(fixtures, stadiums) {
+  const danishClubIds = new Set(
+    stadiums
+      .filter((stadium) => stadium.countryCode?.toLowerCase() === 'dk')
+      .map((stadium) => stadium.id)
+  );
+
+  const danishFixtures = fixtures.filter((fixture) => (
+    danishClubIds.has(fixture.homeTeamId)
+      && danishClubIds.has(fixture.awayTeamId)
+      && danishClubIds.has(fixture.venueClubId)
+  ));
+
+  if (danishClubIds.size === 0 || danishFixtures.length === 0) {
+    throw new Error('Danish fixture feed cannot be generated from an empty Danish scope');
+  }
+
+  return danishFixtures;
+}
+
 function stableJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -336,18 +414,28 @@ const stadiums = hasCanonicalCsvInputs
 const parsedFixtures = hasCanonicalCsvInputs
   ? parseFixtures()
   : readExistingJson(fixturesJsonPath);
-const { sanitized: fixtures, dropped: droppedFixtures } = sanitizeFixtures(parsedFixtures);
+const { sanitized: seasonValidFixtures, dropped: droppedFixtures } = sanitizeFixtures(parsedFixtures);
+const { fixtures, duplicates: duplicateFixtures } = deduplicateFixtures(seasonValidFixtures);
+const danishFixtures = selectDanishFixtures(fixtures, stadiums);
 const previousRemoteFixturesEnvelope = fs.existsSync(remoteFixturesJsonPath)
   ? readExistingJson(remoteFixturesJsonPath)
+  : null;
+const previousRemoteDenmarkFixturesEnvelope = fs.existsSync(remoteDenmarkFixturesJsonPath)
+  ? readExistingJson(remoteDenmarkFixturesJsonPath)
   : null;
 const remoteFixturesEnvelope = buildRemoteFixturesEnvelope(
   fixtures,
   previousRemoteFixturesEnvelope
 );
+const remoteDenmarkFixturesEnvelope = buildRemoteFixturesEnvelope(
+  danishFixtures,
+  previousRemoteDenmarkFixturesEnvelope
+);
 
 writeFileEnsured(stadiumsJsonPath, stableJson(stadiums));
 writeFileEnsured(fixturesJsonPath, stableJson(fixtures));
 writeFileEnsured(remoteFixturesJsonPath, stableJson(remoteFixturesEnvelope));
+writeFileEnsured(remoteDenmarkFixturesJsonPath, stableJson(remoteDenmarkFixturesEnvelope));
 const updatedLeaguePackSidecars = hasCanonicalCsvInputs
   ? writeLeaguePackSidecars(stadiums)
   : 0;
@@ -359,12 +447,17 @@ if (hasCanonicalCsvInputs) {
 }
 console.log(`Generated stadiums: ${stadiums.length}`);
 console.log(`Generated fixtures: ${fixtures.length}`);
+console.log(`Generated Danish fixtures: ${danishFixtures.length}`);
 if (droppedFixtures.length > 0) {
   console.log(`Dropped structurally invalid fixtures: ${droppedFixtures.length}`);
+}
+if (duplicateFixtures.length > 0) {
+  console.log(`Dropped identical duplicate fixture ids: ${duplicateFixtures.length}`);
 }
 console.log(`Updated ${path.relative(websiteRootDir, stadiumsJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, fixturesJsonPath)}`);
 console.log(`Updated ${path.relative(websiteRootDir, remoteFixturesJsonPath)}`);
+console.log(`Updated ${path.relative(websiteRootDir, remoteDenmarkFixturesJsonPath)}`);
 if (hasCanonicalCsvInputs) {
   console.log(`Updated league-pack sidecars: ${updatedLeaguePackSidecars}`);
 }

@@ -51,13 +51,16 @@ jobs:
             data/fixture-audits/reports/latest-daily-run.log
             data/fixture-audits/reports/latest-daily-email.log
 
+      - name: Validate Danish fixture feed
+        run: npm run validate:denmark-fixtures
+
       - name: Commit automatic daily fixture updates
         id: autocommit
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fixtures.json public/reference-data/fixtures.remote.json
+          git add data/fixtures.json public/reference-data/fixtures.remote.json public/reference-data/fixtures.denmark.remote.json
           if git diff --cached --quiet; then
             echo "changes_pushed=false" >> "$GITHUB_OUTPUT"
             echo "push_status=no_changes" >> "$GITHUB_OUTPUT"
