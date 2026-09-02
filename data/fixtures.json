@@ -52033,19 +52033,6 @@
     "seasonId": "2026-27"
   },
   {
-    "id": "pt1-20260906-sporting-nacional",
-    "kickoff": "2026-09-04T21:15:00+02:00",
-    "round": "Runde 5",
-    "homeTeamId": "pt-sporting",
-    "awayTeamId": "pt-nacional",
-    "venueClubId": "pt-sporting",
-    "status": "scheduled",
-    "homeScore": null,
-    "awayScore": null,
-    "competitionId": "pt-liga-portugal",
-    "seasonId": "2026-27"
-  },
-  {
     "id": "pt1-20261206-alverca-moreirense",
     "kickoff": "2026-12-06T17:00:00+02:00",
     "round": "Runde 13",
@@ -52918,7 +52905,7 @@
   },
   {
     "id": "pt1-20260823-moreirense-benfica",
-    "kickoff": "2026-09-09T21:15:00+02:00",
+    "kickoff": "2026-09-09T21:45:00+02:00",
     "round": "Runde 3",
     "homeTeamId": "pt-moreirense",
     "awayTeamId": "pt-benfica",
@@ -156484,5 +156471,18 @@
     "awayScore": null,
     "seasonId": "2026-27",
     "competitionId": "en-championship-playoffs"
+  },
+  {
+    "id": "pt1-20260905-sporting-nacional",
+    "kickoff": "2026-09-05T21:30:00+02:00",
+    "round": "Runde 5",
+    "homeTeamId": "pt-sporting",
+    "awayTeamId": "pt-nacional",
+    "venueClubId": "pt-sporting",
+    "status": "scheduled",
+    "homeScore": null,
+    "awayScore": null,
+    "seasonId": "2026-27",
+    "competitionId": "pt-liga-portugal"
   }
 ]
