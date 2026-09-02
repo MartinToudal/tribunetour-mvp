@@ -47,9 +47,9 @@ jobs:
           fi
 
           if [ "$mode" = "all" ]; then
-            cmd=(python3 scripts/run-fixture-audits.py --all --apply-safe-updates)
+            cmd=(python3 scripts/run-fixture-audits.py --country dk --all --apply-safe-updates)
           else
-            cmd=(python3 scripts/run-fixture-audits.py --due --apply-safe-updates)
+            cmd=(python3 scripts/run-fixture-audits.py --country dk --due --apply-safe-updates)
           fi
 
           output="$("${cmd[@]}" 2>&1)"

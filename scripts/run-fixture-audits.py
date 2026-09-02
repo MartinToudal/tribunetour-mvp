@@ -51,6 +51,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run configured Flashscore fixture audits.")
     parser.add_argument("--all", action="store_true", help="Run all configured audits regardless of cadence")
     parser.add_argument("--due", action="store_true", help="Run only audits that are due today")
+    parser.add_argument("--country", default="dk", help="Limit audits to a country code; use 'all' to include every configured country")
     parser.add_argument("--apply-safe-updates", action="store_true", help="Apply safe kickoff updates before auditing")
     parser.add_argument("--audit-id", action="append", default=[], help="Run one or more specific audits by id; repeatable")
     parser.add_argument("--skip-report-write", action="store_true", help="Run audits without overwriting latest audit report files")
@@ -61,6 +62,13 @@ def parse_args() -> argparse.Namespace:
 def load_config() -> list[dict]:
     payload = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     return payload.get("audits", [])
+
+
+def audit_matches_country(audit: dict, country_code: str) -> bool:
+    if country_code == "all":
+        return True
+    configured_country = (audit.get("countryCode") or audit.get("id", "").split("-", 1)[0]).strip().lower()
+    return configured_country == country_code
 
 
 def is_due_today(anchor_date: str, interval_days: int) -> bool:
@@ -387,7 +395,11 @@ def run_single_sync(audit: dict, refreshed_sources: dict[Path, str | None]) -> S
 def main() -> int:
     args = parse_args()
     today = datetime.now(LOCAL_TIMEZONE).date()
-    audits = [audit for audit in load_config() if audit_is_active_on(audit, today)]
+    audits = [
+        audit
+        for audit in load_config()
+        if audit_is_active_on(audit, today) and audit_matches_country(audit, args.country)
+    ]
     if not audits:
         print("No audits configured", file=sys.stderr)
         return 1

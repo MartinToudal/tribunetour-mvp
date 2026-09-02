@@ -89,9 +89,17 @@ class DailySyncResult:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a daily near-term fixture check across all configured competitions.")
     parser.add_argument("--apply-safe-updates", action="store_true", help="Apply safe kickoff updates before auditing")
+    parser.add_argument("--country", default="dk", help="Limit checks to a country code; use 'all' to include every configured country")
     parser.add_argument("--days-ahead", type=int, default=2, help="How many days ahead to include after today (default: 2)")
     parser.add_argument("--local-date", help="Override local Copenhagen date for testing, format YYYY-MM-DD")
     return parser.parse_args()
+
+
+def audit_matches_country(audit: dict, country_code: str) -> bool:
+    if country_code == "all":
+        return True
+    configured_country = (audit.get("countryCode") or audit.get("id", "").split("-", 1)[0]).strip().lower()
+    return configured_country == country_code
 
 
 def normalize_text(value: str) -> str:
@@ -827,7 +835,13 @@ def main() -> int:
     tz = ZoneInfo("Europe/Copenhagen")
     local_today = date.fromisoformat(args.local_date) if args.local_date else datetime.now(tz).date()
     local_end = local_today + timedelta(days=max(args.days_ahead, 0))
-    audits = [audit for audit in load_config() if audit_is_active_on(audit, local_today) and audit_is_daily_enabled(audit)]
+    audits = [
+        audit
+        for audit in load_config()
+        if audit_is_active_on(audit, local_today)
+        and audit_is_daily_enabled(audit)
+        and audit_matches_country(audit, args.country)
+    ]
     if not audits:
         print("No audits configured", file=sys.stderr)
         return 1

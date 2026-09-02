@@ -32,7 +32,7 @@ jobs:
         run: |
           set +e
           mkdir -p data/fixture-audits/reports
-          output="$(python3 scripts/run-daily-fixture-check.py --apply-safe-updates 2>&1)"
+          output="$(python3 scripts/run-daily-fixture-check.py --country dk --apply-safe-updates 2>&1)"
           status=$?
           printf '%s\n' "$output"
           printf '%s\n' "$output" > data/fixture-audits/reports/latest-daily-run.log

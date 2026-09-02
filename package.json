@@ -12,7 +12,7 @@
     "validate:denmark-fixtures": "node scripts/validate-denmark-fixture-feed.mjs",
     "audit:fixtures": "python3 scripts/audit-flashscore-fixtures.py --help",
     "audit:fixtures:fetch": "python3 scripts/fetch-flashscore-fixtures.py --help",
-    "audit:fixtures:run": "python3 scripts/run-fixture-audits.py --all",
+    "audit:fixtures:run": "python3 scripts/run-fixture-audits.py --country dk --all",
     "test:e2e": "playwright test"
   },
   "dependencies": {
