@@ -18,7 +18,6 @@ CONFIG_PATH = WEBSITE_ROOT / "data" / "fixture-audits" / "audits.json"
 REPORT_DIR = WEBSITE_ROOT / "data" / "fixture-audits" / "reports"
 AUDIT_SCRIPT = WEBSITE_ROOT / "scripts" / "audit-flashscore-fixtures.py"
 FETCH_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-flashscore-fixtures.py"
-FETCH_OFFICIAL_DK_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-danish-official-fixtures.py"
 FETCH_LFF_SCRIPT = WEBSITE_ROOT / "scripts" / "fetch-lff-fixtures.py"
 SYNC_SCRIPT = WEBSITE_ROOT / "scripts" / "sync-flashscore-fixtures.py"
 GENERATE_DATA_SCRIPT = WEBSITE_ROOT / "scripts" / "generate-reference-data.mjs"
@@ -233,20 +232,6 @@ def refresh_source(audit: dict, source: Path) -> str | None:
         return None
 
     provider = (fetch.get("provider") or "flashscore").strip().lower()
-    if provider == "official-dk":
-        cmd = [
-            sys.executable,
-            str(FETCH_OFFICIAL_DK_SCRIPT),
-            "--url", fetch["url"],
-            "--output", str(source),
-            "--group", fetch["group"],
-            "--round-prefix", fetch["roundPrefix"],
-            "--season", audit["season"],
-        ]
-        completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
-        if completed.returncode == 0:
-            return None
-        return completed.stdout.strip() or completed.stderr.strip() or "(no output)"
     if provider == "lff":
         cmd = [
             sys.executable,
