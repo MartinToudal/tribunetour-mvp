@@ -13,7 +13,6 @@
     "audit:fixtures": "python3 scripts/audit-flashscore-fixtures.py --help",
     "audit:fixtures:fetch": "python3 scripts/fetch-flashscore-fixtures.py --help",
     "audit:fixtures:run": "python3 scripts/run-fixture-audits.py --country dk --all",
-    "probe:api-football:denmark": "python3 scripts/check-api-football-denmark.py",
     "test:e2e": "playwright test"
   },
   "dependencies": {
