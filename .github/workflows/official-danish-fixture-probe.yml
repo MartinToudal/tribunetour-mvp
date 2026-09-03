@@ -1,0 +1,57 @@
+name: Official Danish Fixture Probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: superliga
+            url: https://superliga.dk/kampprogram/
+            group: Superliga
+            round_prefix: "Superliga - "
+          - id: first-division
+            url: https://1-division.dk/kampprogram
+            group: "1. division"
+            round_prefix: "1. division - "
+          - id: second-division
+            url: https://2-division.dk/kampprogram
+            group: "2. division"
+            round_prefix: "2. division - "
+          - id: third-division
+            url: https://3-division.dk/kampprogram
+            group: "3. division"
+            round_prefix: "3. division - "
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch and validate without changing production data
+        run: |
+          mkdir -p probe-output
+          python3 scripts/fetch-danish-official-fixtures.py \
+            --url "${{ matrix.url }}" \
+            --output "probe-output/${{ matrix.id }}.txt" \
+            --group "${{ matrix.group }}" \
+            --round-prefix "${{ matrix.round_prefix }}" \
+            --season "2026-27"
+          wc -l "probe-output/${{ matrix.id }}.txt"
+
+      - name: Upload read-only probe result
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-danish-fixtures-${{ matrix.id }}
+          path: probe-output/${{ matrix.id }}.txt
