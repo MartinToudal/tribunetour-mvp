@@ -12,6 +12,7 @@ const links = [
   { href: '/matches', label: 'Kampe' },
   { href: '/map', label: 'Kort' },
   { href: '/my', label: 'Min tur' },
+  { href: '/club-check', label: 'Klubtjek' },
   { href: '/support', label: 'Support' },
 ];
 
