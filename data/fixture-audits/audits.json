@@ -8,6 +8,9 @@
       "roundPrefix": "Superliga - ",
       "source": "data/fixture-audits/raw/dk-superliga.txt",
       "fetch": {
+        "provider": "official",
+        "tournamentId": 46,
+        "fallbackProvider": "flashscore",
         "url": "https://www.flashscore.dk/fodbold/danmark/superliga/kommende/",
         "timezone": "Europe/Copenhagen",
         "competitionFilter": "Superliga"
@@ -23,6 +26,9 @@
       "roundPrefix": "1. division - ",
       "source": "data/fixture-audits/raw/dk-1-division.txt",
       "fetch": {
+        "provider": "official",
+        "tournamentId": 85,
+        "fallbackProvider": "flashscore",
         "url": "https://www.flashscore.dk/fodbold/danmark/1-division/kommende/",
         "timezone": "Europe/Copenhagen"
       },
@@ -37,6 +43,9 @@
       "roundPrefix": "2. division - ",
       "source": "data/fixture-audits/raw/dk-2-division.txt",
       "fetch": {
+        "provider": "official",
+        "tournamentId": 239,
+        "fallbackProvider": "flashscore",
         "url": "https://www.flashscore.dk/fodbold/danmark/2-division/kommende/",
         "timezone": "Europe/Copenhagen"
       },
@@ -51,6 +60,9 @@
       "roundPrefix": "3. division - ",
       "source": "data/fixture-audits/raw/dk-3-division.txt",
       "fetch": {
+        "provider": "official",
+        "tournamentId": 240,
+        "fallbackProvider": "flashscore",
         "url": "https://www.flashscore.dk/fodbold/danmark/3-division/kommende/",
         "timezone": "Europe/Copenhagen"
       },

@@ -1,0 +1,31 @@
+name: Compare Danish Fixture Sources
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compare Danish fixture sources
+        run: python3 scripts/compare-danish-fixture-sources.py
+
+      - name: Upload comparison report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: danish-fixture-source-comparison
+          path: data/fixture-audits/source-comparisons/latest.*

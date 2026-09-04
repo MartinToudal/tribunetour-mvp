@@ -352,7 +352,32 @@ def refresh_source(audit: dict, source: Path) -> str | None:
         return None
 
     provider = (fetch.get("provider") or "flashscore").strip().lower()
-    if provider == "lff":
+    flashscore_command = [
+        sys.executable,
+        str(FETCH_SCRIPT),
+        "--url",
+        fetch["url"],
+        "--output",
+        str(source),
+        "--timezone",
+        fetch.get("timezone", "Europe/Copenhagen"),
+    ]
+    if fetch.get("competitionFilter"):
+        flashscore_command.extend(["--competition-filter", fetch["competitionFilter"]])
+
+    if provider == "official":
+        expected_season = str(audit.get("season", "")).replace("-", "/")
+        cmd = [
+            sys.executable,
+            str(WEBSITE_ROOT / "scripts" / "fetch-official-danish-fixtures.py"),
+            "--tournament-id",
+            str(fetch["tournamentId"]),
+            "--expected-season",
+            expected_season,
+            "--output",
+            str(source),
+        ]
+    elif provider == "lff":
         cmd = [
             sys.executable,
             str(FETCH_LFF_SCRIPT),
@@ -364,22 +389,23 @@ def refresh_source(audit: dict, source: Path) -> str | None:
             fetch["groupLabel"],
         ]
     else:
-        cmd = [
-            sys.executable,
-            str(FETCH_SCRIPT),
-            "--url",
-            fetch["url"],
-            "--output",
-            str(source),
-            "--timezone",
-            fetch.get("timezone", "Europe/Copenhagen"),
-        ]
-        if fetch.get("competitionFilter"):
-            cmd.extend(["--competition-filter", fetch["competitionFilter"]])
+        cmd = flashscore_command
 
     completed = subprocess.run(cmd, capture_output=True, text=True, cwd=WEBSITE_ROOT)
     if completed.returncode == 0:
         return None
+
+    if provider == "official" and fetch.get("fallbackProvider") == "flashscore":
+        fallback = subprocess.run(flashscore_command, capture_output=True, text=True, cwd=WEBSITE_ROOT)
+        if fallback.returncode == 0:
+            print("Official Danish fixture source failed; used Flashscore fallback.")
+            return None
+        return (
+            "Official source failed: "
+            + (completed.stdout.strip() or completed.stderr.strip() or "(no output)")
+            + "\nFlashscore fallback failed: "
+            + (fallback.stdout.strip() or fallback.stderr.strip() or "(no output)")
+        )
     return completed.stdout.strip() or completed.stderr.strip() or "(no output)"
 
 
