@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import LoginButton from './LoginButton';
+import { CLUB_CHECK_ADMIN_EMAIL, useClubCheckAdminAccess } from '../_hooks/useClubCheckAdminAccess';
 
 type SiteHeaderProps = {
   title?: string;
@@ -18,7 +19,9 @@ const links = [
 
 export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
   const pathname = usePathname();
+  const { isLoading: isAccessLoading, isAdmin, userEmail } = useClubCheckAdminAccess();
   const pageTitle = title === 'Tribunetour' ? 'Tribunetour' : title.replace(/^Tribunetour\s*·\s*/i, '');
+  const visibleLinks = links.filter((link) => link.href !== '/club-check' || (!isAccessLoading && isAdmin && userEmail === CLUB_CHECK_ADMIN_EMAIL));
 
   function isActive(href: string, label: string) {
     if (href === '/') return pathname === '/';
@@ -47,7 +50,7 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
         </div>
 
         <nav className="grid grid-cols-3 gap-2 pb-1 md:flex md:flex-wrap md:gap-2">
-          {links.map((link) => (
+          {visibleLinks.map((link) => (
             <a key={link.href} href={link.href} className="pill-nav min-w-0 justify-center whitespace-nowrap text-center md:justify-start" data-active={isActive(link.href, link.label) ? 'true' : 'false'}>
               {link.label}
             </a>

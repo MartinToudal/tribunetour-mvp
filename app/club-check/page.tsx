@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import SiteShell from '../(site)/_components/SiteShell';
+import { CLUB_CHECK_ADMIN_EMAIL, useClubCheckAdminAccess } from '../(site)/_hooks/useClubCheckAdminAccess';
 import stadiumSeed from '../../data/stadiums.json';
 import fixtureSeed from '../../data/fixtures.json';
 
@@ -81,6 +82,7 @@ function formatKickoff(value: string) {
 }
 
 export default function ClubCheckPage() {
+  const { isLoading: isAccessLoading, isAdmin, userEmail } = useClubCheckAdminAccess();
   const [day, setDay] = useState(todayKey);
   const [states, setStates] = useState<Record<string, CheckState>>({});
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -152,6 +154,14 @@ export default function ClubCheckPage() {
     link.download = `tribunetour-klubtjek-${day}.json`;
     link.click();
     URL.revokeObjectURL(url);
+  }
+
+  if (isAccessLoading) {
+    return <SiteShell title="Tribunetour · Klubtjek"><section className="site-card p-5 md:p-7"><p className="section-copy">Kontrollerer adgang...</p></section></SiteShell>;
+  }
+
+  if (userEmail !== CLUB_CHECK_ADMIN_EMAIL || !isAdmin) {
+    return <SiteShell title="Tribunetour · Klubtjek"><section className="site-card p-5 md:p-7"><div className="label-eyebrow">Privat adminværktøj</div><h1 className="mt-2 text-3xl font-semibold tracking-tight">Ingen adgang</h1><p className="section-copy mt-3">Klubtjek er kun tilgængeligt for den godkendte administrator. Log ind med den rigtige konto for at fortsætte.</p><a className="cta-secondary mt-5 inline-flex" href="/">Tilbage til forsiden</a></section></SiteShell>;
   }
 
   return (
