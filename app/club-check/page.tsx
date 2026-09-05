@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import SiteShell from '../(site)/_components/SiteShell';
 import { CLUB_CHECK_ADMIN_EMAIL, useClubCheckAdminAccess } from '../(site)/_hooks/useClubCheckAdminAccess';
+import { saveClubCheck } from '../(site)/_lib/clubCheckRepository';
 import stadiumSeed from '../../data/stadiums.json';
 import fixtureSeed from '../../data/fixtures.json';
 
@@ -50,6 +51,7 @@ const HISTORY_KEY = 'tribunetour.club-check-history.v1';
 const stadiums = stadiumSeed as Stadium[];
 const fixtures = fixtureSeed as Fixture[];
 const clubNames = Object.fromEntries(stadiums.map((stadium) => [stadium.id, stadium.team]));
+const danishClubIds = new Set(stadiums.filter((stadium) => stadium.countryCode?.toLowerCase() === 'dk').map((stadium) => stadium.id));
 
 function todayKey() {
   return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Copenhagen' }).format(new Date());
@@ -87,6 +89,7 @@ export default function ClubCheckPage() {
   const [states, setStates] = useState<Record<string, CheckState>>({});
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const activeStadiums = useMemo(
     () => stadiums.filter((stadium) => (stadium.membershipStatus ?? 'active') === 'active'),
@@ -111,9 +114,10 @@ export default function ClubCheckPage() {
   }
 
   function upcomingMatches(clubId: string) {
+    if (!danishClubIds.has(clubId)) return [];
     const now = Date.now();
     return fixtures
-      .filter((fixture) => fixture.status === 'scheduled' && new Date(fixture.kickoff).getTime() >= now && (fixture.homeTeamId === clubId || fixture.awayTeamId === clubId || fixture.venueClubId === clubId))
+      .filter((fixture) => fixture.status === 'scheduled' && danishClubIds.has(fixture.homeTeamId) && danishClubIds.has(fixture.awayTeamId) && new Date(fixture.kickoff).getTime() >= now && (fixture.homeTeamId === clubId || fixture.awayTeamId === clubId || fixture.venueClubId === clubId))
       .sort((a, b) => new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime())
       .slice(0, 5);
   }
@@ -122,9 +126,11 @@ export default function ClubCheckPage() {
     return clubNames[clubId] ?? clubId;
   }
 
-  function saveClub(club: Stadium) {
+  async function saveClub(club: Stadium) {
     const state = states[club.id];
     if (!state) return;
+    setSaved(false);
+    setSaveError(null);
     const changes: HistoryEntry['changes'] = {};
     if (String(club.lat ?? '') !== state.lat) changes.lat = { from: String(club.lat ?? ''), to: state.lat };
     if (String(club.lon ?? '') !== state.lon) changes.lon = { from: String(club.lon ?? ''), to: state.lon };
@@ -140,10 +146,23 @@ export default function ClubCheckPage() {
       },
       ...history,
     ];
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
-    window.localStorage.setItem(HISTORY_KEY, JSON.stringify(nextHistory));
-    setHistory(nextHistory);
-    setSaved(true);
+    try {
+      await saveClubCheck({
+        clubId: club.id,
+        checks: { fixtures: state.fixtures, location: state.location, league: state.league },
+        notes: state.notes,
+        snapshot: { team: club.team, stadium: club.name, city: club.city, league: club.league, lat: club.lat, lon: club.lon },
+        lat: state.lat,
+        lon: state.lon,
+        league: state.leagueValue,
+      });
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+      window.localStorage.setItem(HISTORY_KEY, JSON.stringify(nextHistory));
+      setHistory(nextHistory);
+      setSaved(true);
+    } catch (caught) {
+      setSaveError(caught instanceof Error ? caught.message : 'Kontrollen kunne ikke gemmes centralt.');
+    }
   }
 
   function exportHistory() {
@@ -230,7 +249,8 @@ export default function ClubCheckPage() {
         })}
       </div>
 
-      {saved && <div className="rounded-2xl border border-[rgba(184,255,106,0.3)] bg-[rgba(184,255,106,0.08)] p-4 text-sm">Kontrollen er gemt lokalt på denne maskine.</div>}
+      {saved && <div className="rounded-2xl border border-[rgba(184,255,106,0.3)] bg-[rgba(184,255,106,0.08)] p-4 text-sm">Kontrollen er gemt centralt og lokalt på denne maskine.</div>}
+      {saveError && <div className="rounded-2xl border border-red-400/30 bg-red-400/10 p-4 text-sm">Kontrollen blev ikke gemt: {saveError}</div>}
       <section className="site-card-soft p-5 md:p-7"><div className="label-eyebrow">Kontrolhistorik</div><h2 className="mt-2 text-xl font-semibold">Seneste registreringer</h2><div className="mt-4 grid gap-2 text-sm text-[var(--muted)]">{history.slice(0, 8).map((entry) => <div key={`${entry.timestamp}-${entry.clubId}`} className="flex flex-col justify-between gap-1 border-b border-white/10 py-3 sm:flex-row"><span><strong className="text-[var(--text)]">{entry.club}</strong> · {entry.checks.fixtures && entry.checks.location && entry.checks.league ? 'godkendt' : 'delvist kontrolleret'}</span><span>{formatKickoff(entry.timestamp)}</span></div>)}{!history.length && <p>Ingen kontroller er gemt endnu.</p>}</div></section>
     </SiteShell>
   );
