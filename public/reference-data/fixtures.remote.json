@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-09-02T04:31:58.449Z",
-    "generatedAt": "2026-09-02T04:31:58.449Z",
-    "checksum": "43ba9301378aa30f88537d071ce33cc33c61610cc0055adf7f0517fbf7a65a8d",
+    "version": "2026-09-09T01:31:08.603Z",
+    "generatedAt": "2026-09-09T01:31:08.603Z",
+    "checksum": "a8f8c2adeb159f09a59bd6533ef7e7bbe66d5e0ab23196d2b63d6bbed955858f",
     "signature": null
   },
   "fixtures": [
@@ -19984,7 +19984,7 @@
     },
     {
       "id": "2d-20260910-fremad-amager-hik",
-      "kickoff": "2026-09-10T19:00:00+02:00",
+      "kickoff": "2026-09-11T19:00:00+02:00",
       "round": "Runde 7",
       "homeTeamId": "dk-fremad-amager",
       "awayTeamId": "dk-hik",
