@@ -26,12 +26,15 @@ export async function saveClubCheck(payload: ClubCheckPayload): Promise<string> 
   });
 
   if (submitError || !reviewId) {
-    throw submitError ?? new Error('Kontrollen kunne ikke gemmes');
+    const message = submitError?.message
+      ? `Kontrollen kunne ikke gemmes centralt: ${submitError.message}`
+      : 'Kontrollen kunne ikke gemmes centralt';
+    throw new Error(message);
   }
 
   const { error: approveError } = await supabase.rpc('approve_club_check', { p_review_id: reviewId });
   if (approveError) {
-    throw approveError;
+    throw new Error(`Kontrollen blev gemt, men godkendelsen fejlede: ${approveError.message}`);
   }
 
   return reviewId as string;

@@ -31,8 +31,19 @@ create index if not exists idx_club_check_reviews_club_checked_at
 create index if not exists idx_club_check_proposals_review
   on public.club_check_change_proposals (review_id);
 
+create table if not exists public.club_check_stadium_overrides (
+  club_id text primary key,
+  lat double precision,
+  lon double precision,
+  league text,
+  source_review_id uuid references public.club_check_reviews(id) on delete set null,
+  updated_by uuid references auth.users(id) on delete set null,
+  updated_at timestamptz not null default timezone('utc', now())
+);
+
 alter table public.club_check_reviews enable row level security;
 alter table public.club_check_change_proposals enable row level security;
+alter table public.club_check_stadium_overrides enable row level security;
 
 create or replace function public.submit_club_check(
   p_club_id text,
@@ -50,37 +61,39 @@ set search_path = public, auth
 as $$
 declare
   v_review_id uuid;
-  v_current record;
+  v_current_lat text;
+  v_current_lon text;
+  v_current_league text;
 begin
   if not public.is_current_user_admin() then
     raise exception 'not_authorized';
   end if;
 
-  select id, lat::text as lat, lon::text as lon, league
-    into v_current
+  select lat::text, lon::text, league
+    into v_current_lat, v_current_lon, v_current_league
     from public.stadiums
    where id = p_club_id
    limit 1;
 
-  if v_current.id is null then
-    raise exception 'club_not_found';
-  end if;
+  v_current_lat := coalesce(v_current_lat, p_snapshot->>'lat', '');
+  v_current_lon := coalesce(v_current_lon, p_snapshot->>'lon', '');
+  v_current_league := coalesce(v_current_league, p_snapshot->>'league', '');
 
   insert into public.club_check_reviews (club_id, checked_by, checks, notes, snapshot)
   values (p_club_id, auth.uid(), coalesce(p_checks, '{}'::jsonb), coalesce(p_notes, ''), coalesce(p_snapshot, '{}'::jsonb))
   returning id into v_review_id;
 
-  if coalesce(p_lat, '') <> coalesce(v_current.lat, '') then
+  if coalesce(p_lat, '') <> v_current_lat then
     insert into public.club_check_change_proposals (review_id, club_id, field_name, old_value, new_value)
-    values (v_review_id, p_club_id, 'lat', v_current.lat, p_lat);
+    values (v_review_id, p_club_id, 'lat', v_current_lat, p_lat);
   end if;
-  if coalesce(p_lon, '') <> coalesce(v_current.lon, '') then
+  if coalesce(p_lon, '') <> v_current_lon then
     insert into public.club_check_change_proposals (review_id, club_id, field_name, old_value, new_value)
-    values (v_review_id, p_club_id, 'lon', v_current.lon, p_lon);
+    values (v_review_id, p_club_id, 'lon', v_current_lon, p_lon);
   end if;
-  if coalesce(p_league, '') <> coalesce(v_current.league, '') then
+  if coalesce(p_league, '') <> v_current_league then
     insert into public.club_check_change_proposals (review_id, club_id, field_name, old_value, new_value)
-    values (v_review_id, p_club_id, 'league', v_current.league, p_league);
+    values (v_review_id, p_club_id, 'league', v_current_league, p_league);
   end if;
 
   return v_review_id;
@@ -109,10 +122,19 @@ begin
   for v_proposal in select * from public.club_check_change_proposals where review_id = p_review_id and status = 'pending' loop
     if v_proposal.field_name = 'lat' then
       update public.stadiums set lat = nullif(v_proposal.new_value, '')::double precision where id = v_proposal.club_id;
+      insert into public.club_check_stadium_overrides (club_id, lat, source_review_id, updated_by)
+      values (v_proposal.club_id, nullif(v_proposal.new_value, '')::double precision, p_review_id, auth.uid())
+      on conflict (club_id) do update set lat = excluded.lat, source_review_id = excluded.source_review_id, updated_by = excluded.updated_by, updated_at = timezone('utc', now());
     elsif v_proposal.field_name = 'lon' then
       update public.stadiums set lon = nullif(v_proposal.new_value, '')::double precision where id = v_proposal.club_id;
+      insert into public.club_check_stadium_overrides (club_id, lon, source_review_id, updated_by)
+      values (v_proposal.club_id, nullif(v_proposal.new_value, '')::double precision, p_review_id, auth.uid())
+      on conflict (club_id) do update set lon = excluded.lon, source_review_id = excluded.source_review_id, updated_by = excluded.updated_by, updated_at = timezone('utc', now());
     elsif v_proposal.field_name = 'league' then
       update public.stadiums set league = nullif(v_proposal.new_value, '') where id = v_proposal.club_id;
+      insert into public.club_check_stadium_overrides (club_id, league, source_review_id, updated_by)
+      values (v_proposal.club_id, nullif(v_proposal.new_value, ''), p_review_id, auth.uid())
+      on conflict (club_id) do update set league = excluded.league, source_review_id = excluded.source_review_id, updated_by = excluded.updated_by, updated_at = timezone('utc', now());
     end if;
     update public.club_check_change_proposals
        set status = 'approved', decided_by = auth.uid(), decided_at = timezone('utc', now())
