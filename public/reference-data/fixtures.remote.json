@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-09-10T04:31:08.222Z",
-    "generatedAt": "2026-09-10T04:31:08.222Z",
-    "checksum": "1c8e8a1617bff6f173e32a1b163ab7f5db6b332694ff6223099a7592b1303ec0",
+    "version": "2026-09-24T04:31:03.919Z",
+    "generatedAt": "2026-09-24T04:31:03.919Z",
+    "checksum": "2cdd8dac833463ee4d54f32d1d9fa45958037f2ef59c59e300e3fdcf30bbf684",
     "signature": null
   },
   "fixtures": [
@@ -19555,7 +19555,7 @@
     },
     {
       "id": "1d-20261031-aarhus-fremad-hiller-d-fodbold",
-      "kickoff": "2026-10-30T19:00:00+02:00",
+      "kickoff": "2026-11-01T15:00:00+02:00",
       "round": "Runde 13",
       "homeTeamId": "dk-aarhus-fremad",
       "awayTeamId": "dk-hillerod-fodbold",
@@ -21492,7 +21492,7 @@
     },
     {
       "id": "3d-20261024-bk-frem-fc-helsing-r",
-      "kickoff": "2026-10-24T14:00:00+02:00",
+      "kickoff": "2026-10-23T18:30:00+02:00",
       "round": "Runde 13",
       "homeTeamId": "dk-frem",
       "awayTeamId": "dk-fc-helsingor",

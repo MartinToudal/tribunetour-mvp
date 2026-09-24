@@ -19548,7 +19548,7 @@
   },
   {
     "id": "1d-20261031-aarhus-fremad-hiller-d-fodbold",
-    "kickoff": "2026-10-30T19:00:00+02:00",
+    "kickoff": "2026-11-01T15:00:00+02:00",
     "round": "Runde 13",
     "homeTeamId": "dk-aarhus-fremad",
     "awayTeamId": "dk-hillerod-fodbold",
@@ -21485,7 +21485,7 @@
   },
   {
     "id": "3d-20261024-bk-frem-fc-helsing-r",
-    "kickoff": "2026-10-24T14:00:00+02:00",
+    "kickoff": "2026-10-23T18:30:00+02:00",
     "round": "Runde 13",
     "homeTeamId": "dk-frem",
     "awayTeamId": "dk-fc-helsingor",
