@@ -14,6 +14,7 @@ const links = [
   { href: '/map', label: 'Kort' },
   { href: '/my', label: 'Min tur' },
   { href: '/club-check', label: 'Klubtjek' },
+  { href: '/admin/reference-data', label: 'Dataadmin' },
   { href: '/support', label: 'Support' },
 ];
 
@@ -21,7 +22,10 @@ export default function SiteHeader({ title = 'Tribunetour' }: SiteHeaderProps) {
   const pathname = usePathname();
   const { isLoading: isAccessLoading, isAdmin, userEmail } = useClubCheckAdminAccess();
   const pageTitle = title === 'Tribunetour' ? 'Tribunetour' : title.replace(/^Tribunetour\s*·\s*/i, '');
-  const visibleLinks = links.filter((link) => link.href !== '/club-check' || (!isAccessLoading && isAdmin && userEmail === CLUB_CHECK_ADMIN_EMAIL));
+  const visibleLinks = links.filter((link) => {
+    const isAdminLink = link.href === '/club-check' || link.href === '/admin/reference-data';
+    return !isAdminLink || (!isAccessLoading && isAdmin && userEmail === CLUB_CHECK_ADMIN_EMAIL);
+  });
 
   function isActive(href: string, label: string) {
     if (href === '/') return pathname === '/';

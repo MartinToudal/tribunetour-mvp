@@ -190,6 +190,26 @@ function normalizeStadiums(stadiums: Stadium[]): Stadium[] {
   );
 }
 
+function normalizeRemoteStadium(row: Record<string, unknown>): Stadium {
+  return {
+    ...(row as unknown as Stadium),
+    id: String(row.id ?? ''),
+    name: String(row.name ?? ''),
+    team: String(row.team ?? ''),
+    league: String(row.league ?? ''),
+    city: row.city == null ? undefined : String(row.city),
+    lat: row.lat == null ? undefined : Number(row.lat),
+    lon: row.lon == null ? undefined : Number(row.lon),
+    countryCode: String(row.countryCode ?? row.country_code ?? '') || undefined,
+    leagueCode: String(row.leagueCode ?? row.league_code ?? '') || undefined,
+    leaguePack: String(row.leaguePack ?? row.league_pack ?? '') || undefined,
+    shortCode: String(row.shortCode ?? row.short_code ?? '') || undefined,
+    primaryCompetitionId: String(row.primaryCompetitionId ?? row.competition_id ?? row.competitionId ?? '') || undefined,
+    primarySeasonId: String(row.primarySeasonId ?? row.season_id ?? row.seasonId ?? '') || undefined,
+    membershipStatus: (row.membershipStatus ?? row.membership_status ?? 'active') as CompetitionMembershipStatus,
+  };
+}
+
 export async function getStadiums(): Promise<Stadium[]> {
   if (!hasSupabaseReferenceData) {
     return enabledSeedStadiums;
@@ -208,7 +228,7 @@ export async function getStadiums(): Promise<Stadium[]> {
     return enabledSeedStadiums;
   }
 
-  return normalizeStadiums([...(data as Stadium[]), ...enabledExperimentalStadiums]);
+  return normalizeStadiums([...(data as Record<string, unknown>[]).map(normalizeRemoteStadium), ...enabledExperimentalStadiums]);
 }
 
 export async function getFixtures(): Promise<Fixture[]> {
