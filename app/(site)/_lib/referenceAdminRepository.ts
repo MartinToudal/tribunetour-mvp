@@ -33,6 +33,7 @@ export type ReferenceStadium = {
   membership_status: string;
   lat: number;
   lon: number;
+  updated_at: string;
 };
 
 export type ReferenceAdminData = {
@@ -65,6 +66,7 @@ function normalizeStadium(row: Record<string, unknown>): ReferenceStadium {
     membership_status: text(row.membership_status ?? row.membershipStatus) || 'active',
     lat: numberValue(row.lat),
     lon: numberValue(row.lon),
+    updated_at: text(row.updated_at),
   };
 }
 
@@ -166,6 +168,7 @@ export async function upsertReferenceLeague(input: { code: string; country_code:
 
 export async function upsertReferenceStadium(stadium: ReferenceStadium) {
   if (!supabase) throw new Error('Supabase er ikke konfigureret.');
-  const { error } = await supabase.rpc('upsert_reference_stadium', { p_payload: stadium });
+  const { updated_at: _updatedAt, ...payload } = stadium;
+  const { error } = await supabase.rpc('upsert_reference_stadium', { p_payload: payload });
   if (error) throw error;
 }

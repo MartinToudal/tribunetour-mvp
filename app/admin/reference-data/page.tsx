@@ -15,6 +15,7 @@ import {
 const emptyStadium: ReferenceStadium = {
   id: '', team: '', name: '', city: '', league: '', country_code: 'dk', league_code: '', league_pack: '',
   short_code: '', competition_id: '', season_id: '', membership_status: 'active', lat: 0, lon: 0,
+  updated_at: '',
 };
 
 function errorText(error: unknown) {
@@ -24,6 +25,11 @@ function errorText(error: unknown) {
   if (message.includes('stadium_id_required')) return 'Klub-ID er påkrævet og bør være stabilt.';
   if (message.includes('invalid_latitude') || message.includes('invalid_longitude')) return 'Koordinaterne ligger uden for et gyldigt område.';
   return message;
+}
+
+function formatUpdatedAt(value: string) {
+  if (!value) return 'Ikke centralt opdateret';
+  return new Intl.DateTimeFormat('da-DK', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
 }
 
 export default function ReferenceDataAdminPage() {
@@ -132,7 +138,7 @@ export default function ReferenceDataAdminPage() {
           <select className="field-input" value={leagueFilter} onChange={(event) => setLeagueFilter(event.target.value)}><option value="all">Alle rækker</option>{(data?.leagues ?? []).map((league) => <option key={league.code} value={league.code}>{league.name}</option>)}</select>
           <div className="stat-chip text-sm">{visibleStadiums.length} af {data?.stadiums.length ?? 0}</div>
         </div>
-        <div className="mt-5 overflow-x-auto"><table className="w-full min-w-[920px] text-left text-sm"><thead className="text-[var(--muted)]"><tr><th className="px-3 py-2">Klub</th><th className="px-3 py-2">Land</th><th className="px-3 py-2">Række</th><th className="px-3 py-2">Stadion</th><th className="px-3 py-2">Koordinater</th><th className="px-3 py-2" /></tr></thead><tbody>{visibleStadiums.map((stadium) => <tr className="border-t border-white/10" key={stadium.id}><td className="px-3 py-3"><strong>{stadium.team}</strong><div className="text-xs text-[var(--muted)]">{stadium.id}</div></td><td className="px-3 py-3">{stadium.country_code.toUpperCase()}</td><td className="px-3 py-3">{stadium.league}</td><td className="px-3 py-3">{stadium.name}<div className="text-xs text-[var(--muted)]">{stadium.city}</div></td><td className="px-3 py-3">{stadium.lat.toFixed(5)}, {stadium.lon.toFixed(5)}</td><td className="px-3 py-3 text-right"><button className="cta-secondary" onClick={() => beginEdit(stadium)}>Redigér</button></td></tr>)}</tbody></table></div>
+        <div className="mt-5 overflow-x-auto"><table className="w-full min-w-[1080px] text-left text-sm"><thead className="text-[var(--muted)]"><tr><th className="px-3 py-2">Klub</th><th className="px-3 py-2">Land</th><th className="px-3 py-2">Række</th><th className="px-3 py-2">Stadion</th><th className="px-3 py-2">Koordinater</th><th className="px-3 py-2">Senest opdateret</th><th className="px-3 py-2" /></tr></thead><tbody>{visibleStadiums.map((stadium) => <tr className="border-t border-white/10" key={stadium.id}><td className="px-3 py-3"><strong>{stadium.team}</strong><div className="text-xs text-[var(--muted)]">{stadium.id}</div></td><td className="px-3 py-3">{stadium.country_code.toUpperCase()}</td><td className="px-3 py-3">{stadium.league}</td><td className="px-3 py-3">{stadium.name}<div className="text-xs text-[var(--muted)]">{stadium.city}</div></td><td className="px-3 py-3">{stadium.lat.toFixed(5)}, {stadium.lon.toFixed(5)}</td><td className="px-3 py-3 text-[var(--muted)]">{formatUpdatedAt(stadium.updated_at)}</td><td className="px-3 py-3 text-right"><button className="cta-secondary" onClick={() => beginEdit(stadium)}>Redigér</button></td></tr>)}</tbody></table></div>
       </section>
 
       <section className="grid gap-5 md:grid-cols-2">
