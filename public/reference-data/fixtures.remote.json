@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2026-10-08T04:31:04.781Z",
-    "generatedAt": "2026-10-08T04:31:04.781Z",
-    "checksum": "7dbd57ec7f80fa630bda1bdc06749d42477dab0665a0024a63f10488f67c362a",
+    "version": "2026-11-05T01:31:03.006Z",
+    "generatedAt": "2026-11-05T01:31:03.006Z",
+    "checksum": "9a746f9d1bb18fdba935d09c611765cc33acdeabff992fd4236cdee267ff2987",
     "signature": null
   },
   "fixtures": [
@@ -19906,7 +19906,7 @@
     },
     {
       "id": "2d-20261107-middelfart-n-stved-bk",
-      "kickoff": "2026-11-07T14:00:00+02:00",
+      "kickoff": "2026-11-07T13:00:00+02:00",
       "round": "Runde 15",
       "homeTeamId": "dk-middelfart",
       "awayTeamId": "dk-naestved",
